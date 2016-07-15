@@ -1,71 +1,19 @@
 ####################################################################
-# Put this in ~/.bashrc
+# Put this in ~/.bashrc or ~/.bash_profile
 #
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
 # #### Notes ####
 # gsettings set org.gnome.software download-updates false
 ####################################################################
-if [ -f ~/.pathmixer.sh ]; then
-  source ~/.pathmixer.sh
+export MARMALADE_PATH=$(realpath ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
+source $MARMALADE_PATH/pathmixer.sh
+# Mac or Linux?
+if [ "$(uname)" == "Darwin" ]; then
+  source $MARMALADE_PATH/macos_marmalade.sh
+else
+  source $MARMALADE_PATH/linux_marmalade.sh  
 fi
-
-
-####################################################################
-## ALIAS ###########################################################
-alias path_to_lines='echo $PATH | tr ":" "\n"'
-alias c++14='g++ -std=c++14 '
-
-alias ll='ls -la --color=auto'
-alias grep='grep --color=auto'
-alias untar='tar xvf'
-
-####################################################################
-####################################################################
-
-
-####################################################################
-## JAVA ############################################################
-export JAVA_HOME=/usr/java/default
-add_to_start_of_path_if_not_exists $JAVA_HOME/bin
-export IDEA_JDK=$JAVA_HOME
-export STUDIO_JDK=$JAVA_HOME
-export CL_JDK=$JAVA_HOME
-####################################################################
-####################################################################
-
-####################################################################
-## NODE ############################################################
-export NODE_HOME=/opt/node/node-v6.2.1-linux-x64
-add_to_end_of_path_if_not_exists $NODE_HOME/bin
-####################################################################
-####################################################################
-
-####################################################################
-## GO Programming Language #########################################
-#export GOROOT=/ #No need in case of default path (/usr/local/go)
-add_to_start_of_path_if_not_exists /usr/local/go/bin
-export GOPATH=$HOME/goworkspace
-alias setGoPathBinToPath='export PATH=$PATH:$GOPATH/bin'
-####################################################################
-####################################################################
-
-####################################################################
-## rbenv ###########################################################
-add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
-eval "$(rbenv init -)"
-####################################################################
-####################################################################
-
-####################################################################
-## pyenv ###########################################################
-#export PYENV_ROOT="$HOME/.pyenv"
-#add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
-#eval "$(pyenv init -)"
-#. ~/.pyenv/completions/pyenv.bash
-####################################################################
-####################################################################
-
 
 ####################################################################
 ## Colors PS1 ######################################################
@@ -74,3 +22,27 @@ if [[ ! -z $BASH ]]; then
 fi
 ####################################################################
 ####################################################################
+
+####################################################################
+## ALIAS ###########################################################
+alias path_to_lines='echo $PATH | tr ":" "\n"'
+alias g++14='g++ -std=c++14 '
+alias clang++14='clang++ -std=c++14 '
+alias untar='tar xvf'
+####################################################################
+####################################################################
+
+####################################################################
+## GO Programming Language #########################################
+# No need of GOROOT in case of default path (/usr/local/go)
+#export GOROOT=/path/to/special/go
+add_to_start_of_path_if_not_exists /usr/local/go/bin
+export GOPATH=$HOME/goworkspace
+alias setGoPathBinToPath='export PATH=$PATH:$GOPATH/bin'
+####################################################################
+####################################################################
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+unset MARMALADE_PATH
