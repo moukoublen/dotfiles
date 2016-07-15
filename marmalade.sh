@@ -42,7 +42,7 @@ alias setGoPathBinToPath='export PATH=$PATH:$GOPATH/bin'
 ####################################################################
 ####################################################################
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
 
 unset MARMALADE_PATH
