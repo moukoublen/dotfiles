@@ -8,7 +8,7 @@ fi
 
 alias cleanupFinderShit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
-alias ll='ls -la --color=auto'
+alias ll='ls -la -G'
 alias grep='grep --color=auto'
 
 add_to_start_of_path_if_not_exists $HOME/bin
