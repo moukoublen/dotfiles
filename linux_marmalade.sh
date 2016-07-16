@@ -29,3 +29,5 @@ add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
 #. ~/.pyenv/completions/pyenv.bash
 ####################################################################
 ####################################################################
+
+alias ll='command ls -la --color=auto'
