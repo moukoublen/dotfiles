@@ -1,4 +1,10 @@
 ####################################################################
+# Linux
+# #### Notes ####
+# gsettings set org.gnome.software download-updates false
+# gsettings set org.gnome.nautilus.preferences recursive-search never
+####################################################################
+
 ## DNF ############################################################
 alias DisplayPackageContents='dnf repoquery -l'
 ####################################################################

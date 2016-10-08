@@ -3,8 +3,6 @@
 #
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
-# #### Notes ####
-# gsettings set org.gnome.software download-updates false
 ####################################################################
 export MARMALADE_PATH=$(realpath ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
 source $MARMALADE_PATH/pathmixer.sh
@@ -13,6 +11,10 @@ if [ "$(uname)" == "Darwin" ]; then
   source $MARMALADE_PATH/macos_marmalade.sh
 else
   source $MARMALADE_PATH/linux_marmalade.sh  
+fi
+
+if [ -f $MARMALADE_PATH/extras_marmalade.sh ]; then
+  source $MARMALADE_PATH/extras_marmalade.sh
 fi
 
 ####################################################################
