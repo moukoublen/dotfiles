@@ -55,8 +55,9 @@ add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
 ## pyenv ###########################################################
 export PYENV_ROOT="$HOME/.pyenv"
 add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
-eval "$(pyenv init -)"
 ####################################################################
 ####################################################################
 
 alias ll='command ls -la --color=auto'
+alias getwmclass='xprop WM_CLASS'
+alias tree='tree -C'
