@@ -59,4 +59,6 @@ eval "$(pyenv init -)"
 ####################################################################
 ####################################################################
 
+alias update_pyenv='(cd ~/.pyenv/; git pull)'
+alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
 alias ll='command ls -la --color=auto'
