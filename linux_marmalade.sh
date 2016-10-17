@@ -3,6 +3,7 @@
 # #### Notes ####
 # gsettings set org.gnome.software download-updates false
 # gsettings set org.gnome.nautilus.preferences recursive-search never
+# gsettings set org.gnome.desktop.privacy remember-recent-files false
 ####################################################################
 
 ## DNF ############################################################
@@ -63,3 +64,10 @@ alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; gi
 alias ll='command ls -la --color=auto'
 alias getwmclass='xprop WM_CLASS'
 alias tree='tree -C'
+
+
+function print-gnome-theme-settings() {
+  echo "gsettings get org.gnome.desktop.interface gtk-theme  : $(gsettings get org.gnome.desktop.interface gtk-theme)"
+  echo "gsettings get org.gnome.desktop.wm.preferences theme : $(gsettings get org.gnome.desktop.wm.preferences theme)"
+  echo "gsettings get org.gnome.desktop.interface icon-theme : $(gsettings get org.gnome.desktop.interface icon-theme)"
+}
