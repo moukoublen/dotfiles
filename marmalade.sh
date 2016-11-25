@@ -32,6 +32,7 @@ alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 alias g++14='g++ -std=c++14 '
 alias clang++14='clang++ -std=c++14 '
 alias untar='tar xvf'
+alias untargz='tar -zxvf'
 ####################################################################
 ####################################################################
 
