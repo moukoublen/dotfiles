@@ -3,6 +3,9 @@
 # #### Notes ####
 # gsettings set org.gnome.software download-updates false
 # gsettings set org.gnome.nautilus.preferences recursive-search never
+# gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
+# gsettings set org.gnome.nautilus.preferences show-hidden-files true
+# gsettings set org.gnome.nautilus.preferences sort-directories-first true
 # gsettings set org.gnome.desktop.privacy remember-recent-files false
 ####################################################################
 
@@ -51,7 +54,13 @@ add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 ## SCALA ###########################################################
 export SCALA_HOME=/usr/scala/default
 add_to_end_of_path_if_not_exists $SCALA_HOME/bin
-# export GRADLE_OPTS=""
+####################################################################
+####################################################################
+
+####################################################################
+## GROOVY ##########################################################
+export GROOVY_HOME=/opt/groovy/default
+add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ####################################################################
 ####################################################################
 
