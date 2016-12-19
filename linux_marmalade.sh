@@ -1,6 +1,7 @@
 ####################################################################
 # Linux
 # #### Notes ####
+# tar -C /usr/java -xzf jdk-8u112-linux-x64.tar.gz
 # gsettings set org.gnome.software download-updates false
 # gsettings set org.gnome.nautilus.preferences recursive-search never
 # gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
@@ -12,6 +13,11 @@
 ## DNF ############################################################
 alias DisplayPackageContents='dnf repoquery -l'
 ####################################################################
+
+## Vagrant #########################################################
+alias vm_vagrant_get_centos7='vagrant init centos/7; vagrant up --provider virtualbox'
+alias vm_vagrant_get_ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
+alias vm_vagrant_get_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
 ####################################################################
 
 
