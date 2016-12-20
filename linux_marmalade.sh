@@ -10,11 +10,11 @@
 # gsettings set org.gnome.desktop.privacy remember-recent-files false
 ####################################################################
 
-## DNF ############################################################
+##################### DNF ##########################################
 alias DisplayPackageContents='dnf repoquery -l'
 ####################################################################
 
-## Vagrant #########################################################
+##################### Vagrant ######################################
 alias vm_vagrant_get_centos7='vagrant init centos/7; vagrant up --provider virtualbox'
 alias vm_vagrant_get_ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
 alias vm_vagrant_get_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
@@ -22,7 +22,7 @@ alias vm_vagrant_get_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --prov
 
 
 ####################################################################
-## JAVA ############################################################
+##################### Java #########################################
 export JAVA_HOME=/usr/java/default
 add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 export IDEA_JDK=$JAVA_HOME
@@ -32,7 +32,7 @@ export CL_JDK=$JAVA_HOME
 ####################################################################
 
 ####################################################################
-## NODE ############################################################
+##################### Node #########################################
 export NODE_HOME=/opt/node/default
 add_to_end_of_path_if_not_exists $NODE_HOME/bin
 if which npm > /dev/null 2>&1; then source <(npm completion); fi
@@ -40,7 +40,7 @@ if which npm > /dev/null 2>&1; then source <(npm completion); fi
 ####################################################################
 
 ####################################################################
-## Maven ###########################################################
+##################### Maven ########################################
 export M2_HOME=/opt/maven/default
 export M2=$M2_HOME/bin
 export MAVEN_OPTS="-Xmx2048m -Xms256m"
@@ -49,7 +49,7 @@ add_to_end_of_path_if_not_exists $M2
 ####################################################################
 
 ####################################################################
-## Gradle ##########################################################
+##################### Gradle #######################################
 export GRADLE_HOME=/opt/gradle/default
 add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 # export GRADLE_OPTS=""
@@ -57,27 +57,30 @@ add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 ####################################################################
 
 ####################################################################
-## SCALA ###########################################################
+##################### Scala ########################################
 export SCALA_HOME=/usr/scala/default
 add_to_end_of_path_if_not_exists $SCALA_HOME/bin
 ####################################################################
 ####################################################################
 
 ####################################################################
-## GROOVY ##########################################################
+##################### Groovy #######################################
 export GROOVY_HOME=/opt/groovy/default
 add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ####################################################################
 ####################################################################
 
 ####################################################################
-## rbenv ###########################################################
+##################### rbenv #########################################
+# git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+# git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
 ####################################################################
 ####################################################################
 
 ####################################################################
-## pyenv ###########################################################
+##################### pyenv ########################################
+# git clone https://github.com/yyuu/pyenv.git ~/.pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
 ####################################################################

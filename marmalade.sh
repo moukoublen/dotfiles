@@ -5,12 +5,14 @@
 #
 ####################################################################
 export MARMALADE_PATH=$(realpath ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
+
 source $MARMALADE_PATH/pathmixer.sh
+
 # Mac or Linux?
 if [ "$(uname)" == "Darwin" ]; then
   source $MARMALADE_PATH/macos_marmalade.sh
 else
-  source $MARMALADE_PATH/linux_marmalade.sh  
+  source $MARMALADE_PATH/linux_marmalade.sh
 fi
 
 if [ -f $MARMALADE_PATH/extras_marmalade.sh ]; then
@@ -18,7 +20,7 @@ if [ -f $MARMALADE_PATH/extras_marmalade.sh ]; then
 fi
 
 ####################################################################
-## Colors PS1 ######################################################
+##################### Colors PS1 ###################################
 if [[ ! -z $BASH ]]; then
   PS1="\[\033[36m\]╭ \u@\h\[\033[m\] \[\033[32m\]\w\[\033[m\]\[\033[36m\] \n╰\[\033[m\] "
 fi
@@ -26,7 +28,7 @@ fi
 ####################################################################
 
 ####################################################################
-## ALIAS ###########################################################
+##################### ALIAS ########################################
 alias path_to_lines='echo $PATH | tr ":" "\n"'
 alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 alias g++14='g++ -std=c++14 '
@@ -37,7 +39,7 @@ alias untargz='tar -zxvf'
 ####################################################################
 
 ####################################################################
-## GO Programming Language #########################################
+##################### Go Language ##################################
 # No need of GOROOT in case of default path (/usr/local/go)
 #export GOROOT=/path/to/special/go
 add_to_start_of_path_if_not_exists /usr/local/go/bin
