@@ -10,7 +10,12 @@
 # gsettings set org.gnome.desktop.privacy remember-recent-files false
 ####################################################################
 
-##################### DNF ##########################################
+##################### Generic Aliases ##############################
+alias update_pyenv='(cd ~/.pyenv/; git pull)'
+alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
+alias getwmclass='xprop WM_CLASS'
+alias ll='command ls -la --color=auto'
+alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
 ####################################################################
 
@@ -85,12 +90,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
 ####################################################################
 ####################################################################
-
-alias update_pyenv='(cd ~/.pyenv/; git pull)'
-alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
-alias ll='command ls -la --color=auto'
-alias getwmclass='xprop WM_CLASS'
-alias tree='tree -C'
 
 
 function print-gnome-theme-settings() {
