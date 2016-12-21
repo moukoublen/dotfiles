@@ -58,7 +58,7 @@ add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 
 ####################################################################
 ##################### Scala ########################################
-export SCALA_HOME=/usr/scala/default
+export SCALA_HOME=/opt/scala/default
 add_to_end_of_path_if_not_exists $SCALA_HOME/bin
 ####################################################################
 ####################################################################
