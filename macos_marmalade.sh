@@ -32,5 +32,7 @@ alias cleanupFinderShit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias grep='command grep --color=auto'
 #alias ll='command ls -la --color=auto'
+#alias ls='command ls --color=auto'
 alias ll='command ls -laG'
+alias ls='command ls -G'
 ####################################################################
