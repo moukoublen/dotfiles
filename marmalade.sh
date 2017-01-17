@@ -48,6 +48,12 @@ alias setGoPathBinToPath='export PATH=$PATH:$GOPATH/bin'
 ####################################################################
 ####################################################################
 
+##################### Vagrant ######################################
+alias vm_vagrant_get_centos7='vagrant init centos/7; vagrant up --provider virtualbox'
+alias vm_vagrant_get_ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
+alias vm_vagrant_get_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
+####################################################################
+
 if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
 

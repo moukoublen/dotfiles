@@ -19,13 +19,6 @@ alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
 ####################################################################
 
-##################### Vagrant ######################################
-alias vm_vagrant_get_centos7='vagrant init centos/7; vagrant up --provider virtualbox'
-alias vm_vagrant_get_ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
-alias vm_vagrant_get_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
-####################################################################
-
-
 ####################################################################
 ##################### Java #########################################
 export JAVA_HOME=/usr/java/default
