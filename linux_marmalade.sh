@@ -11,8 +11,6 @@
 ####################################################################
 
 ##################### Generic Aliases ##############################
-alias update_pyenv='(cd ~/.pyenv/; git pull)'
-alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
 alias getwmclass='xprop WM_CLASS'
 alias ll='command ls -la --color=auto'
 alias tree='tree -C'
@@ -65,22 +63,6 @@ add_to_end_of_path_if_not_exists $SCALA_HOME/bin
 ##################### Groovy #######################################
 export GROOVY_HOME=/opt/groovy/default
 add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
-####################################################################
-####################################################################
-
-####################################################################
-##################### rbenv #########################################
-# git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-# git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
-####################################################################
-####################################################################
-
-####################################################################
-##################### pyenv ########################################
-# git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
 ####################################################################
 ####################################################################
 
