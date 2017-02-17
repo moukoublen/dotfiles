@@ -17,6 +17,8 @@ alias ll='command ls -la --color=auto'
 alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
 alias wifi_restart='sudo systemctl restart network-manager.service'
+alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
+alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
 ####################################################################
 
 ####################################################################
