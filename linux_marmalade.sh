@@ -16,7 +16,6 @@ alias getwmclass='xprop WM_CLASS'
 alias ll='command ls -la --color=auto'
 alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
-alias wifi_restart='sudo systemctl restart network-manager.service'
 alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
 alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
 ####################################################################
@@ -70,14 +69,22 @@ add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ####################################################################
 ####################################################################
 
+function print-gnome-theme-settings() {
+  echo "gsettings get org.gnome.desktop.interface gtk-theme  : $(gsettings get org.gnome.desktop.interface gtk-theme)"
+  echo "gsettings get org.gnome.desktop.wm.preferences theme : $(gsettings get org.gnome.desktop.wm.preferences theme)"
+  echo "gsettings get org.gnome.desktop.interface icon-theme : $(gsettings get org.gnome.desktop.interface icon-theme)"
+}
+
+
+######### Ubuntu ###############################################################
+################################################################################
+
+alias wifi_restart='sudo systemctl restart network-manager.service'
 ####################################################################
 ##################### Ubuntu Juju ##################################
 export JUJU_REPOSITORY=$HOME/charms
 ####################################################################
 ####################################################################
 
-function print-gnome-theme-settings() {
-  echo "gsettings get org.gnome.desktop.interface gtk-theme  : $(gsettings get org.gnome.desktop.interface gtk-theme)"
-  echo "gsettings get org.gnome.desktop.wm.preferences theme : $(gsettings get org.gnome.desktop.wm.preferences theme)"
-  echo "gsettings get org.gnome.desktop.interface icon-theme : $(gsettings get org.gnome.desktop.interface icon-theme)"
-}
+################################################################################
+################################################################################
