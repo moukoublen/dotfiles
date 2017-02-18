@@ -3,6 +3,7 @@
 # #### Notes ####
 # who # Show terminals. Stupid but I keep forgetting it.
 # tar -C /usr/java -xzf jdk-8u112-linux-x64.tar.gz
+# sudo timedatectl set-local-rtc 1
 # gsettings set org.gnome.software download-updates false
 # gsettings set org.gnome.nautilus.preferences recursive-search never
 # gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
