@@ -59,8 +59,11 @@ alias vm_vagrant_clean_old_boxes='vagrant box prune'
 ##################### rbenv #########################################
 # git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 # git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
-if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+if [ -z ${RBENV_SHELL+x} ] # run rbenv init if it has not been run already
+then
+  add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
+  if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
+fi
 alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
 ####################################################################
 ####################################################################
@@ -68,9 +71,12 @@ alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; gi
 ####################################################################
 ##################### pyenv ########################################
 # git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
-if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
+if [ -z ${PYENV_SHELL+x} ]  # run pyenv init if it has not been run already
+then
+  export PYENV_ROOT="$HOME/.pyenv"
+  add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
+  if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
+fi
 alias update_pyenv='(cd ~/.pyenv/; git pull)'
 ####################################################################
 ####################################################################
