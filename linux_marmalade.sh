@@ -41,10 +41,10 @@ if which npm > /dev/null 2>&1; then source <(npm completion); fi
 
 ####################################################################
 ##################### Maven ########################################
-export M2_HOME=/opt/maven/default
-export M2=$M2_HOME/bin
+export M3_HOME=/opt/maven/default
+export M3=$M2_HOME/bin
 export MAVEN_OPTS="-Xmx2048m -Xms256m"
-add_to_end_of_path_if_not_exists $M2
+add_to_end_of_path_if_not_exists $M3
 ####################################################################
 ####################################################################
 
