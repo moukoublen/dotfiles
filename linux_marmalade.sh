@@ -10,6 +10,12 @@
 # gsettings set org.gnome.nautilus.preferences show-hidden-files true
 # gsettings set org.gnome.nautilus.preferences sort-directories-first true
 # gsettings set org.gnome.desktop.privacy remember-recent-files false
+#
+# #Terminal Colors#
+# background-color: #303030
+# foreground-color: #EFEFEF
+# palette: ["#000000","#CC0000","#4D9A05","#C3A000","#3464A3","#754F7B","#05979A","#D3D6CF","#545652","#EF2828","#89E234","#FBE84F","#729ECF","#AC7EA8","#34E2E2","#EDEDEB"]
+#
 ####################################################################
 
 ##################### Generic Aliases ##############################
