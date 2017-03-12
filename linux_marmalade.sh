@@ -70,7 +70,7 @@ add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ####################################################################
 ####################################################################
 
-function print-gnome-theme-settings() {
+print-gnome-theme-settings() {
   echo "gsettings get org.gnome.desktop.interface gtk-theme  : $(gsettings get org.gnome.desktop.interface gtk-theme)"
   echo "gsettings get org.gnome.desktop.wm.preferences theme : $(gsettings get org.gnome.desktop.wm.preferences theme)"
   echo "gsettings get org.gnome.desktop.interface icon-theme : $(gsettings get org.gnome.desktop.interface icon-theme)"
