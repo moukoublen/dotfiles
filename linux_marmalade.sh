@@ -25,6 +25,7 @@ alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
 alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
 alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
+alias G++='g++ -Wall -Wextra -pedantic'
 ####################################################################
 
 ####################################################################
