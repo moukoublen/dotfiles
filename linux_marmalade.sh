@@ -79,12 +79,30 @@ add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ####################################################################
 ####################################################################
 
-print-gnome-theme-settings() {
-  echo "gsettings get org.gnome.desktop.interface gtk-theme  : $(gsettings get org.gnome.desktop.interface gtk-theme)"
-  echo "gsettings get org.gnome.desktop.wm.preferences theme : $(gsettings get org.gnome.desktop.wm.preferences theme)"
-  echo "gsettings get org.gnome.desktop.interface icon-theme : $(gsettings get org.gnome.desktop.interface icon-theme)"
+function get_gnome_theme {
+  echo "org.gnome.desktop.interface gtk-theme     : $(gsettings get org.gnome.desktop.interface gtk-theme)"
+  echo "org.gnome.desktop.wm.preferences theme    : $(gsettings get org.gnome.desktop.wm.preferences theme)"
+  echo "org.gnome.shell.extensions.user-theme name: $(gsettings get org.gnome.shell.extensions.user-theme name)"
+  echo "org.gnome.desktop.interface icon-theme    : $(gsettings get org.gnome.desktop.interface icon-theme)"
 }
 
+function set_gnome_theme {
+  gsettings set org.gnome.desktop.interface gtk-theme $1
+  gsettings set org.gnome.desktop.wm.preferences theme $1
+  gsettings set org.gnome.shell.extensions.user-theme name $1
+}
+
+function set_flat_plat_gnome_theme {
+  set_gnome_theme 'Flat-Plat-light'
+}
+
+function set_adwaita_gnome_theme {
+  set_gnome_theme 'Adwaita'
+}
+
+function set_icon_theme {
+  gsettings set org.gnome.desktop.interface icon-theme $1
+}
 
 ######### Ubuntu ###############################################################
 ################################################################################
