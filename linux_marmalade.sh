@@ -95,11 +95,11 @@ function GS_set_gnome_theme {
 }
 
 function GS_set_flat_plat_gnome_theme {
-  set_gnome_theme 'Flat-Plat-light'
+  GS_set_gnome_theme 'Flat-Plat-light'
 }
 
 function GS_set_adwaita_gnome_theme {
-  set_gnome_theme 'Adwaita'
+  GS_set_gnome_theme 'Adwaita'
 }
 
 function GS_set_icon_theme {
