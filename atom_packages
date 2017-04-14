@@ -1,0 +1,8 @@
+highlight-selected
+atom-beautify
+file-icons
+language-scala
+
+#themes
+nord-atom-syntax
+nord-atom-ui
