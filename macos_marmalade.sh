@@ -10,7 +10,7 @@ export LC_ALL='en_US.UTF-8';
 
 ####################################################################
 ##################### Java #########################################
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_112.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home'
 ####################################################################
 ####################################################################
 
