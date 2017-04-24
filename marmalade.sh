@@ -29,8 +29,8 @@ fi
 
 ####################################################################
 ##################### ALIAS ########################################
-alias path_to_lines='echo $PATH | tr ":" "\n"'
-alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
+alias path-to-lines='echo $PATH | tr ":" "\n"'
+alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 ####################################################################
 ####################################################################
 
@@ -45,10 +45,10 @@ alias setGoPathBinToPath='export PATH=$PATH:$GOPATH/bin'
 ####################################################################
 
 ##################### Vagrant ######################################
-alias vm_vagrant_init_up_centos7='vagrant init centos/7; vagrant up --provider virtualbox'
-alias vm_vagrant_init_up_ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
-alias vm_vagrant_init_up_ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
-alias vm_vagrant_clean_old_boxes='vagrant box prune'
+alias vm-vagrant-init-up-centos7='vagrant init centos/7; vagrant up --provider virtualbox'
+alias vm-vagrant-init-up-ubuntu1604='vagrant init ubuntu/xenial64; vagrant up --provider virtualbox'
+alias vm-vagrant-init-up-ubuntu1404='vagrant init ubuntu/trusty64; vagrant up --provider virtualbox'
+alias vm-vagrant-clean-old-boxes='vagrant box prune'
 ####################################################################
 
 ####################################################################
@@ -60,7 +60,7 @@ then
   add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
   if which rbenv > /dev/null 2>&1; then eval "$(rbenv init -)"; fi
 fi
-alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
+alias update-rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
 ####################################################################
 ####################################################################
 
@@ -73,7 +73,7 @@ then
   add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
   if which pyenv > /dev/null 2>&1; then eval "$(pyenv init -)"; fi
 fi
-alias update_pyenv='(cd ~/.pyenv/; git pull)'
+alias update-pyenv='(cd ~/.pyenv/; git pull)'
 ####################################################################
 ####################################################################
 

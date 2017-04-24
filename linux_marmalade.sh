@@ -23,8 +23,8 @@ alias getwmclass='xprop WM_CLASS'
 alias ll='command ls -la --color=auto'
 alias tree='tree -C'
 alias DisplayPackageContents='dnf repoquery -l'
-alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
-alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
+alias go-to-runlevel-3='sudo systemctl set-default multi-user.target'
+alias go-to-runlevel-5='sudo systemctl set-default graphical.target'
 alias G++='g++ -Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Wshadow -Woverloaded-virtual'
 alias g++14='g++ -std=c++14 '
 alias clang++14='clang++ -std=c++14 '
@@ -89,28 +89,28 @@ add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 
 ####################################################################
 ##### Functions for Gnome Setting. Theme and icons #################
-function GS_get_gnome_theme_and_icons {
+function GS-get-gnome-theme-and-icons {
   echo "org.gnome.desktop.interface gtk-theme     : $(gsettings get org.gnome.desktop.interface gtk-theme)"
   echo "org.gnome.desktop.wm.preferences theme    : $(gsettings get org.gnome.desktop.wm.preferences theme)"
   echo "org.gnome.shell.extensions.user-theme name: $(gsettings get org.gnome.shell.extensions.user-theme name)"
   echo "org.gnome.desktop.interface icon-theme    : $(gsettings get org.gnome.desktop.interface icon-theme)"
 }
 
-function GS_set_gnome_theme {
+function GS-set-gnome-theme {
   gsettings set org.gnome.desktop.interface gtk-theme $1
   gsettings set org.gnome.desktop.wm.preferences theme $1
   gsettings set org.gnome.shell.extensions.user-theme name $1
 }
 
-function GS_set_flat_plat_gnome_theme {
+function GS-set-flat-plat-gnome-theme {
   GS_set_gnome_theme 'Flat-Plat-light'
 }
 
-function GS_set_adwaita_gnome_theme {
+function GS-set-adwaita-gnome-theme {
   GS_set_gnome_theme 'Adwaita'
 }
 
-function GS_set_icon_theme {
+function GS-set-icon-theme {
   gsettings set org.gnome.desktop.interface icon-theme $1
 }
 ####################################################################
