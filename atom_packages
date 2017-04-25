@@ -1,7 +1,12 @@
-highlight-selected
 atom-beautify
 file-icons
+highlight-selected
 language-scala
+
+linter
+linter-ui-default
+intentions
+busy-signal
 
 #themes
 nord-atom-syntax
