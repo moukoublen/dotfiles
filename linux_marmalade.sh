@@ -103,11 +103,11 @@ function GS-set-gnome-theme {
 }
 
 function GS-set-flat-plat-gnome-theme {
-  GS_set_gnome_theme 'Flat-Plat-light'
+  GS-set-gnome-theme 'Flat-Plat-light'
 }
 
 function GS-set-adwaita-gnome-theme {
-  GS_set_gnome_theme 'Adwaita'
+  GS-set-gnome-theme 'Adwaita'
 }
 
 function GS-set-icon-theme {
