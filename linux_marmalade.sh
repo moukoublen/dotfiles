@@ -21,14 +21,13 @@
 ##################### Generic Aliases ##############################
 alias getwmclass='xprop WM_CLASS'
 alias ll='command ls -la --color=auto'
-alias tree='tree -C'
-alias DisplayPackageContents='dnf repoquery -l'
+alias tree='command tree -C'
 alias go-to-runlevel-3='sudo systemctl set-default multi-user.target'
 alias go-to-runlevel-5='sudo systemctl set-default graphical.target'
 alias G++='g++ -Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Wshadow -Woverloaded-virtual'
 alias g++14='g++ -std=c++14 '
 alias clang++14='clang++ -std=c++14 '
-alias search-file-names='find . -name '
+alias S='find . -name '
 ####################################################################
 
 ####################################################################
@@ -118,13 +117,13 @@ function GS-set-icon-theme {
 
 ################################################################################
 ######### Ubuntu ###############################################################
-
 alias wifi_restart='sudo systemctl restart network-manager.service'
-####################################################################
-##################### Ubuntu Juju ##################################
 export JUJU_REPOSITORY=$HOME/charms
-####################################################################
-####################################################################
+################################################################################
+################################################################################
 
+################################################################################
+######### Fedora ###############################################################
+alias DisplayPackageContents='dnf repoquery -l'
 ################################################################################
 ################################################################################
