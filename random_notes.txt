@@ -1,0 +1,21 @@
+who # Show terminals. Stupid but I keep forgetting it.
+tar -C /usr/java -xzf jdk-8u112-linux-x64.tar.gz
+sudo timedatectl set-local-rtc 1
+gsettings set org.gnome.software download-updates false
+gsettings set org.gnome.nautilus.preferences recursive-search never
+gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'
+gsettings set org.gnome.nautilus.preferences show-hidden-files true
+gsettings set org.gnome.nautilus.preferences sort-directories-first true
+gsettings set org.gnome.desktop.privacy remember-recent-files false
+
+
+# Terminal Colors #
+background-color: #303030 - rgb(48,48,48)
+foreground-color: #DDDDDD - rgb(221,221,221)
+palette: ['#000000','#CC0000','#4D9A05','#C3A000','#3464A3','#754F7B','#05979A','#D3D6CF','#545652','#EF2828','#89E234','#FBE84F','#729ECF','#AC7EA8','#34E2E2','#EDEDEB']
+
+
+
+
+# Docker #
+docker run -it <image> /bin/bash
