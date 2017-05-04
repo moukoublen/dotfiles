@@ -24,7 +24,7 @@ export CL_JDK=$JAVA_HOME
 ##################### Node #########################################
 export NODE_HOME=/opt/node/default
 add_to_end_of_path_if_not_exists $NODE_HOME/bin
-if which npm > /dev/null 2>&1; then source <(npm completion); fi
+#if which npm > /dev/null 2>&1; then source <(npm completion); fi
 ####################################################################
 ####################################################################
 
