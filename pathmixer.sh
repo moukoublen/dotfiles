@@ -1,11 +1,9 @@
-add_to_start_of_path_if_not_exists ()
-{
+add_to_start_of_path_if_not_exists() {
   [[ ":$PATH:" != *":$1:"* ]] && PATH="${1}:${PATH}"
   export PATH;
 }
 
-add_to_end_of_path_if_not_exists ()
-{
+add_to_end_of_path_if_not_exists() {
   [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:${1}"
   export PATH;
 }
