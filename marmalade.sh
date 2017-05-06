@@ -43,7 +43,7 @@ format_ps1
 ######### Aliases ##############################################################
 alias path_to_lines='echo $PATH | tr ":" "\n"'
 alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
-alias update_marmalade="cd ${MARMALADE_PATH}; git pull"
+alias update_marmalade="(cd ${MARMALADE_PATH}; git pull)"
 ################################################################################
 ################################################################################
 
