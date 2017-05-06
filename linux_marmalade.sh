@@ -84,11 +84,11 @@ GS_set_gnome_theme() {
 }
 
 GS_set_flat_plat_gnome_theme() {
-  GS-set-gnome-theme 'Flat-Plat-light'
+  GS_set_gnome_theme 'Flat-Plat-light'
 }
 
 GS_set_adwaita_gnome_theme() {
-  GS-set-gnome-theme 'Adwaita'
+  GS_set_gnome_theme 'Adwaita'
 }
 
 GS_set_icon_theme() {
