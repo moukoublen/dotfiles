@@ -9,7 +9,8 @@ alias G++='g++ -Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings 
 alias g++14='g++ -std=c++14 '
 alias clang++14='clang++ -std=c++14 '
 alias S='find . -name '
-alias to_ack='ack --files-from=-'
+alias to_ack='ack --files-from=-' #pipe find results
+alias to_grep='xargs grep --color=auto' #pipe find results
 ################################################################################
 ################################################################################
 
