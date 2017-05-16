@@ -102,6 +102,7 @@ GS_set_icon_theme() {
 ################################################################################
 ######### Ubuntu ###############################################################
 alias wifi_restart='sudo systemctl restart network-manager.service'
+alias reload_kernel_variables='sudo systemctl restart procps.service'
 export JUJU_REPOSITORY=$HOME/charms
 ################################################################################
 ################################################################################
