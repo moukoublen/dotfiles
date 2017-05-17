@@ -96,6 +96,11 @@ GS_set_adwaita_gnome_theme() {
 GS_set_icon_theme() {
   gsettings set org.gnome.desktop.interface icon-theme $1
 }
+
+GS_delete_flat_plat() {
+  GS_set_adwaita_gnome_theme
+  sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+}
 ################################################################################
 ################################################################################
 
