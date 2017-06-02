@@ -19,3 +19,10 @@ palette: ['#000000','#CC0000','#4D9A05','#C3A000','#3464A3','#754F7B','#05979A',
 
 # Docker #
 docker run -it <image> /bin/bash
+
+docker system prune
+
+docker container prune
+docker image prune
+docker network prune
+docker volume prune
