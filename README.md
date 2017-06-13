@@ -1,11 +1,17 @@
-# dotfiles
-**To install:**
+# Marmalade Dotfiles
 
+#### Installation
+
+Run `install.sh`.
+
+#### Manual installation
 
 ```console
 $ ln -s /path/to/dotfiles/marmalade.sh ~/.marmalade.sh
 $ echo '[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh' >> ~/.bashrc
 ```
+
+#### Notes
 
 Create the file `~/.path` and put what ever path that you want to be included to PATH (paths can contain environment variables).
 
