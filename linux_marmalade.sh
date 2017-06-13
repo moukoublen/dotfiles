@@ -6,8 +6,6 @@ alias tree='command tree -C'
 alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
 alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
 alias G++='g++ -Wall -Wextra -Wfloat-equal -Wundef -Wcast-align -Wwrite-strings -Wlogical-op -Wmissing-declarations -Wredundant-decls -Wshadow -Woverloaded-virtual'
-alias g++14='g++ -std=c++14 '
-alias clang++14='clang++ -std=c++14 '
 alias S='find . -name '
 alias to_ack='ack --files-from=-' #pipe find results
 alias to_grep='xargs grep --color=auto' #pipe find results
