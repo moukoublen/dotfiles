@@ -9,6 +9,9 @@ gsettings set org.gnome.nautilus.preferences sort-directories-first true
 gsettings set org.gnome.desktop.privacy remember-recent-files false
 
 
+org.gnome.settings-daemon.plugins.color night-light-enabled
+org.gnome.settings-daemon.plugins.color night-light-temperature
+
 # Terminal Colors #
 background-color: #303030 - rgb(48,48,48)
 foreground-color: #DDDDDD - rgb(221,221,221)
