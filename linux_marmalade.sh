@@ -77,10 +77,10 @@ add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ################################################################################
 ######### Functions for Gnome Setting. Theme and icons #########################
 GS_get_gnome_theme_and_icons() {
-  echo "org.gnome.desktop.interface gtk-theme     : $(gsettings get org.gnome.desktop.interface gtk-theme)"
-  echo "org.gnome.desktop.wm.preferences theme    : $(gsettings get org.gnome.desktop.wm.preferences theme)"
-  echo "org.gnome.shell.extensions.user-theme name: $(gsettings get org.gnome.shell.extensions.user-theme name)"
-  echo "org.gnome.desktop.interface icon-theme    : $(gsettings get org.gnome.desktop.interface icon-theme)"
+  echo "org.gnome.desktop.interface gtk-theme      : $(gsettings get org.gnome.desktop.interface gtk-theme)"
+  echo "org.gnome.desktop.wm.preferences theme     : $(gsettings get org.gnome.desktop.wm.preferences theme)"
+  echo "org.gnome.shell.extensions.user-theme name : $(gsettings get org.gnome.shell.extensions.user-theme name)"
+  echo "org.gnome.desktop.interface icon-theme     : $(gsettings get org.gnome.desktop.interface icon-theme)"
 }
 
 GS_set_gnome_theme() {
@@ -102,8 +102,15 @@ GS_set_icon_theme() {
 }
 
 GS_delete_flat_plat() {
+  sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+}
+
+GS_updgrade_flatplat() {
+  #you should be in Flat-Plat repo directory
   GS_set_adwaita_gnome_theme
   sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+  sudo ./install.sh
+  GS_set_flat_plat_gnome_theme
 }
 ################################################################################
 ################################################################################
