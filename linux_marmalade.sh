@@ -89,20 +89,12 @@ GS_set_gnome_theme() {
   gsettings set org.gnome.shell.extensions.user-theme name $1
 }
 
-GS_set_flat_plat_gnome_theme() {
-  GS_set_gnome_theme 'Flat-Plat-light'
-}
-
-GS_set_adwaita_gnome_theme() {
-  GS_set_gnome_theme 'Adwaita'
-}
-
 GS_set_icon_theme() {
   gsettings set org.gnome.desktop.interface icon-theme $1
 }
 
-GS_delete_flat_plat() {
-  sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+GS_set_adwaita_gnome_theme() {
+  GS_set_gnome_theme 'Adwaita'
 }
 
 GS_updgrade_flatplat() {
@@ -110,7 +102,7 @@ GS_updgrade_flatplat() {
   GS_set_adwaita_gnome_theme
   sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
   sudo ./install.sh
-  GS_set_flat_plat_gnome_theme
+  GS_set_gnome_theme 'Flat-Plat-light'
 }
 ################################################################################
 ################################################################################
