@@ -29,3 +29,10 @@ docker container prune
 docker image prune
 docker network prune
 docker volume prune
+
+
+# ubuntu ipv6 disable
+### /etc/sysctl.d/99-my-disable-ipv6.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
