@@ -21,6 +21,9 @@ add_to_start_of_path_if_not_exists $HOME/.local/bin
 ################################################################################
 ######### Java #################################################################
 export JAVA_HOME=/usr/java/default
+if [ -d /usr/lib/jvm/java ]; then
+  export JAVA_HOME=/usr/lib/jvm/java
+fi
 add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 export IDEA_JDK=$JAVA_HOME
 export STUDIO_JDK=$JAVA_HOME

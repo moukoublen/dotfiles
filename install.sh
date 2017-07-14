@@ -25,7 +25,7 @@ if [ -f ~/.bashrc ]; then
     echo "  marmalade sourcing is already included in ~/.bashrc"
   else
     echo "  add marmalade sourcing in ~/.bashrc"
-    echo "[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh" >> .bashrc
+    echo "[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh" >> ~/.bashrc
   fi
 else
   echo "  ERROR: ~/.bashrc does not exists. add the below line to bash profile script"
