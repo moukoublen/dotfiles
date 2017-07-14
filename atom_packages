@@ -1,13 +1,15 @@
-atom-beautify
-file-icons
-highlight-selected
-language-scala
+#!/usr/bin/env bash
 
-linter
-linter-ui-default
-intentions
-busy-signal
+apm install \
+  atom-beautify \
+  file-icons \
+  highlight-selected \
+  language-scala \
+  linter \
+  linter-ui-default \
+  intentions \
+  busy-signal \
 
 #themes
-nord-atom-syntax
-nord-atom-ui
+# nord-atom-syntax
+# nord-atom-ui
