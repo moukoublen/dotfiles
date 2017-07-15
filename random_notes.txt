@@ -41,3 +41,21 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 
 # write raspbian to sdcard
 dd bs=4M if=2017-07-05-raspbian-jessie.img of=/dev/mmcblk0 status=progress
+
+################################################################################
+# disable shift+alth keyboard layout switching
+##############################################
+
+1)
+/etc/default/keyboard
+line: XKBOPTIONS="grp:alt_shift_toggle,grp_led:scroll"
+should not contain grp:alt_shift_toggle
+
+
+2)
+dconf read /org/gnome/desktop/input-sources/xkb-options
+should not contain grp:alt_shift_toggle
+e.g. dconf write /org/gnome/desktop/input-sources/xkb-options "['grp_led:scroll']"
+
+
+################################################################################
