@@ -107,12 +107,28 @@ GS_set_adwaita_gnome_theme() {
   GS_set_gnome_theme 'Adwaita'
 }
 
-GS_updgrade_flatplat() {
+GS_update_flatplat() {
   #you should be in Flat-Plat repo directory
   GS_set_adwaita_gnome_theme
   sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
   sudo ./install.sh
   GS_set_gnome_theme 'Flat-Plat-light'
+}
+
+GS_update_papirus() {
+  GS_set_icon_theme 'Adwaita'
+  sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Dark,Papirus-Light}
+  sudo cp --no-preserve=mode,ownership -r \
+      ePapirus \
+      Papirus \
+      Papirus-Light \
+      Papirus-Dark \
+      /usr/share/icons
+  gtk-update-icon-cache -q /usr/share/icons/ePapirus
+  gtk-update-icon-cache -q /usr/share/icons/Papirus
+  gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
+  gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
+  GS_set_icon_theme 'Papirus'
 }
 ################################################################################
 ################################################################################
