@@ -32,9 +32,9 @@ then
   add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 fi
 
-export IDEA_JDK=$JAVA_HOME
-export STUDIO_JDK=$JAVA_HOME
-export CL_JDK=$JAVA_HOME
+#export IDEA_JDK=$JAVA_HOME
+#export STUDIO_JDK=$JAVA_HOME
+#export CL_JDK=$JAVA_HOME
 ################################################################################
 ################################################################################
 
