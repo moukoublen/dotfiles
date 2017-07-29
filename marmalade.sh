@@ -21,22 +21,37 @@ fi
 
 ################################################################################
 ######### Colors PS1 ###########################################################
-parse_git_branch() {
+alias minimal_ps1="PS1='$ '"
+
+_parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-format_ps1() {
+_set_color_ps1() {
   local F_PATH='\[\033[32m\]'
   local F_GIT_BRANCH='\[\033[93;1m\]'
   local F_MAIN='\[\033[36m\]'
   local RESET_ALL='\[\033[0m\]'
   if [[ ! -z $BASH ]]; then
-    export PS1="${F_MAIN}╭ \u@\h${RESET_ALL} ${F_PATH}\w${RESET_ALL} ${F_GIT_BRANCH}\$(parse_git_branch)${RESET_ALL}\n${F_MAIN}╰${RESET_ALL} "
+    export PS1="${F_MAIN}╭ \u@\h${RESET_ALL} ${F_PATH}\w${RESET_ALL} ${F_GIT_BRANCH}\$(_parse_git_branch)${RESET_ALL}\n${F_MAIN}╰${RESET_ALL} "
   fi
 }
 
-format_ps1
-alias minimal_ps1="PS1='$ '"
+_powerline-shell_ps1() {
+    PS1="$(~/powerline-shell.py --mode flat $? 2> /dev/null)"
+}
+
+_set_powerline-shell_ps1() {
+  if [ "$TERM" != "linux" ]; then
+      PROMPT_COMMAND="_powerline-shell_ps1; $PROMPT_COMMAND"
+  fi
+}
+
+if [ -f ~/powerline-shell.py ]; then
+  _set_powerline-shell_ps1
+else
+  _set_color_ps1
+fi
 ################################################################################
 ################################################################################
 
