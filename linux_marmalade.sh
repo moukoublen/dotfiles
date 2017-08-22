@@ -85,6 +85,15 @@ add_to_end_of_path_if_not_exists $NODE_HOME/bin
 ################################################################################
 
 ################################################################################
+######### Android SDK ##########################################################
+export ANDR_PT="$HOME/Android/Sdk/platform-tools"
+android_to_path() {
+  add_to_start_of_path_if_not_exists $ANDR_PT
+}
+################################################################################
+################################################################################
+
+################################################################################
 ######### Functions for Gnome Setting. Theme and icons #########################
 GS_get_gnome_theme_and_icons() {
   echo "org.gnome.desktop.interface gtk-theme      : $(gsettings get org.gnome.desktop.interface gtk-theme)"
