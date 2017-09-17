@@ -37,21 +37,7 @@ _set_color_ps1() {
   fi
 }
 
-_powerline-shell_ps1() {
-    PS1="$(~/powerline-shell.py --mode flat $? 2> /dev/null)"
-}
-
-_set_powerline-shell_ps1() {
-  if [ "$TERM" != "linux" ]; then
-      PROMPT_COMMAND="_powerline-shell_ps1; $PROMPT_COMMAND"
-  fi
-}
-
-if [ -f ~/powerline-shell.py ]; then
-  _set_powerline-shell_ps1
-else
-  _set_color_ps1
-fi
+_set_color_ps1
 ################################################################################
 ################################################################################
 
