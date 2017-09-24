@@ -46,7 +46,7 @@ fi
 
 ################################################################################
 ######### Maven ################################################################
-export M3_HOME=/opt/maven/default
+export M3_HOME=$MARMALADE_ENVS/maven/default
 export M3=$M3_HOME/bin
 export MAVEN_OPTS="-Xmx2048m -Xms256m"
 add_to_end_of_path_if_not_exists $M3
@@ -55,7 +55,7 @@ add_to_end_of_path_if_not_exists $M3
 
 ################################################################################
 ######### Gradle ###############################################################
-export GRADLE_HOME=/opt/gradle/default
+export GRADLE_HOME=$MARMALADE_ENVS/gradle/default
 add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 # export GRADLE_OPTS=""
 ################################################################################
@@ -63,34 +63,34 @@ add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 
 ################################################################################
 ######### Scala ################################################################
-export SCALA_HOME=/opt/scala/default
+export SCALA_HOME=$MARMALADE_ENVS/scala/default
 add_to_end_of_path_if_not_exists $SCALA_HOME/bin
 ################################################################################
 ################################################################################
 
 ################################################################################
 ######### Kotlin ###############################################################
-add_to_end_of_path_if_not_exists /opt/kotlin/default/bin
+add_to_end_of_path_if_not_exists $MARMALADE_ENVS/kotlin/default/bin
 ################################################################################
 ################################################################################
 
 ################################################################################
 ######### sbt ##################################################################
-export SBT_HOME=/opt/sbt/default
+export SBT_HOME=$MARMALADE_ENVS/sbt/default
 add_to_end_of_path_if_not_exists $SBT_HOME/bin
 ################################################################################
 ################################################################################
 
 ################################################################################
 ######### Groovy ###############################################################
-export GROOVY_HOME=/opt/groovy/default
+export GROOVY_HOME=$MARMALADE_ENVS/groovy/default
 add_to_end_of_path_if_not_exists $GROOVY_HOME/bin
 ################################################################################
 ################################################################################
 
 ################################################################################
 ######### Node #################################################################
-export NODE_HOME=/opt/node/default
+export NODE_HOME=$MARMALADE_ENVS/node/default
 add_to_end_of_path_if_not_exists $NODE_HOME/bin
 #if which npm > /dev/null 2>&1; then source <(npm completion); fi
 get_node() {
