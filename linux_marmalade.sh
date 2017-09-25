@@ -38,6 +38,10 @@ then
   add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 fi
 
+set_java_env() {
+  export JAVA_HOME=$1
+  add_to_start_of_path_if_not_exists $JAVA_HOME/bin
+}
 #export IDEA_JDK=$JAVA_HOME
 #export STUDIO_JDK=$JAVA_HOME
 #export CL_JDK=$JAVA_HOME
