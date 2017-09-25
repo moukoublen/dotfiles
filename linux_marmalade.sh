@@ -6,7 +6,7 @@ export MARMALADE_ENVS=$HOME/.marmalade.envs
 
 ################################################################################
 ######### Load envs ############################################################
-for i in $MARMALADE_ENVS/*_env ; do
+for i in $MARMALADE_PATH/envs/* ; do
   if [ -r "$i" ]; then #readable
     . "$i"
   fi
