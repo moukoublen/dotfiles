@@ -6,7 +6,7 @@ export MARMALADE_ENVS=$HOME/.marmalade.envs
 
 ################################################################################
 ######### Load envs ############################################################
-for i in /etc/profile.d/*.sh ; do
+for i in $MARMALADE_ENVS/*_env ; do
   if [ -r "$i" ]; then #readable
     . "$i"
   fi
