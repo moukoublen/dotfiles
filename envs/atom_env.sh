@@ -4,10 +4,11 @@ install_my_atom_packages() {
     file-icons \
     highlight-selected \
     language-scala \
+    language-kotlin \
     linter \
     linter-ui-default \
     intentions \
-    busy-signal \
+    busy-signal
 
   #themes
   # nord-atom-syntax
