@@ -2,7 +2,7 @@
 ######### Marmalade Envs #######################################################
 export MARMALADE_ENVS=$HOME/.marmalade.envs
 
-for i in $MARMALADE_PATH/envs/* ; do
+for i in $MARMALADE_PATH/envs/*_env.sh ; do
   if [ -r "$i" ]; then
     . "$i"
   fi
