@@ -54,12 +54,13 @@ GS_set_adwaita_gnome_theme() {
   GS_set_gnome_theme 'Adwaita'
 }
 
-GS_update_flatplat() {
-  #you should be in Flat-Plat repo directory
+GS_update_materia() {
+  #you should be in Materia repo directory
   GS_set_adwaita_gnome_theme
   sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+  sudo rm -rf /usr/share/themes/Materia{,-compact,-dark,-dark-compact,-light,-light-compact}
   sudo ./install.sh
-  GS_set_gnome_theme 'Flat-Plat-light'
+  GS_set_gnome_theme 'Materia-light'
 }
 
 GS_update_papirus() {
