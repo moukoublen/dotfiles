@@ -23,7 +23,7 @@ _marmalade_get_latest_version_number__atom() {
 }
 
 _marmalade_get_local_latest_version_number__atom() {
-  atom -v
+  atom -v | awk 'NR==1{print $3}'
 }
 
 _marmalade_install__atom() {
