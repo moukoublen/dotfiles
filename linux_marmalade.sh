@@ -63,6 +63,20 @@ GS_update_materia() {
   GS_set_gnome_theme 'Materia-light'
 }
 
+GS_update_evopop() {
+  sudo rm -rf /usr/share/themes/EvoPop
+  sudo rm -rf /usr/share/themes/EvoPop-Azure
+  sudo cp -R ./EvoPop/ /usr/share/themes/
+  sudo cp -R ./EvoPop-Azure/ /usr/share/themes/
+}
+
+GS_update_adapta() {
+  sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
+  ./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-xfce --disable-mate --disable-openbox
+  make
+  sudo make install
+}
+
 GS_update_papirus() {
   GS_set_icon_theme 'Adwaita'
   sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Dark,Papirus-Light}
