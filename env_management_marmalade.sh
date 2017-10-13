@@ -39,5 +39,7 @@ _marmalade_make_default() {
   if [[ -d $MARMALADE_ENVS/$1/default ]]; then
     unlink $MARMALADE_ENVS/$1/default
   fi
-  (cd $MARMALADE_ENVS/$1/; ln -s $2 default)
+  if [[ -d $MARMALADE_ENVS/$1 ]]; then
+    (cd $MARMALADE_ENVS/$1/; ln -s $2 default)
+  fi
 }
