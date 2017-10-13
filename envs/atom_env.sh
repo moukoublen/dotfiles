@@ -48,7 +48,8 @@ _marmalade_install__atom() {
       install_command=""
       ;;
   esac
-  curl -L https://github.com/JetBrains/kotlin/releases/download/v$1/$package_name > /tmp/$package_name
+  echo "Downloading: https://github.com/atom/atom/releases/download/v$1/$package_name"
+  curl -L https://github.com/atom/atom/releases/download/v$1/$package_name > /tmp/$package_name
   eval "$install_command" /tmp/$package_name
   rm /tmp/$package_name
 }
