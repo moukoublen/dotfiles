@@ -1,20 +1,20 @@
-container_mongo_run() {
+container_mongo() {
   # https://hub.docker.com/_/mongo/
-  docker run --name mongo-playground \
+  docker run --name mongo-testbed \
              -p 27017:27017 \
              -d mongo
 }
 
-container_mongo_run_with_auth() {
+container_mongo_with_auth() {
   # https://hub.docker.com/_/mongo/
-  docker run --name mongo-playground \
+  docker run --name mongo-testbed \
              -p 27017:27017 \
              -d mongo --auth
   # $ docker exec -it mongo-playground mongo admin
   # > db.createUser({ user: 'jsmith', pwd: 'some-initial-password', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
 }
 
-container_postgres_run() {
+container_postgres() {
   # https://hub.docker.com/_/postgres/
   docker run --name postgres-testbed \
              -p 5432:5432 \
