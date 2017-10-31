@@ -1,7 +1,27 @@
-alias container_mongo_run="docker run -p 27017:27017 --name mongo-playground -d mongo"
-alias container_mongo_run_with_auth="docker run -p 27017:27017 --name mongo-playground -d mongo --auth"
-alias container_mongo_stop='docker stop mongo-playground'
-alias container_mongo_start='docker start mongo-playground'
+container_mongo_run() {
+  # https://hub.docker.com/_/mongo/
+  docker run --name mongo-playground \
+             -p 27017:27017 \
+             -d mongo
+}
+
+container_mongo_run_with_auth() {
+  # https://hub.docker.com/_/mongo/
+  docker run --name mongo-playground \
+             -p 27017:27017 \
+             -d mongo --auth
+  # $ docker exec -it mongo-playground mongo admin
+  # > db.createUser({ user: 'jsmith', pwd: 'some-initial-password', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
+}
+
+container_postgres_run() {
+  # https://hub.docker.com/_/postgres/
+  docker run --name postgres-testbed \
+             -p 5432:5432 \
+             -e POSTGRES_PASSWORD=secure \
+             -d postgres:10
+}
+
 
 get_docker_compose() {
   sudo sh -c "curl -L https://github.com/docker/compose/releases/download/$1/docker-compose-Linux-x86_64 > /opt/docker-compose/docker-compose-$1"
