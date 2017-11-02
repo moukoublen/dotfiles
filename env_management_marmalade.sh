@@ -4,7 +4,14 @@ marmalade() {
   # $1: command
   # $2: env
   if [[ $1 == "update" ]]; then
-    _marmalade_update $2
+    if [[ "$2" == "" ]]; then
+      for env_name in atom gradle kotlin maven node sbt scala
+      do
+        _marmalade_update $env_name
+      done
+    else
+      _marmalade_update $2
+    fi
   elif [[ $1 == "install" ]]; then
     _marmalade_install $2 $3
   fi
