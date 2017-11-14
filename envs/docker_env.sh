@@ -1,3 +1,12 @@
+container_rabbitmq() {
+  docker run -d --hostname my-rabbit \
+             --name some-rabbit \
+             -p 5672:5672 \
+             -p 15672:15672 \
+             rabbitmq:3-management-alpine
+  # http://localhost:15672 The default login and password are guest/guest.
+}
+
 container_mongo() {
   # https://hub.docker.com/_/mongo/
   docker run --name mongo-testbed \
