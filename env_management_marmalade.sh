@@ -5,7 +5,7 @@ marmalade() {
   # $2: env
   if [[ $1 == "update" ]]; then
     if [[ "$2" == "" ]]; then
-      for env_name in atom gradle kotlin maven node sbt scala
+      for env_name in atom gradle kotlin maven node sbt scala compose
       do
         _marmalade_update $env_name
       done
@@ -35,9 +35,14 @@ _marmalade_update() {
     echo "  > ERROR during version check for $1"
     return
   fi
-  if [ "$local_ver" != "$latest_ver" ]; then
+  if [[ "$local_ver" != "$latest_ver" ]]; then
     echo "  > Updating $1 from $local_ver to $latest_ver"
-    eval "_marmalade_install__$1" $latest_ver
+    if [[ ! -d $MARMALADE_ENVS/$1/$latest_ver ]]; then
+      eval "_marmalade_install__$1" $latest_ver
+    else
+      echo "    ...$1 version $latest_ver is already installed"
+    fi
+
     if [ "$2" != "1" ]; then
       _marmalade_make_default $1 $latest_ver
     fi
