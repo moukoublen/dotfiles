@@ -9,7 +9,7 @@ add_to_end_of_path_if_not_exists $M3
 #
 ################################################################################
 _marmalade_get_latest_version_number__maven() {
-  curl -s 'http://search.maven.org/solrsearch/select?q=g:"org.apache.maven"+AND+a:"maven"&core=gav&rows=20&wt=json' | jq -r '.response.docs[0].v'
+  curl -s -X GET 'http://search.maven.org/solrsearch/select?q=g%3A%22org.apache.maven%22%20AND%20a%3A%22maven%22&core=gav&rows=20&wt=json' | jq -r '.response.docs[0].v'
 }
 
 _marmalade_get_local_latest_version_number__maven() {
