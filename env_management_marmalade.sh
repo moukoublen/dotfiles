@@ -47,7 +47,7 @@ _marmalade_update() {
       _marmalade_make_default $1 $latest_ver
     fi
   else
-    echo "  > Env $1 is already updated. Latest version $latest_ver"
+    echo "  > $1 is already updated. Latest version $latest_ver"
   fi
 }
 
