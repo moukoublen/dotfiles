@@ -31,6 +31,13 @@ container_postgres() {
              -d postgres:10
 }
 
+container_swagger_editor() {
+  # https://hub.docker.com/r/swaggerapi/swagger-editor/
+  docker run --name swagger-editor \
+             -p 6060:8080 \
+             -d swaggerapi/swagger-editor
+}
+
 
 get_docker_compose() {
   sudo sh -c "curl -L https://github.com/docker/compose/releases/download/$1/docker-compose-Linux-x86_64 > /opt/docker-compose/docker-compose-$1"
