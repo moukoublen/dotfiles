@@ -32,11 +32,11 @@ _marmalade_update() {
   local latest_ver=$(eval $cmd_get_latest_ver)
   local local_ver=$(eval $cmd_get_local_ver)
   if [[ "$latest_ver" == "" ]]; then
-    echo "  > ERROR during version check for $1"
+    echo "==> $1: ERROR during version check"
     return
   fi
   if [[ "$local_ver" != "$latest_ver" ]]; then
-    echo "  > Updating $1 from $local_ver to $latest_ver"
+    echo "==> $1: Updating from $local_ver to $latest_ver"
     if [[ ! -d $MARMALADE_ENVS/$1/$latest_ver ]]; then
       eval "_marmalade_install__$1" $latest_ver
     else
@@ -47,8 +47,9 @@ _marmalade_update() {
       _marmalade_make_default $1 $latest_ver
     fi
   else
-    echo "  > $1 is already updated. Latest version $latest_ver"
+    echo "==> $1: Already updated. Latest version $latest_ver"
   fi
+  echo "-----------------------------------------------------------------------"
 }
 
 _marmalade_make_default() {
