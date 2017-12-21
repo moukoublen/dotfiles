@@ -15,7 +15,7 @@ _marmalade_get_local_latest_version_number__sbt() {
 _marmalade_install__sbt() {
   # $1: version e.g. 4.1
   # https://github.com/sbt/sbt/releases/download/v1.0.2/sbt-1.0.2.zip
-  curl -L https://github.com/sbt/sbt/releases/download/v$1/sbt-$1.zip > /tmp/sbt.zip
+  curl -L --fail https://github.com/sbt/sbt/releases/download/v$1/sbt-$1.zip > /tmp/sbt.zip
   mkdir -p $MARMALADE_ENVS/sbt/$1
   unzip -qq /tmp/sbt.zip -d /tmp/
   mv /tmp/sbt/* $MARMALADE_ENVS/sbt/$1

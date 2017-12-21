@@ -15,7 +15,7 @@ _marmalade_install__kotlin() {
   # $1: version e.g. 4.1
   # https://github.com/JetBrains/kotlin/releases/download/v1.1.51/kotlin-compiler-1.1.51.zip
   #
-  curl -L https://github.com/JetBrains/kotlin/releases/download/v$1/kotlin-compiler-$1.zip > /tmp/kotlin.zip
+  curl -L --fail https://github.com/JetBrains/kotlin/releases/download/v$1/kotlin-compiler-$1.zip > /tmp/kotlin.zip
   mkdir -p $MARMALADE_ENVS/kotlin/$1
   unzip -qq /tmp/kotlin.zip -d /tmp/
   mv /tmp/kotlinc/* $MARMALADE_ENVS/kotlin/$1

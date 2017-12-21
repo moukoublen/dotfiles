@@ -14,7 +14,7 @@ _marmalade_get_local_latest_version_number__scala() {
 
 _marmalade_install__scala() {
   # $1: version e.g. 4.1
-  curl -L https://downloads.lightbend.com/scala/$1/scala-$1.tgz > /tmp/scala.tgz
+  curl -L --fail https://downloads.lightbend.com/scala/$1/scala-$1.tgz > /tmp/scala.tgz
   mkdir -p $MARMALADE_ENVS/scala/$1
   tar xf /tmp/scala.tgz --strip-components=1 -C $MARMALADE_ENVS/scala/$1
   rm /tmp/scala.tgz

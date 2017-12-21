@@ -17,7 +17,7 @@ _marmalade_get_local_latest_version_number__gradle() {
 
 _marmalade_install__gradle() {
   # $1: version e.g. 4.1
-  curl -L https://services.gradle.org/distributions/gradle-$1-bin.zip > /tmp/gradle.zip
+  curl -L --fail https://services.gradle.org/distributions/gradle-$1-bin.zip > /tmp/gradle.zip
   mkdir -p $MARMALADE_ENVS/gradle/$1
   unzip -qq /tmp/gradle.zip -d /tmp/
   mv /tmp/gradle-$1/* $MARMALADE_ENVS/gradle/$1

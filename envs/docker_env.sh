@@ -57,6 +57,6 @@ _marmalade_install__compose() {
   # $1: version e.g. 1.16.1
   # https://github.com/docker/compose/releases/download/1.16.1/docker-compose-Linux-x86_64
   mkdir -p $MARMALADE_ENVS/compose/$1
-  curl -L https://github.com/docker/compose/releases/download/$1/docker-compose-Linux-x86_64 > $MARMALADE_ENVS/compose/$1/docker-compose
+  curl -L --fail https://github.com/docker/compose/releases/download/$1/docker-compose-Linux-x86_64 > $MARMALADE_ENVS/compose/$1/docker-compose
   chmod +x $MARMALADE_ENVS/compose/$1/docker-compose
 }

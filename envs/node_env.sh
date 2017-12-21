@@ -17,7 +17,7 @@ _marmalade_get_local_latest_version_number__node() {
 
 _marmalade_install__node() {
   # $1: version e.g. 8.6.0
-  curl -L https://nodejs.org/dist/v$1/node-v$1-linux-x64.tar.xz > /tmp/node.tar.xz
+  curl -L --fail https://nodejs.org/dist/v$1/node-v$1-linux-x64.tar.xz > /tmp/node.tar.xz
   mkdir -p $MARMALADE_ENVS/node/$1
   tar xf /tmp/node.tar.xz --strip-components=1 -C $MARMALADE_ENVS/node/$1
   rm /tmp/node.tar.xz

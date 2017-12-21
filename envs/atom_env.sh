@@ -49,7 +49,7 @@ _marmalade_install__atom() {
       ;;
   esac
   echo "Downloading: https://github.com/atom/atom/releases/download/v$1/$package_name"
-  curl -L https://github.com/atom/atom/releases/download/v$1/$package_name > /tmp/$package_name
+  curl -L --fail https://github.com/atom/atom/releases/download/v$1/$package_name > /tmp/$package_name
   eval "$install_command" /tmp/$package_name
   rm /tmp/$package_name
 }

@@ -18,7 +18,7 @@ _marmalade_get_local_latest_version_number__maven() {
 
 _marmalade_install__maven() {
   # $1: version e.g. 3.5.0
-  curl -L http://www-us.apache.org/dist/maven/maven-3/$1/binaries/apache-maven-$1-bin.tar.gz > /tmp/maven.tar.gz
+  curl -L --fail http://www-us.apache.org/dist/maven/maven-3/$1/binaries/apache-maven-$1-bin.tar.gz > /tmp/maven.tar.gz
   mkdir -p $MARMALADE_ENVS/maven/$1
   tar xf /tmp/maven.tar.gz --strip-components=1 -C $MARMALADE_ENVS/maven/$1
   rm /tmp/maven.tar.gz

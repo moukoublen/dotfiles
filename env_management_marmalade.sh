@@ -7,10 +7,11 @@ marmalade() {
     if [[ "$2" == "" ]]; then
       for env_name in atom gradle kotlin maven node sbt scala compose
       do
-        _marmalade_update $env_name
+        (set -e; _marmalade_update $env_name)
       done
+      echo "-----------------------------------------------------------------------"
     else
-      _marmalade_update $2
+      (set -e; _marmalade_update $2)
     fi
   elif [[ $1 == "install" ]]; then
     _marmalade_install $2 $3
@@ -27,6 +28,7 @@ _marmalade_install() {
 _marmalade_update() {
   # $1: env
   # $2: 1|0 (optional) = Install only. DO NOT Make default
+  echo "-----------------------------------------------------------------------"
   local cmd_get_latest_ver="_marmalade_get_latest_version_number__$1"
   local cmd_get_local_ver="_marmalade_get_local_latest_version_number__$1"
   local latest_ver=$(eval $cmd_get_latest_ver)
@@ -49,7 +51,6 @@ _marmalade_update() {
   else
     echo "==> $1: Already updated. Latest version $latest_ver"
   fi
-  echo "-----------------------------------------------------------------------"
 }
 
 _marmalade_make_default() {
