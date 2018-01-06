@@ -79,17 +79,21 @@ GS_update_adapta() {
 
 GS_update_papirus() {
   GS_set_icon_theme 'Adwaita'
-  sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Dark,Papirus-Light}
+  sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Adapta,Papirus-Adapta-Nokto,Papirus-Dark,Papirus-Light}
   sudo cp --no-preserve=mode,ownership -r \
       ePapirus \
       Papirus \
+      Papirus-Adapta \
+      Papirus-Adapta-Nokto \
       Papirus-Light \
       Papirus-Dark \
       /usr/share/icons
-  gtk-update-icon-cache -q /usr/share/icons/ePapirus
-  gtk-update-icon-cache -q /usr/share/icons/Papirus
-  gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
-  gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
+  sudo gtk-update-icon-cache -q /usr/share/icons/ePapirus
+  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus
+  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta
+  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta-Nokto
+  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
+  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
   GS_set_icon_theme 'Papirus'
 }
 ################################################################################
