@@ -71,10 +71,13 @@ GS_update_evopop() {
 }
 
 GS_update_adapta() {
+  GS_set_adwaita_gnome_theme
+  # Fedora: sudo dnf install autoconf automake inkscape gdk-pixbuf2-devel glib2-devel libsass libxml2 pkgconfig sassc parallel
   sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
   ./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-xfce --disable-mate --disable-openbox
   make
   sudo make install
+  GS_set_gnome_theme 'Adapta-Eta'
 }
 
 GS_update_papirus() {
