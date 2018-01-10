@@ -15,7 +15,7 @@ fi
 
 ################################################################################
 ##################### Java #####################################################
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home'
 ################################################################################
 ################################################################################
 
@@ -33,7 +33,7 @@ alias ls='command ls -G'
 ################################################################################
 
 
-export LANG='en_US.UTF-8';
-export LC_ALL='en_US.UTF-8';
+#export LANG='en_US.UTF-8';
+#export LC_ALL='en_US.UTF-8';
 
 add_to_start_of_path_if_not_exists $HOME/bin
