@@ -37,3 +37,6 @@ alias ls='command ls -G'
 #export LC_ALL='en_US.UTF-8';
 
 add_to_start_of_path_if_not_exists $HOME/bin
+
+. $MARMALADE_PATH/envs/pyenv_env.sh
+. $MARMALADE_PATH/envs/rbenv_env.sh
