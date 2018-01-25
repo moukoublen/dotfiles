@@ -31,7 +31,7 @@ _marmalade_install__atom() {
   # https://github.com/atom/atom/releases/download/v1.21.0/atom.x86_64.rpm
   # https://github.com/atom/atom/releases/download/v1.21.0/atom-amd64.deb
 
-  local os_name=$(lsb_release -si)
+  local os_name=$(cat /etc/*-release | grep -E "^NAME=" | sed "s/NAME=//")
   local package_name=""
   local install_command=""
   case "$os_name" in
