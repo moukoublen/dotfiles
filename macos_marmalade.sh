@@ -1,5 +1,11 @@
 ################################################################################
 ##################### Homebrew #################################################
+
+## Settings #####################################
+export M_BREW_COREUTILS_USED=false
+export M_BREW_FINDUTILS_USED=false
+#################################################
+
 if [[ $BASH_VERSION == 3.* && -f $(brew --prefix)/etc/bash_completion ]]; then
   source $(brew --prefix)/etc/bash_completion
 fi
@@ -9,13 +15,15 @@ if [[ $BASH_VERSION == 4.* && -f $(brew --prefix)/share/bash-completion/bash_com
   . $(brew --prefix)/share/bash-completion/bash_completion
 fi
 
+if [[ "$M_BREW_COREUTILS_USED" = true ]]; then
+  ## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
+  add_to_start_of_path_if_not_exists /usr/local/opt/coreutils/libexec/gnubin
+fi
 
-## coreutils findutils ##
-## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
-#add_to_start_of_path_if_not_exists /usr/local/opt/coreutils/libexec/gnubin
-
-## brew install findutils (find, locate, updatedb, xargs)
-#add_to_start_of_path_if_not_exists /usr/local/opt/findutils/libexec/gnubin
+if [[ "$M_BREW_FINDUTILS_USED" = true ]]; then
+  ## brew install findutils (find, locate, updatedb, xargs)
+  add_to_start_of_path_if_not_exists /usr/local/opt/findutils/libexec/gnubin
+fi
 ################################################################################
 ################################################################################
 
