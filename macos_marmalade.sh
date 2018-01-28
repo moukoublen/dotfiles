@@ -1,8 +1,14 @@
 ################################################################################
 ##################### Homebrew #################################################
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [[ $BASH_VERSION == 3.* && -f $(brew --prefix)/etc/bash_completion ]]; then
   source $(brew --prefix)/etc/bash_completion
 fi
+
+# if bash is 4+ (brew) then use bash-completion@2
+if [[ $BASH_VERSION == 4.* && -f $(brew --prefix)/share/bash-completion/bash_completion ]]; then
+  . $(brew --prefix)/share/bash-completion/bash_completion
+fi
+
 
 ## coreutils findutils ##
 ## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
