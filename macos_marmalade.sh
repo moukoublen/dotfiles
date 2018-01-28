@@ -28,6 +28,8 @@ export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Ho
 ################################################################################
 ##################### Aliases ##################################################
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+#alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias grep='command grep --color=auto'
