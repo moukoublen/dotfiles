@@ -77,5 +77,4 @@ sudo swapon /swapfile
 ##############################################
 cat /proc/sys/vm/swappiness
 echo "vm.swappiness = 10" >> /etc/sysctl.d/98-swappiness.conf
-
 ################################################################################
