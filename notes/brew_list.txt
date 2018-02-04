@@ -7,6 +7,7 @@ coreutils
 gettext
 git
 gradle
+htop
 icu4c
 maven
 nano
@@ -21,3 +22,4 @@ scala
 screenfetch
 sqlite
 subversion
+watch
