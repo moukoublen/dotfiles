@@ -1,0 +1,14 @@
+{
+    "editor.fontSize": 15,
+    "editor.fontFamily": "Source Code Pro",
+    "editor.renderWhitespace": "all",
+    "editor.minimap.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
+    //"editor.tabSize": 2,
+    "editor.formatOnPaste": true,
+    "[json]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "editor.detectIndentation": false,
+}

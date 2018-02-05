@@ -1,0 +1,17 @@
+"*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "7c8bb9e2-6160-4fc6-8963-13b48695f124"
+  core:
+    telemetryConsent: "limited"
+  editor:
+    fontFamily: "Source Code Pro"
+    lineHeight: 1.3
+    maxScreenLineLength: 500000
+    scrollPastEnd: true
+    showInvisibles: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "b9016d53-4c91-44f0-82bf-c1fe6004175f"
+  welcome:
+    showOnStartup: false
