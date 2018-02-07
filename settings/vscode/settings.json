@@ -1,6 +1,6 @@
 {
     "editor.fontSize": 15,
-    "editor.fontFamily": "Source Code Pro",
+    "editor.fontFamily": "'Source Code Pro', Menlo, monospace",
     "editor.renderWhitespace": "all",
     "editor.minimap.enabled": false,
     "workbench.startupEditor": "newUntitledFile",

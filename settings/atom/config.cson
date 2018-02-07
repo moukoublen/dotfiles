@@ -3,6 +3,7 @@
     general:
       _analyticsUserId: "7c8bb9e2-6160-4fc6-8963-13b48695f124"
   core:
+    audioBeep: false
     telemetryConsent: "limited"
   editor:
     fontFamily: "Source Code Pro"
