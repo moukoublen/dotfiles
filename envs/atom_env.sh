@@ -31,7 +31,7 @@ _marmalade_install__atom() {
   # https://github.com/atom/atom/releases/download/v1.21.0/atom.x86_64.rpm
   # https://github.com/atom/atom/releases/download/v1.21.0/atom-amd64.deb
 
-  local os_name=$(cat /etc/*-release | grep -E "^NAME=" | sed "s/NAME=//")
+  local os_name=$(lsb_release -is)
   local package_name=""
   local install_command=""
   case "$os_name" in
@@ -39,7 +39,7 @@ _marmalade_install__atom() {
       package_name="atom.x86_64.rpm"
       install_command="sudo dnf -y install"
       ;;
-    "Ubuntu"|"Debian")
+    "Ubuntu"|"Debian"|"LinuxMint")
       package_name="atom-amd64.deb"
       install_command="sudo apt install -y"
       ;;
