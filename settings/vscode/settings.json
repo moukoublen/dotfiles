@@ -1,14 +1,16 @@
 {
-    "editor.fontSize": 15,
+    "editor.fontSize": 14,
     "editor.fontFamily": "Hack, 'Source Code Pro', Menlo, monospace",
     "editor.renderWhitespace": "all",
     "editor.minimap.enabled": false,
-    "workbench.startupEditor": "newUntitledFile",
+    "editor.detectIndentation": false,
     //"editor.tabSize": 2,
-    "editor.formatOnPaste": true,
+    //"editor.formatOnPaste": true,
     "[json]": {
         "editor.insertSpaces": true,
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnPaste": true,
     },
-    "editor.detectIndentation": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.iconTheme": "vscode-icons",
 }
