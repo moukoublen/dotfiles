@@ -21,27 +21,7 @@ fi
 
 ################################################################################
 ######### Colors PS1 ###########################################################
-alias minimal_ps1="PS1='$ '"
-
-if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-  . /usr/share/git-core/contrib/completion/git-prompt.sh
-fi
-
-export GIT_PS1_SHOWDIRTYSTATE=true
-export GIT_PS1_SHOWUNTRACKEDFILES=true
-export GIT_PS1_SHOWUPSTREAM="verbose name"
-export GIT_PS1_SHOWCOLORHINTS=true
-_set_color_ps1() {
-  local F_PATH='\[\033[32m\]'
-  local F_GIT_BRANCH='\[\033[93;1m\]'
-  local F_MAIN='\[\033[36m\]'
-  local RESET_ALL='\[\033[0m\]'
-  if [[ ! -z $BASH ]]; then
-    export PS1="${F_MAIN}╭ \u@\h${RESET_ALL} ${F_PATH}\w${RESET_ALL} ${F_GIT_BRANCH}\$(declare -F __git_ps1 &>/dev/null && __git_ps1 \"(%s)\")${RESET_ALL}\n${F_MAIN}╰${RESET_ALL} "
-  fi
-}
-
-_set_color_ps1
+. $MARMALADE_PATH/marmalade_ps1.sh
 ################################################################################
 ################################################################################
 
