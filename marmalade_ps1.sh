@@ -1,5 +1,6 @@
 alias minimal_ps1="PS1='$ '"
 
+# ./Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh #macos xcode
 
 if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
   . /usr/share/git-core/contrib/completion/git-prompt.sh
