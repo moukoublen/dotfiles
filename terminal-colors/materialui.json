@@ -6,8 +6,8 @@
     "cursor-background-color": "#000000",
     "cursor-foreground-color": "#FFFFFF",
     "foreground-color": "#BDBDBD",
-    "highlight-background-color": "#000000",
-    "highlight-foreground-color": "#EC3F79",
+    "highlight-background-color": "#0F0F0F",
+    "highlight-foreground-color": "#FF4080",
     "name": "materialui",
     "palette": [
         "#424242",

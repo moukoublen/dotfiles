@@ -4,6 +4,7 @@
     "editor.renderWhitespace": "all",
     "editor.minimap.enabled": false,
     "editor.detectIndentation": false,
+    "editor.fontLigatures": true,
     //"editor.tabSize": 2,
     //"editor.formatOnPaste": true,
     "[json]": {
@@ -12,5 +13,5 @@
         "editor.formatOnPaste": true,
     },
     "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.iconTheme": "material-icon-theme",
 }
