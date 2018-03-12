@@ -29,32 +29,12 @@ alias o='xdg-open'
 ################################################################################
 ######### Paths ################################################################
 add_to_start_of_path_if_not_exists $HOME/.local/bin
+add_to_start_of_path_if_not_exists $MARMALADE_PATH/scripts
 ################################################################################
 ################################################################################
 
 ################################################################################
 ######### Functions for Gnome Setting. Theme and icons #########################
-GS_get_gnome_theme_and_icons() {
-  echo "org.gnome.desktop.interface gtk-theme      : $(gsettings get org.gnome.desktop.interface gtk-theme)"
-  echo "org.gnome.desktop.wm.preferences theme     : $(gsettings get org.gnome.desktop.wm.preferences theme)"
-  echo "org.gnome.shell.extensions.user-theme name : $(gsettings get org.gnome.shell.extensions.user-theme name)"
-  echo "org.gnome.desktop.interface icon-theme     : $(gsettings get org.gnome.desktop.interface icon-theme)"
-}
-
-GS_set_gnome_theme() {
-  gsettings set org.gnome.desktop.interface gtk-theme $1
-  gsettings set org.gnome.desktop.wm.preferences theme $1
-  gsettings set org.gnome.shell.extensions.user-theme name $1
-}
-
-GS_set_icon_theme() {
-  gsettings set org.gnome.desktop.interface icon-theme $1
-}
-
-GS_set_adwaita_gnome_theme() {
-  GS_set_gnome_theme 'Adwaita'
-}
-
 GS_update_materia() {
   #you should be in Materia repo directory
   GS_set_adwaita_gnome_theme
@@ -64,42 +44,6 @@ GS_update_materia() {
   GS_set_gnome_theme 'Materia-light'
 }
 
-GS_update_evopop() {
-  sudo rm -rf /usr/share/themes/EvoPop
-  sudo rm -rf /usr/share/themes/EvoPop-Azure
-  sudo cp -R ./EvoPop/ /usr/share/themes/
-  sudo cp -R ./EvoPop-Azure/ /usr/share/themes/
-}
-
-GS_update_adapta() {
-  GS_set_adwaita_gnome_theme
-  # Fedora: sudo dnf install autoconf automake inkscape gdk-pixbuf2-devel glib2-devel libsass libxml2 pkgconfig sassc parallel
-  sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
-  ./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-xfce --disable-mate --disable-openbox
-  make
-  sudo make install
-  GS_set_gnome_theme 'Adapta-Eta'
-}
-
-GS_update_papirus() {
-  GS_set_icon_theme 'Adwaita'
-  sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Adapta,Papirus-Adapta-Nokto,Papirus-Dark,Papirus-Light}
-  sudo cp --no-preserve=mode,ownership -r \
-      ePapirus \
-      Papirus \
-      Papirus-Adapta \
-      Papirus-Adapta-Nokto \
-      Papirus-Light \
-      Papirus-Dark \
-      /usr/share/icons
-  sudo gtk-update-icon-cache -q /usr/share/icons/ePapirus
-  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus
-  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta
-  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta-Nokto
-  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
-  sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
-  GS_set_icon_theme 'Papirus'
-}
 ################################################################################
 ################################################################################
 

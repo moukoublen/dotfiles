@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+wget 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US' -O /tmp/firefox-dev.tar.bz2
+mkdir -p ~/Applications/firefox-dev
+tar jxf /tmp/firefox-dev.tar.bz2 --strip-components=1 -C ~/Applications/firefox-dev
+rm /tmp/firefox-dev.tar.bz2
+cat > ~/.local/share/applications/firefox-developer.desktop <<EOL
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Firefox Developer Edition
+Comment=Firefox Developer Edition
+Icon=firefox-developer-edition
+Type=Application
+StartupNotify=true
+Keywords=firefox;dev;browser
+Categories=Internet
+EOL
+
+echo "Exec=$HOME/Applications/firefox-dev/firefox" >> ~/.local/share/applications/firefox-developer.desktop

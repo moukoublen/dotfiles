@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+DOWNLOAD_DEST_FILE='/tmp/telegram.tar.xz'
+TELE_EXECUTABLE="$HOME/Applications/Telegram/Telegram"
+DESKTOP_FILE="$HOME/.local/share/applications/telegramdesktop.desktop"
+
+wget 'https://telegram.org/dl/desktop/linux' -O $DOWNLOAD_DEST_FILE
+mkdir -p ~/Applications/
+tar xf $DOWNLOAD_DEST_FILE -C ~/Applications/
+rm $DOWNLOAD_DEST_FILE
+
+cat > $DESKTOP_FILE <<EOL
+[Desktop Entry]
+Version=1.0
+Name=Telegram Desktop
+Comment=Official desktop version of Telegram messaging app
+Icon=telegram
+Terminal=false
+StartupWMClass=TelegramDesktop
+Type=Application
+Categories=Network;InstantMessaging;Qt;
+MimeType=x-scheme-handler/tg;
+X-Desktop-File-Install-Version=0.23
+EOL
+
+echo "TryExec=$TELE_EXECUTABLE" >> $DESKTOP_FILE
+echo "Exec=$TELE_EXECUTABLE -- %u" >> $DESKTOP_FILE

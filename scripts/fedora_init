@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+gsettings set org.gnome.software download-updates false
+
+sudo systemctl stop firewalld.service
+sudo systemctl disable firewalld.service
+
+
+#install dotfiles
+mkdir -p ~/gitrepos/moukoublen
+(cd ~/gitrepos/moukoublen; git clone https://github.com/moukoublen/dotfiles.git)
+~/gitrepos/moukoublen/dotfiles/install.sh
+
+
+sudo dnf install \
+  git gitg meld sqlite \
+  gcc gcc-c++ \
+  gnome-tweak-tool chrome-gnome-shell chromium \
+  jq curl wget
+
+
+sudo dnf install \
+  java-1.8.0-openjdk java-1.8.0-openjdk-devel \
+  java-1.8.0-openjdk-headless \
+  java-1.8.0-openjdk-javadoc java-1.8.0-openjdk-src
+
+sudo dnf install \
+  java-9-openjdk java-9-openjdk-devel \
+  java-9-openjdk-headless \
+  java-9-openjdk-javadoc java-9-openjdk-src \
+  java-9-openjdk-jmods
+
+
+#sudo dnf install kernel-devel kernel-headers kernel-modules kernel-modules-extra
+
+
+#sudo dnf install akmods akmod-wl broadcom-wl

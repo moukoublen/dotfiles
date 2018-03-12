@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/gitrepos/
+(cd ~/gitrepos/; git clone https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git)
+(cd ~/gitrepos/papirus-icon-theme; GS_update_papirus)
+

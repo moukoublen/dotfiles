@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "org.gnome.desktop.interface gtk-theme      : $(gsettings get org.gnome.desktop.interface gtk-theme)"
+echo "org.gnome.desktop.wm.preferences theme     : $(gsettings get org.gnome.desktop.wm.preferences theme)"
+echo "org.gnome.shell.extensions.user-theme name : $(gsettings get org.gnome.shell.extensions.user-theme name)"
+echo "org.gnome.desktop.interface icon-theme     : $(gsettings get org.gnome.desktop.interface icon-theme)"

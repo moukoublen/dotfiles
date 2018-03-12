@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+DOWNLOAD_DEST_FILE='/tmp/skypeforlinux-64.rpm'
+
+wget 'https://go.skype.com/skypeforlinux-64.rpm' -O $DOWNLOAD_DEST_FILE
+
+sudo dnf install $DOWNLOAD_DEST_FILE

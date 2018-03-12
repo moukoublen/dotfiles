@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+DOWNLOADED_FILE="/tmp/ideaIC.tar.gz"
+URL_RELEASE="https://data.services.jetbrains.com/products/releases?code=IIC&latest=true"
+DESKTOP_FILE="$HOME/.local/share/applications/jetbrains-idea-ce.desktop"
+
+wget $(wget $URL_RELEASE -q -O - | jq '.IIC[0].downloads.linux.link' -r) -O $DOWNLOADED_FILE
+mkdir -p ~/Applications/idea
+tar zxf $DOWNLOADED_FILE --strip-components=1 -C ~/Applications/idea
+rm $DOWNLOADED_FILE
+cat > $DESKTOP_FILE <<EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA Community Edition
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea-ce
+EOL
+
+echo "Exec=\"$HOME/Applications/idea/bin/idea.sh\" %f" >> $DESKTOP_FILE
+echo "Icon=$HOME/Applications/idea/bin/idea.png" >> $DESKTOP_FILE

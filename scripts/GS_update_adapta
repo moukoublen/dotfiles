@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+theme_selected="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+echo " -> Current theme $theme_selected"
+if [[ $theme_selected == *Adapta* ]]; then
+  echo " -> Switching to Adwaita"
+  GS_set_gnome_theme 'Adwaita'
+fi
+
+(
+echo " -> removing /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}"
+sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
+echo " -> build Adapta"
+cd ~/gitrepos/adapta-gtk-theme
+./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-xfce --disable-mate --disable-openbox
+make
+sudo make install
+)
+
+
+if [[ $theme_selected == *Adapta* ]]; then
+  echo " -> Switching bach to $theme_selected"
+  GS_set_gnome_theme $theme_selected
+fi

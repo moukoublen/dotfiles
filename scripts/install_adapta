@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+if [[ $1 == "-r" ]]; then
+  #install requirements
+  echo "installing adapta requirements..."
+  sudo dnf install -y \
+    autoconf automake inkscape gdk-pixbuf2-devel glib2-devel \
+    libsass libxml2 pkgconfig sassc parallel \
+    gtk2-engines gtk-murrine-engine gdk-pixbuf2
+fi
+
+if [[ ! -d "$HOME/gitrepos/adapta-gtk-theme" ]]; then
+  echo "cloning adapta in $HOME/gitrepos/"
+  mkdir -p ~/gitrepos/
+  (cd ~/gitrepos/; git clone https://github.com/adapta-project/adapta-gtk-theme.git)
+fi
+
+GS_update_adapta

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+inst="$HOME/gitrepos/papirus-icon-theme"
+
+icon_selected=$(gsettings get org.gnome.desktop.interface icon-theme)
+
+echo " -> Current icon theme $icon_selected"
+if [[ $icon_selected == *Papirus* ]]; then
+  echo " -> Switching to Adwaita"
+  GS_set_icon_theme 'Adwaita'
+fi
+
+echo " -> removing /usr/share/icons/{ePapirus,Papirus,Papirus-Adapta,Papirus-Adapta-Nokto,Papirus-Dark,Papirus-Light}"
+sudo rm -rf /usr/share/icons/{ePapirus,Papirus,Papirus-Adapta,Papirus-Adapta-Nokto,Papirus-Dark,Papirus-Light}
+
+echo " -> installing new papirus..."
+sudo cp --no-preserve=mode,ownership -r \
+    $inst/ePapirus \
+    $inst/Papirus \
+    $inst/Papirus-Adapta \
+    $inst/Papirus-Adapta-Nokto \
+    $inst/Papirus-Light \
+    $inst/Papirus-Dark \
+    /usr/share/icons
+sudo gtk-update-icon-cache -q /usr/share/icons/ePapirus
+sudo gtk-update-icon-cache -q /usr/share/icons/Papirus
+sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta
+sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta-Nokto
+sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
+sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
+
+if [[ $icon_selected == *Papirus* ]]; then
+  echo " -> Switching bach to $icon_selected"
+  GS_set_icon_theme $icon_selected
+fi
