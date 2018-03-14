@@ -1,0 +1,7 @@
+#####################################################
+git remote show origin
+
+
+## Deletes all stale remote-tracking branches under <name>
+git remote prune origin
+#####################################################
