@@ -34,20 +34,6 @@ add_to_start_of_path_if_not_exists $MARMALADE_PATH/scripts
 ################################################################################
 
 ################################################################################
-######### Functions for Gnome Setting. Theme and icons #########################
-GS_update_materia() {
-  #you should be in Materia repo directory
-  GS_set_adwaita_gnome_theme
-  sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
-  sudo rm -rf /usr/share/themes/Materia{,-compact,-dark,-dark-compact,-light,-light-compact}
-  sudo ./install.sh
-  GS_set_gnome_theme 'Materia-light'
-}
-
-################################################################################
-################################################################################
-
-################################################################################
 ######### Ubuntu ###############################################################
 alias restart_network_manager='sudo systemctl restart network-manager.service'
 alias reload_kernel_variables='sudo systemctl restart procps.service'

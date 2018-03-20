@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+theme_selected="$(gsettings get org.gnome.desktop.interface gtk-theme)"
+echo " -> Current theme $theme_selected"
+if [[ $theme_selected == *Materia* ]]; then
+  echo " -> Switching to Adwaita"
+  GS_set_gnome_theme 'Adwaita'
+fi
+
+(
+sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
+sudo rm -rf /usr/share/themes/Materia{,-compact,-dark,-dark-compact,-light,-light-compact}
+cd $HOME/gitrepos/materia-theme/
+sudo ./install.sh
+)
+
+if [[ $theme_selected == *Materia* ]]; then
+  echo " -> Switching bach to $theme_selected"
+  GS_set_gnome_theme $theme_selected
+fi
