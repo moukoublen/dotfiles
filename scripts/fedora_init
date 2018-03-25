@@ -5,19 +5,12 @@ gsettings set org.gnome.software download-updates false
 sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
-
-#install dotfiles
-mkdir -p ~/gitrepos/moukoublen
-(cd ~/gitrepos/moukoublen; git clone https://github.com/moukoublen/dotfiles.git)
-~/gitrepos/moukoublen/dotfiles/install.sh
-
-
 sudo dnf install \
   git gitg meld sqlite \
   gcc gcc-c++ \
   gnome-tweak-tool gnome-shell-extension-user-theme \
   chrome-gnome-shell chromium \
-  jq curl wget redhat-lsb-core
+  jq curl wget redhat-lsb-core htop vim-enhanced
 
 
 sudo dnf install \

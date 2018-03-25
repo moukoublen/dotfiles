@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/gitrepos/moukoublen
+(cd ~/gitrepos/moukoublen; git clone https://github.com/moukoublen/dotfiles.git)
+~/gitrepos/moukoublen/dotfiles/install.sh
