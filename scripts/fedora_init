@@ -15,8 +15,9 @@ mkdir -p ~/gitrepos/moukoublen
 sudo dnf install \
   git gitg meld sqlite \
   gcc gcc-c++ \
-  gnome-tweak-tool chrome-gnome-shell chromium \
-  jq curl wget
+  gnome-tweak-tool gnome-shell-extension-user-theme \
+  chrome-gnome-shell chromium \
+  jq curl wget redhat-lsb-core
 
 
 sudo dnf install \

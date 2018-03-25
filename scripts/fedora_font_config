@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+rm /tmp/local.conf
+cat > /tmp/local.conf <<EOL
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <match target="pattern">
+    <edit name="dpi" mode="assign">96</edit>
+  </match>
+  <match target="font">
+    <edit mode="assign" name="antialias">
+      <bool>true</bool>
+    </edit>
+  </match>
+  <match target="font">
+    <edit mode="assign" name="hinting">
+      <bool>true</bool>
+    </edit>
+  </match>
+  <match target="font">
+    <edit mode="assign" name="hintstyle">
+      <const>hintslight</const>
+    </edit>
+  </match>
+  <match target="font">
+    <edit mode="assign" name="rgba">
+      <const>rgb</const>
+    </edit>
+  </match>
+  <match target="font">
+    <edit mode="assign" name="lcdfilter">
+      <const>lcddefault</const>
+    </edit>
+  </match>
+</fontconfig>
+EOL
+
+sudo cp /tmp/local.conf /etc/fonts/
+
+sudo dnf -y install freetype-freeworld
+
+gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing "rgba"
+gsettings set org.gnome.settings-daemon.plugins.xsettings hinting "slight"
