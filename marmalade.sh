@@ -34,4 +34,4 @@ alias update_marmalade="(cd ${MARMALADE_PATH}; git pull)"
 ################################################################################
 
 load_path_file_to_path
-unset MARMALADE_PATH
+#unset MARMALADE_PATH
