@@ -1,10 +1,17 @@
 #!/usr/bin/env bash
 
-wget 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US' -O /tmp/firefox-dev.tar.bz2
-mkdir -p ~/Applications/firefox-dev
-tar jxf /tmp/firefox-dev.tar.bz2 --strip-components=1 -C ~/Applications/firefox-dev
-rm /tmp/firefox-dev.tar.bz2
-cat > ~/.local/share/applications/firefox-developer.desktop <<EOL
+URL='https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US'
+DOWNLOADED_FILE='/tmp/firefox-dev.tar.bz2'
+INSTALLATION_DIR="$HOME/Applications/firefox-dev"
+DESKTOP_FILE="$HOME/.local/share/applications/firefox-developer.desktop"
+EXECUTABLE_FULL_PATH="$INSTALLATION_DIR/firefox"
+
+
+wget $URL -O $DOWNLOADED_FILE
+mkdir -p $INSTALLATION_DIR
+tar jxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
+rm $DOWNLOADED_FILE
+cat > $DESKTOP_FILE <<EOL
 [Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -16,5 +23,4 @@ StartupNotify=true
 Keywords=firefox;dev;browser
 Categories=Internet
 EOL
-
-echo "Exec=$HOME/Applications/firefox-dev/firefox" >> ~/.local/share/applications/firefox-developer.desktop
+echo "Exec=\"$EXECUTABLE_FULL_PATH\"" >> $DESKTOP_FILE

@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-DOWNLOADED_FILE="/tmp/ideaIC.tar.gz"
 URL_RELEASE="https://data.services.jetbrains.com/products/releases?code=IIC&latest=true"
+URL=$(wget $URL_RELEASE -q -O - | jq '.IIC[0].downloads.linux.link' -r)
+DOWNLOADED_FILE="/tmp/ideaIC.tar.gz"
+INSTALLATION_DIR="$HOME/Applications/idea"
 DESKTOP_FILE="$HOME/.local/share/applications/jetbrains-idea-ce.desktop"
 
 wget $(wget $URL_RELEASE -q -O - | jq '.IIC[0].downloads.linux.link' -r) -O $DOWNLOADED_FILE
-mkdir -p ~/Applications/idea
+mkdir -p $INSTALLATION_DIR
 tar zxf $DOWNLOADED_FILE --strip-components=1 -C ~/Applications/idea
 rm $DOWNLOADED_FILE
 cat > $DESKTOP_FILE <<EOL
@@ -18,6 +20,5 @@ Categories=Development;IDE;
 Terminal=false
 StartupWMClass=jetbrains-idea-ce
 EOL
-
-echo "Exec=\"$HOME/Applications/idea/bin/idea.sh\" %f" >> $DESKTOP_FILE
-echo "Icon=$HOME/Applications/idea/bin/idea.png" >> $DESKTOP_FILE
+echo "Exec=\"$INSTALLATION_DIR/bin/idea.sh\" %f" >> $DESKTOP_FILE
+echo "Icon=$INSTALLATION_DIR/bin/idea.png" >> $DESKTOP_FILE
