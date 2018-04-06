@@ -2,7 +2,7 @@
 
 sudo apt install -y git gitg build-essential \
                     meld htop curl wget jq \
-                    make cmake automake autoconf
+                    make cmake automake autoconf lsb-release
 
 sudo apt install -y openjdk-8-jre openjdk-8-jre-headless \
                     openjdk-8-doc openjdk-8-jdk openjdk-8-jdk-headless
