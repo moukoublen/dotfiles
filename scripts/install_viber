@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
 
-DOWNLOAD_DEST_FILE='/tmp/viber.rpm'
-
-wget 'https://download.cdn.viber.com/desktop/Linux/viber.rpm' -O $DOWNLOAD_DEST_FILE
-
-sudo dnf install $DOWNLOAD_DEST_FILE
+sudo test
+os_name=$(lsb_release -is)
+case "$os_name" in
+  "Fedora")
+    DOWNLOAD_DEST_FILE='/tmp/viber.rpm'
+    wget 'https://download.cdn.viber.com/desktop/Linux/viber.rpm' -O $DOWNLOAD_DEST_FILE
+    sudo dnf -y install $DOWNLOAD_DEST_FILE
+    rm $DOWNLOAD_DEST_FILE
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint")
+    DOWNLOAD_DEST_FILE='/tmp/viber.deb'
+    wget 'http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb' -O $DOWNLOAD_DEST_FILE
+    sudo apt install -y $DOWNLOAD_DEST_FILE
+    rm $DOWNLOAD_DEST_FILE
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
