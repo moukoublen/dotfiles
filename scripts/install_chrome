@@ -4,7 +4,12 @@ sudo test
 os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
-    echo "TODO"
+    URL="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
+    FILE="/tmp/google-chrome-stable_current_x86_64.rpm"
+    echo "Downloading $URL into $FILE"
+    curl -L --fail $URL > $FILE
+    sudo dnf -y install $FILE
+    rm $FILE
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
