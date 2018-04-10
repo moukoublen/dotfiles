@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt install -y git gitg build-essential \
+sudo apt install -y git gitg build-essential vim \
                     meld htop curl wget jq \
                     make cmake automake autoconf lsb-release
 
