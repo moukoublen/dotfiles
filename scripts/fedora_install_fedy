@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+sudo dnf install https://dl.folkswithhats.org/fedora/$(rpm -E %fedora)/RPMS/folkswithhats-release.noarch.rpm
+sudo dnf -y install fedy
