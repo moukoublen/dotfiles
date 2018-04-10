@@ -1,15 +1,27 @@
 #!/usr/bin/env bash
 
-echo "installing adapta requirements..."
-sudo dnf install -y \
-  autoconf automake inkscape gdk-pixbuf2-devel glib2-devel \
-  libsass libxml2 pkgconfig sassc parallel \
-  gtk2-engines gtk-murrine-engine gdk-pixbuf2
-
-if [[ ! -d "$HOME/gitrepos/adapta-gtk-theme" ]]; then
-  echo "cloning adapta in $HOME/gitrepos/"
-  mkdir -p ~/gitrepos/
-  (cd ~/gitrepos/; git clone https://github.com/adapta-project/adapta-gtk-theme.git)
-fi
-
-GS_update_adapta
+sudo test
+os_name=$(lsb_release -is)
+case "$os_name" in
+  "Fedora")
+    echo "installing adapta requirements..."
+    sudo dnf install -y \
+      autoconf automake inkscape gdk-pixbuf2-devel glib2-devel \
+      libsass libxml2 pkgconfig sassc parallel \
+      gtk2-engines gtk-murrine-engine gdk-pixbuf2
+    if [[ ! -d "$HOME/gitrepos/adapta-gtk-theme" ]]; then
+      echo "cloning adapta in $HOME/gitrepos/"
+      mkdir -p ~/gitrepos/
+      (cd ~/gitrepos/; git clone https://github.com/adapta-project/adapta-gtk-theme.git)
+    fi
+    GS_update_adapta
+    ;;
+  "Ubuntu"|"LinuxMint")
+    sudo add-apt-repository ppa:tista/adapta
+    sudo apt update
+    sudo apt install -y adapta-gtk-theme
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
