@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+URL='https://download.robomongo.org/1.2.1/linux/robo3t-1.2.1-linux-x86_64-3e50a65.tar.gz'
+DOWNLOADED_FILE='/tmp/robo3t-1.2.1-linux-x86_64-3e50a65.tar.gz'
+INSTALLATION_DIR="$HOME/Applications/robo3t"
+DESKTOP_FILE="$HOME/.local/share/applications/robo3t.desktop"
+EXECUTABLE_FULL_PATH="$INSTALLATION_DIR/bin/robo3t"
+
+
+wget $URL -O $DOWNLOADED_FILE
+mkdir -p $INSTALLATION_DIR
+tar zxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
+rm $DOWNLOADED_FILE
+cat > $DESKTOP_FILE <<EOL
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Robo3T
+Icon=robo3t
+Type=Application
+StartupNotify=true
+Keywords=mongo;robo3t;dev
+StartupWMClass=robo3t
+EOL
+echo "Exec=\"$EXECUTABLE_FULL_PATH\"" >> $DESKTOP_FILE
+
+mkdir -p ~/.local/share/icons
+wget http://blog.robomongo.org/content/images/2016/01/tears-1.png -O ~/.local/share/icons/robo3t.png
