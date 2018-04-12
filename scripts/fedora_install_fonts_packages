@@ -21,4 +21,5 @@ overpass-mono-fonts \
 oxygen-fonts \
 oxygen-fonts-common \
 oxygen-mono-fonts \
-oxygen-sans-fonts
+oxygen-sans-fonts \
+levien-inconsolata-fonts
