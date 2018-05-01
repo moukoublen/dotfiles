@@ -6,9 +6,9 @@ DOWNLOADED_FILE="/tmp/ideaIC.tar.gz"
 INSTALLATION_DIR="$HOME/Applications/idea"
 DESKTOP_FILE="$HOME/.local/share/applications/jetbrains-idea-ce.desktop"
 
-wget $(wget $URL_RELEASE -q -O - | jq '.IIC[0].downloads.linux.link' -r) -O $DOWNLOADED_FILE
+wget $URL -O $DOWNLOADED_FILE
 mkdir -p $INSTALLATION_DIR
-tar zxf $DOWNLOADED_FILE --strip-components=1 -C ~/Applications/idea
+tar zxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
 rm $DOWNLOADED_FILE
 cat > $DESKTOP_FILE <<EOL
 [Desktop Entry]

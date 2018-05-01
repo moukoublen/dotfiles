@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+URL_RELEASE="https://data.services.jetbrains.com/products/releases?code=PS&latest=true"
+URL=$(wget $URL_RELEASE -q -O - | jq '.PS[0].downloads.linux.link' -r)
+DOWNLOADED_FILE="/tmp/phpstorm.tar.gz"
+INSTALLATION_DIR="$HOME/Applications/phpstorm"
+DESKTOP_FILE="$HOME/.local/share/applications/jetbrains-phpstorm.desktop"
+
+wget $URL -O $DOWNLOADED_FILE
+mkdir -p $INSTALLATION_DIR
+tar zxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
+rm $DOWNLOADED_FILE
+cat > $DESKTOP_FILE <<EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PhpStorm
+Comment=The Drive to Develop
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-phpstorm
+EOL
+echo "Exec=\"$INSTALLATION_DIR/bin/phpstorm.sh\" %f" >> $DESKTOP_FILE
+echo "Icon=$INSTALLATION_DIR/bin/phpstorm.png" >> $DESKTOP_FILE
