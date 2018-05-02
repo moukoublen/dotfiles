@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 
 DOWNLOAD_DEST_FILE='/tmp/telegram.tar.xz'
-TELE_EXECUTABLE="$HOME/Applications/Telegram/Telegram"
+TELE_EXECUTABLE="$HOME/Applications/Telegram/start_telegram"
 DESKTOP_FILE="$HOME/.local/share/applications/telegramdesktop.desktop"
 
 wget 'https://telegram.org/dl/desktop/linux' -O $DOWNLOAD_DEST_FILE
 mkdir -p ~/Applications/
 tar xf $DOWNLOAD_DEST_FILE -C ~/Applications/
 rm $DOWNLOAD_DEST_FILE
+
+echo "FONTCONFIG_FILE=/etc/fonts/ $HOME/Applications/Telegram/Telegram -- %u" > $TELE_EXECUTABLE
+chmod +x $TELE_EXECUTABLE
 
 cat > $DESKTOP_FILE <<EOL
 [Desktop Entry]
