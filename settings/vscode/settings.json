@@ -1,7 +1,7 @@
 {
     "editor.fontSize": 14,
     "editor.fontFamily": "Hack, 'Source Code Pro', Menlo, monospace",
-    "editor.renderWhitespace": "all",
+    "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
     "editor.detectIndentation": false,
     "editor.fontLigatures": true,
@@ -14,4 +14,5 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Material Theme",
 }
