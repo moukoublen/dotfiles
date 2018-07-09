@@ -5,7 +5,7 @@ marmalade() {
   # $2: env
   if [[ $1 == "update" ]]; then
     if [[ "$2" == "" ]]; then
-      for env_name in atom gradle kotlin maven node sbt scala compose
+      for env_name in gradle kotlin maven node sbt scala compose
       do
         (set -e; _marmalade_update $env_name)
       done
