@@ -14,7 +14,7 @@ case "$os_name" in
 esac
 
 
-URL=$(curl https://developer.android.com/studio/index.html -s | egrep "<a href=\"[^\"]*-linux.zip\"" | egrep -oh "https://[^\"]*-linux.zip")
+URL=$(curl https://developer.android.com/studio/ -s | egrep "<a href=\"[^\"]*-linux.zip\"" | egrep -oh "https://[^\"]*-linux.zip")
 
 wget $URL -O /tmp/android-studio.zip
 
