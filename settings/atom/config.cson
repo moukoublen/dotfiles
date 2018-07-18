@@ -15,5 +15,6 @@
     tabType: "soft"
   "exception-reporting":
     userId: "b9016d53-4c91-44f0-82bf-c1fe6004175f"
+  "linter-ui-default": {}
   welcome:
     showOnStartup: false

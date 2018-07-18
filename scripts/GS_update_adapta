@@ -12,7 +12,7 @@ echo " -> removing /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}"
 sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
 echo " -> build Adapta"
 cd ~/gitrepos/adapta-gtk-theme
-./autogen.sh --enable-parallel --disable-cinnamon --disable-unity --disable-xfce --disable-mate --disable-openbox
+./autogen.sh --enable-parallel --disable-cinnamon --disable-xfce --disable-mate --disable-openbox --enable-gtk_next
 make
 sudo make install
 )
