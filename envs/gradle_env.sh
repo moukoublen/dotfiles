@@ -8,7 +8,7 @@ add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
 #
 ################################################################################
 _marmalade_get_latest_version_number__gradle() {
-  curl -s https://api.github.com/repos/gradle/gradle/releases/latest | jq -r '.name'
+  curl -s https://api.github.com/repos/gradle/gradle/releases/latest | jq -r '.name' | sed 's/ RC/-rc-/g'
 }
 
 _marmalade_get_local_latest_version_number__gradle() {
