@@ -23,9 +23,9 @@ cd ~/gitrepos/adapta-gtk-theme
              --disable-mate \
              --disable-openbox \
              --enable-gtk_next #\
-             #--with-selection_color='#673AB7' \
-             #--with-accent_color='#BA68C8' \
-             #--with-suggestion_color='#9C27B0' \
+             #--with-selection_color='#E91E63' \
+             #--with-accent_color='#90A4AE' \
+             #--with-suggestion_color='#607D8B' #\
              #--with-destruction_color='#FF5252'
 make
 sudo make install
