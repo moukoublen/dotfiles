@@ -8,11 +8,25 @@ if [[ $theme_selected == *Adapta* ]]; then
 fi
 
 (
-echo " -> removing /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}"
-sudo rm -rf /usr/share/themes/Adapta{,-Eta,-Nokto,-Nokto-Eta}
+echo " -> removing current Adapta installation"
+sudo rm -rf /usr/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+sudo rm -rf /usr/local/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+rm -rf ~/.local/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+rm -rf ~/.themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+
 echo " -> build Adapta"
 cd ~/gitrepos/adapta-gtk-theme
-./autogen.sh --enable-parallel --disable-cinnamon --disable-xfce --disable-mate --disable-openbox --enable-gtk_next
+./autogen.sh \
+             --enable-parallel \
+             --disable-cinnamon \
+             --disable-xfce \
+             --disable-mate \
+             --disable-openbox \
+             --enable-gtk_next #\
+             #--with-selection_color='#673AB7' \
+             #--with-accent_color='#BA68C8' \
+             #--with-suggestion_color='#9C27B0' \
+             #--with-destruction_color='#FF5252'
 make
 sudo make install
 )

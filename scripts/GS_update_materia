@@ -8,10 +8,10 @@ if [[ $theme_selected == *Materia* ]]; then
 fi
 
 (
-sudo rm -rf /usr/share/themes/Flat-Plat{,-compact,-dark,-dark-compact,-light,-light-compact}
 sudo rm -rf /usr/share/themes/Materia{,-compact,-dark,-dark-compact,-light,-light-compact}
+sudo rm -rf /usr/local/share/themes/Materia{,-compact,-dark,-dark-compact,-light,-light-compact}
 cd $HOME/gitrepos/materia-theme/
-sudo ./install.sh
+sudo ./install.sh --dest /usr/local/share/themes --gdm
 )
 
 if [[ $theme_selected == *Materia* ]]; then
