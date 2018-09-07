@@ -16,16 +16,16 @@ rm -rf ~/.themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
 
 echo " -> build Adapta"
 cd ~/gitrepos/adapta-gtk-theme
-./autogen.sh \
+./autogen.sh --prefix=/usr \
              --enable-parallel \
              --disable-cinnamon \
              --disable-xfce \
              --disable-mate \
              --disable-openbox \
-             --enable-gtk_next #\
-             #--with-selection_color='#E91E63' \
-             #--with-accent_color='#90A4AE' \
-             #--with-suggestion_color='#607D8B' #\
+             --enable-gtk_next \
+             --with-selection_color='#E91E63' \
+             --with-accent_color='#90A4AE' \
+             --with-suggestion_color='#607D8B' #\
              #--with-destruction_color='#FF5252'
 make
 sudo make install
