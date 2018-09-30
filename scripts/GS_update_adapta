@@ -9,10 +9,10 @@ fi
 
 (
 echo " -> removing current Adapta installation"
-sudo rm -rf /usr/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
-sudo rm -rf /usr/local/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
-rm -rf ~/.local/share/themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
-rm -rf ~/.themes/{Adapta,Adapta-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+sudo rm -rf /usr/share/themes/{Adapta,Adapta-Eta,Adapta-Brila,Adapta-Brila-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+sudo rm -rf /usr/local/share/themes/{Adapta,Adapta-Eta,Adapta-Brila,Adapta-Brila-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+rm -rf ~/.local/share/themes/{Adapta,Adapta-Eta,Adapta-Brila,Adapta-Brila-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
+rm -rf ~/.themes/{Adapta,Adapta-Eta,Adapta-Brila,Adapta-Brila-Eta,Adapta-Nokto,Adapta-Nokto-Eta}
 
 echo " -> build Adapta"
 cd ~/gitrepos/adapta-gtk-theme
@@ -23,9 +23,9 @@ cd ~/gitrepos/adapta-gtk-theme
              --disable-mate \
              --disable-openbox \
              --enable-gtk_next \
-             --with-selection_color='#E91E63' \
-             --with-accent_color='#90A4AE' \
-             --with-suggestion_color='#607D8B' #\
+             --with-selection_color='#E91E63' #\
+             #--with-accent_color='#90A4AE' \
+             #--with-suggestion_color='#607D8B' #\
              #--with-destruction_color='#FF5252'
 make
 sudo make install
