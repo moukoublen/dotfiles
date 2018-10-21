@@ -56,3 +56,15 @@ add_to_start_of_path_if_not_exists $HOME/bin
 
 . $MARMALADE_PATH/envs/pyenv_env.sh
 . $MARMALADE_PATH/envs/rbenv_env.sh
+
+if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]; then
+  . /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+fi
+
+if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]; then
+  . /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
+fi
+
+if [ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]; then
+  . /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+fi
