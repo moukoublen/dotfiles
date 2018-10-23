@@ -7,7 +7,7 @@ Run `install.sh`.
 #### Installation via url
 
 ```
-sh <(curl -fsSL https://raw.githubusercontent.com/moukoublen/dotfiles/master/scripts/clone_dotfiles)
+bash <(curl -fsSL https://raw.githubusercontent.com/moukoublen/dotfiles/master/scripts/clone_dotfiles)
 ```
 
 #### Manual installation
