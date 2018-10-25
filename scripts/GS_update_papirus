@@ -17,15 +17,11 @@ echo " -> installing new papirus..."
 sudo cp --no-preserve=mode,ownership -r \
     $inst/ePapirus \
     $inst/Papirus \
-    $inst/Papirus-Adapta \
-    $inst/Papirus-Adapta-Nokto \
     $inst/Papirus-Light \
     $inst/Papirus-Dark \
     /usr/share/icons
 sudo gtk-update-icon-cache -q /usr/share/icons/ePapirus
 sudo gtk-update-icon-cache -q /usr/share/icons/Papirus
-sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta
-sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Adapta-Nokto
 sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Dark
 sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
 
