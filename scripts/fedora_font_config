@@ -37,7 +37,7 @@ EOL
 
 sudo cp /tmp/local.conf /etc/fonts/
 
-sudo dnf -y install freetype-freeworld
+sudo dnf -y install freetype
 
 gsettings set org.gnome.settings-daemon.plugins.xsettings antialiasing "rgba"
 gsettings set org.gnome.settings-daemon.plugins.xsettings hinting "slight"
