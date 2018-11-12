@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+gsettings-set() {
+  setting=$1
+  value=$2
+  echo "Current value of $setting: $(gsettings get $1)"
+  gsettings set $1 $2
+  echo "New value of $setting    : $(gsettings get $1)"
+  echo ""
+}
+
+gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
+gsettings-set "org.gnome.shell.keybindings toggle-message-tray" "[]"
+
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy" "<Super>c"
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste" "<Super>v"
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab" "<Super>t"
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab" "<Super>w"
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>r"
+
+if [[ -x "$(command -v tilix)" ]]; then
+  gsettings-set "com.gexperts.Tilix.Keybindings terminal-copy" "<Super>c"
+  gsettings-set "com.gexperts.Tilix.Keybindings terminal-paste" "<Super>v"
+  gsettings-set "com.gexperts.Tilix.Keybindings app-new-session" "<Super>t"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-close" "<Super>w"
+  gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
+
+  gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
+  gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
+fi
+
+
