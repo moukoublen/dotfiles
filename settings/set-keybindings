@@ -12,6 +12,10 @@ gsettings-set() {
 gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
 gsettings-set "org.gnome.shell.keybindings toggle-message-tray" "[]"
 
+gsettings-set "org.gnome.desktop.wm.keybindings maximize-vertically" "['<Shift><Alt>r']"
+gsettings-set "org.gnome.desktop.wm.keybindings switch-applications" "['<Super>Tab']"
+gsettings-set "org.gnome.desktop.wm.keybindings switch-windows" "['<Alt>Tab']"
+
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy" "<Super>c"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste" "<Super>v"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab" "<Super>t"
