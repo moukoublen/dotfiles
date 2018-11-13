@@ -6,26 +6,40 @@ sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
 sudo dnf install \
-  git gitg meld sqlite \
-  gcc gcc-c++ \
-  gnome-tweak-tool gnome-shell-extension-user-theme \
-  chrome-gnome-shell chromium \
+  git gitg meld sqlite gcc gcc-c++ \
+  gnome-tweak-tool gnome-shell-extension-user-theme chrome-gnome-shell \
   jq curl wget redhat-lsb-core htop vim-enhanced
 
 
 sudo dnf install \
-  java-1.8.0-openjdk java-1.8.0-openjdk-devel \
+  java-1.8.0-openjdk \
+  java-1.8.0-openjdk-devel \
   java-1.8.0-openjdk-headless \
-  java-1.8.0-openjdk-javadoc java-1.8.0-openjdk-src
+  java-1.8.0-openjdk-javadoc \
+  java-1.8.0-openjdk-javadoc-zip \
+  java-1.8.0-openjdk-src
 
 sudo dnf install \
-  java-9-openjdk java-9-openjdk-devel \
-  java-9-openjdk-headless \
-  java-9-openjdk-javadoc java-9-openjdk-src \
-  java-9-openjdk-jmods
+  java-openjdk \
+  java-openjdk-devel \
+  java-openjdk-headless \
+  java-openjdk-javadoc \
+  java-openjdk-javadoc-zip \
+  java-openjdk-jmods \
+  java-openjdk-src
 
 
-#sudo dnf install kernel-devel kernel-headers kernel-modules kernel-modules-extra
+sudo dnf install \
+  java-11-openjdk \
+  java-11-openjdk-devel \
+  java-11-openjdk-headless \
+  java-11-openjdk-javadoc \
+  java-11-openjdk-javadoc-zip \
+  java-11-openjdk-jmods \
+  java-11-openjdk-src
+
+
+sudo dnf install kernel-devel kernel-headers kernel-modules kernel-modules-extra
 
 
 #sudo dnf install akmods akmod-wl broadcom-wl
