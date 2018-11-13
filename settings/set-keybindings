@@ -9,6 +9,14 @@ gsettings-set() {
   echo ""
 }
 
+tilix-default-profile() {
+  gsettings get com.gexperts.Tilix.ProfilesList default | sed "s/'//g"
+}
+
+gnome-terminal-default-profile() {
+  gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g"
+}
+
 gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
 gsettings-set "org.gnome.shell.keybindings toggle-message-tray" "[]"
 
@@ -31,6 +39,10 @@ if [[ -x "$(command -v tilix)" ]]; then
 
   gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
   gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
+
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-columns" "120"
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-rows" "35"
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ allow-bold" "false"
 fi
 
 
