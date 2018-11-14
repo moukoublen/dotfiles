@@ -10,11 +10,11 @@ gsettings-set() {
 }
 
 tilix-default-profile() {
-  gsettings get com.gexperts.Tilix.ProfilesList default | sed "s/'//g"
+  gsettings get com.gexperts.Tilix.ProfilesList default | tr -d \'
 }
 
 gnome-terminal-default-profile() {
-  gsettings get org.gnome.Terminal.ProfilesList default | sed "s/'//g"
+  gsettings get org.gnome.Terminal.ProfilesList default | tr -d \'
 }
 
 gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
@@ -30,6 +30,11 @@ gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab" "<Super>w"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>r"
 
+gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ allow-bold" "false"
+gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ default-size-columns" "120"
+gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ default-size-rows" "30"
+gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ scrollback-unlimited" "true"
+
 if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-copy" "<Super>c"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-paste" "<Super>v"
@@ -43,6 +48,5 @@ if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-columns" "120"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-rows" "35"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ allow-bold" "false"
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ scrollback-unlimited" "true"
 fi
-
-
