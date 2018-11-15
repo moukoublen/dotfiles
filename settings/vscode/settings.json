@@ -1,6 +1,6 @@
 {
-    "editor.fontSize": 14,
-    "editor.fontFamily": "Hack, 'Source Code Pro', Menlo, monospace",
+    "editor.fontSize": 15,
+    "editor.fontFamily": "'Fira Code', Hack, 'Source Code Pro', Menlo, monospace",
     "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
     "editor.detectIndentation": false,
@@ -14,5 +14,6 @@
     },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Material Theme",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "window.titleBarStyle": "custom",
 }
