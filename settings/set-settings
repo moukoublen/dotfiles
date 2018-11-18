@@ -49,6 +49,7 @@ if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
   gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
   gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
+  gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-columns" "120"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-rows" "35"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ allow-bold" "false"
