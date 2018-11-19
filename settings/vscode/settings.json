@@ -12,6 +12,11 @@
         "editor.tabSize": 2,
         "editor.formatOnPaste": true,
     },
+    "[shellscript]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.formatOnPaste": false,
+    },
     "workbench.startupEditor": "newUntitledFile",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Visual Studio Dark",

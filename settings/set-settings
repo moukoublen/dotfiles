@@ -28,6 +28,7 @@ gsettings-set "org.gnome.desktop.wm.keybindings switch-windows" "['<Alt>Tab']"
 
 
 ################### Gnome Terminal #############################################
+gsettings-set "org.gnome.Terminal.Legacy.Settings default-show-menubar" "false"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy" "<Super>c"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste" "<Super>v"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab" "<Super>t"
