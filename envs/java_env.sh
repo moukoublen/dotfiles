@@ -10,7 +10,7 @@ then
   add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 fi
 
-set_java_env() {
+set_java_home() {
   export JAVA_HOME=$1
   add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 }
