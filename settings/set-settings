@@ -4,8 +4,8 @@ gsettings-set() {
   setting=$1
   value=$2
   echo "Current value of $setting: $(gsettings get $1)"
-  gsettings set $1 $2
-  echo "New value of $setting    : $(gsettings get $1)"
+  gsettings set $1 "$2"
+  echo "New value of     $setting: $(gsettings get $1)"
   echo ""
 }
 
@@ -50,10 +50,13 @@ if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
   gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
   gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
+  gsettings-set "com.gexperts.Tilix.Settings unsafe-paste-alert" "false"
   gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-columns" "120"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-rows" "35"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ allow-bold" "false"
   gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ scrollback-unlimited" "true"
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ use-system-font" "false"
+  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ font" 'Fira Code 13'
 fi
 ################################################################################
