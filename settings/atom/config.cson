@@ -7,6 +7,7 @@
     telemetryConsent: "limited"
   editor:
     fontFamily: "Hack"
+    fontSize: 16
     lineHeight: 1.4
     maxScreenLineLength: 500000
     scrollPastEnd: true
