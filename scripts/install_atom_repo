@@ -10,7 +10,7 @@ case "$os_name" in
 name=Atom Editor
 baseurl=https://packagecloud.io/AtomEditor/atom/el/7/\$basearch
 enabled=1
-gpgcheck=1
+gpgcheck=0
 repo_gpgcheck=0
 gpgkey=https://packagecloud.io/AtomEditor/atom/gpgkey
 EOL
