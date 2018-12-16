@@ -5,7 +5,18 @@ os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
     sudo rpm --import https://packagecloud.io/AtomEditor/atom/gpgkey
-    sudo sh -c 'echo -e "[Atom]\nname=Atom Editor\nbaseurl=https://packagecloud.io/AtomEditor/atom/el/7/\$basearch\nenabled=1\ngpgcheck=0\nrepo_gpgcheck=1\ngpgkey=https://packagecloud.io/AtomEditor/atom/gpgkey" > /etc/yum.repos.d/atom.repo'
+    cat > /tmp/atom.repo << EOL
+[Atom]
+name=Atom Editor
+baseurl=https://packagecloud.io/AtomEditor/atom/el/7/\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=0
+gpgkey=https://packagecloud.io/AtomEditor/atom/gpgkey
+EOL
+
+    sudo cp /tmp/atom.repo /etc/yum.repos.d/atom.repo
+    rm /tmp/atom.repo
     sudo dnf -y install atom
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")

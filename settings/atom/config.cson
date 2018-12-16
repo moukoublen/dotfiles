@@ -6,7 +6,7 @@
     audioBeep: false
     telemetryConsent: "limited"
   editor:
-    fontFamily: "Hack"
+    fontFamily: "Fira Code"
     fontSize: 16
     lineHeight: 1.4
     maxScreenLineLength: 500000
