@@ -1,62 +1,95 @@
 #!/usr/bin/env bash
 
+#Helper function
 gsettings-set() {
   setting=$1
   value=$2
-  echo "Current value of $setting: $(gsettings get $1)"
+  local old_value=$(gsettings get $1)
   gsettings set $1 "$2"
-  echo "New value of     $setting: $(gsettings get $1)"
-  echo ""
+  echo "$setting: ${old_value} -> $(gsettings get $1)"
 }
 
-tilix-default-profile() {
-  gsettings get com.gexperts.Tilix.ProfilesList default | tr -d \'
-}
-
-gnome-terminal-default-profile() {
-  gsettings get org.gnome.Terminal.ProfilesList default | tr -d \'
-}
+#Terminal colors
+C_FG="#BDBDBD"
+C_BG="#222D32"
+C_HFG="#FF4080"
+C_HBG="#0F0F0F"
+C_PAL="['#424242','#F44336','#4CAF4F','#FFEB3B','#2095F3','#9B26B0','#00BCD4','#9E9E9E','#757575','#E57272','#81C784','#FFF176','#64B5F6','#BA68C8','#4DD0E1','#E0E0E0']"
 
 
 ################### Gnome Shell and WM #########################################
+echo ""
+echo "----- Gnome Shell Settings --------"
 gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
 gsettings-set "org.gnome.shell.keybindings toggle-message-tray" "[]"
 gsettings-set "org.gnome.desktop.wm.keybindings maximize-vertically" "['<Shift><Alt>r']"
 gsettings-set "org.gnome.desktop.wm.keybindings switch-applications" "['<Super>Tab']"
 gsettings-set "org.gnome.desktop.wm.keybindings switch-windows" "['<Alt>Tab']"
+echo "-----------------------------------"
 ################################################################################
 
 
 ################### Gnome Terminal #############################################
+echo ""
+echo "----- Gnome Terminal Settings -----"
+gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
+default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
 gsettings-set "org.gnome.Terminal.Legacy.Settings default-show-menubar" "false"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy" "<Super>c"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste" "<Super>v"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab" "<Super>t"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab" "<Super>w"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>r"
-gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ allow-bold" "false"
-gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ default-size-columns" "120"
-gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ default-size-rows" "30"
-gsettings-set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$(gnome-terminal-default-profile)/ scrollback-unlimited" "true"
+gsettings-set "${default_profile_path} allow-bold" "false"
+gsettings-set "${default_profile_path} default-size-columns" "120"
+gsettings-set "${default_profile_path} default-size-rows" "30"
+gsettings-set "${default_profile_path} scrollback-unlimited" "true"
+gsettings-set "${default_profile_path} use-system-font" "false"
+gsettings-set "${default_profile_path} font" 'Fira Code 12'
+gsettings-set "${default_profile_path} cursor-shape" "ibeam"
+gsettings-set "${default_profile_path} audible-bell" "false"
+gsettings-set "${default_profile_path} use-theme-colors" "false"
+gsettings-set "${default_profile_path} highlight-colors-set" "true"
+gsettings-set "${default_profile_path} foreground-color" "$C_FG"
+gsettings-set "${default_profile_path} background-color" "$C_BG"
+gsettings-set "${default_profile_path} highlight-foreground-color" "$C_HFG"
+gsettings-set "${default_profile_path} highlight-background-color" "$C_HBG"
+gsettings-set "${default_profile_path} palette" "$C_PAL"
+echo "-----------------------------------"
 ################################################################################
 
 
 ################### Tilix ######################################################
 if [[ -x "$(command -v tilix)" ]]; then
+  echo ""
+  echo "----- Tilix Settings --------------"
+  tdp=$(gsettings get com.gexperts.Tilix.ProfilesList default | tr -d \')
+  default_profile_path="com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/${tdp}/"
+  gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
+  gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
+  gsettings-set "com.gexperts.Tilix.Settings unsafe-paste-alert" "false"
+  gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-copy" "<Super>c"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-paste" "<Super>v"
   gsettings-set "com.gexperts.Tilix.Keybindings app-new-session" "<Super>t"
   gsettings-set "com.gexperts.Tilix.Keybindings session-close" "<Super>w"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
-  gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
-  gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
-  gsettings-set "com.gexperts.Tilix.Settings unsafe-paste-alert" "false"
-  gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-columns" "120"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ default-size-rows" "35"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ allow-bold" "false"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ scrollback-unlimited" "true"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ use-system-font" "false"
-  gsettings-set "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/$(tilix-default-profile)/ font" 'Fira Code 13'
+  gsettings-set "${default_profile_path} allow-bold" "false"
+  gsettings-set "${default_profile_path} default-size-columns" "120"
+  gsettings-set "${default_profile_path} default-size-rows" "35"
+  gsettings-set "${default_profile_path} scrollback-unlimited" "true"
+  gsettings-set "${default_profile_path} use-system-font" "false"
+  gsettings-set "${default_profile_path} font" 'Fira Code 13'
+  gsettings-set "${default_profile_path} cursor-shape" "ibeam"
+  gsettings-set "${default_profile_path} terminal-bell" "none"
+  gsettings-set "${default_profile_path} use-theme-colors" "false"
+  gsettings-set "${default_profile_path} highlight-colors-set" "true"
+  gsettings-set "${default_profile_path} foreground-color" "$C_FG"
+  gsettings-set "${default_profile_path} background-color" "$C_BG"
+  gsettings-set "${default_profile_path} highlight-foreground-color" "$C_HFG"
+  gsettings-set "${default_profile_path} highlight-background-color" "$C_HBG"
+  gsettings-set "${default_profile_path} palette" "$C_PAL"
+
+  echo "-----------------------------------"
 fi
 ################################################################################
