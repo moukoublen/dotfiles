@@ -1,9 +1,9 @@
 {
-    "editor.fontSize": 16,
-    "editor.fontFamily": "'Fira Code', Hack, 'Source Code Pro', Menlo, monospace",
-    "editor.renderWhitespace": "boundary",
     "editor.minimap.enabled": false,
     "editor.detectIndentation": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "'Fira Code', Hack, 'Source Code Pro', Menlo, monospace",
     "editor.fontLigatures": true,
     //"editor.tabSize": 2,
     //"editor.formatOnPaste": true,
@@ -17,8 +17,4 @@
         "editor.tabSize": 4,
         "editor.formatOnPaste": false,
     },
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Visual Studio Dark",
-    "window.titleBarStyle": "custom",
 }
