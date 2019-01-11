@@ -7,11 +7,15 @@ sudo systemctl disable firewalld.service
 
 sudo dnf install \
   git gitg meld sqlite gcc gcc-c++ cmake automake make\
+  jq curl wget redhat-lsb-core htop vim nano \
   gnome-tweak-tool gnome-shell-extension-user-theme chrome-gnome-shell \
-  jq curl wget redhat-lsb-core htop vim nano
+  gtk-murrine-engine gtk-unico-engine
 
 sudo dnf groupinstall "Development Tools"
+sudo dnf install @development-tools
+#sudo dnf install @development-libs
 #sudo dnf install gnome-builder
+#sudo dnf install @gnome-software-development
 
 sudo dnf install \
   java-1.8.0-openjdk \
@@ -21,15 +25,14 @@ sudo dnf install \
   java-1.8.0-openjdk-javadoc-zip \
   java-1.8.0-openjdk-src
 
-sudo dnf install \
-  java-openjdk \
-  java-openjdk-devel \
-  java-openjdk-headless \
-  java-openjdk-javadoc \
-  java-openjdk-javadoc-zip \
-  java-openjdk-jmods \
-  java-openjdk-src
-
+#sudo dnf install \
+#  java-openjdk \
+#  java-openjdk-devel \
+#  java-openjdk-headless \
+#  java-openjdk-javadoc \
+#  java-openjdk-javadoc-zip \
+#  java-openjdk-jmods \
+#  java-openjdk-src
 
 sudo dnf install \
   java-11-openjdk \

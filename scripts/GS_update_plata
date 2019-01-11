@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+theme_selected="$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')"
+echo " -> Current theme $theme_selected"
+if [[ $theme_selected == Plata* ]]; then
+  echo " -> Switching to Adwaita"
+  GS_set_gnome_theme 'Adwaita'
+fi
+
+(
+echo " -> removing current Plata installation"
+sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
+
+echo " -> build Plata"
+cd ~/gitrepos/plata-theme
+./autogen.sh --prefix=/usr \
+             --enable-parallel \
+             --disable-cinnamon \
+             --disable-xfce \
+             --disable-mate \
+             --disable-openbox \
+             --enable-gtk_next \
+             --with-selection_color='#E91E63'
+make
+sudo make install
+)
+
+
+if [[ $theme_selected == Plata* ]]; then
+  echo " -> Switching bach to $theme_selected"
+  GS_set_gnome_theme $theme_selected
+  echo " -> Copy "
+  sudo cp /usr/share/themes/$theme_selected/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
+fi
