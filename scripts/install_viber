@@ -11,7 +11,7 @@ case "$os_name" in
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
     DOWNLOAD_DEST_FILE='/tmp/viber.deb'
-    wget 'http://download.cdn.viber.com/cdn/desktop/Linux/viber.deb' -O $DOWNLOAD_DEST_FILE
+    wget 'https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb' -O $DOWNLOAD_DEST_FILE
     sudo apt install -y $DOWNLOAD_DEST_FILE
     rm $DOWNLOAD_DEST_FILE
     ;;
