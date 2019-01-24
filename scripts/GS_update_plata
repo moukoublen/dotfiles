@@ -29,6 +29,6 @@ sudo make install
 if [[ $theme_selected == Plata* ]]; then
   echo " -> Switching bach to $theme_selected"
   GS_set_gnome_theme $theme_selected
-  echo " -> Copy "
+  echo " -> Copy gnome-shell-theme.gresource"
   sudo cp /usr/share/themes/$theme_selected/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
 fi
