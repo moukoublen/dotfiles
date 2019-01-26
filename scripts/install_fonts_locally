@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+mkdir -p ~/.fonts
+
+##### Install Input font localy ################################################
+(
+echo "Install Input fonts in ~/.fonts"
+URL='http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do'
+TMP_DIR='/tmp/input_install'
+ZIP_FILE=$TMP_DIR/InputFont.zip
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $URL -O $ZIP_FILE
+unzip -q $ZIP_FILE -d $TMP_DIR
+cp -r $TMP_DIR/Input_Fonts/InputMono ~/.fonts/
+cp -r $TMP_DIR/Input_Fonts/InputSans ~/.fonts/
+cp -r $TMP_DIR/Input_Fonts/InputSerif ~/.fonts/
+rm -rf $TMP_DIR
+)
+################################################################################
+
+##### Install Hack fonts localy ################################################
+(
+echo "Install Hack fonts in ~/.fonts"
+JSON_TEXT=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest)
+LATEST_URL=$(echo $JSON_TEXT | jq '.assets[] | select(.content_type == "application/x-gzip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
+FILENAME=$(echo $JSON_TEXT | jq '.assets[] | select(.content_type == "application/x-gzip") | select(.name | contains("ttf")) | .name' --raw-output)
+TMP_DIR='/tmp/hackfont_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $LATEST_URL -O $TMP_DIR/$FILENAME
+tar zxf $TMP_DIR/$FILENAME -C $TMP_DIR
+mkdir -p ~/.fonts/hack
+cp $TMP_DIR/ttf/*.ttf ~/.fonts/hack/
+rm -rf $TMP_DIR
+)
+################################################################################
+
+##### Install FiraCode fonts localy ############################################
+(
+echo "Install FiraCode fonts in ~/.fonts"
+JSON_TEXT=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest)
+LATEST_URL=$(echo $JSON_TEXT | jq '.assets[0].browser_download_url' --raw-output)
+FILENAME=$(echo $JSON_TEXT | jq '.assets[0].name' --raw-output)
+TMP_DIR='/tmp/firacode_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $LATEST_URL -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+mkdir -p ~/.fonts/firacode
+cp $TMP_DIR/otf/*.otf ~/.fonts/firacode
+rm -rf $TMP_DIR
+)
+################################################################################
+
+##### Install Source Sans Pro fonts localy #####################################
+(
+echo "Install Source Sans Pro fonts in ~/.fonts"
+JSON_TEXT=$(curl -s https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest)
+LATEST_URL=$(echo $JSON_TEXT | jq '.assets[0].browser_download_url' --raw-output)
+FILENAME=$(echo $JSON_TEXT | jq '.assets[0].name' --raw-output)
+TMP_DIR='/tmp/sourcesanspro_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $LATEST_URL -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+mkdir -p ~/.fonts/sourcesanspro
+find $TMP_DIR/ -name *.otf -exec cp {} ~/.fonts/sourcesanspro/ \;
+rm -rf $TMP_DIR
+)
+################################################################################
