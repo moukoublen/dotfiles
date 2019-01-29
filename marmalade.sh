@@ -30,6 +30,7 @@ fi
 alias path_to_lines='echo $PATH | tr ":" "\n"'
 alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 alias update_marmalade="(cd ${MARMALADE_PATH}; git pull)"
+alias MVN_NO_TESTS="mvn -Dmaven.test.skip=true -DskipTests=true"
 ################################################################################
 ################################################################################
 
