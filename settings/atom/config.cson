@@ -5,6 +5,10 @@
   core:
     audioBeep: false
     telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
+    ]
   editor:
     fontFamily: "Fira Code"
     fontSize: 16
