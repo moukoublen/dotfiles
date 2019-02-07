@@ -1,14 +1,14 @@
 "*":
   "atom-beautify":
     general:
-      _analyticsUserId: "7c8bb9e2-6160-4fc6-8963-13b48695f124"
+      _analyticsUserId: "4de42029-6572-41bb-86d8-462ecfecfaf9"
   core:
     audioBeep: false
-    telemetryConsent: "limited"
     themes: [
       "one-dark-ui"
       "atom-dark-syntax"
     ]
+    telemetryConsent: "limited"
   editor:
     fontFamily: "Fira Code"
     fontSize: 16
@@ -18,7 +18,6 @@
     showInvisibles: true
     tabType: "soft"
   "exception-reporting":
-    userId: "b9016d53-4c91-44f0-82bf-c1fe6004175f"
-  "linter-ui-default": {}
+    userId: "ce431e12-5d19-45b6-9222-629a19e00919"
   welcome:
     showOnStartup: false
