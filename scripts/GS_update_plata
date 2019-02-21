@@ -13,14 +13,22 @@ sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 
 echo " -> build Plata"
 cd ~/gitrepos/plata-theme
-./autogen.sh --prefix=/usr \
-             --enable-parallel \
-             --disable-cinnamon \
-             --disable-xfce \
-             --disable-mate \
-             --disable-openbox \
-             --enable-gtk_next \
-             --with-selection_color='#E91E63'
+./autogen.sh \
+--prefix=/usr \
+--disable-silent-rules \
+--enable-parallel \
+--with-selection_color='#E91E63' \
+--enable-gtk_next \
+--enable-gnome \
+--disable-cinnamon \
+--disable-flashback \
+--disable-xfce \
+--disable-mate \
+--disable-openbox \
+--disable-plank \
+--disable-telegram \
+--disable-tweetdeck
+
 make
 sudo make install
 )
