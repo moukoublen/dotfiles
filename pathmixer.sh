@@ -1,10 +1,23 @@
+add_to_path () {
+  if [[ "$1" == "" ]]; then
+    return
+  fi
+  if [[ ":$PATH:" != *":$1:"* ]] ; then
+    if [[ "$2" = "after" ]] ; then
+      PATH=$PATH:$1
+    else
+      PATH=$1:$PATH
+    fi
+  fi
+}
+
 add_to_start_of_path_if_not_exists() {
-  [[ ":$PATH:" != *":$1:"* ]] && PATH="${1}:${PATH}"
+  add_to_path $1
   export PATH;
 }
 
 add_to_end_of_path_if_not_exists() {
-  [[ ":$PATH:" != *":$1:"* ]] && PATH="${PATH}:${1}"
+  add_to_path $1 "after"
   export PATH;
 }
 
