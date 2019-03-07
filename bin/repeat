@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+command=$1
+sleep_time=${2:-1}
+while true
+do
+  echo "---"
+  eval $command
+  echo "---"
+  sleep $sleep_time
+done

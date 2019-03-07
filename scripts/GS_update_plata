@@ -17,7 +17,6 @@ cd ~/gitrepos/plata-theme
 --prefix=/usr \
 --disable-silent-rules \
 --enable-parallel \
---with-selection_color='#E91E63' \
 --enable-gtk_next \
 --enable-gnome \
 --disable-cinnamon \
