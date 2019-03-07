@@ -41,11 +41,12 @@ gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab" "<Super>w"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>r"
 gsettings-set "${default_profile_path} allow-bold" "false"
+gsettings-set "${default_profile_path} text-blink-mode" "never"
 gsettings-set "${default_profile_path} default-size-columns" "120"
 gsettings-set "${default_profile_path} default-size-rows" "30"
 gsettings-set "${default_profile_path} scrollback-unlimited" "true"
 gsettings-set "${default_profile_path} use-system-font" "false"
-gsettings-set "${default_profile_path} font" 'Input Mono Narrow Semi-Condensed 10'
+gsettings-set "${default_profile_path} font" 'DejaVu Sans Mono 10'
 gsettings-set "${default_profile_path} cursor-shape" "ibeam"
 gsettings-set "${default_profile_path} audible-bell" "false"
 gsettings-set "${default_profile_path} use-theme-colors" "false"
@@ -75,6 +76,7 @@ if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Keybindings session-close" "<Super>w"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
   gsettings-set "${default_profile_path} allow-bold" "false"
+  gsettings-set "${default_profile_path} text-blink-mode" "never"
   gsettings-set "${default_profile_path} default-size-columns" "120"
   gsettings-set "${default_profile_path} default-size-rows" "35"
   gsettings-set "${default_profile_path} scrollback-unlimited" "true"
