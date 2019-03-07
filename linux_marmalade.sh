@@ -30,6 +30,7 @@ alias o='xdg-open'
 ######### Paths ################################################################
 add_to_start_of_path_if_not_exists $HOME/.local/bin
 add_to_start_of_path_if_not_exists $MARMALADE_PATH/scripts
+add_to_start_of_path_if_not_exists $MARMALADE_PATH/bin
 ################################################################################
 ################################################################################
 
