@@ -26,7 +26,11 @@ cd ~/gitrepos/plata-theme
 --disable-openbox \
 --disable-plank \
 --disable-telegram \
---disable-tweetdeck
+--disable-tweetdeck \
+--with-selection_color='#E91E63' \
+--with-accent_color='#9c27b0' \
+--with-suggestion_color='#673ab7' \
+--with-destruction_color='#f44336'
 
 make
 sudo make install
