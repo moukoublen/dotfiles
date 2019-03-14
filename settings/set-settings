@@ -12,7 +12,7 @@ gsettings-set() {
 #Terminal colors
 C_FG="#E0E0E0"
 C_BG="#212121"
-C_HFG="#FF4080"
+C_HFG="#FF4081"
 C_HBG="#0F0F0F"
 C_PAL="['#424242', '#E53834', '#43A047', '#FDD835', '#1D87E5', '#8D24AA', '#00897A', '#90A4AE', '#757575', '#E57272', '#81C784', '#FFF176', '#64B5F6', '#BA68C8', '#4DB6AC', '#CFD8DC']"
 
