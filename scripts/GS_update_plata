@@ -40,6 +40,9 @@ sudo make install
 if [[ $theme_selected == Plata* ]]; then
   echo " -> Switching bach to $theme_selected"
   GS_set_gnome_theme $theme_selected
+
+  #for gnome shell set fixed Plata-Compact
+  gsettings set org.gnome.shell.extensions.user-theme name 'Plata-Compact'
   echo " -> Copy gnome-shell-theme.gresource"
-  sudo cp /usr/share/themes/$theme_selected/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
+  sudo cp /usr/share/themes/Plata-Compact/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
 fi
