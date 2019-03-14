@@ -28,8 +28,8 @@ cd ~/gitrepos/plata-theme
 --disable-telegram \
 --disable-tweetdeck \
 --with-selection_color='#E91E63' \
---with-accent_color='#9c27b0' \
---with-suggestion_color='#673ab7' \
+--with-accent_color='#ff6090' \
+--with-suggestion_color='#b0003a' \
 --with-destruction_color='#f44336'
 
 make
