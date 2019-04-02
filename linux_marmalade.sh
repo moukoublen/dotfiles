@@ -23,6 +23,7 @@ alias S='find . -name '
 alias to_ack='ack --files-from=-' #pipe find results
 alias to_grep='xargs grep --color=auto' #pipe find results
 alias o='xdg-open'
+alias JAVALS='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
 ################################################################################
 ################################################################################
 
