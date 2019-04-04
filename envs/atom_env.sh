@@ -3,12 +3,20 @@ install_my_atom_packages() {
     atom-beautify \
     file-icons \
     highlight-selected \
-    language-scala \
-    language-kotlin \
     linter \
+    linter-eslint \
     linter-ui-default \
     intentions \
-    busy-signal
+    busy-signal \
+    language-ansible \
+    language-docker \
+    language-gradle \
+    language-groovy \
+    language-jenkinsfile \
+    language-kotlin \
+    language-mongodb \
+    language-scala \
+    language-terraform
 
   #themes
   # nord-atom-syntax
