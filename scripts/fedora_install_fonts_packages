@@ -2,13 +2,10 @@
 sudo dnf -y install \
 aajohan-comfortaa-fonts \
 adobe-source-code-pro-fonts \
-adobe-source-sans-pro-fonts \
-adobe-source-serif-pro-fonts \
 google-roboto-condensed-fonts \
 google-roboto-fonts \
 google-roboto-mono-fonts \
 google-roboto-slab-fonts \
-roboto-fontface-fonts \
 mozilla-fira-fonts-common \
 mozilla-fira-mono-fonts \
 mozilla-fira-sans-fonts \
@@ -16,6 +13,7 @@ bitstream-vera-fonts-common \
 bitstream-vera-sans-fonts \
 bitstream-vera-sans-mono-fonts \
 bitstream-vera-serif-fonts \
+open-sans-fonts \
 overpass-fonts \
 overpass-mono-fonts \
 oxygen-fonts \
