@@ -6,13 +6,14 @@ export M_BREW_COREUTILS_USED=false
 export M_BREW_FINDUTILS_USED=false
 #################################################
 
-if [[ ($BASH_VERSION == 3.*) && (-f $(brew --prefix)/etc/bash_completion) ]]; then
-  source $(brew --prefix)/etc/bash_completion
+if [[ ($BASH_VERSION == 3.*) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
+  source $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 # if bash is 4+ (brew) then use bash-completion@2
-if [[ (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-f $(brew --prefix)/share/bash-completion/bash_completion) ]]; then
-  . $(brew --prefix)/share/bash-completion/bash_completion
+if [[ (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
+  export BASH_COMPLETION_COMPAT_DIR=$(brew --prefix)/etc/bash_completion.d
+  . $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 if [[ "$M_BREW_COREUTILS_USED" = true ]]; then
