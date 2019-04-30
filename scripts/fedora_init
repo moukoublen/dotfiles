@@ -7,7 +7,7 @@ sudo systemctl disable firewalld.service
 
 sudo dnf install \
   git gitg meld sqlite gcc gcc-c++ cmake automake make\
-  jq curl wget redhat-lsb-core htop vim nano \
+  jq curl wget redhat-lsb-core htop vim nano ack\
   gnome-tweak-tool gnome-shell-extension-user-theme chrome-gnome-shell \
   gtk-murrine-engine gtk-unico-engine
 
