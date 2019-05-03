@@ -6,10 +6,10 @@ sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
 sudo dnf install \
-  git gitg meld sqlite gcc gcc-c++ cmake automake make\
-  jq curl wget redhat-lsb-core htop vim nano ack\
+  git gitg meld sqlite gcc gcc-c++ cmake automake make \
+  jq curl wget redhat-lsb-core htop vim vim-common vim-enhanced nano ack \
   gnome-tweak-tool gnome-shell-extension-user-theme chrome-gnome-shell \
-  gtk-murrine-engine gtk-unico-engine
+  gtk-murrine-engine gtk-unico-engine gtk2-engines
 
 sudo dnf groupinstall "Development Tools"
 sudo dnf install @development-tools
@@ -25,15 +25,6 @@ sudo dnf install \
   java-1.8.0-openjdk-javadoc-zip \
   java-1.8.0-openjdk-src
 
-#sudo dnf install \
-#  java-openjdk \
-#  java-openjdk-devel \
-#  java-openjdk-headless \
-#  java-openjdk-javadoc \
-#  java-openjdk-javadoc-zip \
-#  java-openjdk-jmods \
-#  java-openjdk-src
-
 sudo dnf install \
   java-11-openjdk \
   java-11-openjdk-devel \
@@ -43,8 +34,6 @@ sudo dnf install \
   java-11-openjdk-jmods \
   java-11-openjdk-src
 
-
 sudo dnf install kernel-devel kernel-headers kernel-modules kernel-modules-extra
-
 
 #sudo dnf install akmods akmod-wl broadcom-wl
