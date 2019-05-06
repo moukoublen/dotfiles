@@ -34,6 +34,10 @@ sudo dnf install \
   java-11-openjdk-jmods \
   java-11-openjdk-src
 
-sudo dnf install kernel-devel kernel-headers kernel-modules kernel-modules-extra
+sudo dnf install \
+  kernel-devel \
+  kernel-headers \
+  kernel-modules \
+  kernel-modules-extra
 
 #sudo dnf install akmods akmod-wl broadcom-wl
