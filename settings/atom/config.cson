@@ -5,12 +5,8 @@
   core:
     audioBeep: false
     telemetryConsent: "limited"
-    themes: [
-      "one-dark-ui"
-      "atom-dark-syntax"
-    ]
   editor:
-    fontFamily: "Hack"
+    fontFamily: "Fira Code"
     fontSize: 15
     lineHeight: 1.3
     maxScreenLineLength: 500000
