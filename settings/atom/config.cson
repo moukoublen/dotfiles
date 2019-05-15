@@ -16,8 +16,13 @@
     maxScreenLineLength: 500000
     scrollPastEnd: true
     showInvisibles: true
+    tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "ce431e12-5d19-45b6-9222-629a19e00919"
   welcome:
     showOnStartup: false
+".scala.source":
+  editor:
+    showIndentGuide: false
+    tabLength: 2
