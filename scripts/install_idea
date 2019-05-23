@@ -15,10 +15,10 @@ cat > $DESKTOP_FILE <<EOL
 Version=1.0
 Type=Application
 Name=IntelliJ IDEA Community Edition
-Comment=The Drive to Develop
+Comment=Capable and Ergonomic IDE for JVM
 Categories=Development;IDE;
 Terminal=false
 StartupWMClass=jetbrains-idea-ce
 EOL
 echo "Exec=\"$INSTALLATION_DIR/bin/idea.sh\" %f" >> $DESKTOP_FILE
-echo "Icon=$INSTALLATION_DIR/bin/idea.png" >> $DESKTOP_FILE
+echo "Icon=$INSTALLATION_DIR/bin/idea.svg" >> $DESKTOP_FILE
