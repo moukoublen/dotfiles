@@ -10,6 +10,11 @@
         "editor.tabSize": 2,
         "editor.formatOnPaste": true,
     },
+    "[jsonc]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.formatOnPaste": true,
+    },
     "[shellscript]": {
         "editor.insertSpaces": true,
         "editor.tabSize": 4,

@@ -1,6 +1,9 @@
 install_my_atom_packages() {
   apm install \
     atom-beautify \
+    atom-material-syntax \
+    atom-material-syntax-dark \
+    atom-material-ui \
     file-icons \
     highlight-selected \
     linter \
@@ -17,13 +20,6 @@ install_my_atom_packages() {
     language-mongodb \
     language-scala \
     language-terraform
-
-  #themes
-  # nord-atom-syntax
-  # nord-atom-ui
-
-  # nova-atom-syntax
-  # nova-atom-ui
 }
 
 _marmalade_get_latest_version_number__atom() {
