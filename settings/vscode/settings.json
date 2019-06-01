@@ -1,4 +1,6 @@
 {
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.useSplitJSON": true,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
@@ -26,6 +28,4 @@
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
   },
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "material-icon-theme",
 }
