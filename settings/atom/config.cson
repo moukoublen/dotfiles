@@ -1,7 +1,6 @@
 "*":
-  "atom-beautify":
-    general:
-      _analyticsUserId: "4de42029-6572-41bb-86d8-462ecfecfaf9"
+  "exception-reporting":
+    userId: "7800e055-313a-4537-a8d6-89d2070f6a98"
   "atom-material-ui":
     tabs:
       compactTabs: true
@@ -25,8 +24,6 @@
     showInvisibles: true
     tabLength: 4
     tabType: "soft"
-  "exception-reporting":
-    userId: "ce431e12-5d19-45b6-9222-629a19e00919"
   "linter-ui-default":
     showPanel: true
   welcome:
