@@ -1,25 +1,19 @@
 #!/usr/bin/env bash
 
 sudo test
+URL=""
 os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
-    FILE="/tmp/google-chrome-stable_current_x86_64.rpm"
-    echo "Downloading $URL into $FILE"
-    curl -L --fail $URL > $FILE
-    sudo dnf -y install $FILE
-    rm $FILE
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-    FILE="/tmp/google-chrome-stable_current_amd64.deb"
-    echo "Downloading $URL into $FILE"
-    curl -L --fail $URL > $FILE
-    sudo apt install -y $FILE
-    rm $FILE
     ;;
   *)
     echo "this script does not have packages for this release"
+    exit 1
     ;;
 esac
+
+install_remote_package $URL

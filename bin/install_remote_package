@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+TMP_DIR=$(mktemp)
+FILENAME=$(get_remote_filename $1)
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+
+echo "Downloading $1 in $TMP_DIR"
+wget $1 -O $TMP_DIR/$FILENAME
+
+sudo test
+echo "Installing $TMP_DIR/$FILENAME"
+os_name=$(lsb_release -is)
+case "$os_name" in
+  "Fedora")
+    sudo dnf -y install $TMP_DIR/$FILENAME
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint")
+    sudo apt -y install $TMP_DIR/$FILENAME
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
+
+
+
+rm -rf $TMP_DIR
+

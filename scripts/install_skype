@@ -1,21 +1,18 @@
 #!/usr/bin/env bash
 
 sudo test
+URL=""
 os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
-    DOWNLOAD_DEST_FILE='/tmp/skypeforlinux-64.rpm'
-    wget 'https://go.skype.com/skypeforlinux-64.rpm' -O $DOWNLOAD_DEST_FILE
-    sudo dnf -y install $DOWNLOAD_DEST_FILE
-    rm $DOWNLOAD_DEST_FILE
+    URL='https://go.skype.com/skypeforlinux-64.rpm'
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
-    DOWNLOAD_DEST_FILE='/tmp/skypeforlinux-64.deb'
-    wget 'https://go.skype.com/skypeforlinux-64.deb' -O $DOWNLOAD_DEST_FILE
-    sudo apt install -y $DOWNLOAD_DEST_FILE
-    rm $DOWNLOAD_DEST_FILE
+    URL='https://go.skype.com/skypeforlinux-64.deb'
     ;;
   *)
     echo "this script does not have packages for this release"
     ;;
 esac
+
+install_remote_package $URL

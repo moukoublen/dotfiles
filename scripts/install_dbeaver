@@ -2,18 +2,17 @@
 
 sudo test
 os_name=$(lsb_release -is)
+URL=""
 case "$os_name" in
   "Fedora")
-    wget https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm -O /tmp/dbeaver-ce.rpm
-    sudo dnf -y install /tmp/dbeaver-ce.rpm
-    rm /tmp/dbeaver-ce.rpm
+    URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
-    wget https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb -O /tmp/dbeaver-ce.deb
-    sudo apt -y install /tmp/dbeaver-ce.deb
-    rm /tmp/dbeaver-ce.deb
+    URL="https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
     ;;
   *)
     echo "this script does not have packages for this release"
     ;;
 esac
+
+install_remote_package $URL

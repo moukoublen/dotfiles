@@ -4,10 +4,7 @@ sudo test
 os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
-    DOWNLOAD_DEST_FILE='/tmp/viber.rpm'
-    wget 'https://download.cdn.viber.com/desktop/Linux/viber.rpm' -O $DOWNLOAD_DEST_FILE
-    sudo dnf -y install $DOWNLOAD_DEST_FILE
-    rm $DOWNLOAD_DEST_FILE
+    install_remote_package 'https://download.cdn.viber.com/desktop/Linux/viber.rpm'
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
     DOWNLOAD_DEST_FILE='/tmp/viber.deb'
