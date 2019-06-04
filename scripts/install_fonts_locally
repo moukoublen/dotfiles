@@ -21,6 +21,11 @@ rm -rf $TMP_DIR
 
 ##### Install Hack fonts localy ################################################
 (
+# check if jq already exists
+if ! [ -x "$(command -v jq)" ]; then
+    echo 'Error: jq is not installed. Please install it' >&2
+    exit 1
+fi
 echo "Install Hack fonts in ~/.fonts"
 JSON_TEXT=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest)
 LATEST_URL=$(echo $JSON_TEXT | jq '.assets[] | select(.content_type == "application/x-gzip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
