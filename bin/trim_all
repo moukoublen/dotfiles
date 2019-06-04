@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+for pth in "$@"
+do
+    sudo fstrim -v $pth
+done | column -t
