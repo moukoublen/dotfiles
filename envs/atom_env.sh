@@ -1,27 +1,3 @@
-install_my_atom_packages() {
-  apm install \
-    atom-beautify \
-    atom-material-syntax \
-    atom-material-syntax-dark \
-    atom-material-ui \
-    file-icons \
-    highlight-selected \
-    linter \
-    linter-eslint \
-    linter-ui-default \
-    intentions \
-    busy-signal \
-    language-ansible \
-    language-docker \
-    language-gradle \
-    language-groovy \
-    language-jenkinsfile \
-    language-kotlin \
-    language-mongodb \
-    language-scala \
-    language-terraform
-}
-
 _marmalade_get_latest_version_number__atom() {
   curl -s https://api.github.com/repos/atom/atom/releases/latest | jq -r '.name'
 }
