@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+update_dnf() {
+    sudo dnf update --refresh
+}
+
+update_apt() {
+    sudo apt update
+    sudo apt upgrade
+}
+
+sudo test
+os_name=$(lsb_release -is)
+echo ">>> $os_name <<<"
+case "$os_name" in
+  "Fedora")
+    update_dnf
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint")
+    update_apt
+    ;;
+  *)
+    echo "this script does not have update command for this release $os_name"
+    ;;
+esac
+
+unset -f update_dnf
+unset -f update_apt
