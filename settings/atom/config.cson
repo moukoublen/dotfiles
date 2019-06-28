@@ -1,6 +1,4 @@
 "*":
-  "exception-reporting":
-    userId: "7800e055-313a-4537-a8d6-89d2070f6a98"
   "atom-material-ui":
     tabs:
       compactTabs: true
@@ -24,6 +22,8 @@
     showInvisibles: true
     tabLength: 4
     tabType: "soft"
+  "exception-reporting":
+    userId: "7800e055-313a-4537-a8d6-89d2070f6a98"
   "linter-ui-default":
     showPanel: true
   welcome:
@@ -40,3 +40,7 @@
   editor:
     showIndentGuide: false
     tabLength: 2
+".shell.source":
+  editor:
+    tabLength: 2
+    showIndentGuide: true

@@ -43,6 +43,15 @@ if [[ $theme_selected == Plata* ]]; then
 
   #for gnome shell set fixed Plata-Compact
   gsettings set org.gnome.shell.extensions.user-theme name 'Plata-Compact'
-  echo " -> Copy gnome-shell-theme.gresource"
-  sudo cp /usr/share/themes/Plata-Compact/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
+  os_name=$(lsb_release -is)
+  case "$os_name" in
+    "Fedora")
+      echo " -> Copy gnome-shell-theme.gresource"
+      sudo cp /usr/share/themes/Plata-Compact/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/
+    ;;
+    *)
+    ;;
+  esac
+
+
 fi

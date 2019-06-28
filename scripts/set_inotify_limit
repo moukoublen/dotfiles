@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+cat << EOL | sudo tee /etc/sysctl.d/10-inotify.conf
+fs.inotify.max_user_watches = 524288
+EOL
+
+sudo sysctl -p --system
+sudo systemctl restart systemd-sysctl.service
+cat /proc/sys/fs/inotify/max_user_watches
+
