@@ -2,10 +2,12 @@
 
 extensions=(
 ms-python.python
-ms-vscode.csharp
-PeterJausovec.vscode-docker
+ms-vscode.Go
 PKief.material-icon-theme
 scala-lang.scala
+scala-lang.scala-snippets
+vscode-icons-team.vscode-icons
+vscoss.vscode-ansible
 )
 
 for ext in "${extensions[@]}"
