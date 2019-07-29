@@ -1,0 +1,1 @@
+sudo dnf install cabextract lzip p7zip p7zip-plugins unrar
