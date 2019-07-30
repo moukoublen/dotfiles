@@ -8,7 +8,7 @@
   "editor.renderWhitespace": "boundary",
   "editor.lineHeight": 24,
   "editor.fontSize": 17,
-  "editor.fontFamily": "IBM Plex Mono",
+  "editor.fontFamily": "Hack",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
@@ -33,5 +33,13 @@
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
+  },
+  "[go]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
 }
