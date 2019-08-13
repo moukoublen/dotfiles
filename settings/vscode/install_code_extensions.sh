@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 extensions=(
+ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.Go
 PKief.material-icon-theme
