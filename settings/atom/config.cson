@@ -33,6 +33,11 @@
     autoIndentOnPaste: true
     showIndentGuide: true
     tabLength: 2
+".go.source":
+  editor:
+    autoIndentOnPaste: true
+    tabLength: 2
+    tabType: "hard"
 ".js.source":
   editor:
     showIndentGuide: false
