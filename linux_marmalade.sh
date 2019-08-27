@@ -7,7 +7,7 @@ for i in $MARMALADE_PATH/envs/*_env.sh ; do
     . "$i"
   fi
 done
-. $MARMALADE_PATH/env_management_marmalade.sh
+. $MARMALADE_PATH/envs/env_management_marmalade.sh
 ################################################################################
 ################################################################################
 
