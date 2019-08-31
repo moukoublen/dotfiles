@@ -13,7 +13,7 @@ fi
 # if bash is 4+ (brew) then use bash-completion@2
 if [[ (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
   export BASH_COMPLETION_COMPAT_DIR=$(brew --prefix)/etc/bash_completion.d
-  . $(brew --prefix)/etc/profile.d/bash_completion.sh
+  source $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 ## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
@@ -57,17 +57,17 @@ export LC_ALL='en_US.UTF-8';
 
 add_to_path $HOME/bin
 
-#. $MARMALADE_PATH/envs/pyenv_env.sh
-#. $MARMALADE_PATH/envs/rbenv_env.sh
+#source $MARMALADE_PATH/envs/pyenv_env.sh
+#source $MARMALADE_PATH/envs/rbenv_env.sh
 
 if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]; then
-  . /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+  source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
 fi
 
 if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]; then
-  . /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
+  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
 fi
 
 if [ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]; then
-  . /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+  source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
 fi

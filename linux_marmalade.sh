@@ -4,10 +4,10 @@ export MARMALADE_ENVS=$HOME/.marmalade.envs
 
 for i in $MARMALADE_PATH/envs/*_env.sh ; do
   if [ -r "$i" ]; then
-    . "$i"
+    source "$i"
   fi
 done
-. $MARMALADE_PATH/envs/env_management_marmalade.sh
+source $MARMALADE_PATH/envs/env_management_marmalade.sh
 ################################################################################
 ################################################################################
 
