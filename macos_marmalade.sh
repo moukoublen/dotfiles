@@ -17,12 +17,12 @@ if [[ (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)
 fi
 
 ## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
-if [[ $M_BREW_COREUTILS_USED ]]; then
+if [[ $M_BREW_COREUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/coreutils/libexec/gnubin
 fi
 
 ## brew install findutils (find, locate, updatedb, xargs)
-if [[ $M_BREW_FINDUTILS_USED ]]; then
+if [[ $M_BREW_FINDUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/findutils/libexec/gnubin
 fi
 ################################################################################
