@@ -1,3 +1,6 @@
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"'
+alias dpsp='docker ps --format "{{.ID}} {{.Names}}\n{{.Image}}\n{{.Ports}}\n\n"'
+
 container_rabbitmq() {
   docker run -d --hostname my-rabbit \
              --name some-rabbit \
