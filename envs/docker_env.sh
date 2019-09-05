@@ -1,38 +1,6 @@
 alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"'
-alias dpsp='docker ps --format "{{.ID}} {{.Names}}\n{{.Image}}\n{{.Ports}}\n\n"'
+alias dpsp='docker ps --format "\n{{.ID}}\n{{.Names}}\n{{.Image}}\n{{.Ports}}\n"'
 
-container_rabbitmq() {
-  docker run -d --hostname my-rabbit \
-             --name some-rabbit \
-             -p 5672:5672 \
-             -p 15672:15672 \
-             rabbitmq:3-management-alpine
-  # http://localhost:15672 The default login and password are guest/guest.
-}
-
-container_mongo() {
-  # https://hub.docker.com/_/mongo/
-  docker run --name mongo-testbed \
-             -p 27017:27017 \
-             -d mongo
-}
-
-container_mongo_with_auth() {
-  # https://hub.docker.com/_/mongo/
-  docker run --name mongo-testbed \
-             -p 27017:27017 \
-             -d mongo --auth
-  # $ docker exec -it mongo-playground mongo admin
-  # > db.createUser({ user: 'jsmith', pwd: 'some-initial-password', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
-}
-
-container_postgres() {
-  # https://hub.docker.com/_/postgres/
-  docker run --name postgres-testbed \
-             -p 5432:5432 \
-             -e POSTGRES_PASSWORD=secure \
-             -d postgres:10
-}
 
 container_swagger_editor() {
   # https://hub.docker.com/r/swaggerapi/swagger-editor/
