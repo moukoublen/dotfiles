@@ -25,7 +25,7 @@ load_path_file_to_path() {
   if [ -f ~/.path ]; then
     while read p; do
       p=$(eval echo \"$p\")
-      add_to_end_of_path_if_not_exists $p
+      add_to_path $p
     done < ~/.path
     unset p
   fi

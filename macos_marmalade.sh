@@ -30,7 +30,7 @@ fi
 
 ################################################################################
 ##################### Java #####################################################
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.8.0_221.jdk/Contents/Home'
+export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 ################################################################################
 ################################################################################
 
@@ -57,9 +57,6 @@ export LC_ALL='en_US.UTF-8';
 
 add_to_path $HOME/bin
 
-#source $MARMALADE_PATH/envs/pyenv_env.sh
-#source $MARMALADE_PATH/envs/rbenv_env.sh
-
 if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]; then
   source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
 fi
@@ -72,4 +69,7 @@ if [ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]
   source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
 fi
 
+#source $MARMALADE_PATH/envs/pyenv_env.sh
+#source $MARMALADE_PATH/envs/rbenv_env.sh
 source $MARMALADE_PATH/envs/go_env.sh
+source $MARMALADE_PATH/envs/docker_env.sh
