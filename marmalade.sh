@@ -9,7 +9,7 @@ export MARMALADE_PATH=$(realpath ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
 source $MARMALADE_PATH/pathmixer.sh
 
 # Mac or Linux?
-if [[ "$(uname)" == "Darwin" ]]; then
+if [[ $(uname) = "Darwin" ]]; then
   source $MARMALADE_PATH/macos_marmalade.sh
 else
   source $MARMALADE_PATH/linux_marmalade.sh
