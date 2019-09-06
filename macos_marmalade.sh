@@ -5,13 +5,17 @@
 M_BREW_COREUTILS_USED=false
 M_BREW_FINDUTILS_USED=false
 #################################################
+M_HAS_BREW_INSTALLED=false
+if command -v brew 1>/dev/null 2>&1; then
+  M_HAS_BREW_INSTALLED=true
+fi
 
-if [[ ($BASH_VERSION == 3.*) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
+if [[ ($M_HAS_BREW_INSTALLED = true) && ($BASH_VERSION == 3.*) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
   source $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
 
 # if bash is 4+ (brew) then use bash-completion@2
-if [[ (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
+if [[ ($M_HAS_BREW_INSTALLED = true) && (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
   export BASH_COMPLETION_COMPAT_DIR=$(brew --prefix)/etc/bash_completion.d
   source $(brew --prefix)/etc/profile.d/bash_completion.sh
 fi
@@ -24,6 +28,11 @@ fi
 ## brew install findutils (find, locate, updatedb, xargs)
 if [[ $M_BREW_FINDUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/findutils/libexec/gnubin
+fi
+
+if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $(brew --prefix nvm)/nvm.sh ]]; then
+  export NVM_DIR=~/.nvm
+  source $(brew --prefix nvm)/nvm.sh
 fi
 ################################################################################
 ################################################################################
