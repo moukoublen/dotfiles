@@ -1,7 +1,5 @@
-alias minimal_ps1="PS1='$ '"
-
 if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
-  . /usr/share/git-core/contrib/completion/git-prompt.sh
+  source /usr/share/git-core/contrib/completion/git-prompt.sh
 fi
 
 export GIT_PS1_SHOWDIRTYSTATE=true
