@@ -84,3 +84,10 @@ fi
 #source $MARMALADE_PATH/envs/rbenv_env.sh
 source $MARMALADE_PATH/envs/go_env.sh
 source $MARMALADE_PATH/envs/docker_env.sh
+
+install_nano_nanorc() {
+  touch ~/.nanorc
+  for rcfile in $(brew --prefix nano)/share/nano/*.nanorc; do
+    echo "include $rcfile" >> ~/.nanorc
+  done
+}
