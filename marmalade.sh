@@ -15,9 +15,9 @@ else
   source $MARMALADE_PATH/linux_marmalade.sh
 fi
 
-if [[ -f $MARMALADE_PATH/extras_marmalade.sh ]]; then
-  source $MARMALADE_PATH/extras_marmalade.sh
-fi
+for e in $MARMALADE_PATH/extras_*.sh; do
+  source $e
+done
 
 ################################################################################
 ######### Colors PS1 ###########################################################

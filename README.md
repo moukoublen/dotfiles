@@ -22,4 +22,4 @@ $ echo '[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmal
 Create the file `~/.path` and put what ever path that you want to be included to PATH (paths can contain environment variables).
 
 
-You can put things that you do not want to upload to git in `/path/to/dotfiles/extras_marmalade.sh` file (e.g. work related stuff) which is excluded by `.gitignore`.
+You can put things that you do not want to upload to git in `/path/to/dotfiles/extras_<whatever>.sh` file (e.g. work related stuff) which is excluded by `.gitignore`.
