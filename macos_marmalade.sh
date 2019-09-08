@@ -6,18 +6,20 @@ M_BREW_COREUTILS_USED=false
 M_BREW_FINDUTILS_USED=false
 #################################################
 M_HAS_BREW_INSTALLED=false
+M_BREW_PREFIX=""
 if command -v brew 1>/dev/null 2>&1; then
   M_HAS_BREW_INSTALLED=true
+  M_BREW_PREFIX=$(brew --prefix)
 fi
 
-if [[ ($M_HAS_BREW_INSTALLED = true) && ($BASH_VERSION == 3.*) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
-  source $(brew --prefix)/etc/profile.d/bash_completion.sh
+if [[ ($M_HAS_BREW_INSTALLED = true) && ($BASH_VERSION == 3.*) && (-r $M_BREW_PREFIX/etc/profile.d/bash_completion.sh) ]]; then
+  source $M_BREW_PREFIX/etc/profile.d/bash_completion.sh
 fi
 
 # if bash is 4+ (brew) then use bash-completion@2
-if [[ ($M_HAS_BREW_INSTALLED = true) && (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $(brew --prefix)/etc/profile.d/bash_completion.sh) ]]; then
-  export BASH_COMPLETION_COMPAT_DIR=$(brew --prefix)/etc/bash_completion.d
-  source $(brew --prefix)/etc/profile.d/bash_completion.sh
+if [[ ($M_HAS_BREW_INSTALLED = true) && (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $M_BREW_PREFIX/etc/profile.d/bash_completion.sh) ]]; then
+  export BASH_COMPLETION_COMPAT_DIR=$M_BREW_PREFIX/etc/bash_completion.d
+  source $M_BREW_PREFIX/etc/profile.d/bash_completion.sh
 fi
 
 ## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
@@ -30,9 +32,9 @@ if [[ $M_BREW_FINDUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/findutils/libexec/gnubin
 fi
 
-if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $(brew --prefix nvm)/nvm.sh ]]; then
+if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $M_BREW_PREFIX/opt/nvm/nvm.sh ]]; then
   export NVM_DIR=~/.nvm
-  source $(brew --prefix nvm)/nvm.sh
+  source $M_BREW_PREFIX/opt/nvm/nvm.sh
 fi
 ################################################################################
 ################################################################################
