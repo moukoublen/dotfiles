@@ -22,12 +22,12 @@ if [[ ($M_HAS_BREW_INSTALLED = true) && (($BASH_VERSION == 4.*) || ($BASH_VERSIO
   source $M_BREW_PREFIX/etc/profile.d/bash_completion.sh
 fi
 
-## brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
+# brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
 if [[ $M_BREW_COREUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/coreutils/libexec/gnubin
 fi
 
-## brew install findutils (find, locate, updatedb, xargs)
+# brew install findutils (find, locate, updatedb, xargs)
 if [[ $M_BREW_FINDUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/findutils/libexec/gnubin
 fi
