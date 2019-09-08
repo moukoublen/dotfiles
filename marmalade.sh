@@ -4,7 +4,7 @@
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
 ################################################################################
-export MARMALADE_PATH=$(realpath ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
+export MARMALADE_PATH=$(readlink ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
 
 source $MARMALADE_PATH/pathmixer.sh
 
