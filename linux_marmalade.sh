@@ -28,9 +28,9 @@ alias JAVALS='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
 
 ################################################################################
 ######### Paths ################################################################
-add_to_start_of_path_if_not_exists $HOME/.local/bin
-add_to_start_of_path_if_not_exists $MARMALADE_PATH/scripts
-add_to_start_of_path_if_not_exists $MARMALADE_PATH/bin
+add_to_path $HOME/.local/bin
+add_to_path $MARMALADE_PATH/scripts
+add_to_path $MARMALADE_PATH/bin
 ################################################################################
 ################################################################################
 
