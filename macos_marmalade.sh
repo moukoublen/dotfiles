@@ -84,6 +84,7 @@ fi
 #source $MARMALADE_PATH/envs/rbenv_env.sh
 source $MARMALADE_PATH/envs/go_env.sh
 source $MARMALADE_PATH/envs/docker_env.sh
+source $MARMALADE_PATH/envs/php_env.sh
 
 install_nano_nanorc() {
   touch ~/.nanorc
