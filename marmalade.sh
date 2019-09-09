@@ -4,7 +4,17 @@
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
 ################################################################################
-export MARMALADE_PATH=$(readlink ~/.marmalade.sh | sed 's/\/marmalade.sh//g')
+rlpth() {
+  SOURCE=$1
+  while [ -h "$SOURCE" ]; do
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+  done
+  echo "$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+}
+
+export MARMALADE_PATH="$(rlpth ${BASH_SOURCE[0]})"
 
 source $MARMALADE_PATH/pathmixer.sh
 
@@ -29,7 +39,7 @@ source $MARMALADE_PATH/marmalade_ps1.sh
 ######### Aliases ##############################################################
 alias path_to_lines='echo $PATH | tr ":" "\n"'
 alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
-alias update_marmalade="(cd ${MARMALADE_PATH}; git pull)"
+alias update_dotfiles="(cd ${MARMALADE_PATH}; git pull)"
 alias MVN_NO_TESTS="mvn -Dmaven.test.skip=true -DskipTests=true"
 ################################################################################
 ################################################################################
