@@ -53,6 +53,7 @@ alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias grep='command grep --color=auto'
+alias tree='command tree -C'
 if [[ $M_BREW_COREUTILS_USED = true ]]; then
   alias ll='command ls -la --color=auto'
   alias ls='command ls --color=auto'
