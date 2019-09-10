@@ -30,7 +30,7 @@ if grep --fixed-strings -q "$SOURCE_LINE" $BASH_FILE; then
   echo "  marmalade sourcing is already included in $BASH_FILE"
 else
   echo "  add marmalade sourcing in $BASH_FILE"
-  echo $SOURCE_LINE $BASH_FILE >> $BASH_FILE
+  echo $SOURCE_LINE >> $BASH_FILE
 fi
 
 echo "********************************************************"
