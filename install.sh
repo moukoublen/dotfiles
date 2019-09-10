@@ -20,16 +20,17 @@ else
   echo "  marmalade syslink exists"
 fi
 
-if [ -f ~/.bashrc ]; then
-  if grep -q "\[\[ -r ~\/.marmalade.sh \]\] && \[\[ -f ~\/.marmalade.sh \]\] && source ~/.marmalade.sh" ~/.bashrc; then
-    echo "  marmalade sourcing is already included in ~/.bashrc"
-  else
-    echo "  add marmalade sourcing in ~/.bashrc"
-    echo "[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh" >> ~/.bashrc
-  fi
+BASH_FILE=~/.bashrc
+[[ ! -f $BASH_FILE ]] && BASH_FILE=~/.bash_profile
+[[ ! -f $BASH_FILE ]] && touch $BASH_FILE
+echo "  file to be used: $BASH_FILE"
+
+SOURCE_LINE='[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh'
+if grep --fixed-strings -q "$SOURCE_LINE" $BASH_FILE; then
+  echo "  marmalade sourcing is already included in $BASH_FILE"
 else
-  echo "  ERROR: ~/.bashrc does not exists. add the below line to bash profile script"
-  echo "    [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh"
+  echo "  add marmalade sourcing in $BASH_FILE"
+  echo $SOURCE_LINE $BASH_FILE >> $BASH_FILE
 fi
 
 echo "********************************************************"
