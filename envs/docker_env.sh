@@ -1,6 +1,15 @@
 alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"'
 alias dpsp='docker ps --format "\n{{.ID}}\n{{.Names}}\n{{.Image}}\n{{.Ports}}\n"'
 
+dexec() {
+  docker exec -it $1 $2
+}
+complete -F _docker_container_stop dexec
+
+dshell() {
+  dexec $1 sh
+}
+complete -F _docker_container_stop dshell
 
 container_swagger_editor() {
   # https://hub.docker.com/r/swaggerapi/swagger-editor/
