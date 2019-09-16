@@ -50,6 +50,7 @@ export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/
 #alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
+alias meld='/Applications/Meld.app/Contents/MacOS/Meld'
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias grep='command grep --color=auto'
