@@ -23,7 +23,11 @@ echo "----- Gnome Settings --------"
 gsettings-set "org.gnome.shell.keybindings focus-active-notification" "[]"
 gsettings-set "org.gnome.shell.keybindings toggle-message-tray" "[]"
 
-gsettings-set "org.gnome.desktop.wm.keybindings maximize-vertically" "['<Shift><Alt>r']"
+gsettings-set "org.gnome.mutter.keybindings toggle-tiled-left" "['<Super>Left']"
+gsettings-set "org.gnome.mutter.keybindings toggle-tiled-right" "['<Super>Right']"
+gsettings-set "org.gnome.desktop.wm.keybindings maximize" "['<Super>Up']"
+gsettings-set "org.gnome.desktop.wm.keybindings unmaximize" "['<Super>Down']"
+gsettings-set "org.gnome.desktop.wm.keybindings maximize-vertically" "['<Super><Alt>r']"
 gsettings-set "org.gnome.desktop.wm.keybindings switch-applications" "['<Super>Tab']"
 gsettings-set "org.gnome.desktop.wm.keybindings switch-windows" "['<Alt>Tab']"
 gsettings-set "org.gnome.desktop.wm.preferences action-middle-click-titlebar"  'toggle-maximize-vertically'
@@ -44,12 +48,15 @@ echo ""
 echo "----- Gnome Terminal Settings -----"
 gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
 default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
+
 gsettings-set "org.gnome.Terminal.Legacy.Settings default-show-menubar" "false"
+
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy" "<Super>c"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste" "<Super>v"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab" "<Super>t"
 gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab" "<Super>w"
-gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>r"
+gsettings-set "org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear" "<Super>k"
+
 gsettings-set "${default_profile_path} allow-bold" "false"
 gsettings-set "${default_profile_path} text-blink-mode" "never"
 gsettings-set "${default_profile_path} default-size-columns" "120"
@@ -76,22 +83,27 @@ if [[ -x "$(command -v tilix)" ]]; then
   echo "----- Tilix Settings --------------"
   tdp=$(gsettings get com.gexperts.Tilix.ProfilesList default | tr -d \')
   default_profile_path="com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/${tdp}/"
+
   gsettings-set "com.gexperts.Tilix.Settings use-overlay-scrollbar" "false"
   gsettings-set "com.gexperts.Tilix.Settings use-tabs" "true"
   gsettings-set "com.gexperts.Tilix.Settings unsafe-paste-alert" "false"
   gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
+
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-copy" "<Super>c"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-paste" "<Super>v"
   gsettings-set "com.gexperts.Tilix.Keybindings app-new-session" "<Super>t"
   gsettings-set "com.gexperts.Tilix.Keybindings session-close" "<Super>w"
-  gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>r"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-add-down" "<Ctrl><Alt>d"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-add-right" "<Ctrl><Alt>r"
+  gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>k"
+
   gsettings-set "${default_profile_path} allow-bold" "false"
   gsettings-set "${default_profile_path} text-blink-mode" "never"
   gsettings-set "${default_profile_path} default-size-columns" "120"
   gsettings-set "${default_profile_path} default-size-rows" "35"
   gsettings-set "${default_profile_path} scrollback-unlimited" "true"
   gsettings-set "${default_profile_path} use-system-font" "false"
-  gsettings-set "${default_profile_path} font" 'Hack 13'
+  gsettings-set "${default_profile_path} font" 'Hack 12'
   gsettings-set "${default_profile_path} cursor-shape" "ibeam"
   gsettings-set "${default_profile_path} terminal-bell" "none"
   gsettings-set "${default_profile_path} use-theme-colors" "false"
