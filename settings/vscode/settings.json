@@ -7,7 +7,7 @@
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
   "editor.lineHeight": 24,
-  "editor.fontSize": 17,
+  "editor.fontSize": 15,
   "editor.fontFamily": "Hack",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
@@ -42,4 +42,5 @@
       "source.organizeImports": true
     }
   },
+  "go.formatTool": "goimports",
 }
