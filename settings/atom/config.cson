@@ -28,6 +28,9 @@
     showPanel: true
   welcome:
     showOnStartup: false
+".ansible.source":
+  editor:
+    tabLength: 2
 ".coffee.source":
   editor:
     autoIndentOnPaste: true
@@ -53,4 +56,7 @@
 ".shell.source":
   editor:
     showIndentGuide: true
+    tabLength: 2
+".source.yaml":
+  editor:
     tabLength: 2
