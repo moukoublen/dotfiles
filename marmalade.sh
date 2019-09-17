@@ -4,14 +4,19 @@
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
 ################################################################################
+abspth() {
+  drnm="$(dirname $1)"
+  echo "$(cd -P $drnm && pwd)"
+}
+
 rlpth() {
   SOURCE=$1
   while [ -h "$SOURCE" ]; do
-    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    DIR="$(abspth $SOURCE)"
     SOURCE="$(readlink "$SOURCE")"
     [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
   done
-  echo "$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  echo "$(abspth $SOURCE)"
 }
 
 export MARMALADE_PATH="$(rlpth ${BASH_SOURCE[0]})"
