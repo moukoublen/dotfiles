@@ -2,15 +2,22 @@ alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"'
 alias dpsp='docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n"'
 alias docker-stop-all='docker stop $(docker ps -q)'
 
+
+__dhelp_completion() {
+  cur=$2
+  __docker_complete_containers_running
+}
+
 dexec() {
   docker exec -it $1 $2
 }
-complete -F _docker_container_stop dexec
+complete -F __dhelp_completion dexec
 
 dshell() {
   dexec $1 sh
 }
-complete -F _docker_container_stop dshell
+complete -F __dhelp_completion dshell
+
 
 container_swagger_editor() {
   # https://hub.docker.com/r/swaggerapi/swagger-editor/
