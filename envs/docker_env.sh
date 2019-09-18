@@ -1,5 +1,5 @@
 alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}"'
-alias dpsp='docker ps --format "\n{{.ID}}\n{{.Names}}\n{{.Image}}\n{{.Ports}}\n"'
+alias dpsp='docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n"'
 alias docker-stop-all='docker stop $(docker ps -q)'
 
 dexec() {
