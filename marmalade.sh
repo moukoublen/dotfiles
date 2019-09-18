@@ -30,7 +30,7 @@ else
   source $MARMALADE_PATH/linux_marmalade.sh
 fi
 
-for e in $MARMALADE_PATH/extras_*.sh; do
+for e in $( ls $MARMALADE_PATH/extras_*.sh 2>/dev/null ); do
   source $e
 done
 
