@@ -20,10 +20,8 @@ complete -F __dhelp_completion dshell
 
 
 container_swagger_editor() {
-  # https://hub.docker.com/r/swaggerapi/swagger-editor/
-  docker run --name swagger-editor \
-             -p 6060:8080 \
-             -d swaggerapi/swagger-editor
+  docker pull swaggerapi/swagger-editor
+  docker run -d -p 9999:8080 --name "swagger-editor" swaggerapi/swagger-editor
 }
 
 
