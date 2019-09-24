@@ -8,10 +8,6 @@
   core:
     audioBeep: false
     telemetryConsent: "limited"
-    themes: [
-      "atom-material-ui"
-      "atom-material-syntax"
-    ]
   editor:
     autoIndentOnPaste: false
     fontFamily: "Fira Code"
