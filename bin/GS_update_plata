@@ -14,23 +14,23 @@ sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 echo " -> build Plata"
 cd ~/gitrepos/plata-theme
 ./autogen.sh \
---prefix=/usr \
---disable-silent-rules \
---enable-parallel \
---enable-gtk_next \
---enable-gnome \
---disable-cinnamon \
---disable-flashback \
---disable-xfce \
---disable-mate \
---disable-openbox \
---disable-plank \
---disable-telegram \
---disable-tweetdeck \
---with-selection_color='#E91E63' \
---with-accent_color='#ff6090' \
---with-suggestion_color='#ff5722' \
---with-destruction_color='#f44336'
+  --prefix=/usr \
+  --disable-silent-rules \
+  --enable-parallel \
+  --enable-gtk_next \
+  --enable-gnome \
+  --disable-cinnamon \
+  --disable-flashback \
+  --disable-xfce \
+  --disable-mate \
+  --disable-openbox \
+  --disable-plank \
+  --disable-telegram \
+  --disable-tweetdeck \
+  --with-selection_color='#E91E63' \
+  --with-accent_color='#ff6090' \
+  --with-suggestion_color='#ff5722' \
+  --with-destruction_color='#f44336'
 
 make
 sudo make install
@@ -41,8 +41,6 @@ if [[ $theme_selected == Plata* ]]; then
   echo " -> Switching bach to $theme_selected"
   GS_set_gnome_theme $theme_selected
 
-  #for gnome shell set fixed Plata-Compact
-  gsettings set org.gnome.shell.extensions.user-theme name 'Plata-Compact'
   os_name=$(lsb_release -is)
   case "$os_name" in
     "Fedora")
@@ -52,6 +50,4 @@ if [[ $theme_selected == Plata* ]]; then
     *)
     ;;
   esac
-
-
 fi
