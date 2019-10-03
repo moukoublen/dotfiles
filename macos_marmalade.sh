@@ -35,6 +35,7 @@ fi
 if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $M_BREW_PREFIX/opt/nvm/nvm.sh ]]; then
   export NVM_DIR=~/.nvm
   source $M_BREW_PREFIX/opt/nvm/nvm.sh
+  [[ -s "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ]] && source "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 fi
 ################################################################################
 ################################################################################
