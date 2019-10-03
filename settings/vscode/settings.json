@@ -2,6 +2,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.useSplitJSON": true,
+  "workbench.settings.editor": "json",
   "files.trimTrailingWhitespace": true,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
