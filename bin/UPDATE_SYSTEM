@@ -1,17 +1,24 @@
 #!/usr/bin/env bash
 
+lg() {
+  echo "### $1 ###"
+}
+
 update_dnf() {
+    lg "sudo dnf update --refresh"
     sudo dnf update --refresh
 }
 
 update_apt() {
+    lg "sudo apt update"
     sudo apt update
+    lg "sudo apt upgrade"
     sudo apt upgrade
 }
 
 sudo test
 os_name=$(lsb_release -is)
-echo ">>> $os_name <<<"
+lg $os_name
 case "$os_name" in
   "Fedora")
     update_dnf
@@ -20,7 +27,7 @@ case "$os_name" in
     update_apt
     ;;
   *)
-    echo "this script does not have update command for this release $os_name"
+    lg "this script does not have update command for this release $os_name"
     ;;
 esac
 
