@@ -8,8 +8,8 @@
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
   "editor.lineHeight": 24,
-  "editor.fontSize": 15,
-  "editor.fontFamily": "Hack",
+  "editor.fontSize": 16,
+  "editor.fontFamily": "IBM Plex Mono",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
@@ -43,5 +43,5 @@
       "source.organizeImports": true
     }
   },
-  "go.formatTool": "goimports",
+  "go.formatTool": "gofmt",
 }
