@@ -89,13 +89,17 @@ if [[ -x "$(command -v tilix)" ]]; then
   gsettings-set "com.gexperts.Tilix.Settings unsafe-paste-alert" "false"
   gsettings-set "com.gexperts.Tilix.Settings terminal-title-style" "small"
 
+  gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>k"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-copy" "<Super>c"
   gsettings-set "com.gexperts.Tilix.Keybindings terminal-paste" "<Super>v"
   gsettings-set "com.gexperts.Tilix.Keybindings app-new-session" "<Super>t"
   gsettings-set "com.gexperts.Tilix.Keybindings session-close" "<Super>w"
   gsettings-set "com.gexperts.Tilix.Keybindings session-add-down" "<Super><Shift>d"
   gsettings-set "com.gexperts.Tilix.Keybindings session-add-right" "<Super><Shift>r"
-  gsettings-set "com.gexperts.Tilix.Keybindings terminal-reset-and-clear" "<Super>k"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-switch-to-terminal-down" "<Alt>Down"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-switch-to-terminal-left" "<Alt>Left"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-switch-to-terminal-right" "<Alt>Right"
+  gsettings-set "com.gexperts.Tilix.Keybindings session-switch-to-terminal-up" "<Alt>Up"
 
   gsettings-set "${default_profile_path} allow-bold" "false"
   gsettings-set "${default_profile_path} text-blink-mode" "never"
