@@ -34,6 +34,8 @@ for e in $( ls $MARMALADE_PATH/extras_*.sh 2>/dev/null ); do
   source $e
 done
 
+add_to_path $MARMALADE_PATH/bin
+
 ################################################################################
 ######### Colors PS1 ###########################################################
 source $MARMALADE_PATH/marmalade_ps1.sh
