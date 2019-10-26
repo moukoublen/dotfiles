@@ -15,6 +15,9 @@
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 3,
   "editor.cursorBlinking": "phase",
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.rendererType": "canvas",
   "[json]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -43,5 +46,10 @@
       "source.organizeImports": true
     }
   },
+  "[makefile]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+  },
   "go.formatTool": "gofmt",
+  "files.autoSave": "off",
 }
