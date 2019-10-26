@@ -44,6 +44,9 @@ source $MARMALADE_PATH/marmalade_ps1.sh
 
 ################################################################################
 ######### Aliases ##############################################################
+alias S='find . -name'
+alias to_ack='ack --files-from=-' #pipe find results
+alias to_grep='xargs grep --color=auto' #pipe find results
 alias path_to_lines='echo $PATH | tr ":" "\n"'
 alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 alias update_dotfiles="(cd ${MARMALADE_PATH}; git pull)"

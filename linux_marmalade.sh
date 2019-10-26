@@ -18,9 +18,6 @@ alias tree='command tree -C'
 alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
 alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
 alias get_wm_class='xprop WM_CLASS'
-alias S='find . -name'
-alias to_ack='ack --files-from=-' #pipe find results
-alias to_grep='xargs grep --color=auto' #pipe find results
 alias O='xdg-open'
 alias JAVALS='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
 ################################################################################
