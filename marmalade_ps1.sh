@@ -7,15 +7,6 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
 export GIT_PS1_SHOWCOLORHINTS=true
 
-
-__user_ps1_c() {
-  if [[ $UID = 0 ]]; then
-    echo -e "\e[1;49;91m"
-  else
-    echo -e "\e[0;49;36m"
-  fi
-}
-
 _marmalade_ps1() {
   [[ -z $BASH ]] && return
 
