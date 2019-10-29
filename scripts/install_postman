@@ -23,3 +23,6 @@ Terminal=false
 StartupWMClass=Postman
 EOL
 echo "Exec=\"$EXECUTABLE_FULL_PATH\"" >> $DESKTOP_FILE
+
+mkdir -p ~/.icons
+cp $INSTALLATION_DIR/app/resources/app/assets/icon.png ~/.icons/postman.png
