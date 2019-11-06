@@ -3,13 +3,10 @@ atom-beautify
 atom-material-syntax
 atom-material-syntax-dark
 atom-material-ui
+busy-signal
 file-icons
 highlight-selected
-linter
-linter-eslint
-linter-ui-default
 intentions
-busy-signal
 language-ansible
 language-docker
 language-gradle
@@ -19,6 +16,9 @@ language-kotlin
 language-mongodb
 language-scala
 language-terraform
+linter
+linter-eslint
+linter-ui-default
 )
 
 apm install "${packages[@]}"
