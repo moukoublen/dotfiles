@@ -1,5 +1,8 @@
 alias docker-stop-all='docker stop $(docker ps -q)'
 
+docker-clean-volumes() {
+  docker volume rm $(docker volume ls -qf dangling=true)
+}
 
 __dhelp_completion() {
   cur=$2
