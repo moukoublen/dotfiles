@@ -38,6 +38,10 @@
     "editor.tabSize": 2,
     "editor.formatOnPaste": false,
   },
+  "[makefile]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+  },
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
@@ -46,10 +50,14 @@
       "source.organizeImports": true
     }
   },
-  "[makefile]": {
-    "editor.tabSize": 2,
-    "editor.insertSpaces": false,
+  "go.autocompleteUnimportedPackages": true,
+  "go.useCodeSnippetsOnFunctionSuggest": true,
+  "go.enableCodeLens": {
+    "references": true,
+    "runtest": true
   },
+  "go.useLanguageServer": true,
+  "go.languageServerFlags": ["-rpc.trace", "-logfile", "/tmp/gopls.log"],
   "go.formatTool": "gofmt",
   "files.autoSave": "off",
 }
