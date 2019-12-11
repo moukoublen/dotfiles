@@ -9,6 +9,8 @@ htop
 jq
 nano
 neofetch
+ripgrep
 subversion
+the_silver_searcher
 watch
 wget

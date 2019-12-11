@@ -1,8 +1,6 @@
 alias docker-stop-all='docker stop $(docker ps -q)'
 
-docker-clean-volumes() {
-  docker volume rm $(docker volume ls -qf dangling=true)
-}
+alias docker-clean-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 
 __dhelp_completion() {
   cur=$2
@@ -20,18 +18,27 @@ dshell() {
 complete -F __dhelp_completion dshell
 
 
-container_swagger_editor() {
-  docker pull swaggerapi/swagger-editor
-  docker run -d -p 9999:8080 --name "swagger-editor" swaggerapi/swagger-editor
-}
+
+################################################################################
+################# macos docker #################################################
+if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]]; then
+  source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+fi
+
+if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]]; then
+  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
+fi
+
+if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]]; then
+  source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+fi
+################################################################################
+################################################################################
 
 
-get_docker_compose() {
-  sudo sh -c "curl -L https://github.com/docker/compose/releases/download/$1/docker-compose-Linux-x86_64 > /opt/docker-compose/docker-compose-$1"
-  sudo chmod +x /opt/docker-compose/docker-compose-$1
-}
 
-
+################################################################################
+################# marmalade functions ##########################################
 _marmalade_get_latest_version_number__compose() {
   curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r '.name'
 }
@@ -48,9 +55,6 @@ _marmalade_install__compose() {
   chmod +x $MARMALADE_ENVS/compose/$1/docker-compose
 }
 
-
-
-
 _marmalade_get_latest_version_number__docker-machine() {
   curl -s https://api.github.com/repos/docker/machine/releases/latest | jq -r '.name'
 }
@@ -66,3 +70,5 @@ _marmalade_install__docker-machine() {
   curl -L --fail https://github.com/docker/machine/releases/download/$1/docker-machine-$(uname -s)-$(uname -m) > $MARMALADE_ENVS/docker-machine/$1/docker-machine
   chmod +x $MARMALADE_ENVS/docker-machine/$1/docker-machine
 }
+################################################################################
+################################################################################

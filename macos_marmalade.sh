@@ -1,6 +1,5 @@
 ################################################################################
 ##################### Homebrew #################################################
-
 ## Settings #####################################
 M_BREW_COREUTILS_USED=false
 M_BREW_FINDUTILS_USED=false
@@ -37,23 +36,21 @@ if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $M_BREW_PREFIX/opt/nvm/nvm.sh ]];
   source $M_BREW_PREFIX/opt/nvm/nvm.sh
   [[ -s "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ]] && source "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 fi
+################################################################################
+################################################################################
 
-################################################################################
-################################################################################
 
 
 ################################################################################
 ##################### Java #####################################################
-
 export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+################################################################################
+################################################################################
 
-################################################################################
-################################################################################
 
 
 ################################################################################
 ##################### Aliases ##################################################
-
 #alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
@@ -69,27 +66,15 @@ else
   alias ll='command ls -laG'
   alias ls='command ls -G'
 fi
+################################################################################
+################################################################################
 
-################################################################################
-################################################################################
 
 
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
 add_to_path $HOME/bin
-
-if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]; then
-  source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
-fi
-
-if [ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]; then
-  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
-fi
-
-if [ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]; then
-  source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
-fi
 
 #source $MARMALADE_PATH/envs/pyenv_env.sh
 #source $MARMALADE_PATH/envs/rbenv_env.sh
