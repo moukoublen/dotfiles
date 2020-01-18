@@ -1,4 +1,5 @@
 {
+  "workbench.colorTheme": "Dracula",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.useSplitJSON": true,
@@ -11,7 +12,7 @@
   "editor.tabSize": 4,
   "editor.lineHeight": 0,
   "editor.fontSize": 17,
-  "editor.fontFamily": "IBM Plex Mono",
+  "editor.fontFamily": "Fira Code",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
@@ -20,6 +21,11 @@
   "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "canvas",
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.formatOnPaste": true,
+  },
   "[json]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -55,11 +61,15 @@
   "go.autocompleteUnimportedPackages": true,
   "go.useCodeSnippetsOnFunctionSuggest": true,
   "go.enableCodeLens": {
-    "references": true,
+    "references": false,
     "runtest": true
   },
-  "go.useLanguageServer": true,
-  "go.languageServerFlags": ["-rpc.trace", "-logfile", "/tmp/gopls.log"],
-  "go.formatTool": "gofmt",
+  "go.formatTool": "goimports",
   "go.lintTool": "golint",
+  "go.useLanguageServer": false,
+  "go.languageServerFlags": [
+    "-rpc.trace",
+    "-logfile",
+    "/tmp/gopls.log"
+  ],
 }
