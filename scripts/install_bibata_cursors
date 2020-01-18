@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# $1 = Github release json
+# $2 = Font name
+# $3 = Temp dir to download
+__install_bibiata_font() {
+  local JSON_TEXT=$1
+  local NAME=$2
+  local TMP_DIR=$3
+
+  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.zip\") | .browser_download_url" --raw-output)
+  echo "Installing ${NAME}"
+  (
+  mkdir -p $TMP_DIR/$NAME
+  cd $TMP_DIR/$NAME
+  echo "    Downloading ${URL}"
+  wget -q $URL
+  echo "    Exctracting ${NAME}.zip"
+  unzip -q "${NAME}.zip"
+  rm "${NAME}.zip"
+  echo "    Move to ~/.icons/${NAME}"
+  mv $TMP_DIR/$NAME ~/.icons
+  )
+}
+
+# check if jq already exists
+if ! [ -x "$(command -v jq)" ]; then
+    echo 'Error: jq is not installed. Please install it' >&2
+    exit 1
+fi
+
+mkdir -p ~/.icons
+rm -rf ~/.icons/Bibata_*
+TMP_DIR='/tmp/bibata_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+
+JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/KaizIqbal/Bibata_Cursor/releases/latest)
+for NAME in 'Bibata_Amber' 'Bibata_Classic' 'Bibata_Ice' 'Bibata_Oil'
+do
+  __install_bibiata_font "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
+done
+
+JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/KaizIqbal/Bibata_Extra_Cursor/releases/latest)
+for NAME in 'Bibata_Dark_Red' 'Bibata_Dodger_Blue' 'Bibata_Pink' 'Bibata_Turquoise'
+do
+  __install_bibiata_font "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
+done
+
+rm -rf $TMP_DIR
