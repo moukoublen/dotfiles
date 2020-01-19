@@ -48,3 +48,8 @@ do
 done
 
 rm -rf $TMP_DIR
+
+unset -f __install_bibiata_font
+unset TMP_DIR
+unset JSON_TEXT_MAIN
+unset JSON_TEXT_EXTRA
