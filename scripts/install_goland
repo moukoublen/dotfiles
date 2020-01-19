@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+URL_RELEASE="https://data.services.jetbrains.com/products/releases?code=GO&latest=true"
+URL=$(wget $URL_RELEASE -q -O - | jq '.GO[0].downloads.linux.link' -r)
+DOWNLOADED_FILE="/tmp/goland.tar.gz"
+INSTALLATION_DIR="$HOME/Applications/goland"
+DESKTOP_FILE="$HOME/.local/share/applications/jetbrains-goland.desktop"
+
+wget $URL -O $DOWNLOADED_FILE
+mkdir -p $INSTALLATION_DIR
+tar zxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
+rm $DOWNLOADED_FILE
+cat > $DESKTOP_FILE <<EOL
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GoLand
+Comment=Cross-platform IDE built specially for Go developers
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-goland
+EOL
+echo "Exec=\"$INSTALLATION_DIR/bin/goland.sh\" %f" >> $DESKTOP_FILE
+echo "Icon=$INSTALLATION_DIR/bin/goland.svg" >> $DESKTOP_FILE
