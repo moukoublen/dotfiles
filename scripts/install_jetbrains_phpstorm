@@ -21,4 +21,4 @@ Terminal=false
 StartupWMClass=jetbrains-phpstorm
 EOL
 echo "Exec=\"$INSTALLATION_DIR/bin/phpstorm.sh\" %f" >> $DESKTOP_FILE
-echo "Icon=$INSTALLATION_DIR/bin/phpstorm.png" >> $DESKTOP_FILE
+echo "Icon=$INSTALLATION_DIR/bin/phpstorm.svg" >> $DESKTOP_FILE
