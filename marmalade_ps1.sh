@@ -70,7 +70,7 @@ _marmalade_ps1() {
   local C_STA="\[\e[2;49;97m\]"
   local F_PTH="\[\e[0;49;32m\]"
   local F_GIT="\[\e[1;49;93m\]"
-  local F_MAI="\[\e[0;49;36m\]"
+  local F_MAI="\[\e[0;90;90m\]"
   local F_ROO="\[\e[1;49;91m\]"
   local F_RST="\[\e[0m\]"
 
