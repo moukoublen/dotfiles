@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
 #lovely stackoverflow https://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
-SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ]; do
-  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
-done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+abspth() {
+  local drnm="$(dirname $1)"
+  echo "$(cd -P $drnm && pwd)"
+}
+
+rlpth() {
+  local SOURCE=$1
+  while [ -h "$SOURCE" ]; do
+    local DIR="$(abspth $SOURCE)"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
+  done
+  echo "$(abspth $SOURCE)"
+}
+
+DIR="$(rlpth ${BASH_SOURCE[0]})"
 
 echo "********************************************************"
 echo "**************** Marmalade Installation ****************"
@@ -35,3 +44,9 @@ fi
 
 echo "********************************************************"
 echo "********************************************************"
+
+unset DIR
+unset BASH_FILE
+unset SOURCE_LINE
+unset -f rlpth
+unset -f abspth
