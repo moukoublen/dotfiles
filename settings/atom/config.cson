@@ -25,6 +25,7 @@
   "exception-reporting":
     userId: "7800e055-313a-4537-a8d6-89d2070f6a98"
   "linter-ui-default":
+    panelHeight: 284
     showPanel: true
   welcome:
     showOnStartup: false
