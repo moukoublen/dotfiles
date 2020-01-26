@@ -10,11 +10,11 @@ abspth() {
 }
 
 rlpth() {
-  SOURCE=$1
+  local SOURCE=$1
   while [ -h "$SOURCE" ]; do
-    DIR="$(abspth $SOURCE)"
+    local DIR="$(abspth $SOURCE)"
     SOURCE="$(readlink "$SOURCE")"
-    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+    [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
   done
   echo "$(abspth $SOURCE)"
 }
