@@ -25,4 +25,4 @@ EOL
 echo "Exec=\"$EXECUTABLE_FULL_PATH\"" >> $DESKTOP_FILE
 
 mkdir -p ~/.local/share/icons
-wget http://blog.robomongo.org/content/images/2016/01/tears-1.png -O ~/.local/share/icons/robo3t.png
+wget "https://raw.githubusercontent.com/Studio3T/robomongo/master/install/macosx/robomongo.iconset/icon_512x512.png" -O ~/.local/share/icons/robo3t.png
