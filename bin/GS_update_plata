@@ -8,6 +8,7 @@ if [[ $theme_selected == Plata* ]]; then
 fi
 
 (
+set -e
 echo " -> removing current Plata installation"
 sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 
@@ -27,6 +28,7 @@ cd ~/gitrepos/plata-theme
   --disable-plank \
   --disable-telegram \
   --disable-tweetdeck \
+  --disable-airforsteam \
   --with-selection_color='#E91E63' \
   --with-accent_color='#ff6090' \
   --with-suggestion_color='#ff5722' \

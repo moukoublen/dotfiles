@@ -13,14 +13,11 @@ sudo dnf -y install \
     gstreamer \
     gstreamer-ffmpeg \
     gstreamer-plugins-bad \
-    gstreamer-plugins-bad-free \
     gstreamer-plugins-bad-nonfree \
     gstreamer-plugins-base \
     gstreamer-plugins-espeak \
     gstreamer-plugins-fc \
-    gstreamer-plugins-good \
     gstreamer-plugins-ugly \
-    gstreamer-rtsp \
     gstreamer-tools \
     gstreamer1-libav \
     gstreamer1-plugins-bad-freeworld \
@@ -54,3 +51,5 @@ sudo dnf -y install \
     x265 \
     x265-libs \
     xvidcore
+
+#sudo dnf install celluloid.x86_64
