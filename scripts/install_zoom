@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+sudo test
+os_name=$(lsb_release -is)
+URL=""
+case "$os_name" in
+  "Fedora")
+    URL="https://zoom.us/client/latest/zoom_x86_64.rpm"
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint")
+    URL="https://zoom.us/client/latest/zoom_x86_64.deb"
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
+
+install_remote_package $URL
