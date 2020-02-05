@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-sudo dnf install https://dl.folkswithhats.org/fedora/$(rpm -E %fedora)/RPMS/fedy-release.noarch.rpm
-sudo dnf -y install fedy
+sudo dnf copr enable kwizart/fedy
+sudo dnf install fedy -y
+
