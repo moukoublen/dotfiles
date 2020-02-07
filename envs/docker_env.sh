@@ -1,5 +1,3 @@
-alias docker-stop-all='docker stop $(docker ps -q)'
-
 alias docker-clean-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 
 __dhelp_completion() {
