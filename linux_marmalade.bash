@@ -2,12 +2,12 @@
 ######### Marmalade Envs #######################################################
 export MARMALADE_ENVS=$HOME/.marmalade.envs
 
-for i in $MARMALADE_PATH/envs/*_env.sh ; do
+for i in $MARMALADE_PATH/envs/*_env.bash ; do
   if [ -r "$i" ]; then
     source "$i"
   fi
 done
-source $MARMALADE_PATH/envs/env_management_marmalade.sh
+source $MARMALADE_PATH/envs/env_management.bash
 ################################################################################
 ################################################################################
 

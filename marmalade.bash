@@ -21,16 +21,16 @@ rlpth() {
 
 export MARMALADE_PATH="$(rlpth ${BASH_SOURCE[0]})"
 
-source $MARMALADE_PATH/pathmixer.sh
+source $MARMALADE_PATH/pathmixer.bash
 
 # Mac or Linux?
 if [[ $(uname) = "Darwin" ]]; then
-  source $MARMALADE_PATH/macos_marmalade.sh
+  source $MARMALADE_PATH/macos_marmalade.bash
 else
-  source $MARMALADE_PATH/linux_marmalade.sh
+  source $MARMALADE_PATH/linux_marmalade.bash
 fi
 
-for e in $( ls $MARMALADE_PATH/extras_*.sh 2>/dev/null ); do
+for e in $( ls $MARMALADE_PATH/extras_* 2>/dev/null ); do
   source $e
 done
 
@@ -38,7 +38,7 @@ add_to_path $MARMALADE_PATH/bin
 
 ################################################################################
 ######### Colors PS1 ###########################################################
-source $MARMALADE_PATH/ps1.sh
+source $MARMALADE_PATH/ps1.bash
 ################################################################################
 ################################################################################
 

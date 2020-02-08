@@ -22,9 +22,9 @@ echo "********************************************************"
 echo "**************** Marmalade Installation ****************"
 echo "  marmalade folder: $DIR"
 
-if [ ! -f ~/.marmalade.sh ]; then
-  echo "  create symlink of marmalade.sh at home folder"
-  ln -s $DIR/marmalade.sh ~/.marmalade.sh
+if [ ! -f ~/.marmalade.bash ]; then
+  echo "  create symlink of marmalade.bash at home folder"
+  ln -s $DIR/marmalade.bash ~/.marmalade.bash
 else
   echo "  marmalade syslink exists"
 fi
@@ -34,7 +34,7 @@ BASH_FILE=~/.bashrc
 [[ ! -f $BASH_FILE ]] && touch $BASH_FILE
 echo "  file to be used: $BASH_FILE"
 
-SOURCE_LINE='[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh'
+SOURCE_LINE='[[ -r ~/.marmalade.bash ]] && [[ -f ~/.marmalade.bash ]] && source ~/.marmalade.bash'
 if grep --fixed-strings -q "$SOURCE_LINE" $BASH_FILE; then
   echo "  marmalade sourcing is already included in $BASH_FILE"
 else
