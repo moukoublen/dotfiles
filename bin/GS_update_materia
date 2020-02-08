@@ -1,19 +1,49 @@
 #!/usr/bin/env bash
 
-theme_selected="$(gsettings get org.gnome.desktop.interface gtk-theme)"
-echo " -> Current theme $theme_selected"
-if [[ $theme_selected == *Materia* ]]; then
-  echo " -> Switching to Adwaita"
-  GS_set_gnome_theme 'Adwaita'
+prnt() {
+  echo -e "\e[1;34m==>\e[m $1"
+}
+
+GS_GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')"
+GS_WM_THEME="$(gsettings get org.gnome.desktop.wm.preferences theme | tr -d \')"
+GS_SHELL_THEME="$(gsettings get org.gnome.shell.extensions.user-theme name | tr -d \')"
+
+prnt "Current themes \e[1;36m$GS_GTK_THEME $GS_WM_THEME $GS_SHELL_THEME\e[m"
+
+if [[ $GS_GTK_THEME == Materia* ]]; then
+  prnt "Switching gnome theme to Adwaita"
+  gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
+fi
+if [[ $GS_WM_THEME == Materia* ]]; then
+  prnt "Switching wm theme to Adwaita"
+  gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
+fi
+if [[ $GS_SHELL_THEME == Materia* ]]; then
+  prnt "Switching gnome shell theme to Adwaita"
+  gsettings set org.gnome.shell.extensions.user-theme name 'Adwaita'
 fi
 
 (
 sudo rm -rf /usr/share/themes/Materia{,-dark,-light}{,-compact}
 cd $HOME/gitrepos/materia-theme/
+prnt "Installing Materia"
 sudo ./install.sh #--dest /usr/local/share/themes #--gdm
 )
 
-if [[ $theme_selected == *Materia* ]]; then
-  echo " -> Switching bach to $theme_selected"
-  GS_set_gnome_theme $theme_selected
+if [[ $GS_GTK_THEME == Materia* ]]; then
+  prnt "Switching back gnome theme      : \e[1;36m$GS_GTK_THEME\e[m"
+  gsettings set org.gnome.desktop.interface gtk-theme $GS_GTK_THEME
 fi
+if [[ $GS_WM_THEME == Materia* ]]; then
+  prnt "Switching back wm theme         : \e[1;36m$GS_WM_THEME\e[m"
+  gsettings set org.gnome.desktop.wm.preferences theme $GS_WM_THEME
+fi
+if [[ $GS_SHELL_THEME == Materia* ]]; then
+  prnt "Switching back gnome shell theme: \e[1;36m$GS_SHELL_THEME\e[m"
+  gsettings set org.gnome.shell.extensions.user-theme name $GS_SHELL_THEME
+fi
+
+unset GS_GTK_THEME
+unset GS_WM_THEME
+unset GS_SHELL_THEME
+unset -f prnt

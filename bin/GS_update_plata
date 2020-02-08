@@ -71,3 +71,4 @@ fi
 unset GS_GTK_THEME
 unset GS_WM_THEME
 unset GS_SHELL_THEME
+unset -f prnt
