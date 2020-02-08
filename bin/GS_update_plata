@@ -8,18 +8,21 @@ GS_GTK_THEME="$(gsettings get org.gnome.desktop.interface gtk-theme | tr -d \')"
 GS_WM_THEME="$(gsettings get org.gnome.desktop.wm.preferences theme | tr -d \')"
 GS_SHELL_THEME="$(gsettings get org.gnome.shell.extensions.user-theme name | tr -d \')"
 
-prnt "Current themes \e[1;36m$GS_GTK_THEME $GS_WM_THEME $GS_SHELL_THEME\e[m"
+prnt "Current themes"
+prnt "    gnome theme: \e[1;36m$GS_GTK_THEME\e[m"
+prnt "    wm    theme: \e[1;36m$GS_WM_THEME\e[m"
+prnt "    shell theme: \e[1;36m$GS_SHELL_THEME\e[m"
 
 if [[ $GS_GTK_THEME == Plata* ]]; then
-  prnt "Switching gnome theme to Adwaita"
+  prnt "Switching gnome theme to \e[1;36mAdwaita\e[m"
   gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'
 fi
 if [[ $GS_WM_THEME == Plata* ]]; then
-  prnt "Switching wm theme to Adwaita"
+  prnt "Switching wm    theme to \e[1;36mAdwaita\e[m"
   gsettings set org.gnome.desktop.wm.preferences theme 'Adwaita'
 fi
 if [[ $GS_SHELL_THEME == Plata* ]]; then
-  prnt "Switching gnome shell theme to Adwaita"
+  prnt "Switching shell theme to \e[1;36mAdwaita\e[m"
   gsettings set org.gnome.shell.extensions.user-theme name 'Adwaita'
 fi
 
@@ -56,15 +59,15 @@ sudo make install > /dev/null
 
 
 if [[ $GS_GTK_THEME == Plata* ]]; then
-  prnt "Switching back gnome theme      : \e[1;36m$GS_GTK_THEME\e[m"
+  prnt "Switching back gnome theme: \e[1;36m$GS_GTK_THEME\e[m"
   gsettings set org.gnome.desktop.interface gtk-theme $GS_GTK_THEME
 fi
 if [[ $GS_WM_THEME == Plata* ]]; then
-  prnt "Switching back wm theme         : \e[1;36m$GS_WM_THEME\e[m"
+  prnt "Switching back wm    theme: \e[1;36m$GS_WM_THEME\e[m"
   gsettings set org.gnome.desktop.wm.preferences theme $GS_WM_THEME
 fi
 if [[ $GS_SHELL_THEME == Plata* ]]; then
-  prnt "Switching back gnome shell theme: \e[1;36m$GS_SHELL_THEME\e[m"
+  prnt "Switching back shell theme: \e[1;36m$GS_SHELL_THEME\e[m"
   gsettings set org.gnome.shell.extensions.user-theme name $GS_SHELL_THEME
 fi
 
