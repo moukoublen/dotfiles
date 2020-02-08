@@ -1,2 +1,2 @@
-GO111MODULE=on go get -u -v github.com/cli/cli@latest
+GO111MODULE=on go get -u -v github.com/cli/cli/cmd/gh@latest
 
