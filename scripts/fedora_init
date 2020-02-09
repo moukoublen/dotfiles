@@ -6,7 +6,7 @@ sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
 sudo dnf install \
-  git gitg meld sqlite gcc gcc-c++ gdb cmake automake make \
+  git gitg meld sqlite gcc gcc-c++ strace gdb cmake automake make \
   jq curl wget redhat-lsb-core htop vim vim-common vim-enhanced nano \
   ack ripgrep
 
