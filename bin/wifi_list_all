@@ -1,0 +1,2 @@
+nmcli --fields all device wifi
+
