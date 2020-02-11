@@ -1,0 +1,2 @@
+nmcli --fields in-use,ssid,bssid,chan,rate,signal,bars device wifi
+
