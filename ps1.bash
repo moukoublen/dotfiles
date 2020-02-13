@@ -79,9 +79,9 @@ _marmalade_ps1() {
   local p_gfr="${F_GIT}%s${F_RST}" #__git_ps1 format string
   local p_git="\$(declare -F __git_ps1 &>/dev/null && __git_ps1 \"${p_gfr}\")"
   local p_pwd="${F_PTH}\w${F_RST}"
-  local p_usr="\$(if [[ \$UID = 0 ]]; then echo -e \"${F_ROO}\"; else echo -e \"${F_MAI}\"; fi)\u${F_RST}"
+  local p_usr="\$(if [[ \$UID = 0 ]]; then printf \"${F_ROO}\u${F_RST} \"; else printf \"\"; fi)"
 
-  local ps1_line1="${p_st1} ${p_usr} ${p_pwd} ${p_git}"
+  local ps1_line1="${p_st1} ${p_usr}${p_pwd} ${p_git}"
   local ps1_line2="${p_st2} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
