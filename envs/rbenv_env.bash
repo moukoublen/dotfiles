@@ -1,5 +1,5 @@
-add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
 if command -v rbenv 1>/dev/null 2>&1; then
+  add_to_start_of_path_if_not_exists $HOME/.rbenv/bin
   eval "$(rbenv init -)"
 fi
 alias update_rbenv='(cd ~/.rbenv/; git pull; cd ~/.rbenv/plugins/ruby-build/; git pull)'
