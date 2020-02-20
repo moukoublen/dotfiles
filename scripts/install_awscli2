@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+(
+tmp_dir=$(mktemp --directory)
+cd $tmp_dir
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+cd ~
+rm -rf $tmp_dir
+)
