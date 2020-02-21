@@ -92,4 +92,5 @@ _marmalade_ps1() {
 }
 
 _marmalade_ps1
+unset -f __ps1_color
 unset -f _marmalade_ps1
