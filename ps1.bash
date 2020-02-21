@@ -7,6 +7,10 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
 export GIT_PS1_SHOWCOLORHINTS=true
 
+__ps1_color() {
+  printf "\[\e[%d;%d;%dm\]" "$1" "$2" "$3"
+}
+
 _marmalade_ps1() {
   [[ -z $BASH ]] && return
 
@@ -66,13 +70,13 @@ _marmalade_ps1() {
   ##  107 White
 
   # To use colors in PS1 enclose them in escaped (\ prefixed) square brackets
-  local C_SEP="\[\e[2;49;37m\]"
-  local C_STA="\[\e[2;49;97m\]"
-  local F_PTH="\[\e[0;49;32m\]"
-  local F_GIT="\[\e[1;49;93m\]"
-  local F_MAI="\[\e[0;90;90m\]"
-  local F_ROO="\[\e[1;49;91m\]"
-  local F_RST="\[\e[0m\]"
+  local C_SEP=$(__ps1_color 2 49 37)
+  local C_STA=$(__ps1_color 2 49 97)
+  local F_PTH=$(__ps1_color 0 49 32)
+  local F_GIT=$(__ps1_color 1 49 93)
+  local F_MAI=$(__ps1_color 0 49 90)
+  local F_ROO=$(__ps1_color 1 49 91)
+  local F_RST=$(__ps1_color 0 49 39)
 
   local p_st1="${F_MAI}╭${F_RST}"
   local p_st2="${F_MAI}╰${F_RST}"
