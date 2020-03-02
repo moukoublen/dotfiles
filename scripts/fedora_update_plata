@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+sudo dnf remove -y inkscape
+sudo dnf install -y inkscape-0.92.4-8.fc31
+(
+cd $HOME/gitrepos/plata-theme
+rm -rf *
+git checkout -- .
+)
+GS_update_plata
+sudo dnf remove -y inkscape
