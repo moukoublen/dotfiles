@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+gsettings reset org.gnome.desktop.interface gtk-theme
+gsettings reset org.gnome.desktop.wm.preferences theme
+gsettings reset org.gnome.shell.extensions.user-theme name
