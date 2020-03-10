@@ -1,0 +1,2 @@
+cat ~/.bash_history | grep --colour=always $@
+
