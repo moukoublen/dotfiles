@@ -71,11 +71,10 @@ _marmalade_ps1() {
 
   # To use colors in PS1 enclose them in escaped (\ prefixed) square brackets
   local C_SEP=$(__ps1_color 2 49 37)
-  local C_STA=$(__ps1_color 2 49 97)
+  local C_USR=$(__ps1_color 0 49 36)
   local F_PTH=$(__ps1_color 0 49 32)
   local F_GIT=$(__ps1_color 1 49 93)
   local F_MAI=$(__ps1_color 0 49 90)
-  local F_ROO=$(__ps1_color 1 49 91)
   local F_RST=$(__ps1_color 0 49 39)
 
   local p_st1="${F_MAI}╭${F_RST}"
@@ -83,7 +82,8 @@ _marmalade_ps1() {
   local p_gfr="${F_GIT}%s${F_RST}" #__git_ps1 format string
   local p_git="\$(declare -F __git_ps1 &>/dev/null && __git_ps1 \"${p_gfr}\")"
   local p_pwd="${F_PTH}\w${F_RST}"
-  local p_usr="\$(if [[ \$UID = 0 ]]; then printf \"${F_ROO}\u${F_RST} \"; else printf \"\"; fi)"
+
+  local p_usr="\$(if [[ -n \"\${MARMALADE_PS1_DISPLAY_USER-}\" ]]; then printf \"${C_USR}\u@\h${F_RST} \"; else printf \"\"; fi)"
 
   local ps1_line1="${p_st1} ${p_usr}${p_pwd} ${p_git}"
   local ps1_line2="${p_st2} "
