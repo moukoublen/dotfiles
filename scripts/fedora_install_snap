@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+sudo dnf -y install snapd
+
+if [[ -L "/snap" && -d "/snap" ]]
+then
+  echo "Symlink /snap exists"
+else
+  echo "Creating symlink /snap -> /var/lib/snapd/snap"
+  sudo ln -s /var/lib/snapd/snap /snap
+fi
