@@ -2,7 +2,7 @@
 
 #### Installation
 
-Run `install.sh`.
+Run `install`.
 
 #### Installation via url
 
