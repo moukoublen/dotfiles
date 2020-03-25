@@ -13,8 +13,8 @@ Run `install.sh`.
 #### Manual installation
 
 ```console
-$ ln -s /path/to/dotfiles/marmalade.sh ~/.marmalade.sh
-$ echo '[[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh' >> ~/.bashrc
+$ ln -s /path/to/dotfiles/marmalade.bash ~/.marmalade.bash
+$ echo '[[ -r ~/.marmalade.bash ]] && [[ -f ~/.marmalade.bash ]] && source ~/.marmalade.bash' >> ~/.bashrc
 ```
 
 #### Notes
