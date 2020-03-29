@@ -15,4 +15,4 @@ case "$os_name" in
     ;;
 esac
 
-install_remote_package $URL
+install-remote-package $URL

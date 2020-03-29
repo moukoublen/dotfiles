@@ -27,5 +27,5 @@ sudo gtk-update-icon-cache -q /usr/share/icons/Papirus-Light
 
 if [[ $icon_selected == *Papirus* ]]; then
   echo " -> Switching bach to $icon_selected"
-  GS_set_icon_theme $icon_selected
+  GS-set-icon-theme $icon_selected
 fi

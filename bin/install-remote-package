@@ -2,11 +2,12 @@
 
 
 TMP_DIR=$(mktemp)
-FILENAME=$(get_remote_filename $1)
+FILENAME=$(get-remote-filename $1)
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
 echo "Downloading $1 in $TMP_DIR"
+echo "Downloading filename ${FILENAME}"
 wget $1 -O $TMP_DIR/$FILENAME
 
 sudo test
@@ -28,3 +29,5 @@ esac
 
 rm -rf $TMP_DIR
 
+unset TMP_DIR
+unset FILENAME
