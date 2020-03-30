@@ -9,5 +9,5 @@ cd $HOME/gitrepos/plata-theme
 rm -rf *
 git checkout -- .
 )
-GS_update_plata
+GS-update-plata
 sudo dnf remove -y inkscape

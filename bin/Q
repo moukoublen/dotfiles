@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+__update-repo() {(
+  printf '╭──────────────────────────────────────╮\n'
+  printf '│    %-30.30s    │\n' $(basename $1)
+  printf '╰──────────────────────────────────────╯\n'
+  cd $1
+  git fetch --quiet
+  LOCAL=$(git rev-parse @)
+  REMOTE=$(git rev-parse @{u})
+  BASE=$(git merge-base @ @{u})
+
+  if [[ $LOCAL = $REMOTE ]]; then
+    echo -e "     \e[32mUp to date\e[0m"
+  elif [[ $LOCAL = $BASE ]]; then
+      printf "     \e[33mPulling updates...\e[0m "
+      git pull --quiet --ff-only
+      printf "\e[32mok! \e[0m\n"
+  elif [[ $REMOTE = $BASE ]]; then
+      echo -e "     \e[31mNeed to push\e[0m"
+  else
+      echo -e "     \e[31mDiverged\e[0m"
+  fi
+
+  echo ""
+)}
+
+__update-repos() {
+  for i in "$@"; do
+    __update-repo "$i"
+  done
+}
+
+if [ -f ~/.q ]; then
+  while read r; do
+    [[ $r = "" ]] && continue
+    r=$(eval echo \"$r\")
+    __update-repo "${r/#~/$HOME}"
+  done < ~/.q
+  unset r
+fi
+
+
+unset -f __update-repo
+unset -f __update-repos
