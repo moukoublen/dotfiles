@@ -25,5 +25,5 @@ if [[ ! -d "$HOME/gitrepos/plata-theme" ]]; then
   echo "cloning plata in $HOME/gitrepos/"
   mkdir -p ~/gitrepos/
   (cd ~/gitrepos/; git clone https://gitlab.com/tista500/plata-theme.git)
-  GS_update_plata
+  GS-update-plata
 fi
