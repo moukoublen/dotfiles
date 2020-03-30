@@ -33,9 +33,11 @@ sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 
 prnt "Building Plata"
 cd ~/gitrepos/plata-theme
-sudo rm -rf *
+rm -rf ./*
 git checkout -- .
-docker run --interactive --tty --rm --volume $PWD:/tmp/plata --workdir /tmp/plata plata-builder ./autogen.sh \
+
+CMD=$(echo "\
+./autogen.sh \
   --prefix=/usr \
   --disable-silent-rules \
   --enable-parallel \
@@ -53,9 +55,12 @@ docker run --interactive --tty --rm --volume $PWD:/tmp/plata --workdir /tmp/plat
   --with-selection_color='#E91E63' \
   --with-accent_color='#ff6090' \
   --with-suggestion_color='#ff5722' \
-  --with-destruction_color='#f44336' > /dev/null
+  --with-destruction_color='#f44336' > /dev/null; \
+make > /dev/null
+")
 
-docker run --interactive --tty --rm --volume $PWD:/tmp/plata --workdir /tmp/plata plata-builder make > /dev/null
+docker run --interactive --tty --rm --volume $PWD:/tmp/plata --workdir /tmp/plata plata-builder /bin/bash -c "$CMD"
+
 sudo make install > /dev/null
 )
 

@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-docker run -it --rm -v "$PWD":/tmp/ufolder -w /tmp/ufolder $@
+docker run \
+  --interactive \
+  --tty \
+  --volume "$PWD":/tmp/ufolder \
+  --workdir /tmp/ufolder \
+  $@
