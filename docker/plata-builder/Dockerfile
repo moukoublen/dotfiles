@@ -1,20 +1,22 @@
-FROM ubuntu:18.04
+FROM fedora:31
 
 RUN groupadd --gid 1000 builder \
-  && useradd --uid 1000 --gid builder --shell /bin/bash --create-home builder
+  && useradd --uid 1000 --gid builder --shell /usr/bin/bash --create-home builder
 
-RUN apt-get update \
-  && apt-get install -y \
-    build-essential \
+RUN dnf check-update --refresh --quiet || true
+RUN dnf install -y \
+    gtk2-engines \
+    gtk-murrine-engine \
+    gdk-pixbuf2 \
     make \
     autoconf \
     automake \
-    inkscape \
-    libgdk-pixbuf2.0-dev \
-    libglib2.0-dev \
-    libxml2-utils \
-    pkg-config \
+    gdk-pixbuf2-devel \
+    glib2-devel \
+    libxml2 \
+    pkgconfig \
     sassc \
-    parallel
+    parallel \
+    inkscape-0.92.4-8.fc31
 
 USER builder

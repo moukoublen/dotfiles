@@ -55,7 +55,8 @@ CMD=$(echo "\
   --with-selection_color='#E91E63' \
   --with-accent_color='#ff6090' \
   --with-suggestion_color='#ff5722' \
-  --with-destruction_color='#f44336' > /dev/null; \
+  --with-destruction_color='#f44336' > /dev/null
+echo '    ...'
 make > /dev/null
 ")
 
