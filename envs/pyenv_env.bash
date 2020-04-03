@@ -1,7 +1,7 @@
-if command -v pyenv 1>/dev/null 2>&1; then
+if [[ -d $PYENV_ROOT/bin ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
   eval "$(pyenv init -)"
 fi
-alias update_pyenv='(cd ~/.pyenv/; git pull)'
-alias install_pyenv='git clone https://github.com/yyuu/pyenv.git ~/.pyenv'
+alias update-pyenv='(cd ~/.pyenv/; git pull)'
+alias install-pyenv='git clone https://github.com/yyuu/pyenv.git ~/.pyenv'

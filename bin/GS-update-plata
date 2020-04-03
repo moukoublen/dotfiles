@@ -28,7 +28,7 @@ fi
 
 (
 set -e
-prnt "Removing current Plata installation"
+prnt "Removing current Plata ($(echo /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}))"
 sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 
 prnt "Building Plata"

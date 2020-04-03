@@ -27,6 +27,7 @@ if [[ $GS_SHELL_THEME == Materia* ]]; then
 fi
 
 (
+prnt "Remove current materia ($(echo /usr/share/themes/Materia{,-dark,-light}{,-compact}))"
 sudo rm -rf /usr/share/themes/Materia{,-dark,-light}{,-compact}
 cd $HOME/gitrepos/materia-theme/
 prnt "Installing Materia"
