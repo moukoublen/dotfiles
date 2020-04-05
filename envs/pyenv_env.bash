@@ -1,4 +1,4 @@
-if [[ -d $PYENV_ROOT/bin ]]; then
+if [[ -d $HOME/.pyenv/bin ]]; then
   export PYENV_ROOT="$HOME/.pyenv"
   add_to_start_of_path_if_not_exists $PYENV_ROOT/bin
   eval "$(pyenv init -)"
