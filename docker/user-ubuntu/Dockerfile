@@ -1,9 +1,8 @@
-FROM fedora:31
+FROM ubuntu:18.04
 
-RUN dnf update --refresh --assumeyes; \
-  dnf install -y \
-    bash \
-    bash-completion
+RUN apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y curl wget git bash bash-completion sudo
 
 COPY scripts/ps1.sh /etc/profile.d/ps1.sh
 RUN mkdir -p /opt/dsc/

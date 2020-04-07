@@ -1,4 +1,4 @@
-FROM user-fedora
+FROM user-fedora:latest
 
 USER root
 
