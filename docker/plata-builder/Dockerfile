@@ -1,9 +1,7 @@
-FROM fedora:31
+FROM user-fedora
 
-RUN groupadd --gid 1000 builder \
-  && useradd --uid 1000 --gid builder --shell /usr/bin/bash --create-home builder
+USER root
 
-RUN dnf check-update --refresh --quiet || true
 RUN dnf install -y \
     gtk2-engines \
     gtk-murrine-engine \
@@ -19,4 +17,4 @@ RUN dnf install -y \
     parallel \
     inkscape-0.92.4-8.fc31
 
-USER builder
+USER ${NEW_USER}

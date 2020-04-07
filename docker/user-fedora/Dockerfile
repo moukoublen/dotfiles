@@ -1,8 +1,7 @@
 FROM fedora:31
 
-RUN dnf update --refresh --assumeyes || true
-
-RUN dnf install -y \
+RUN dnf update --refresh --assumeyes; \
+  dnf install -y \
     bash \
     bash-completion
 
@@ -10,16 +9,17 @@ COPY scripts/ps1.sh /etc/profile.d/ps1.sh
 RUN mkdir -p /opt/dsc/
 
 ### User ###
-ARG USER=yoda
-ARG USER_ID=1000
-ARG GROUP=yoda
-ARG GROUP_ID=1000
-ARG USER_HOME_DIR=/home/yoda
+ARG NEW_USER=yoda
+ARG NEW_USER_ID=1000
+ARG NEW_GROUP=yoda
+ARG NEW_GROUP_ID=1000
+ARG NEW_USER_HOME_DIR=/home/${NEW_USER}
 
 COPY scripts/create-user /opt/dsc/create-user
-RUN /opt/dsc/create-user $USER $USER_ID $GROUP $GROUP_ID $USER_HOME_DIR
+RUN /opt/dsc/create-user $NEW_USER $NEW_USER_ID $NEW_GROUP $NEW_GROUP_ID $NEW_USER_HOME_DIR
 
 COPY scripts/bashrc /opt/dsc/bashrc
 RUN cat /opt/dsc/bashrc >> $USER_HOME_DIR/.bashrc
 
-USER yoda
+USER ${NEW_USER}
+ENV NEW_USER=${NEW_USER}
