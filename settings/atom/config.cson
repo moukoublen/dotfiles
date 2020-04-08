@@ -20,7 +20,6 @@
     maxScreenLineLength: 500000
     scrollPastEnd: true
     showInvisibles: true
-    tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "7800e055-313a-4537-a8d6-89d2070f6a98"
