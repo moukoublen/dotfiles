@@ -2,9 +2,17 @@ FROM ubuntu:18.04
 
 RUN apt-get update \
   && apt-get upgrade -y \
-  && apt-get install -y curl wget git bash bash-completion sudo
+  && apt-get install -y \
+    curl \
+    wget \
+    git \
+    jq \
+    bash \
+    bash-completion \
+    sudo \
+    vim \
+    nano
 
-COPY scripts/ps1.sh /etc/profile.d/ps1.sh
 RUN mkdir -p /opt/dsc/
 
 ### User ###
@@ -16,6 +24,7 @@ ARG NEW_USER_HOME_DIR=/home/${NEW_USER}
 
 COPY scripts/create-user /opt/dsc/create-user
 RUN /opt/dsc/create-user $NEW_USER $NEW_USER_ID $NEW_GROUP $NEW_GROUP_ID $NEW_USER_HOME_DIR
+
 
 COPY scripts/bashrc /opt/dsc/bashrc
 RUN cat /opt/dsc/bashrc >> ${NEW_USER_HOME_DIR}/.bashrc
