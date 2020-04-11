@@ -7,7 +7,7 @@ Run `install`.
 #### Installation via url
 
 ```
-. <(curl -fsSL https://git.io/moukoublen_dotfiles)
+. <(curl -fsSL https://raw.githubusercontent.com/moukoublen/dotfiles/master/scripts/clone-dotfiles)
 ```
 
 #### Manual installation
