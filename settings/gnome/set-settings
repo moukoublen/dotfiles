@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+source ./lib/__tools.bash
+source ./lib/__terminal-colors.bash
+
+
+./lib/gnome-shell-settings.bash
+./lib/nautilus-settings.bash
+./lib/gnome-terminal.bash
+
+if [[ -x "$(command -v tilix)" ]]; then
+  ./lib/tilix-settings.bash
+fi
