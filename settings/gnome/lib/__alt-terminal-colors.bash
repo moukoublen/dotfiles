@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export C_FG="#F8F8F2"
-export C_BG="#282A36"
-export C_HFG="#FF4081"
-export C_HBG="#000A12"
-export C_PAL="['#000000','#FF5555','#50FA7B','#F1FA8C','#BD93F9','#FF79C6','#8BE9FD','#BFBFBF','#4D4D4D','#FF6E67','#5AF78E','#F4F99D','#CAA9FA','#FF92D0','#9AEDFE','#E6E6E6']"
+export C_FG="#D2D8D9"
+export C_BG="#2B2D2E"
+export C_HFG="#FFFFFF"
+export C_HBG="#E91E63"
+export C_PAL="['#7d8b8f','#b23a52','#789b6a','#b9ac4a','#2a7fac','#bd4f5a','#44a799','#d2d8d9','#888888','#f24840','#80c470','#ffeb62','#4196ff','#fc5275','#53cdbd','#d2d8d9']"

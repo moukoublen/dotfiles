@@ -20,7 +20,7 @@ gsettings-set "${default_profile_path} default-size-columns" "120"
 gsettings-set "${default_profile_path} default-size-rows" "30"
 gsettings-set "${default_profile_path} scrollback-unlimited" "true"
 gsettings-set "${default_profile_path} use-system-font" "false"
-gsettings-set "${default_profile_path} font" 'Fira Code 14'
+gsettings-set "${default_profile_path} font" 'Hack 15'
 gsettings-set "${default_profile_path} cursor-shape" "ibeam"
 gsettings-set "${default_profile_path} audible-bell" "false"
 gsettings-set "${default_profile_path} use-theme-colors" "false"
