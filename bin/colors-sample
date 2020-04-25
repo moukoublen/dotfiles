@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+__msg1() {
+  local rst='\e[0m'
+  printf "${rst}This is the \e[%smnormal,${rst} \e[1;%smbright,${rst} \e[2;%smdimmed${rst} and \e[%smbackground${rst} style of color \e[%sm%s${rst}\n" "$1" "$1" "$1" "$2" "$1" "$3"
+}
+
+__msg2() {
+  local rst='\e[0m'
+  printf "${rst}This is the \e[%sm%s${rst} background color\n" "$1" "$2"
+}
+
+__show() {
+  __msg1 39 49 Default
+  echo
+  __msg1 30 40 Black
+  __msg1 90 100 "Light Black"
+  echo
+  __msg1 31 41 Red
+  __msg1 91 101 "Light Red"
+  echo
+  __msg1 32 42 Green
+  __msg1 92 102 "Light Green"
+  echo
+  __msg1 33 43 Yellow
+  __msg1 93 103 "Light Yellow"
+  echo
+  __msg1 34 44 Blue
+  __msg1 94 104 "Light Blue"
+  echo
+  __msg1 35 45 Purple
+  __msg1 95 105 "Light Purple"
+  echo
+  __msg1 36 46 Turquoise
+  __msg1 96 106 "Light Turquoise"
+  echo
+  __msg1 37 47 Grey
+  __msg1 97 107 "Light Grey"
+}
+
+
+__show
+
+unset -f __show

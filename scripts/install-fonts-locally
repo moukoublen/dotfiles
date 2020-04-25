@@ -90,3 +90,48 @@ cp -r $TMP_DIR/OpenType/* ~/.fonts
 rm -rf $TMP_DIR
 )
 ################################################################################
+
+##### Install Manrope fonts localy #############################################
+(
+echo "Install Manrope fonts in ~/.fonts"
+FILENAME="manrope.zip"
+TMP_DIR='/tmp/manrope_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q https://github.com/sharanda/manrope/archive/master.zip -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+cp -r $TMP_DIR/manrope-master/fonts/otf ~/.fonts/manrope
+rm -rf $TMP_DIR
+)
+################################################################################
+
+##### Install Inter fonts localy #############################################
+(
+echo "Install Inter fonts in ~/.fonts"
+JSON_TEXT=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest)
+LATEST_URL=$(echo $JSON_TEXT | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
+FILENAME="Inter.zip"
+TMP_DIR='/tmp/inter_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $LATEST_URL -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+cp -r $TMP_DIR/Inter\ Desktop ~/.fonts/inter
+rm -rf $TMP_DIR
+)
+################################################################################
+
+##### Install Advent fonts localy #############################################
+(
+echo "Install Advent fonts in ~/.fonts"
+FILENAME="advent.zip"
+TMP_DIR='/tmp/advent_install'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q https://github.com/VivaRado/Advent/archive/master.zip -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+mkdir -p ~/.fonts/advent
+cp -r $TMP_DIR/Advent-master/font_source/OTFs/*otf ~/.fonts/advent
+rm -rf $TMP_DIR
+)
+################################################################################
