@@ -8,7 +8,7 @@ MY_GID=$(id -g $MY_NAME)
 echo "User : $MY_NAME $MY_ID"
 echo "Group: $MY_GROUP $MY_GID"
 
-docker build -f Dockerfile . \
+docker build "$@" -f Dockerfile . \
   --build-arg NEW_USER="$MY_NAME" \
   --build-arg NEW_USER_ID="$MY_ID" \
   --build-arg NEW_GROUP="$MY_GROUP" \
