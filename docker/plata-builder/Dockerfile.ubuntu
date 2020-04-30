@@ -1,0 +1,19 @@
+FROM user-ubuntu:latest
+
+USER root
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get install -y \
+    make \
+    autoconf \
+    automake \
+    inkscape \
+    libgdk-pixbuf2.0-dev \
+    libglib2.0-dev \
+    libxml2-utils \
+    pkg-config \
+    sassc \
+    parallel
+
+USER ${NEW_USER}

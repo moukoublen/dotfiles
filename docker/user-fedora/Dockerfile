@@ -1,4 +1,4 @@
-FROM fedora:31
+FROM fedora:32
 
 RUN dnf update --refresh --assumeyes; \
   dnf install -y \
