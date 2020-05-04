@@ -29,7 +29,18 @@ sudo dnf install \
   java-1.8.0-openjdk-src
 
 sudo dnf install \
+  java-11-openjdk \
+  java-11-openjdk-demo \
+  java-11-openjdk-devel \
+  java-11-openjdk-headless \
+  java-11-openjdk-javadoc \
+  java-11-openjdk-javadoc-zip \
+  java-11-openjdk-jmods \
+  java-11-openjdk-src
+
+sudo dnf install \
   java-latest-openjdk \
+  java-latest-openjdk-demo \
   java-latest-openjdk-devel \
   java-latest-openjdk-headless \
   java-latest-openjdk-javadoc \
