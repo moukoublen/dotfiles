@@ -83,7 +83,7 @@ _marmalade_ps1() {
   local p_git="\$(declare -F __git_ps1 &>/dev/null && __git_ps1 \"${p_gfr}\")"
   local p_pwd="${F_PTH}\w${F_RST}"
 
-  local p_usr="\$(if [[ -n \"\${MARMALADE_PS1_DISPLAY_USER-}\" ]]; then printf \"${C_USR}\u@\h${F_RST} \"; else printf \"\"; fi)"
+  local p_usr="\$(if [[ -n \"\${MARMALADE_PS1_DISPLAY_USER-}\" ]]; then printf \"${C_USR}\u${F_RST}${F_MAI}@${F_RST}${C_USR}\h${F_RST} \"; else printf \"\"; fi)"
 
   local ps1_line1="${p_st1} ${p_usr}${p_pwd} ${p_git}"
   local ps1_line2="${p_st2} "
