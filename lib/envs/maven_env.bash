@@ -1,6 +1,7 @@
 export M3_HOME=$MARMALADE_ENVS/maven/default
 export M3=$M3_HOME/bin
 export MAVEN_OPTS="-Xmx8g"
+alias mvn-no-tests="mvn -Dmaven.test.skip=true -DskipTests=true"
 add_to_end_of_path_if_not_exists $M3
 
 ################################################################################
