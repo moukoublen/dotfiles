@@ -19,13 +19,13 @@ add_to_path $HOME/.local/bin
 
 ################################################################################
 ######### Aliases ##############################################################
+alias O='xdg-open'
 alias ll='command ls -la --color=auto'
 alias tree='command tree -C'
-alias go_to_runlevel_3='sudo systemctl set-default multi-user.target'
-alias go_to_runlevel_5='sudo systemctl set-default graphical.target'
-alias get_wm_class='xprop WM_CLASS'
-alias O='xdg-open'
-alias JAVALS='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
+alias go-to-runlevel-3='sudo systemctl set-default multi-user.target'
+alias go-to-runlevel-5='sudo systemctl set-default graphical.target'
+alias get-wm-class='xprop WM_CLASS'
+alias java-ls='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
 ################################################################################
 ################################################################################
 
