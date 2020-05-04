@@ -63,11 +63,11 @@ export LC_ALL='en_US.UTF-8';
 
 add_to_path $HOME/bin
 
-#source $MARMALADE_PATH/envs/pyenv_env.sh
-#source $MARMALADE_PATH/envs/rbenv_env.sh
-source $MARMALADE_PATH/envs/go_env.sh
-source $MARMALADE_PATH/envs/docker_env.sh
-source $MARMALADE_PATH/envs/php_env.sh
+#source $MARMALADE_PATH/lib/envs/pyenv_env.sh
+#source $MARMALADE_PATH/lib/envs/rbenv_env.sh
+source $MARMALADE_PATH/lib/envs/go_env.sh
+source $MARMALADE_PATH/lib/envs/docker_env.sh
+source $MARMALADE_PATH/lib/envs/php_env.sh
 
 install_nano_nanorc() {
   touch ~/.nanorc
