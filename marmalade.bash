@@ -45,12 +45,12 @@ source $MARMALADE_PATH/ps1.bash
 ################################################################################
 ######### Aliases ##############################################################
 alias S='find . -name'
-alias to_ack='ack --files-from=-' #pipe find results
-alias to_grep='xargs grep --color=auto' #pipe find results
-alias path_to_lines='echo $PATH | tr ":" "\n"'
-alias ld_to_lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
-alias update_dotfiles="(cd ${MARMALADE_PATH}; git pull)"
-alias MVN_NO_TESTS="mvn -Dmaven.test.skip=true -DskipTests=true"
+alias to-ack='ack --files-from=-' #pipe find results
+alias to-grep='xargs grep --color=auto' #pipe find results
+alias path-to-lines='echo $PATH | tr ":" "\n"'
+alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
+alias update-dotfiles="(cd ${MARMALADE_PATH}; git pull)"
+alias mvn-no-tests="mvn -Dmaven.test.skip=true -DskipTests=true"
 ################################################################################
 ################################################################################
 
