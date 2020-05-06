@@ -23,7 +23,7 @@ case "$os_name" in
   "Fedora")
     update_dnf
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     update_apt
     ;;
   *)
