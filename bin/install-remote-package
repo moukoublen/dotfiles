@@ -17,7 +17,7 @@ case "$os_name" in
   "Fedora")
     sudo dnf -y install $TMP_DIR/$FILENAME
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     sudo apt -y install $TMP_DIR/$FILENAME
     ;;
   *)
