@@ -7,7 +7,7 @@ case "$os_name" in
   "Fedora")
     URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     URL="https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
     ;;
   *)

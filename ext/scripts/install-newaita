@@ -5,4 +5,4 @@ mkdir -p ~/gitrepos/
 mkdir -p ~/.icons
 ln -s ~/gitrepos/Newaita/Newaita ~/.icons
 ln -s ~/gitrepos/Newaita/Newaita-dark ~/.icons
-GS_set_icon_theme Newaita
+GS-set-icon-theme Newaita

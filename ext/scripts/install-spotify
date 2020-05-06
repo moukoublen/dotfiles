@@ -7,7 +7,7 @@ case "$os_name" in
     sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
     sudo dnf -y install spotify-client
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
     echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
     sudo apt update

@@ -10,7 +10,7 @@ case "$os_name" in
       autoconf automake inkscape gdk-pixbuf2-devel glib2-devel \
       libxml2 pkgconfig sassc parallel
     ;;
-  "Ubuntu"|"LinuxMint")
+  "Ubuntu"|"LinuxMint"|"Pop")
     sudo apt install -y \
       gtk2-engines-pixbuf gtk2-engines-murrine \
       autoconf automake inkscape libgdk-pixbuf2.0-dev libglib2.0-dev \

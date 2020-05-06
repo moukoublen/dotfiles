@@ -7,7 +7,7 @@ case "$os_name" in
   "Fedora")
     URL='https://go.skype.com/skypeforlinux-64.rpm'
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     URL='https://go.skype.com/skypeforlinux-64.deb'
     ;;
   *)
@@ -15,4 +15,4 @@ case "$os_name" in
     ;;
 esac
 
-install_remote_package $URL
+install-remote-package $URL

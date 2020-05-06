@@ -7,7 +7,7 @@ case "$os_name" in
   "Fedora")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     ;;
   *)
@@ -16,4 +16,4 @@ case "$os_name" in
     ;;
 esac
 
-install_remote_package $URL
+install-remote-package $URL
