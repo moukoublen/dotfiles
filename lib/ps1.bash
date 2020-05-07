@@ -58,19 +58,8 @@
 ################################################################################
 
 __m_color() {
-  local prefix=
-  local postfix=
-
-  local mode=$1
-  shift
-  if [[ "$mode" == "bash" ]]; then
-    prefix=""
-    postfix=""
-  fi
-  if [[ "$mode" == "ps1" ]]; then
-    prefix="\["
-    postfix="\]"
-  fi
+  local prefix="\["
+  local postfix="\]"
 
   if [[ "$#" = 0 ]]; then
     echo -n "${prefix}\e[0m${postfix}"
@@ -81,8 +70,8 @@ __m_color() {
 
 
 __m_seperator() {
-  local C_SEP=$(__m_color $1 2 49 37)
-  local C_RST=$(__m_color $1)
+  local C_SEP=$(__m_color 2 49 37)
+  local C_RST=$(__m_color)
   local DSEP=" ${C_SEP}|${C_RST} "
   local SEP=${MARMALADE_PS1_SEPERATOR:-$DSEP}
   echo -n "${SEP}"
@@ -92,18 +81,18 @@ __m_seperator() {
 __m_ps1_user() {
   local p_usr=""
   if [[ -n "${MARMALADE_PS1_DISPLAY_USER-}" ]]; then
-    local C_USR=$(__m_color bash 0 49 36)
-    local C_MAI=$(__m_color bash 0 49 90)
-    local C_RST=$(__m_color bash)
-    p_usr="${C_USR}$(whoami)${C_RST}${C_MAI}@${C_RST}${C_USR}$(hostname)${C_RST}$(__m_seperator bash)"
+    local C_USR=$(__m_color 0 49 36)
+    local C_MAI=$(__m_color 0 49 90)
+    local C_RST=$(__m_color)
+    p_usr="${C_USR}$(whoami)${C_RST}${C_MAI}@${C_RST}${C_USR}$(hostname)${C_RST}$(__m_seperator)"
   fi
-  echo -en "$p_usr"
+  echo -n "$p_usr"
 }
 
 
 __m_ps1_pwd() {
-  local C_PTH=$(__m_color ps1 0 49 32)
-  local C_RST=$(__m_color ps1)
+  local C_PTH=$(__m_color 0 49 32)
+  local C_RST=$(__m_color)
   echo -n "${C_PTH}\w${C_RST}"
 }
 
@@ -116,29 +105,43 @@ export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
 export GIT_PS1_SHOWCOLORHINTS=true
 __m_ps1_git() {
-  local C_GIT=$(__m_color bash 1 49 93)
-  local C_RST=$(__m_color bash)
-  local p_gfr="$(__m_seperator bash)${C_GIT}%s${C_RST}" #__git_ps1 format string
+  local C_GIT=$(__m_color 1 49 93)
+  local C_RST=$(__m_color)
+  local p_gfr="$(__m_seperator)${C_GIT}%s${C_RST}" #__git_ps1 format string
   declare -F __git_ps1 &>/dev/null && __git_ps1 "${p_gfr}"
 }
 
 
+__m_ps1_kube() {
+
+  if [[ -x "$(command -v kubectl)" ]] && [[ -n "${MARMALADE_PS1_DISPLAY_KUBE-}" ]]; then
+    local C_CTXD=$(__m_color 2 49 34)
+    local C_CTXB=$(__m_color 1 49 34)
+    local C_NSP=$(__m_color 0 49 37)
+    local C_RST=$(__m_color)
+    echo -n "$(__m_seperator)"
+    echo -n $(kubectl config view --minify --output "jsonpath=${C_CTXB}{.current-context}${C_CTXD}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+  fi
+}
+
+
 _marmalade_ps1() {
-  [[ -z $BASH ]] && return
+  local C_MAI=$(__m_color 0 49 90)
+  local C_RST=$(__m_color)
 
-  local C_MAI=$(__m_color ps1 0 49 90)
-  local C_RST=$(__m_color ps1)
-
-  local p_usr="\$(__m_ps1_user)"
-  local p_git="\$(__m_ps1_git)"
-  local p_pwd="$(__m_ps1_pwd)"
-
-
-  local ps1_line1="${C_MAI}╭${C_RST} ${p_usr}${p_pwd}${p_git}"
+  local ps1_line1="${C_MAI}╭${C_RST} $(__m_ps1_user)$(__m_ps1_pwd)$(__m_ps1_git)$(__m_ps1_kube)"
   local ps1_line2="${C_MAI}╰${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
 
-_marmalade_ps1
-unset -f _marmalade_ps1
+export PROMPT_COMMAND=_marmalade_ps1
+
+
+ps1-kube() {
+  if [[ -n "${MARMALADE_PS1_DISPLAY_KUBE-}" ]]; then
+    unset MARMALADE_PS1_DISPLAY_KUBE
+  else
+    export MARMALADE_PS1_DISPLAY_KUBE=true
+  fi
+}
