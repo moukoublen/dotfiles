@@ -79,14 +79,14 @@ __m_seperator() {
 
 
 __m_ps1_user() {
-  local p_usr=""
-  if [[ -n "${MARMALADE_PS1_DISPLAY_USER-}" ]]; then
-    local C_USR=$(__m_color 0 49 36)
-    local C_MAI=$(__m_color 0 49 90)
-    local C_RST=$(__m_color)
-    p_usr="${C_USR}$(whoami)${C_RST}${C_MAI}@${C_RST}${C_USR}$(hostname)${C_RST}$(__m_seperator)"
+  if [[ -z "${MARMALADE_PS1_DISPLAY_USER-}" ]]; then
+    return
   fi
-  echo -n "$p_usr"
+
+  local C_USR=$(__m_color 0 49 36)
+  local C_MAI=$(__m_color 0 49 90)
+  local C_RST=$(__m_color)
+  echo -n "${C_USR}$(whoami)${C_RST}${C_MAI}@${C_RST}${C_USR}$(hostname)${C_RST}$(__m_seperator)"
 }
 
 
@@ -113,19 +113,20 @@ __m_ps1_git() {
 
 
 __m_ps1_kube() {
-
-  if [[ -x "$(command -v kubectl)" ]] && [[ -n "${MARMALADE_PS1_DISPLAY_KUBE-}" ]]; then
-    local C_CTXD=$(__m_color 2 49 34)
-    local C_CTXB=$(__m_color 1 49 34)
-    local C_NSP=$(__m_color 0 49 37)
-    local C_RST=$(__m_color)
-    echo -n "$(__m_seperator)"
-    echo -n $(kubectl config view --minify --output "jsonpath=${C_CTXB}{.current-context}${C_CTXD}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+  if [[ -z "${MARMALADE_PS1_DISPLAY_KUBE-}" ]] || [[ ! -x "$(command -v kubectl)" ]]; then
+    return
   fi
+
+  local C_CTXD=$(__m_color 2 49 34)
+  local C_CTXB=$(__m_color 1 49 34)
+  local C_NSP=$(__m_color 0 49 37)
+  local C_RST=$(__m_color)
+  echo -n "$(__m_seperator)"
+  echo -n $(kubectl config view --minify --output "jsonpath=${C_CTXB}{.current-context}${C_CTXD}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
 }
 
 
-__marmalade_ps1() {
+__m_ps1() {
   local C_MAI=$(__m_color 0 49 90)
   local C_RST=$(__m_color)
 
@@ -135,7 +136,7 @@ __marmalade_ps1() {
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
 
-export PROMPT_COMMAND=__marmalade_ps1
+export PROMPT_COMMAND=__m_ps1
 
 
 ps1-kube() {
