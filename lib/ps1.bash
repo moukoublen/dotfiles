@@ -125,7 +125,7 @@ __m_ps1_kube() {
 }
 
 
-_marmalade_ps1() {
+__marmalade_ps1() {
   local C_MAI=$(__m_color 0 49 90)
   local C_RST=$(__m_color)
 
@@ -135,7 +135,7 @@ _marmalade_ps1() {
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
 
-export PROMPT_COMMAND=_marmalade_ps1
+export PROMPT_COMMAND=__marmalade_ps1
 
 
 ps1-kube() {
