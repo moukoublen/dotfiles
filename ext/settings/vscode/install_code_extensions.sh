@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 extensions=(
+dracula-theme.theme-dracula
+GitHub.github-vscode-theme
 ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.Go
@@ -13,8 +15,8 @@ vscoss.vscode-ansible
 
 for ext in "${extensions[@]}"
 do
-    echo "Installing $ext"
-    code --install-extension $ext
+  echo "Installing $ext"
+  code --install-extension $ext
 done
 
 unset extensions
