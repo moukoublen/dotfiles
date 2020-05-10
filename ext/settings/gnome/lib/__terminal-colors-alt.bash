@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export C_FG="#f5f5f5"  # (grey 100)
-export C_BG="#272C34"
+export C_BG="#24292E"
 export C_HFG="#FFFFFF"
 export C_HBG="#E91E63" # (pink 500)
 
