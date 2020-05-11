@@ -31,7 +31,7 @@ set -e
 prnt "Removing current Plata ($(echo /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}))"
 sudo rm -rf /usr/share/themes/Plata{,-Lumine,-Noir}{,-Compact}
 
-prnt "Building Plata"
+prnt "Building Plata (dockerized)"
 cd ~/gitrepos/plata-theme
 rm -rf ./*
 git checkout -- .
@@ -56,13 +56,14 @@ CMD=$(echo "\
   --with-accent_color='#ff6090' \
   --with-suggestion_color='#ff5722' \
   --with-destruction_color='#f44336' > /dev/null
-echo '    ...'
+echo '    run make > /dev/null'
 make > /dev/null
 ")
 
 docker run --interactive --tty --rm --volume $PWD:/tmp/plata --workdir /tmp/plata plata-builder /bin/bash -c "$CMD"
-
+prnt 'Dockerized make command finished. Run make install'
 sudo make install > /dev/null
+prnt 'Plata is installed'
 )
 
 
