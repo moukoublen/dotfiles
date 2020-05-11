@@ -13,4 +13,4 @@ docker build -f Dockerfile . \
   --build-arg NEW_USER_ID="$MY_ID" \
   --build-arg NEW_GROUP="$MY_GROUP" \
   --build-arg NEW_GROUP_ID="$MY_GID" \
-  -t user-ubuntu:latest
+  -t user-ubuntu:latest "$@"
