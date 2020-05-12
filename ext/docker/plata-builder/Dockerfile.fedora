@@ -15,6 +15,6 @@ RUN dnf install -y \
     pkgconfig \
     sassc \
     parallel \
-    inkscape-0.92.4-8.fc31
+    inkscape
 
 USER ${NEW_USER}
