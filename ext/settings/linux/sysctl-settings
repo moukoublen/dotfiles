@@ -4,6 +4,15 @@ cat << EOL | sudo tee /etc/sysctl.d/10-inotify.conf
 fs.inotify.max_user_watches = 524288
 EOL
 
+cat << EOL | sudo tee /etc/sysctl.d/20-vm.conf
+vm.max_map_count=262144
+EOL
+
+cat << EOL | sudo tee /etc/sysctl.d/30-swappiness.conf
+vm.swappiness = 35
+EOL
+
+
 sudo sysctl -p --system
 sudo systemctl restart systemd-sysctl.service
 cat /proc/sys/fs/inotify/max_user_watches
