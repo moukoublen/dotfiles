@@ -16,3 +16,5 @@ EOL
 sudo sysctl -p --system
 sudo systemctl restart systemd-sysctl.service
 #cat /proc/sys/fs/inotify/max_user_watches
+#cat /proc/sys/vm/max_map_count
+#cat /proc/sys/vm/swappiness
