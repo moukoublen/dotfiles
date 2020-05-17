@@ -15,5 +15,4 @@ EOL
 
 sudo sysctl -p --system
 sudo systemctl restart systemd-sysctl.service
-cat /proc/sys/fs/inotify/max_user_watches
-
+#cat /proc/sys/fs/inotify/max_user_watches
