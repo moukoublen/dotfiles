@@ -8,7 +8,7 @@ case "$os_name" in
     URL="https://zoom.us/client/latest/zoom_x86_64.rpm"
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")
-    URL="https://zoom.us/client/latest/zoom_x86_64.deb"
+    URL="https://zoom.us/client/latest/zoom_amd64.deb"
     ;;
   *)
     echo "this script does not have packages for this release"
