@@ -135,3 +135,20 @@ cp -r $TMP_DIR/Advent-master/font_source/OTFs/*otf ~/.fonts/advent
 rm -rf $TMP_DIR
 )
 ################################################################################
+
+##### Install Iosevka fonts localy #############################################
+(
+echo "Install Iosevka fonts in ~/.fonts"
+JSON_TEXT=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest)
+LATEST_URL=$(echo $JSON_TEXT | jq '.assets[] | select(.name | test("ttf-iosevka-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
+FILENAME="Iosevka.zip"
+TMP_DIR='/tmp/Iosevka'
+rm -rf $TMP_DIR
+mkdir -p $TMP_DIR
+wget -q $LATEST_URL -O $TMP_DIR/$FILENAME
+unzip -q $TMP_DIR/$FILENAME -d $TMP_DIR
+rm -rf ~/.fonts/Iosevka
+cp -r $TMP_DIR/ttf-unhinted ~/.fonts/Iosevka
+rm -rf $TMP_DIR
+)
+################################################################################

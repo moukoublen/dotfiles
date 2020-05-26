@@ -13,7 +13,7 @@
   "editor.lineHeight": 0,
   "editor.fontSize": 17,
   "editor.fontFamily": "Fira Code",
-  "editor.fontWeight": "400",
+  //"editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 3,
