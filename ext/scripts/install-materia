@@ -1,5 +1,23 @@
 #!/usr/bin/env bash
 
+sudo test
+os_name=$(lsb_release -is)
+case "$os_name" in
+  "Fedora")
+    echo "installing materia requirements..."
+    sudo dnf install -y \
+      gtk2-engines gtk-murrine-engine gdk-pixbuf2 gnome-themes-extra sassc
+    ;;
+  "Ubuntu"|"LinuxMint"|"Pop")
+    sudo apt install -y \
+      gtk2-engines-pixbuf gtk2-engines-murrine gnome-themes-standard sassc
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
+
+
 mkdir -p ~/gitrepos/
 (cd ~/gitrepos/; git clone https://github.com/nana-4/materia-theme.git)
 GS_update_materia
