@@ -1,0 +1,8 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "meta+k",
+    "command": "workbench.action.terminal.clear",
+    "when": "terminalFocus && !terminalFindVisible"
+  }
+]
