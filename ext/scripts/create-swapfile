@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+[[ -z "$1" ]] && echo "No filepath given" && exit 1
+[[ -e "$1" ]] && echo "File $1 exists" && exit 1
+
+SWAPFILE=$1
+SIZE=${2:-16}
+sudo dd if=/dev/zero of=$SWAPFILE bs=1G count=$SIZE
+sudo chmod 0600 $SWAPFILE
+sudo mkswap $SWAPFILE
+#sudo swapon $SWAPFILE
+
+echo "$SWAPFILE swap swap defaults 0 0" | sudo tee --append /etc/fstab
+
