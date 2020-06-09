@@ -21,11 +21,10 @@ __install_font_localy() {
   "${DECOMP_FUNC}" "${TMP_DIRECTORY}/${DWN_FILE}" "${TMP_DIRECTORY}"
   rm -rf $HOME/.fonts/$INSTALL_FOLDER
   mkdir -p $HOME/.fonts/$INSTALL_FOLDER
-  "${INSTALL_FUNC}" "${TMP_DIRECTORY}" "$HOME/.fonts/${INSTALL_FOLDER}"
+  "${INSTALL_FUNC}" "${TMP_DIRECTORY}" "${HOME}/.fonts/${INSTALL_FOLDER}"
   rm -rf $TMP_DIRECTORY
 }
 
-##### Install Input font localy ################################################
 (
 echo "Install Input fonts in ~/.fonts"
 URL='http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do'
@@ -36,78 +35,61 @@ __i(){
 }
 __install_font_localy "$URL" "inputfont.zip" "input_fonts" __decomp __i
 )
-################################################################################
 
-##### Install Hack fonts localy ################################################
 (
 echo "Install Hack fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
 __i(){ cp -r $1/ttf/*ttf $2/; }
 __install_font_localy "$URL" "hack.zip" "hack" __decomp __i
 )
-################################################################################
 
-##### Install FiraCode fonts localy ############################################
 (
 echo "Install FiraCode fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
 __i(){ cp -r $1/otf/*.otf $2/; }
 __install_font_localy "$URL" "firacode.zip" "firacode" __decomp __i
 )
-################################################################################
 
-##### Install Source Sans Pro fonts localy #####################################
 (
 echo "Install Source Sans Pro fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
 __i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
 __install_font_localy "$URL" "sourcesanspro.zip" "sourcesanspro" __decomp __i
 )
-################################################################################
 
-##### Install IBM Plex fonts localy ################################################
 (
 echo "Install IBM Plex fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
 __i(){ cp -r $1/OpenType/* $2/; }
 __install_font_localy "$URL" "opentype.zip" "ibm_plex" __decomp __i
 )
-################################################################################
 
-##### Install Manrope fonts localy #############################################
 (
 echo "Install Manrope fonts in ~/.fonts"
 URL="https://github.com/sharanda/manrope/archive/master.zip"
 __i(){ cp -r $1/manrope-master/fonts/otf/* $2/; }
 __install_font_localy "$URL" "manrope.zip" "manrope" __decomp __i
 )
-################################################################################
 
-##### Install Inter fonts localy #############################################
 (
 echo "Install Inter fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
 __i(){ cp -r $1/Inter\ Desktop/* $2/; }
 __install_font_localy "$URL" "inter.zip" "inter" __decomp __i
 )
-################################################################################
 
-##### Install Advent fonts localy #############################################
 (
 echo "Install Advent fonts in ~/.fonts"
 URL="https://github.com/VivaRado/Advent/archive/master.zip"
 __i(){ cp -r $1/Advent-master/font_source/OTFs/*otf $2/; }
 __install_font_localy "$URL" "advent.zip" "advent" __decomp __i
 )
-################################################################################
 
-##### Install Iosevka fonts localy #############################################
 (
 echo "Install Iosevka fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
 __i(){ cp -r $1/ttf-unhinted/* $2/; }
 __install_font_localy "$URL" "iosevka.zip" "iosevka" __decomp __i
 )
-################################################################################
 
 fc-cache -f
