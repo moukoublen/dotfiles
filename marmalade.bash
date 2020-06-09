@@ -4,22 +4,22 @@
 # [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
 #
 ################################################################################
-abspth() {
+path-abs() {
   local drnm="$(dirname $1)"
-  echo "$(cd -P $drnm && pwd)"
+  echo $(cd -P $drnm && pwd)
 }
 
-rlpth() {
-  local SOURCE=$1
-  while [ -h "$SOURCE" ]; do
-    local DIR="$(abspth $SOURCE)"
-    SOURCE="$(readlink "$SOURCE")"
+path-real() {
+  local SOURCE="$1"
+  while [[ -L $SOURCE ]]; do
+    local DIR="$(path-abs $SOURCE)"
+    SOURCE="$(readlink --canonicalize-existing --no-newline $SOURCE)"
     [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
   done
-  echo "$(abspth $SOURCE)"
+  echo "$(path-abs $SOURCE)"
 }
 
-export MARMALADE_PATH="$(rlpth ${BASH_SOURCE[0]})"
+export MARMALADE_PATH="$(path-real ${BASH_SOURCE[0]})"
 
 ################################################################################
 ######### Source libs ##########################################################

@@ -1,22 +1,21 @@
 #!/usr/bin/env bash
 
-#lovely stackoverflow https://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
-abspth() {
+path-abs() {
   local drnm="$(dirname $1)"
-  echo "$(cd -P $drnm && pwd)"
+  echo $(cd -P $drnm && pwd)
 }
 
-rlpth() {
-  local SOURCE=$1
-  while [ -h "$SOURCE" ]; do
-    local DIR="$(abspth $SOURCE)"
-    SOURCE="$(readlink "$SOURCE")"
+path-real() {
+  local SOURCE="$1"
+  while [[ -L $SOURCE ]]; do
+    local DIR="$(path-abs $SOURCE)"
+    SOURCE="$(readlink --canonicalize-existing --no-newline $SOURCE)"
     [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
   done
-  echo "$(abspth $SOURCE)"
+  echo "$(path-abs $SOURCE)"
 }
 
-DIR="$(rlpth ${BASH_SOURCE[0]})"
+DIR="$(path-real ${BASH_SOURCE[0]})"
 
 echo "********************************************************"
 echo "**************** Marmalade Installation ****************"
@@ -35,7 +34,7 @@ BASH_FILE=~/.bashrc
 echo "  file to be used: $BASH_FILE"
 
 SOURCE_LINE='[[ -r ~/.marmalade.bash ]] && [[ -f ~/.marmalade.bash ]] && source ~/.marmalade.bash'
-if grep --fixed-strings -q "$SOURCE_LINE" $BASH_FILE; then
+if grep --fixed-strings --quiet "$SOURCE_LINE" $BASH_FILE; then
   echo "  marmalade sourcing is already included in $BASH_FILE"
 else
   echo "  add marmalade sourcing in $BASH_FILE"
