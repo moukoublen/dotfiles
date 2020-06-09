@@ -47,5 +47,5 @@ echo "********************************************************"
 unset DIR
 unset BASH_FILE
 unset SOURCE_LINE
-unset -f rlpth
-unset -f abspth
+unset -f path-real
+unset -f path-abs
