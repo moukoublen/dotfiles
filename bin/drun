@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-
 READ_ONLY=""
 case "$1" in
   -r|--readOnly)
@@ -9,7 +8,6 @@ case "$1" in
     shift 1
     ;;
 esac
-
 
 docker run \
   --rm \
