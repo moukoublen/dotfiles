@@ -66,7 +66,7 @@
   },
   "go.formatTool": "goimports",
   "go.lintTool": "golint",
-  "go.useLanguageServer": false,
+  "go.useLanguageServer": true,
   "go.languageServerFlags": [
     "-rpc.trace",
     "-logfile",
@@ -75,4 +75,5 @@
   "go.testFlags": [
     "-v"
   ],
+  "go.toolsGopath": "/home/kostas/vscode-gotools",
 }
