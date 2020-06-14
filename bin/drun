@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+
+
+READ_ONLY=""
+case "$1" in
+  -r|--readOnly)
+    READ_ONLY=":ro"
+    shift 1
+    ;;
+esac
+
+
+docker run \
+  --rm \
+  --interactive \
+  --tty \
+  --volume "${PWD}:/tmp/ufolder${READ_ONLY}" \
+  --workdir /tmp/ufolder \
+  $@
