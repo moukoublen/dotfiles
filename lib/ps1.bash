@@ -58,13 +58,10 @@
 ################################################################################
 
 __m_color() {
-  local prefix="\["
-  local postfix="\]"
-
   if [[ "$#" = 0 ]]; then
-    echo -n "${prefix}\e[0m${postfix}"
+    echo -n "\[\e[0m\]"
   else
-    echo -n "${prefix}\e[${1};${2};${3}m${postfix}"
+    echo -n "\[\e[${1};${2};${3}m\]"
   fi
 }
 
