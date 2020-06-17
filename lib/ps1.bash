@@ -68,13 +68,42 @@ __m_color() {
   fi
 }
 
+__m_get_color() {
+  case "$1" in
+    reset)
+      __m_color
+      ;;
+    main)
+      __m_color 0 49 90
+      ;;
+    seperator)
+      __m_color 2 49 37
+      ;;
+    user)
+      __m_color 0 49 36
+      ;;
+    path)
+      __m_color 0 49 32
+      ;;
+    git)
+      __m_color 1 49 93
+      ;;
+    kube_context)
+      __m_color 1 49 34
+      ;;
+    kube_nsp)
+      __m_color 0 49 37
+      ;;
+  esac
+}
+
 
 __m_seperator() {
-  local C_SEP=$(__m_color 2 49 37)
-  local C_RST=$(__m_color)
+  local C_SEP=$(__m_get_color seperator)
+  local C_RST=$(__m_get_color reset)
   local DSEP=" ${C_SEP}|${C_RST} "
   local SEP=${MARMALADE_PS1_SEPERATOR:-$DSEP}
-  echo -n "${SEP}"
+  printf "$SEP"
 }
 
 
@@ -83,17 +112,15 @@ __m_ps1_user() {
     return
   fi
 
-  local C_USR=$(__m_color 0 49 36)
-  local C_MAI=$(__m_color 0 49 90)
-  local C_RST=$(__m_color)
-  echo -n "${C_USR}$(whoami)${C_RST}${C_MAI}@${C_RST}${C_USR}$(hostname)${C_RST}$(__m_seperator)"
+  local C_USR=$(__m_get_color user)
+  local C_MAI=$(__m_get_color main)
+  local C_RST=$(__m_get_color reset)
+  printf "%s%s%s%s@%s%s%s%s%s" "${C_USR}" $(whoami) "${C_RST}" "${C_MAI}" "${C_RST}" "${C_USR}" "$(hostname)" "${C_RST}" "$(__m_seperator)"
 }
 
 
 __m_ps1_pwd() {
-  local C_PTH=$(__m_color 0 49 32)
-  local C_RST=$(__m_color)
-  echo -n "${C_PTH}\w${C_RST}"
+  printf "%s\w%s" $(__m_get_color path) $(__m_get_color reset)
 }
 
 
@@ -103,12 +130,15 @@ fi
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
-export GIT_PS1_SHOWCOLORHINTS=true
 __m_ps1_git() {
-  local C_GIT=$(__m_color 1 49 93)
-  local C_RST=$(__m_color)
-  local p_gfr="$(__m_seperator)${C_GIT}%s${C_RST}" #__git_ps1 format string
-  declare -F __git_ps1 &>/dev/null && __git_ps1 "${p_gfr}"
+  if [[ "$(type -t __git_ps1)" != 'function' ]]; then
+    return
+  fi
+
+  local gitp="$(__git_ps1 '%s')"
+  if [[ -n "$gitp" ]]; then
+    printf "%s%s%s%s" "$(__m_seperator)" "$(__m_get_color git)" "${gitp}" "$(__m_get_color reset)"
+  fi
 }
 
 
@@ -117,18 +147,16 @@ __m_ps1_kube() {
     return
   fi
 
-  local C_CTXD=$(__m_color 2 49 34)
-  local C_CTXB=$(__m_color 1 49 34)
-  local C_NSP=$(__m_color 0 49 37)
-  local C_RST=$(__m_color)
-  echo -n "$(__m_seperator)"
-  echo -n $(kubectl config view --minify --output "jsonpath=${C_CTXB}{.current-context}${C_CTXD}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+  local C_CTXD=$(__m_get_color kube_context)
+  local C_NSP=$(__m_get_color kube_nsp)
+  local C_RST=$(__m_get_color reset)
+  printf "%s%s" $(__m_seperator) $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
 }
 
 
 __m_ps1() {
-  local C_MAI=$(__m_color 0 49 90)
-  local C_RST=$(__m_color)
+  local C_MAI=$(__m_get_color main)
+  local C_RST=$(__m_get_color reset)
 
   local ps1_line1="${C_MAI}╭${C_RST} $(__m_ps1_user)$(__m_ps1_pwd)$(__m_ps1_git)$(__m_ps1_kube)"
   local ps1_line2="${C_MAI}╰${C_RST} "
