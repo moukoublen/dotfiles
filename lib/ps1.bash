@@ -99,11 +99,8 @@ __m_get_color() {
 
 
 __m_seperator() {
-  local C_SEP=$(__m_get_color seperator)
-  local C_RST=$(__m_get_color reset)
-  local DSEP=" ${C_SEP}|${C_RST} "
-  local SEP=${MARMALADE_PS1_SEPERATOR:-$DSEP}
-  printf "$SEP"
+  local DSEP=${MARMALADE_PS1_SEPERATOR:-" ␣ "}
+  printf "%s%s%s" $(__m_get_color seperator) "$DSEP" $(__m_get_color reset)
 }
 
 
@@ -113,9 +110,9 @@ __m_ps1_user() {
   fi
 
   local C_USR=$(__m_get_color user)
-  local C_MAI=$(__m_get_color main)
+  local C_SEP=$(__m_get_color seperator)
   local C_RST=$(__m_get_color reset)
-  printf "%s%s%s%s@%s%s%s%s%s" "${C_USR}" $(whoami) "${C_RST}" "${C_MAI}" "${C_RST}" "${C_USR}" "$(hostname)" "${C_RST}" "$(__m_seperator)"
+  printf "%s%s%s%s%s%s%s%s%s%s" "${C_USR}" $(whoami) "${C_RST}" "$(__m_seperator)" "${C_SEP}" "${C_RST}" "${C_USR}" "$(hostname)" "${C_RST}" "$(__m_seperator)"
 }
 
 
@@ -155,11 +152,11 @@ __m_ps1_kube() {
 
 
 __m_ps1() {
-  local C_MAI=$(__m_get_color main)
+  local C_MAI=$(__m_get_color seperator)
   local C_RST=$(__m_get_color reset)
 
-  local ps1_line1="${C_MAI}╭${C_RST} $(__m_ps1_user)$(__m_ps1_pwd)$(__m_ps1_git)$(__m_ps1_kube)"
-  local ps1_line2="${C_MAI}╰${C_RST} "
+  local ps1_line1="${C_MAI}🬼${C_RST}$(__m_ps1_user)$(__m_ps1_pwd)$(__m_ps1_git)$(__m_ps1_kube)"
+  local ps1_line2="${C_MAI}🭗${C_RST}"
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
