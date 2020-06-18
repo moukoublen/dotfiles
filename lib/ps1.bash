@@ -74,7 +74,7 @@ __m_get_color() {
       __m_color 0 49 90
       ;;
     seperator)
-      __m_color 2 49 37
+      __m_color 0 49 37
       ;;
     user)
       __m_color 0 49 36
