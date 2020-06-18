@@ -58,6 +58,11 @@
       "source.organizeImports": true
     }
   },
+  "[go.mod]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true
+  },
   "go.autocompleteUnimportedPackages": true,
   "go.useCodeSnippetsOnFunctionSuggest": true,
   "go.enableCodeLens": {
