@@ -57,7 +57,7 @@
 ##  107 White
 ################################################################################
 
-__m_color() {
+__m_ps1_color() {
   if [[ "$#" = 0 ]]; then
     echo -n "\[\e[0m\]"
   else
@@ -65,45 +65,45 @@ __m_color() {
   fi
 }
 
-__m_get_color() {
+__m_ps1_get_color() {
   case "$1" in
     reset)
-      __m_color
+      __m_ps1_color
       ;;
     main)
-      __m_color 0 49 90
+      __m_ps1_color 0 49 90
       ;;
     seperator)
-      __m_color 0 49 37
+      __m_ps1_color 0 49 37
       ;;
     user)
-      __m_color 0 49 36
+      __m_ps1_color 0 49 36
       ;;
     root)
-      __m_color 0 40 31
+      __m_ps1_color 0 40 31
       ;;
     root-b)
-      __m_color 0 49 30
+      __m_ps1_color 0 49 30
       ;;
     path)
-      __m_color 0 49 32
+      __m_ps1_color 0 49 32
       ;;
     git)
-      __m_color 1 49 93
+      __m_ps1_color 1 49 93
       ;;
     kube_context)
-      __m_color 1 49 34
+      __m_ps1_color 1 49 34
       ;;
     kube_nsp)
-      __m_color 0 49 37
+      __m_ps1_color 0 49 37
       ;;
   esac
 }
 
 
-__m_seperator() {
+__m_ps1_seperator() {
   local DSEP=${MARMALADE_PS1_SEPERATOR:-" ␣ "}
-  printf "%s%s%s" $(__m_get_color seperator) "$DSEP" $(__m_get_color reset)
+  printf "%s%s%s" $(__m_ps1_get_color seperator) "$DSEP" $(__m_ps1_get_color reset)
 }
 
 
@@ -112,9 +112,9 @@ __m_ps1_user() {
     return
   fi
 
-  local USR="$(__m_get_color user)$USER$(__m_get_color reset)"
+  local USR="$(__m_ps1_get_color user)$USER$(__m_ps1_get_color reset)"
   if [[ $EUID -eq 0 ]]; then
-    USR="$(__m_get_color root-b)░▒▓$(__m_get_color root)root$(__m_get_color root-b)▓▒░$(__m_get_color reset)"
+    USR="$(__m_ps1_get_color root-b)░▒▓$(__m_ps1_get_color root)root$(__m_ps1_get_color root-b)▓▒░$(__m_ps1_get_color reset)"
   fi
 
   printf "%s" "${USR}"
@@ -126,12 +126,12 @@ __m_ps1_host() {
     return
   fi
 
-  printf "%s%s%s" "$(__m_get_color user)" "$(hostname)" "$(__m_get_color reset)"
+  printf "%s%s%s" "$(__m_ps1_get_color user)" "$(hostname)" "$(__m_ps1_get_color reset)"
 }
 
 
 __m_ps1_pwd() {
-  printf "%s\w%s" $(__m_get_color path) $(__m_get_color reset)
+  printf "%s\w%s" $(__m_ps1_get_color path) $(__m_ps1_get_color reset)
 }
 
 
@@ -148,7 +148,7 @@ __m_ps1_git() {
 
   local gitp="$(__git_ps1 '%s')"
   if [[ -n "$gitp" ]]; then
-    printf "%s%s%s" "$(__m_get_color git)" "${gitp}" "$(__m_get_color reset)"
+    printf "%s%s%s" "$(__m_ps1_get_color git)" "${gitp}" "$(__m_ps1_get_color reset)"
   fi
 }
 
@@ -158,34 +158,34 @@ __m_ps1_kube() {
     return
   fi
 
-  local C_CTXD=$(__m_get_color kube_context)
-  local C_NSP=$(__m_get_color kube_nsp)
-  local C_RST=$(__m_get_color reset)
+  local C_CTXD=$(__m_ps1_get_color kube_context)
+  local C_NSP=$(__m_ps1_get_color kube_nsp)
+  local C_RST=$(__m_ps1_get_color reset)
   printf "%s" $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
 }
 
 
-__m_join() {
-  local B=""
-
-  if [[ "$#" -eq 0 ]]; then
-    return
-  fi
-
-  B="$1"
-
-  for s in "${@:2}"; do
-    [[ -z "$s" ]] && continue
-    B="${B}$(__m_seperator)${s}"
-  done
-
-  printf "%s" "$B"
-}
-
-
 __m_ps1() {
-  local C_MAI=$(__m_get_color seperator)
-  local C_RST=$(__m_get_color reset)
+
+  __m_join() {
+    local B=""
+
+    if [[ "$#" -eq 0 ]]; then
+      return
+    fi
+
+    B="$1"
+
+    for s in "${@:2}"; do
+      [[ -z "$s" ]] && continue
+      B="${B}$(__m_ps1_seperator)${s}"
+    done
+
+    printf "%s" "$B"
+  }
+
+  local C_MAI=$(__m_ps1_get_color seperator)
+  local C_RST=$(__m_ps1_get_color reset)
 
   local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
 
