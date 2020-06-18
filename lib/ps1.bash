@@ -79,6 +79,9 @@ __m_get_color() {
     user)
       __m_color 0 49 36
       ;;
+    root)
+      __m_color 0 40 31
+      ;;
     path)
       __m_color 0 49 32
       ;;
@@ -102,14 +105,25 @@ __m_seperator() {
 
 
 __m_ps1_user() {
+  if [[  "${MARMALADE_PS1_DISPLAY_USER-}" == 'false' ]]; then
+    return
+  fi
+
+  local USR_COLOR="$(__m_get_color user)"
+  if [[ $EUID -eq 0 ]]; then
+    USR_COLOR="$(__m_get_color root)"
+  fi
+
+  printf "%s%s%s" "${USR_COLOR}" "$USER" "$(__m_get_color reset)"
+}
+
+
+__m_ps1_host() {
   if [[ -z "${MARMALADE_PS1_DISPLAY_USER-}" ]]; then
     return
   fi
 
-  local C_USR=$(__m_get_color user)
-  local C_SEP=$(__m_get_color seperator)
-  local C_RST=$(__m_get_color reset)
-  printf "%s%s%s%s%s%s%s%s%s%s" "${C_USR}" $(whoami) "${C_RST}" "$(__m_seperator)" "${C_SEP}" "${C_RST}" "${C_USR}" "$(hostname)" "${C_RST}" "$(__m_seperator)"
+  printf "%s%s%s" "$(__m_get_color user)" "$(hostname)" "$(__m_get_color reset)"
 }
 
 
@@ -131,7 +145,7 @@ __m_ps1_git() {
 
   local gitp="$(__git_ps1 '%s')"
   if [[ -n "$gitp" ]]; then
-    printf "%s%s%s%s" "$(__m_seperator)" "$(__m_get_color git)" "${gitp}" "$(__m_get_color reset)"
+    printf "%s%s%s" "$(__m_get_color git)" "${gitp}" "$(__m_get_color reset)"
   fi
 }
 
@@ -144,7 +158,25 @@ __m_ps1_kube() {
   local C_CTXD=$(__m_get_color kube_context)
   local C_NSP=$(__m_get_color kube_nsp)
   local C_RST=$(__m_get_color reset)
-  printf "%s%s" $(__m_seperator) $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+  printf "%s" $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+}
+
+
+__m_join() {
+  local B=""
+
+  if [[ "$#" -eq 0 ]]; then
+    return
+  fi
+
+  B="$1"
+
+  for s in "${@:2}"; do
+    [[ -z "$s" ]] && continue
+    B="${B}$(__m_seperator)${s}"
+  done
+
+  printf "%s" "$B"
 }
 
 
@@ -152,7 +184,9 @@ __m_ps1() {
   local C_MAI=$(__m_get_color seperator)
   local C_RST=$(__m_get_color reset)
 
-  local ps1_line1="${C_MAI}🬼${C_RST}$(__m_ps1_user)$(__m_ps1_pwd)$(__m_ps1_git)$(__m_ps1_kube)"
+  local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
+
+  local ps1_line1="${C_MAI}🬼${C_RST}${dl}"
   local ps1_line2="${C_MAI}🭗${C_RST}"
 
   export PS1="${ps1_line1}\n${ps1_line2}"
