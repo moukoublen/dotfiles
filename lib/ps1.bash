@@ -82,6 +82,9 @@ __m_get_color() {
     root)
       __m_color 0 40 31
       ;;
+    root-b)
+      __m_color 0 49 30
+      ;;
     path)
       __m_color 0 49 32
       ;;
@@ -109,12 +112,12 @@ __m_ps1_user() {
     return
   fi
 
-  local USR_COLOR="$(__m_get_color user)"
+  local USR="$(__m_get_color user)$USER$(__m_get_color reset)"
   if [[ $EUID -eq 0 ]]; then
-    USR_COLOR="$(__m_get_color root)"
+    USR="$(__m_get_color root-b)░▒▓$(__m_get_color root)root$(__m_get_color root-b)▓▒░$(__m_get_color reset)"
   fi
 
-  printf "%s%s%s" "${USR_COLOR}" "$USER" "$(__m_get_color reset)"
+  printf "%s" "${USR}"
 }
 
 
