@@ -122,7 +122,7 @@ __m_ps1_user() {
 
 
 __m_ps1_host() {
-  if [[ -z "${MARMALADE_PS1_DISPLAY_USER-}" ]]; then
+  if [[ "${MARMALADE_PS1_DISPLAY_USER-}" == 'false' ]]; then
     return
   fi
 
