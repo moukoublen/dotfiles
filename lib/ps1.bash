@@ -122,11 +122,13 @@ __m_ps1_user() {
 
 
 __m_ps1_host() {
-  if [[ "${MARMALADE_PS1_DISPLAY_USER-}" == 'false' ]]; then
+  if [[ "${MARMALADE_PS1_DISPLAY_HOSTNAME-}" == 'false' ]]; then
     return
   fi
 
-  printf "%s%s%s" "$(__m_ps1_get_color user)" "$(hostname)" "$(__m_ps1_get_color reset)"
+  local TO_PRINT=${MARMALADE_PS1_HOSTNAME:-$HOSTNAME}
+
+  printf "%s%s%s" "$(__m_ps1_get_color user)" "${TO_PRINT}" "$(__m_ps1_get_color reset)"
 }
 
 
