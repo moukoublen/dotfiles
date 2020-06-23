@@ -108,7 +108,7 @@ __m_ps1_seperator() {
 
 
 __m_ps1_user() {
-  if [[  "${MARMALADE_PS1_DISPLAY_USER-}" == 'false' ]]; then
+  if [[  "${MARMALADE_PS1_DISPLAY_USER}" == 'false' ]]; then
     return
   fi
 
@@ -122,7 +122,7 @@ __m_ps1_user() {
 
 
 __m_ps1_host() {
-  if [[ "${MARMALADE_PS1_DISPLAY_HOSTNAME-}" == 'false' ]]; then
+  if [[ "${MARMALADE_PS1_DISPLAY_HOSTNAME}" == 'false' ]]; then
     return
   fi
 
@@ -176,11 +176,11 @@ __m_ps1() {
       return
     fi
 
-    B="$1"
-
-    for s in "${@:2}"; do
+    for s in "${@}"; do
       [[ -z "$s" ]] && continue
-      B="${B}$(__m_ps1_seperator)${s}"
+      local sep="$(__m_ps1_seperator)"
+      [[ "${B}" == "" ]] && sep=""
+      B="${B}${sep}${s}"
     done
 
     printf "%s" "$B"
