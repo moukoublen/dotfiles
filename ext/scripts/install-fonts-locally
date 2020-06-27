@@ -23,6 +23,7 @@ __install_font_localy() {
   mkdir -p $HOME/.fonts/$INSTALL_FOLDER
   "${INSTALL_FUNC}" "${TMP_DIRECTORY}" "${HOME}/.fonts/${INSTALL_FOLDER}"
   rm -rf $TMP_DIRECTORY
+  echo ""
 }
 
 (
@@ -46,7 +47,7 @@ __install_font_localy "$URL" "hack.zip" "hack" __decomp __i
 (
 echo "Install FiraCode fonts in ~/.fonts"
 URL=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
-__i(){ cp -r $1/otf/*.otf $2/; }
+__i(){ cp -r $1/ttf/*.ttf $2/; }
 __install_font_localy "$URL" "firacode.zip" "firacode" __decomp __i
 )
 
