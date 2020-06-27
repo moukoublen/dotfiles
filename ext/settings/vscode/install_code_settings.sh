@@ -2,6 +2,14 @@
 
 # code
 mkdir -p ~/.config/Code/User
-cp ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.backup
-rm ~/.config/Code/User/settings.json
-ln -s $MARMALADE_PATH/ext/settings/vscode/settings.json ~/.config/Code/User/
+
+__install_settings_file() {
+  local fl=$1
+  local VSCODE_CONF_PATH=~/.config/Code/User/
+  [[ -f $VSCODE_CONF_PATH/$fl ]] && [[ ! -h $VSCODE_CONF_PATH/$fl ]] && mv $VSCODE_CONF_PATH/$fl{,.backup}
+  [[ -h $VSCODE_CONF_PATH/$fl ]] && echo "Link for $fl already exists" && return
+  ln -s $MARMALADE_PATH/ext/settings/vscode/$fl $VSCODE_CONF_PATH/$fl
+}
+
+__install_settings_file settings.json
+__install_settings_file keybindings.json
