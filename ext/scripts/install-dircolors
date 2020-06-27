@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+curl --silent --location https://raw.githubusercontent.com/arcticicestudio/nord-dircolors/develop/src/dir_colors > ~/.dir_colors
+
+SRC_LINE='eval $(dircolors ~/.dir_colors)'
+
+grep --fixed-strings --quiet "$SOURCE_LINE" ~/.bashrc && echo "Source of dir_colors already exists" && exit
+
+echo $SRC_LINE >> ~/.bashrc
+
+unset SRC_LINE
