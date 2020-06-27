@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-sudo apt install -y git gitg build-essential vim \
-                    meld htop curl wget jq \
+sudo apt install -y git build-essential vim \
+                    htop curl wget jq \
                     make cmake automake autoconf lsb-release
 
 sudo apt install -y openjdk-8-jre openjdk-8-jre-headless \
                     openjdk-8-doc openjdk-8-jdk openjdk-8-jdk-headless
 
-#sudo apt install -y default-jdk default-jdk-headless default-jdk-doc \
-#                    default-jre default-jre-headless
+sudo apt install -y default-jdk default-jdk-headless default-jdk-doc \
+                    default-jre default-jre-headless
 
 sudo apt install -y ubuntu-restricted-addons
-
+sudo apt install -y meld gitg gitk pavucontrol
 
 sudo systemctl stop ufw.service
 sudo systemctl disable ufw.service
