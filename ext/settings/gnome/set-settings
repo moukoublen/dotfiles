@@ -6,8 +6,8 @@ source ./lib/__terminal-colors.bash
 
 ./lib/gnome-shell-settings.bash
 ./lib/nautilus-settings.bash
-./lib/gnome-terminal.bash
+./lib/gnome-terminal.bash __terminal-colors-dracula.bash
 
 if [[ -x "$(command -v tilix)" ]]; then
-  ./lib/tilix-settings.bash
+  ./lib/tilix-settings.bash __terminal-colors.bash
 fi
