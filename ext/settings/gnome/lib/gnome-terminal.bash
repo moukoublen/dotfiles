@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source $1
+
 ################### Gnome Terminal #############################################
 echo ""
 echo "----- Gnome Terminal Settings -----"
