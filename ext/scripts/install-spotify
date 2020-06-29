@@ -4,8 +4,8 @@ sudo test
 os_name=$(lsb_release -is)
 case "$os_name" in
   "Fedora")
-    sudo dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
-    sudo dnf -y install spotify-client
+    sudo dnf install lpf-spotify-client
+    sudo usermod -aG pkg-build ksta
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
