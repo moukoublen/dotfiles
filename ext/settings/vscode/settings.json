@@ -80,5 +80,5 @@
   "go.testFlags": [
     "-v"
   ],
-  "go.toolsGopath": "/home/kostas/vscode-gotools",
+  "go.toolsGopath": "${env:HOME}/vscode-gotools",
 }
