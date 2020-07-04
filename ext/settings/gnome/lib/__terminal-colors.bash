@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-export C_FG="#f5f5f5"  # (grey 100)
+export C_FG="#F5F5F5"  # (grey 100)
 export C_BG="#24292E"  #
-export C_HFG="#FAFAFA" # (grey 50)
-export C_HBG="#ff4081" # (pink A 200)
+export C_HFG="#000000" # (full black)
+export C_HBG="#FF4081" # (pink A 200)
 
 export C_00='#424242'  # Black (grey 800)
 export C_01='#F44336'  # Red (red 500)
