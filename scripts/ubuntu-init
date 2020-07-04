@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sudo apt install -y git build-essential vim \
+sudo apt install -y git build-essential strace vim nano ack ripgrep \
                     htop curl wget jq \
                     make cmake automake autoconf lsb-release
 

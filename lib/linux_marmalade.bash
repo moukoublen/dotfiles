@@ -35,3 +35,6 @@ alias display_package_contents_dnf='dnf repoquery -l'
 alias display_local_package_contents_dnf='dnf repoquery --installed -l'
 ################################################################################
 ################################################################################
+
+bind 'set mark-symlinked-directories on'
+

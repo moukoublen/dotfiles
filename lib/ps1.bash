@@ -70,6 +70,9 @@ __m_ps1_get_color() {
     reset)
       __m_ps1_color
       ;;
+    prefix)
+      __m_ps1_color 2 49 37
+      ;;
     main)
       __m_ps1_color 0 49 90
       ;;
@@ -186,13 +189,15 @@ __m_ps1() {
     printf "%s" "$B"
   }
 
-  local C_MAI=$(__m_ps1_get_color seperator)
+  local C_MAI=$(__m_ps1_get_color prefix)
   local C_RST=$(__m_ps1_get_color reset)
 
   local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
 
-  local ps1_line1="${C_MAI}🬼${C_RST}${dl}"
-  local ps1_line2="${C_MAI}🭗${C_RST}"
+
+  local ps1_line1="${C_MAI}⎛${C_RST} ${dl}"
+  local ps1_line2="${C_MAI}⎝${C_RST} "
+  #local ps1_line2="${C_MAI}❱${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
