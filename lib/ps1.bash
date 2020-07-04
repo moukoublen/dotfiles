@@ -71,7 +71,7 @@ __m_ps1_get_color() {
       __m_ps1_color
       ;;
     prefix)
-      __m_ps1_color 0 49 37
+      __m_ps1_color 0 49 95
       ;;
     main)
       __m_ps1_color 0 49 90

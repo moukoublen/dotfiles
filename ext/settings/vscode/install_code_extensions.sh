@@ -2,7 +2,6 @@
 
 extensions=(
 asciidoctor.asciidoctor-vscode
-dracula-theme.theme-dracula
 eamodio.gitlens
 GitHub.github-vscode-theme
 golang.go
