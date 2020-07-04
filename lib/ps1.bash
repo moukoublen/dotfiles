@@ -83,10 +83,7 @@ __m_ps1_get_color() {
       __m_ps1_color 0 49 36
       ;;
     root)
-      __m_ps1_color 0 40 31
-      ;;
-    root-b)
-      __m_ps1_color 0 49 30
+      __m_ps1_color 0 49 31
       ;;
     path)
       __m_ps1_color 0 49 32
@@ -111,13 +108,13 @@ __m_ps1_seperator() {
 
 
 __m_ps1_user() {
-  if [[  "${MARMALADE_PS1_DISPLAY_USER}" == 'false' ]]; then
+  if [[  "${MARMALADE_PS1_DISPLAY_USER}" == 'false' ]] && [[ ! "`id -u`" -eq 0 ]]; then
     return
   fi
 
   local USR="$(__m_ps1_get_color user)$USER$(__m_ps1_get_color reset)"
-  if [[ $EUID -eq 0 ]]; then
-    USR="$(__m_ps1_get_color root-b)░▒▓$(__m_ps1_get_color root)root$(__m_ps1_get_color root-b)▓▒░$(__m_ps1_get_color reset)"
+  if [[ "`id -u`" -eq 0 ]]; then
+    USR="$(__m_ps1_get_color root)root$(__m_ps1_get_color reset)"
   fi
 
   printf "%s" "${USR}"
@@ -195,9 +192,8 @@ __m_ps1() {
   local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
 
 
-  local ps1_line1="${C_MAI}⎛${C_RST} ${dl}"
-  local ps1_line2="${C_MAI}⎝${C_RST} "
-  #local ps1_line2="${C_MAI}❱${C_RST} "
+  local ps1_line1="${dl}"
+  local ps1_line2="${C_MAI}❱${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
