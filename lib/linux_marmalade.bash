@@ -31,8 +31,8 @@ alias java-ls='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
 
 ################################################################################
 ######### Fedora ###############################################################
-alias display_package_contents_dnf='dnf repoquery -l'
-alias display_local_package_contents_dnf='dnf repoquery --installed -l'
+alias dnf-display-package-contents='dnf repoquery -l'
+alias dnf-display-local-package-contents='dnf repoquery --installed -l'
 ################################################################################
 ################################################################################
 

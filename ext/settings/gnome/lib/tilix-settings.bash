@@ -32,7 +32,7 @@ gsettings-set "${default_profile_path} default-size-rows" "35"
 gsettings-set "${default_profile_path} scrollback-unlimited" "true"
 gsettings-set "${default_profile_path} use-system-font" "false"
 gsettings-set "${default_profile_path} font" 'Iosevka 16'
-gsettings-set "${default_profile_path} cursor-shape" "ibeam"
+gsettings-set "${default_profile_path} cursor-shape" "underline"
 gsettings-set "${default_profile_path} terminal-bell" "none"
 gsettings-set "${default_profile_path} use-theme-colors" "false"
 gsettings-set "${default_profile_path} highlight-colors-set" "true"
