@@ -15,15 +15,11 @@ dshell() {
 }
 complete -F __dhelp_completion dshell
 
-install_docker-compose_completion() {
+install-docker-compose-completion() {
   local DVER=${1:-master}
-  mkdir -p ~/.dotfiles_extras
-  curl -L "https://raw.githubusercontent.com/docker/compose/${DVER}/contrib/completion/bash/docker-compose" > "${HOME}/.dotfiles_extras/docker-compose.bash-completion"
+  mkdir -p ~/.dotfiles-extras
+  curl -L "https://raw.githubusercontent.com/docker/compose/${DVER}/contrib/completion/bash/docker-compose" > "${HOME}/.dotfiles-extras/docker-compose.bash-completion"
 }
-
-if [[ -f ~/.dotfiles_extras/docker-compose.bash-completion ]]; then
-  source ~/.dotfiles_extras/docker-compose.bash-completion
-fi
 
 ################################################################################
 ################# macos docker #################################################

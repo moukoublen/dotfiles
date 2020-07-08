@@ -34,6 +34,10 @@ else
   source $MARMALADE_PATH/lib/linux_marmalade.bash
 fi
 
+for e in $( ls $HOME/.dotfiles-extras/* 2>/dev/null ); do
+  source $e
+done
+
 for e in $( ls $MARMALADE_PATH/extras-* 2>/dev/null ); do
   source $e
 done
