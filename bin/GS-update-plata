@@ -54,7 +54,7 @@ CMD=$(echo "\
   --disable-airforsteam \
   --with-selection_color='#E91E63' \
   --with-accent_color='#ff6090' \
-  --with-suggestion_color='#ff5722' \
+  --with-suggestion_color='#ffeb3b' \
   --with-destruction_color='#f44336' > /dev/null
 echo '    run make > /dev/null'
 make > /dev/null
