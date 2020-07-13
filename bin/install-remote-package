@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-TMP_DIR=$(mktemp)
+TMP_DIR=$(mktemp --directory --tmpdir package_XXXXXXX)
 FILENAME=$(get-remote-filename $1)
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
