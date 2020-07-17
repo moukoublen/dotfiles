@@ -26,71 +26,95 @@ __install_font_localy() {
   echo ""
 }
 
-(
-echo "Install Input fonts in ~/.fonts"
-URL='http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do'
-__i(){
-  cp -r $1/Input_Fonts/InputMono $2/
-  cp -r $1/Input_Fonts/InputSans $2/
-  cp -r $1/Input_Fonts/InputSerif $2/
+__fnt_input() {
+  echo "Install Input fonts in ~/.fonts"
+  URL='http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do'
+  __i(){
+    cp -r $1/Input_Fonts/InputMono $2/
+    cp -r $1/Input_Fonts/InputSans $2/
+    cp -r $1/Input_Fonts/InputSerif $2/
+  }
+  __install_font_localy "$URL" "inputfont.zip" "input_fonts" __decomp __i
 }
-__install_font_localy "$URL" "inputfont.zip" "input_fonts" __decomp __i
+
+__fnt_hack() {
+  echo "Install Hack fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf/*ttf $2/; }
+  __install_font_localy "$URL" "hack.zip" "hack" __decomp __i
+}
+
+__fnt_firacode() {
+  echo "Install FiraCode fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf/*.ttf $2/; }
+  __install_font_localy "$URL" "firacode.zip" "firacode" __decomp __i
+}
+
+__fnt_sourcesanspro() {
+  echo "Install Source Sans Pro fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
+  __i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
+  __install_font_localy "$URL" "sourcesanspro.zip" "sourcesanspro" __decomp __i
+}
+
+__fnt_ibmplex() {
+  echo "Install IBM Plex fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/OpenType/* $2/; }
+  __install_font_localy "$URL" "opentype.zip" "ibm_plex" __decomp __i
+}
+
+__fnt_manrope() {
+  echo "Install Manrope fonts in ~/.fonts"
+  URL="https://github.com/sharanda/manrope/archive/master.zip"
+  __i(){ cp -r $1/manrope-master/fonts/otf/* $2/; }
+  __install_font_localy "$URL" "manrope.zip" "manrope" __decomp __i
+}
+
+__fnt_inter() {
+  echo "Install Inter fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/Inter\ Desktop/* $2/; }
+  __install_font_localy "$URL" "inter.zip" "inter" __decomp __i
+}
+
+__fnt_advent() {
+  echo "Install Advent fonts in ~/.fonts"
+  URL="https://github.com/VivaRado/Advent/archive/master.zip"
+  __i(){ cp -r $1/Advent-master/font_source/OTFs/*otf $2/; }
+  __install_font_localy "$URL" "advent.zip" "advent" __decomp __i
+}
+
+__fnt_iosevka() {
+  echo "Install Iosevka fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __install_font_localy "$URL" "iosevka.zip" "iosevka" __decomp __i
+}
+
+__FNT_ALL=( \
+  input \
+  hack \
+  firacode \
+  sourcesanspro \
+  ibmplex \
+  manrope \
+  inter \
+  advent \
+  iosevka
 )
 
-(
-echo "Install Hack fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
-__i(){ cp -r $1/ttf/*ttf $2/; }
-__install_font_localy "$URL" "hack.zip" "hack" __decomp __i
-)
+__LP=()
+if [[ "$#" -gt 0 ]]; then
+  __LP=("$@")
+else
+  __LP=("${__FNT_ALL[@]}")
+fi
 
-(
-echo "Install FiraCode fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
-__i(){ cp -r $1/ttf/*.ttf $2/; }
-__install_font_localy "$URL" "firacode.zip" "firacode" __decomp __i
-)
+for f in "${__LP[@]}"; do
+  __fnt_${f}
+done
 
-(
-echo "Install Source Sans Pro fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
-__i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
-__install_font_localy "$URL" "sourcesanspro.zip" "sourcesanspro" __decomp __i
-)
+(cd /tmp/; fc-cache -f)
 
-(
-echo "Install IBM Plex fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
-__i(){ cp -r $1/OpenType/* $2/; }
-__install_font_localy "$URL" "opentype.zip" "ibm_plex" __decomp __i
-)
-
-(
-echo "Install Manrope fonts in ~/.fonts"
-URL="https://github.com/sharanda/manrope/archive/master.zip"
-__i(){ cp -r $1/manrope-master/fonts/otf/* $2/; }
-__install_font_localy "$URL" "manrope.zip" "manrope" __decomp __i
-)
-
-(
-echo "Install Inter fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
-__i(){ cp -r $1/Inter\ Desktop/* $2/; }
-__install_font_localy "$URL" "inter.zip" "inter" __decomp __i
-)
-
-(
-echo "Install Advent fonts in ~/.fonts"
-URL="https://github.com/VivaRado/Advent/archive/master.zip"
-__i(){ cp -r $1/Advent-master/font_source/OTFs/*otf $2/; }
-__install_font_localy "$URL" "advent.zip" "advent" __decomp __i
-)
-
-(
-echo "Install Iosevka fonts in ~/.fonts"
-URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
-__i(){ cp -r $1/ttf-unhinted/* $2/; }
-__install_font_localy "$URL" "iosevka.zip" "iosevka" __decomp __i
-)
-
-fc-cache -f
