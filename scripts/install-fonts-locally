@@ -113,7 +113,7 @@ else
 fi
 
 for f in "${__LP[@]}"; do
-  __fnt_${f}
+  "__fnt_${f}"
 done
 
 (cd /tmp/; fc-cache -f)

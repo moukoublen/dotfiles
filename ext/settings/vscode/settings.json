@@ -11,9 +11,9 @@
   "editor.renderWhitespace": "boundary",
   "editor.tabSize": 4,
   "editor.lineHeight": 0,
-  "editor.fontSize": 18,
+  "editor.fontSize": 22,
   "editor.fontFamily": "Iosevka",
-  //"editor.fontWeight": "400",
+  "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 3,
@@ -78,7 +78,8 @@
     "/tmp/gopls.log"
   ],
   "go.testFlags": [
-    "-v"
+    "-v",
+    "-a"
   ],
   "go.toolsGopath": "${env:HOME}/vscode-gotools"
 }
