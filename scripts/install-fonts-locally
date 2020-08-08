@@ -6,7 +6,7 @@ if ! [ -x "$(command -v jq)" ]; then
   exit 1
 fi
 
-mkdir -p $$HOME/.fonts
+mkdir -p $HOME/.fonts
 
 __decomp(){ unzip -q "${1}" -d "${2}"; }
 
