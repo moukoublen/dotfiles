@@ -1,13 +1,7 @@
-if [ -d /usr/lib/jvm/java ] # fedora openjdk
+if command -v java &> /dev/null
 then
-  export JAVA_HOME=/usr/lib/jvm/java
-elif [ -d /usr/lib/jvm/default-java ] # ubuntu openjdk
-then
-  export JAVA_HOME=/usr/lib/jvm/default-java
-elif [ -d $MARMALADE_ENVS/java/default ] # oracle
-then
-  export JAVA_HOME=$MARMALADE_ENVS/java/default
-  add_to_start_of_path_if_not_exists $JAVA_HOME/bin
+    export JAVA_HOME=$(path-abs $(path-real $(which java)))
+    add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 fi
 
 set_java_home() {
