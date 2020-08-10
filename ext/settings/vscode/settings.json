@@ -8,7 +8,7 @@
   "files.autoSave": "off",
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "all",
   "editor.tabSize": 4,
   "editor.lineHeight": 0,
   "editor.fontSize": 22,
