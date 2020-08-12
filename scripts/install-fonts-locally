@@ -93,6 +93,13 @@ __fnt_iosevka() {
   __install_font_localy "$URL" "iosevka.zip" "iosevka" __decomp __i
 }
 
+__fnt_iosevka-term() {
+  echo "Install Iosevka fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-term-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __install_font_localy "$URL" "iosevka.zip" "iosevka-term" __decomp __i
+}
+
 __FNT_ALL=( \
   input \
   hack \
@@ -102,7 +109,8 @@ __FNT_ALL=( \
   manrope \
   inter \
   advent \
-  iosevka
+  iosevka \
+  iosevka-term
 )
 
 __LP=()
