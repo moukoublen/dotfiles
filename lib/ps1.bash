@@ -102,7 +102,7 @@ __m_ps1_get_color() {
 
 
 __m_ps1_seperator() {
-  local DSEP=${MARMALADE_PS1_SEPERATOR:-" ␣ "}
+  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}
   printf "%s%s%s" $(__m_ps1_get_color seperator) "$DSEP" $(__m_ps1_get_color reset)
 }
 
@@ -187,13 +187,17 @@ __m_ps1() {
   }
 
   local C_MAI=$(__m_ps1_get_color prefix)
+  local C_SEP=$(__m_ps1_get_color seperator)
   local C_RST=$(__m_ps1_get_color reset)
 
   local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
 
+  local d1=$'\u22EE'
+  local d2=$'\u22EE'
+  local prompt=$'\u2771'
 
-  local ps1_line1="${dl}"
-  local ps1_line2="${C_MAI}❱${C_RST} "
+  local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
+  local ps1_line2="${C_MAI}${prompt}${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+os_name=$(lsb_release -is)
+case "$os_name" in
+  "Fedora")
+    dnf provides "$@"
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+    dpkg -S "$@"
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
+
