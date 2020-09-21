@@ -26,7 +26,6 @@ alias go-to-runlevel-3='sudo systemctl set-default multi-user.target'
 alias go-to-runlevel-5='sudo systemctl set-default graphical.target'
 alias get-wm-class='xprop WM_CLASS'
 alias java-ls='ll /etc/alternatives | grep /usr/lib/jvm | column -t'
-alias d='df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs'
 ################################################################################
 ################################################################################
 

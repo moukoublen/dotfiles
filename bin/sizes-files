@@ -1,0 +1,2 @@
+du --human-readable --max-depth=1 --all  | sort --human-numeric-sort --reverse
+

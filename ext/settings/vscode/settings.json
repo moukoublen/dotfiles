@@ -5,18 +5,18 @@
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "files.trimTrailingWhitespace": true,
-  "files.autoSave": "off",
+  "files.autoSave": "onFocusChange",
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "all",
   "editor.tabSize": 4,
+  "editor.insertSpaces": true,
   "editor.lineHeight": 0,
   "editor.fontSize": 22,
   "editor.fontFamily": "Iosevka",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
-  "editor.cursorWidth": 3,
   "editor.cursorBlinking": "phase",
   "terminal.integrated.fontFamily": "Iosevka Extended",
   "terminal.integrated.fontSize": 16,
@@ -92,5 +92,7 @@
     "apiVersion": 2,
     "showGlobalVariables": true
   },
-  "go.toolsGopath": "${env:HOME}/vscode-gotools"
+  "go.toolsGopath": "${env:HOME}/vscode-gotools",
+  "C_Cpp.updateChannel": "Insiders",
+  "gitlens.codeLens.enabled": false
 }
