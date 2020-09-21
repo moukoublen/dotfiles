@@ -5,7 +5,7 @@ set -e
 rm -rf /tmp/kubectl_install || true
 mkdir -p /tmp/kubectl_install
 cd /tmp/kubectl_install
-curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod +x ./kubectl
 sudo cp ./kubectl /usr/local/bin
 rm -rf /tmp/kubectl_install || true
