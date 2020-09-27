@@ -35,13 +35,13 @@ TMP_DIR='/tmp/bibata_install'
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
-JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/KaizIqbal/Bibata_Cursor/releases/latest)
+JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Cursor/releases/latest)
 for NAME in 'Bibata_Amber' 'Bibata_Classic' 'Bibata_Ice' 'Bibata_Oil'
 do
   __install_bibiata_cursors "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
 done
 
-JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/KaizIqbal/Bibata_Extra_Cursor/releases/latest)
+JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Extra_Cursor/releases/latest)
 for NAME in 'Bibata_Dark_Red' 'Bibata_Dodger_Blue' 'Bibata_Pink' 'Bibata_Turquoise'
 do
   __install_bibiata_cursors "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
