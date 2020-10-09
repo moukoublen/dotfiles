@@ -2,7 +2,10 @@ FROM user-ubuntu:latest
 
 USER root
 
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    DEBCONF_NONINTERACTIVE_SEEN=true \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
 
 RUN apt-get install -y \
     make \

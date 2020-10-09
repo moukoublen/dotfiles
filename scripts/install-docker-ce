@@ -1,30 +1,63 @@
 #!/usr/bin/env bash
 
+set -e
+
+__os_name() {(
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    echo "${NAME}"
+    exit 0
+  fi
+
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -is
+    exit 0
+  fi
+
+  echo "no available os name"
+  exit 1
+)}
+
+__os_version_codename() {(
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    [[ -n $VERSION_CODENAME ]] && echo "${VERSION_CODENAME}" && exit 0
+  fi
+
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -cs
+    exit 0
+  fi
+
+  echo "no available os version"
+  exit 1
+)}
+
 sudo test
-os_name=$(lsb_release -is)
+os_name=$(__os_name)
 case "$os_name" in
   "Fedora")
     sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf check-update
     sudo dnf -y install docker-ce
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    sudo systemctl start docker
-    sudo systemctl enable docker
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(__os_version_codename) stable"
     sudo apt update
     sudo apt install -y docker-ce
-    sudo groupadd docker
-    sudo usermod -aG docker $USER
-    sudo systemctl start docker
-    sudo systemctl enable docker
     ;;
   *)
     echo "this script does not have packages for this release"
+    exit 1
     ;;
 esac
+
+echo "Installing group docker and adding the current user to it"
+sudo groupadd docker
+sudo usermod -a -G docker $USER
+sudo systemctl start docker
+sudo systemctl enable docker
+

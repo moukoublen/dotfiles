@@ -1,24 +1,22 @@
 #!/usr/bin/env bash
 
+set -e
+
 DOWNLOAD_DEST_FILE='/tmp/telegram.tar.xz'
-#TELE_EXECUTABLE="$HOME/Applications/Telegram/start_telegram"
+rm -rf $DOWNLOAD_DEST_FILE
 DESKTOP_FILE="$HOME/.local/share/applications/telegramdesktop.desktop"
 
-wget 'https://telegram.org/dl/desktop/linux' -O $DOWNLOAD_DEST_FILE
+__LINK=$(curl -sSfL https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest | jq '.assets[] | select(.name | test("tsetup\\.[\\d|.]*\\.tar.xz")) | .browser_download_url' --raw-output)
+curl --fail --location $__LINK -o $DOWNLOAD_DEST_FILE
 mkdir -p ~/Applications/
 tar xf $DOWNLOAD_DEST_FILE -C ~/Applications/
 rm $DOWNLOAD_DEST_FILE
-
-#echo "FONTCONFIG_FILE=/etc/fonts/ $HOME/Applications/Telegram/Telegram -- %u" > $TELE_EXECUTABLE
-#chmod +x $TELE_EXECUTABLE
 
 cat > $DESKTOP_FILE <<EOL
 [Desktop Entry]
 Version=1.0
 Name=Telegram Desktop
 Comment=Official desktop version of Telegram messaging app
-TryExec=/home/kostas/Applications/Telegram/Telegram
-Exec=/home/kostas/Applications/Telegram/Telegram -- %u
 Icon=telegram
 Terminal=false
 StartupWMClass=TelegramDesktop
@@ -29,5 +27,5 @@ Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
 X-GNOME-UsesNotifications=true
 EOL
 
-#echo "TryExec=$TELE_EXECUTABLE" >> $DESKTOP_FILE
-#echo "Exec=$TELE_EXECUTABLE -- %u" >> $DESKTOP_FILE
+echo "TryExec=${HOME}/Applications/Telegram/Telegram" >> $DESKTOP_FILE
+echo "Exec=${HOME}/Applications/Telegram/Telegram -- %u" >> $DESKTOP_FILE

@@ -1,1 +1,1 @@
-watch -n 1  'sensors | grep -i cpu'
+watch -n 1  'sensors | grep -e "fan\|cpu\|CPU"'

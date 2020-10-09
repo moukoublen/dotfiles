@@ -3,6 +3,7 @@
 set -e
 # $1: version e.g. 1.12.7
 # https://storage.googleapis.com/golang/go1.12.7.linux-amd64.tar.gz
+[[ -z $1  ]] && echo "Error: No go version specified" && exit 1
 DR=$(mktemp --directory --tmpdir golang_XXXXXXX)
 cd $DR
 curl -L --fail https://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz > go.linux-amd64.tar.gz

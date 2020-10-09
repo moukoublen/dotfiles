@@ -34,6 +34,10 @@ if command -v java &> /dev/null; then
   add_to_start_of_path_if_not_exists $JAVA_HOME/bin
 fi
 
+wcat() {
+  cat $(which "${1}")
+}
+
 ################################################################################
 ######### Fedora ###############################################################
 alias dnf-display-package-contents='dnf repoquery -l'

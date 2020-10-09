@@ -94,5 +94,6 @@
   },
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "C_Cpp.updateChannel": "Insiders",
-  "gitlens.codeLens.enabled": false
+  "gitlens.codeLens.enabled": false,
+  "window.zoomLevel": 0
 }

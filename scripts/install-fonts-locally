@@ -61,7 +61,9 @@ __fnt_sourcesanspro() {
 __fnt_ibmplex() {
   echo "Install IBM Plex fonts in ~/.fonts"
   URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/OpenType/* $2/; }
+  __i(){ 
+    cp -r $1/OpenType/{IBM-Plex-Mono,IBM-Plex-Sans,IBM-Plex-Serif} $2/
+  }
   __install_font_localy "$URL" "opentype.zip" "ibm_plex" __decomp __i
 }
 
