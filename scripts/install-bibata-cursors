@@ -3,7 +3,7 @@
 # $1 = Github release json
 # $2 = Font name
 # $3 = Temp dir to download
-__install_bibiata_cursors() {
+__install_bibiata_cursors_zips() {
   local JSON_TEXT=$1
   local NAME=$2
   local TMP_DIR=$3
@@ -23,6 +23,26 @@ __install_bibiata_cursors() {
   )
 }
 
+__install_bibiata_cursors_targzs() {
+  local JSON_TEXT=$1
+  local NAME=$2
+  local TMP_DIR=$3
+
+  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.tar.gz\") | .browser_download_url" --raw-output)
+  echo "Installing ${NAME}"
+  (
+  mkdir -p $TMP_DIR/$NAME
+  cd $TMP_DIR/$NAME
+  echo "    Downloading ${URL}"
+  wget -q $URL
+  echo "    Exctracting ${NAME}.tar.gz"
+  tar --extract --gzip --file="${NAME}.tar.gz"
+  rm "${NAME}.tar.gz"
+  echo "    Move to ~/.icons/${NAME}"
+  mv $TMP_DIR/$NAME/$NAME ~/.icons
+  )
+}
+
 # check if jq already exists
 if ! [ -x "$(command -v jq)" ]; then
     echo 'Error: jq is not installed. Please install it' >&2
@@ -36,15 +56,15 @@ rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
 JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Cursor/releases/latest)
-for NAME in 'Bibata_Amber' 'Bibata_Classic' 'Bibata_Ice' 'Bibata_Oil'
+for NAME in 'Bibata-Modern-Amber' 'Bibata-Modern-Classic' 'Bibata-Modern-Ice' 'Bibata-Original-Amber' 'Bibata-Original-Classic' 'Bibata-Original-Ice'
 do
-  __install_bibiata_cursors "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
+  __install_bibiata_cursors_targzs "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
 done
 
 JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Extra_Cursor/releases/latest)
 for NAME in 'Bibata_Dark_Red' 'Bibata_Dodger_Blue' 'Bibata_Pink' 'Bibata_Turquoise'
 do
-  __install_bibiata_cursors "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
+  __install_bibiata_cursors_zips "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
 done
 
 rm -rf $TMP_DIR
