@@ -61,7 +61,7 @@ __fnt_sourcesanspro() {
 __fnt_ibmplex() {
   echo "Install IBM Plex fonts in ~/.fonts"
   URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
-  __i(){ 
+  __i(){
     cp -r $1/OpenType/{IBM-Plex-Mono,IBM-Plex-Sans,IBM-Plex-Serif} $2/
   }
   __install_font_localy "$URL" "opentype.zip" "ibm_plex" __decomp __i
@@ -96,11 +96,26 @@ __fnt_iosevka() {
 }
 
 __fnt_iosevka-term() {
-  echo "Install Iosevka fonts in ~/.fonts"
+  echo "Install Iosevka Term fonts in ~/.fonts"
   URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-term-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
   __i(){ cp -r $1/ttf-unhinted/* $2/; }
-  __install_font_localy "$URL" "iosevka.zip" "iosevka-term" __decomp __i
+  __install_font_localy "$URL" "iosevka-term.zip" "iosevka-term" __decomp __i
 }
+
+__fnt_iosevka-aile() {
+  echo "Install Iosevka Aile fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-aile-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __install_font_localy "$URL" "iosevka-aile.zip" "iosevka-aile" __decomp __i
+}
+
+__fnt_iosevka-etoile() {
+  echo "Install Iosevka Etoile fonts in ~/.fonts"
+  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-etoile-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __install_font_localy "$URL" "iosevka-etoile.zip" "iosevka-etoile" __decomp __i
+}
+
 
 __FNT_ALL=( \
   input \
@@ -112,7 +127,9 @@ __FNT_ALL=( \
   inter \
   advent \
   iosevka \
-  iosevka-term
+  iosevka-term \
+  iosevka-aile \
+  iosevka-etoile
 )
 
 __LP=()
