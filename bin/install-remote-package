@@ -1,19 +1,33 @@
 #!/usr/bin/env bash
+set -e
 
+__os_name() {(
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    echo "${NAME}"
+    exit 0
+  fi
+
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -is
+    exit 0
+  fi
+
+  echo "no available os name"
+  exit 1
+)}
 
 TMP_DIR=$(mktemp --directory --tmpdir package_XXXXXXX)
 FILENAME=$(get-remote-filename $1)
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
-echo "Downloading $1 in $TMP_DIR"
-echo "Downloading filename ${FILENAME}"
-wget $1 -O $TMP_DIR/$FILENAME
+printf "Downloading    \e[1;34m%s\e[0m \n" $1
+printf "Downloading in \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
+curl --fail --location "$1" --output "$TMP_DIR/$FILENAME"
 
-sudo test
-echo "Installing $TMP_DIR/$FILENAME"
-os_name=$(lsb_release -is)
-case "$os_name" in
+printf "Installing \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
+case "$(__os_name)" in
   "Fedora")
     sudo dnf -y install $TMP_DIR/$FILENAME
     ;;
@@ -24,10 +38,8 @@ case "$os_name" in
     echo "this script does not have packages for this release"
     ;;
 esac
-
-
-
 rm -rf $TMP_DIR
 
 unset TMP_DIR
 unset FILENAME
+unset -f __os_name
