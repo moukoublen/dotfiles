@@ -1,46 +1,52 @@
 #!/usr/bin/env bash
 
+__install_zips() {
+  unzip -q "${1}.zip"
+}
+
+__install_targzs() {
+  tar --extract --gzip --file="${1}.tar.gz"
+}
+
 # $1 = Github release json
 # $2 = Font name
 # $3 = Temp dir to download
-__install_bibiata_cursors_zips() {
+# $4 = Compressed file extension without dot ("zip" or "tar.gz")
+# $5 = Uncompress function
+__install_bibata_cursors_() {
   local JSON_TEXT=$1
   local NAME=$2
   local TMP_DIR=$3
+  local EXT=$4
+  local UNCOMPRESS=$5
 
-  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.zip\") | .browser_download_url" --raw-output)
+  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)
   echo "Installing ${NAME}"
   (
+  set -e
   mkdir -p $TMP_DIR/$NAME
   cd $TMP_DIR/$NAME
   echo "    Downloading ${URL}"
-  wget -q $URL
-  echo "    Exctracting ${NAME}.zip"
-  unzip -q "${NAME}.zip"
-  rm "${NAME}.zip"
+  curl --fail --silent --show-error --location $URL --output "${NAME}.${EXT}"
+  echo "    Exctracting ${NAME}.${EXT}"
+  ${UNCOMPRESS} "${NAME}"
+  rm "${1}.${NAME}.${EXT}"
+  rm -rf "${HOME}/.icons/${NAME}"
   echo "    Move to ~/.icons/${NAME}"
-  mv $TMP_DIR/$NAME ~/.icons
+  mv $TMP_DIR/$NAME $HOME/.icons
   )
 }
 
-__install_bibiata_cursors_targzs() {
-  local JSON_TEXT=$1
-  local NAME=$2
-  local TMP_DIR=$3
 
-  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.tar.gz\") | .browser_download_url" --raw-output)
-  echo "Installing ${NAME}"
-  (
-  mkdir -p $TMP_DIR/$NAME
-  cd $TMP_DIR/$NAME
-  echo "    Downloading ${URL}"
-  wget -q $URL
-  echo "    Exctracting ${NAME}.tar.gz"
-  tar --extract --gzip --file="${NAME}.tar.gz"
-  rm "${NAME}.tar.gz"
-  echo "    Move to ~/.icons/${NAME}"
-  mv $TMP_DIR/$NAME/$NAME ~/.icons
-  )
+# $1 = Github release json
+# $2 = Font name
+# $3 = Temp dir to download
+__install_bibata_cursors_zips() {
+  __install_bibata_cursors_ "$1" "$2" "$3" "zip" "__install_zips"
+}
+
+__install_bibata_cursors_targzs() {
+  __install_bibata_cursors_ "$1" "$2" "$3" "tar.gz" "__install_targzs"
 }
 
 # check if jq already exists
@@ -49,8 +55,8 @@ if ! [ -x "$(command -v jq)" ]; then
     exit 1
 fi
 
-mkdir -p ~/.icons
-rm -rf ~/.icons/Bibata_*
+mkdir -p $HOME/.icons
+rm -rf $HOME/.icons/Bibata_*
 TMP_DIR='/tmp/bibata_install'
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
@@ -58,18 +64,19 @@ mkdir -p $TMP_DIR
 JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Cursor/releases/latest)
 for NAME in 'Bibata-Modern-Amber' 'Bibata-Modern-Classic' 'Bibata-Modern-Ice' 'Bibata-Original-Amber' 'Bibata-Original-Classic' 'Bibata-Original-Ice'
 do
-  __install_bibiata_cursors_targzs "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
+  __install_bibata_cursors_targzs "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
 done
 
 JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Extra_Cursor/releases/latest)
 for NAME in 'Bibata_Dark_Red' 'Bibata_Dodger_Blue' 'Bibata_Pink' 'Bibata_Turquoise'
 do
-  __install_bibiata_cursors_zips "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
+  __install_bibata_cursors_zips "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
 done
 
 rm -rf $TMP_DIR
 
-unset -f __install_bibiata_cursors
+unset -f __install_bibata_cursors_zips
+unset -f __install_bibata_cursors_targzs
 unset TMP_DIR
 unset JSON_TEXT_MAIN
 unset JSON_TEXT_EXTRA
