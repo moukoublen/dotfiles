@@ -8,26 +8,44 @@ fi
 
 mkdir -p $HOME/.fonts
 
+__installing() {
+  echo -e "Installing \e[96m${1}\e[0m"
+}
+
 __decomp(){ unzip -q "${1}" -d "${2}"; }
 
 __install_font_localy() {
+  ( set -e
   local URL=$1
   local DWN_FILE=$2
   local INSTALL_FOLDER=$3
   local DECOMP_FUNC=$4
   local INSTALL_FUNC=$5
   local TMP_DIRECTORY=$(mktemp --directory --tmpdir finst_XXXXXXX)
-  wget -q $URL -O $TMP_DIRECTORY/$DWN_FILE
+
+  echo -e "    Downloading   \e[34m${URL}\e[0m"
+  curl --fail --silent --show-error --location $URL --output $TMP_DIRECTORY/$DWN_FILE
+
+  echo -e "    Decompressing \e[34m${TMP_DIRECTORY}/${DWN_FILE}\e[0m"
   "${DECOMP_FUNC}" "${TMP_DIRECTORY}/${DWN_FILE}" "${TMP_DIRECTORY}"
-  rm -rf $HOME/.fonts/$INSTALL_FOLDER
+
+  printf "    Installing to \e[34m${HOME}/.fonts/${INSTALL_FOLDER}\e[0m"
+  if [[ -d "${HOME}/.fonts/${INSTALL_FOLDER}" ]]; then
+    echo -e "  \e[37m(Deleting previous installation)\e[0m"
+    rm -rf "${HOME}/.fonts/${INSTALL_FOLDER}"
+  else
+    echo ""
+  fi
   mkdir -p $HOME/.fonts/$INSTALL_FOLDER
   "${INSTALL_FUNC}" "${TMP_DIRECTORY}" "${HOME}/.fonts/${INSTALL_FOLDER}"
+
   rm -rf $TMP_DIRECTORY
-  echo ""
+  printf "    Installation  \e[1;32mdone.\e[0m\n\n"
+  )
 }
 
 __fnt_input() {
-  echo "Install Input fonts in ~/.fonts"
+  __installing "Input"
   URL='http://input.fontbureau.com/build/?fontSelection=whole&a=0&g=0&i=0&l=0&zero=0&asterisk=0&braces=0&preset=default&line-height=1.2&accept=I+do'
   __i(){
     cp -r $1/Input_Fonts/InputMono $2/
@@ -38,29 +56,30 @@ __fnt_input() {
 }
 
 __fnt_hack() {
-  echo "Install Hack fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/source-foundry/Hack/releases/latest | jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
+  __installing "Hack"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/source-foundry/Hack/releases/latest | \
+        jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output)
   __i(){ cp -r $1/ttf/*ttf $2/; }
   __install_font_localy "$URL" "hack.zip" "hack" __decomp __i
 }
 
 __fnt_firacode() {
-  echo "Install FiraCode fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
+  __installing "Fira Code"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/tonsky/FiraCode/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
   __i(){ cp -r $1/ttf/*.ttf $2/; }
   __install_font_localy "$URL" "firacode.zip" "firacode" __decomp __i
 }
 
 __fnt_sourcesanspro() {
-  echo "Install Source Sans Pro fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
+  __installing "Source Sans Pro"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
   __i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
   __install_font_localy "$URL" "sourcesanspro.zip" "sourcesanspro" __decomp __i
 }
 
 __fnt_ibmplex() {
-  echo "Install IBM Plex fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
+  __installing "IBM Plex"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/IBM/plex/releases/latest | jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output)
   __i(){
     cp -r $1/OpenType/{IBM-Plex-Mono,IBM-Plex-Sans,IBM-Plex-Serif} $2/
   }
@@ -68,51 +87,55 @@ __fnt_ibmplex() {
 }
 
 __fnt_manrope() {
-  echo "Install Manrope fonts in ~/.fonts"
+  __installing "Manrope"
   URL="https://github.com/sharanda/manrope/archive/master.zip"
   __i(){ cp -r $1/manrope-master/fonts/otf/* $2/; }
   __install_font_localy "$URL" "manrope.zip" "manrope" __decomp __i
 }
 
 __fnt_inter() {
-  echo "Install Inter fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
+  __installing "Inter"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
   __i(){ cp -r $1/Inter\ Desktop/* $2/; }
   __install_font_localy "$URL" "inter.zip" "inter" __decomp __i
 }
 
 __fnt_advent() {
-  echo "Install Advent fonts in ~/.fonts"
+  __installing "Advent"
   URL="https://github.com/VivaRado/Advent/archive/master.zip"
   __i(){ cp -r $1/Advent-master/font_source/OTFs/*otf $2/; }
   __install_font_localy "$URL" "advent.zip" "advent" __decomp __i
 }
 
 __fnt_iosevka() {
-  echo "Install Iosevka fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __installing "Iosevka"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest | \
+        jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-\\d\\.\\d\\..*\\.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/*.ttf $2/; }
   __install_font_localy "$URL" "iosevka.zip" "iosevka" __decomp __i
 }
 
 __fnt_iosevka-term() {
-  echo "Install Iosevka Term fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-term-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __installing "Iosevka Term"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest | \
+        jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-\\d\\.\\d\\..*\\.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/*.ttf $2/; }
   __install_font_localy "$URL" "iosevka-term.zip" "iosevka-term" __decomp __i
 }
 
 __fnt_iosevka-aile() {
-  echo "Install Iosevka Aile fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-aile-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __installing "Iosevka Aile"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest | \
+        jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-aile-\\d\\.\\d\\..*\\.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/*.ttf $2/; }
   __install_font_localy "$URL" "iosevka-aile.zip" "iosevka-aile" __decomp __i
 }
 
 __fnt_iosevka-etoile() {
-  echo "Install Iosevka Etoile fonts in ~/.fonts"
-  URL=$(curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | jq '.assets[] | select(.name | test("ttf-iosevka-etoile-[\\d|.]*.zip")) | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/ttf-unhinted/* $2/; }
+  __installing "Iosevka Etoile"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest | \
+        jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-etoile-\\d\\.\\d\\..*\\.zip")) | .browser_download_url' --raw-output)
+  __i(){ cp -r $1/*.ttf $2/; }
   __install_font_localy "$URL" "iosevka-etoile.zip" "iosevka-etoile" __decomp __i
 }
 
