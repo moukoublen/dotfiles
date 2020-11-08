@@ -5,7 +5,7 @@ __install_zips() {
 }
 
 __install_targzs() {
-  tar --extract --gzip --file="${1}.tar.gz"
+  tar --strip-components=1 --extract --gzip --file="${1}.tar.gz"
 }
 
 # $1 = Github release json
