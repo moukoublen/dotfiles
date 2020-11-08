@@ -21,18 +21,19 @@ __install_bibata_cursors_() {
   local UNCOMPRESS=$5
 
   local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)
-  echo "Installing ${NAME}"
+  echo ""
+  echo -e "Installing \e[1;33m${NAME}\e[0m"
   (
   set -e
   mkdir -p $TMP_DIR/$NAME
   cd $TMP_DIR/$NAME
-  echo "    Downloading ${URL}"
+  echo -e "    Downloading \e[1;34m${URL}\e[0m"
   curl --fail --silent --show-error --location $URL --output "${NAME}.${EXT}"
-  echo "    Exctracting ${NAME}.${EXT}"
+  echo -e "    Exctracting \e[1;34m${NAME}.${EXT}\e[0m"
   ${UNCOMPRESS} "${NAME}"
-  rm "${1}.${NAME}.${EXT}"
-  rm -rf "${HOME}/.icons/${NAME}"
-  echo "    Move to ~/.icons/${NAME}"
+  rm "${NAME}.${EXT}"
+  [[ -d "${HOME}/.icons/${NAME}" ]] && rm -rf "${HOME}/.icons/${NAME}"
+  echo -e "    Move to     \e[1;34m~/.icons/${NAME}\e[0m"
   mv $TMP_DIR/$NAME $HOME/.icons
   )
 }
