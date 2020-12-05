@@ -6,9 +6,11 @@
   mini = log --no-merges --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%an%C(reset)\t %s\"
   hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
   arr = log --no-merges --pretty=format:\"|%C(yellow)%h%C(reset) | %C(blue)`%an`%C(reset) | %s |\"
+  f = fetch --prune --prune-tags
 [core]
   editor = vim
 [tag]
   sort = version:refname
 [url "git@github.com:"]
   insteadOf = https://github.com/
+
