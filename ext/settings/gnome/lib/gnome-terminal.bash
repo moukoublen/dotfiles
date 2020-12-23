@@ -72,20 +72,16 @@ __set-settings() {
   done
 }
 
-__gsettings-get() {
-  printf "\e[2m%s\e[0m \e[94m=>\e[0m \e[1;32m%s\e[0m\n" "$1" "$(gsettings get $1)"
-}
-
 __get-settings() {
   gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
   default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
 
   for key in "${!globalsettings[@]}"; do
-    __gsettings-get "${key}"
+    gsettings-get "${key}"
   done
 
   for key in "${!profilesettings[@]}"; do
-    __gsettings-get "${default_profile_path} ${key}"
+    gsettings-get "${default_profile_path} ${key}"
   done
 }
 
