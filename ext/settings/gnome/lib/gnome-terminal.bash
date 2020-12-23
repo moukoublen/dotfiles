@@ -77,7 +77,6 @@ __gsettings-get() {
 }
 
 __get-settings() {
-  source __export-settings-maps
   gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
   default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
 
