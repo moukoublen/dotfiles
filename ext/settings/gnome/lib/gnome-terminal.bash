@@ -90,3 +90,42 @@ __get-settings() {
 }
 
 ${func}
+
+##__gnome_terminal_profile_name_and_uuid_by_name() {
+##  local req_name="$1"
+##  if [[ -z "${req_name}" ]]; then
+##    return 1
+##  fi
+##
+##  local profiles_array=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
+##  for prf in "${profiles_array[@]}"; do
+##    local name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${prf}/" visible-name)
+##    if [[ $name == "'${req_name}'" ]]; then
+##      echo "$req_name $prf"
+##      return 0
+##    fi
+##  done
+##
+##  return 1
+##}
+##
+##__gnome_terminal_default_profile_name_and_uuid() {
+##  local uuid="$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
+##  echo "Default $uuid"
+##}
+##
+##  local GP_NAME=
+##  local GP_UUID=
+##  if [[ -z "${1-}" ]]; then
+##    read GP_NAME GP_UUID < <(__gnome_terminal_default_profile_name_and_uuid)
+##  else
+##    local GT_OUTPUT=""
+##    if GT_OUTPUT=$(__gnome_terminal_profile_name_and_uuid_by_name "$1"); then
+##      read GP_NAME GP_UUID < <(echo "$GT_OUTPUT");
+##    else
+##      echo "No valid profile name $1"
+##      return 1
+##    fi
+##  fi
+##
+##  local GS_PRF_PATH="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${GP_UUID}/"

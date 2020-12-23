@@ -22,16 +22,7 @@ case $1 in
     ;;
 esac
 
-
-#########################################################
-
-declare -A globalsettings
-globalsettings=( \
-  ["com.gexperts.Tilix.Settings use-overlay-scrollbar"]="false" \
-  ["com.gexperts.Tilix.Settings use-tabs"]="true" \
-  ["com.gexperts.Tilix.Settings unsafe-paste-alert"]="false" \
-  ["com.gexperts.Tilix.Settings terminal-title-style"]="small" \
-  ["com.gexperts.Tilix.Keybindings terminal-reset-and-clear"]="<Super>k" \
+ext/settings/gnome/lib/tilix-settings.bash
   ["com.gexperts.Tilix.Keybindings terminal-copy"]="<Super>c" \
   ["com.gexperts.Tilix.Keybindings terminal-paste"]="<Super>v" \
   ["com.gexperts.Tilix.Keybindings app-new-session"]="<Super>t" \
@@ -56,7 +47,7 @@ profilesettings=( \
   ["cursor-shape"]="underline" \
   ["terminal-bell"]="none" \
   ["use-theme-colors"]="false" \
-  ["foreground-color"]="$C_FG" \
+  ["foreground-color"]="$C_FG" \ext/settings/gnome/lib/tilix-settings.bash
   ["background-color"]="$C_BG" \
   ["highlight-colors-set"]="true" \
   ["highlight-foreground-color"]="$C_HFG" \
@@ -98,3 +89,42 @@ __get-settings() {
 }
 
 ${func}
+
+##__tilix_profile_name_and_uuid_by_name() {
+##  local req_name="$1"
+##  if [[ -z "${req_name}" ]]; then
+##    return 1
+##  fi
+##
+##  local profiles_array=($(gsettings get com.gexperts.Tilix.ProfilesList list | tr -d "[]\',"))
+##  for prf in "${profiles_array[@]}"; do
+##    local name=$(gsettings get "com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/${prf}/" visible-name)
+##    if [[ $name == "'${req_name}'" ]]; then
+##      echo "$req_name $prf"
+##      return 0
+##    fi
+##  done
+##
+##  return 1
+##}
+##
+##__tilix_default_profile_name_and_uuid() {
+##  local uuid="$(gsettings get com.gexperts.Tilix.ProfilesList default | tr -d \')"
+##  echo "Default $uuid"
+##}
+##  # profile name
+##  local GP_NAME=
+##  local GP_UUID=
+##  if [[ -z "${1-}" ]]; then
+##    read GP_NAME GP_UUID < <(__tilix_default_profile_name_and_uuid)
+##  else
+##    local GT_OUTPUT=""
+##    if GT_OUTPUT=$(__tilix_profile_name_and_uuid_by_name "$1"); then
+##      read GP_NAME GP_UUID < <(echo "$GT_OUTPUT");
+##    else
+##      echo "No valid profile name $1"
+##      return 1
+##    fi
+##  fi
+##
+##  local GS_PRF_PATH="com.gexperts.Tilix.Profile:/com/gexperts/Tilix/profiles/${GP_UUID}/"
