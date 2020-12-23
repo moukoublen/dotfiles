@@ -33,7 +33,7 @@ __os_version_codename() {(
   exit 1
 )}
 
-sudo test
+
 os_name=$(__os_name)
 case "$os_name" in
   "Fedora")
@@ -56,7 +56,7 @@ case "$os_name" in
 esac
 
 echo "Installing group docker and adding the current user to it"
-sudo groupadd docker
+sudo groupadd docker || true
 sudo usermod -a -G docker $USER
 sudo systemctl start docker
 sudo systemctl enable docker

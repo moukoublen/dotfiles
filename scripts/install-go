@@ -4,13 +4,16 @@ set -e
 # $1: version e.g. 1.12.7
 # https://storage.googleapis.com/golang/go1.12.7.linux-amd64.tar.gz
 [[ -z $1  ]] && echo "Error: No go version specified" && exit 1
+
 DR=$(mktemp --directory --tmpdir golang_XXXXXXX)
 cd $DR
-curl -L --fail https://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz > go.linux-amd64.tar.gz
-[[ -d /usr/local/go ]] && echo "Delete previous go installation" && sudo rm -rf /usr/local/go
-echo "Installing go $1"
+echo -e "Downloading \e[34mhttps://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz\e[0m in \e[34m${PWD}\e[0m"
+curl --fail --silent --show-error --location https://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz > go.linux-amd64.tar.gz
+[[ -d /usr/local/go ]] && echo -e "\e[37mDelete previous go installation (\e[0m$(go version)\e[37m)\e[0m" && sudo rm -rf /usr/local/go
+echo -e "Installing go \e[34m$1\e[0m"
 sudo tar -C /usr/local -xzf go.linux-amd64.tar.gz
 cd /
+
 sudo rm -rf $DR
-echo "Done"
+echo -e "\e[1;32mDone\e[0m"
 )
