@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
 source ./lib/__tools.bash
-source ./lib/__terminal-colors.bash
 
+echo "============================= Gome Shell ==========================="
+./lib/gnome-shell-settings.bash set
+echo "===================================================================="
 
-./lib/gnome-shell-settings.bash
-./lib/nautilus-settings.bash
-./lib/gnome-terminal.bash __terminal-colors-dracula.bash
+echo "============================= Nautilus ============================="
+./lib/nautilus-settings.bash set
+echo "===================================================================="
+
+echo "============================= Gnome Terminal ======================="
+./lib/gnome-terminal.bash set ./lib/__terminal-colors.bash
+echo "===================================================================="
 
 if [[ -x "$(command -v tilix)" ]]; then
-  ./lib/tilix-settings.bash __terminal-colors.bash
+  echo "============================= Tilix ================================"
+  ./lib/tilix-settings.bash set ./lib/__terminal-colors.bash
+  echo "===================================================================="
 fi

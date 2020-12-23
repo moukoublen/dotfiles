@@ -22,7 +22,15 @@ case $1 in
     ;;
 esac
 
-ext/settings/gnome/lib/tilix-settings.bash
+#########################################################
+
+declare -A globalsettings
+globalsettings=( \
+  ["com.gexperts.Tilix.Settings use-overlay-scrollbar"]="false" \
+  ["com.gexperts.Tilix.Settings use-tabs"]="true" \
+  ["com.gexperts.Tilix.Settings unsafe-paste-alert"]="false" \
+  ["com.gexperts.Tilix.Settings terminal-title-style"]="small" \
+  ["com.gexperts.Tilix.Keybindings terminal-reset-and-clear"]="<Super>k" \
   ["com.gexperts.Tilix.Keybindings terminal-copy"]="<Super>c" \
   ["com.gexperts.Tilix.Keybindings terminal-paste"]="<Super>v" \
   ["com.gexperts.Tilix.Keybindings app-new-session"]="<Super>t" \
