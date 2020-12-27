@@ -9,15 +9,7 @@ add_to_path() {
       PATH=$1:$PATH
     fi
   fi
-}
 
-add_to_start_of_path_if_not_exists() {
-  add_to_path $1
-  export PATH;
-}
-
-add_to_end_of_path_if_not_exists() {
-  add_to_path $1 "after"
   export PATH;
 }
 

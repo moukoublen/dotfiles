@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker build --build-arg DOCKER_VERSION=20.10.1 . -t docker-cli

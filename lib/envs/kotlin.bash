@@ -1,4 +1,4 @@
-add_to_end_of_path_if_not_exists $MARMALADE_ENVS/kotlin/default/bin
+add_to_path $MARMALADE_ENVS/kotlin/default/bin "after"
 
 ################################################################################
 # Marmalade Env Management

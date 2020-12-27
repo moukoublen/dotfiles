@@ -1,5 +1,5 @@
 export GRADLE_HOME=$MARMALADE_ENVS/gradle/default
-add_to_end_of_path_if_not_exists $GRADLE_HOME/bin
+add_to_path $GRADLE_HOME/bin "after"
 # export GRADLE_OPTS=""
 
 ################################################################################
