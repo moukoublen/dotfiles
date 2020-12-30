@@ -1,25 +1,70 @@
 alias docker-clean-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
 
-__dhelp_completion() {
-  cur=$2
-  __docker_complete_containers_running
+docker-stop-all() {
+  for i in $(docker ps --format "{{.Names}}"); do
+    printf "Stoping %s ... " "$i"
+    docker stop $i > /dev/null
+    if [ $? -eq 0 ]; then
+      printf "\e[1;32mDone!\e[m\n" "$i"
+    else
+      printf "\e[1;31mFailed!\e[m\n" "$i"
+    fi
+  done
 }
 
-dexec() {
-  docker exec -it $1 $2
+dps() {
+  docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}" "$@"
 }
-complete -F __dhelp_completion dexec
+dpsp() {
+  docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n" "$@"
+}
+complete -F __dps_completion dps dpsp
 
-dshell() {
-  dexec $1 sh
+drh() {
+  READ_ONLY=""
+  case "$1" in
+    -R|--RO)
+      READ_ONLY=":ro"
+      shift 1
+      ;;
+  esac
+
+  docker run \
+    --rm \
+    --interactive \
+    --tty \
+    --volume "${PWD}:/folder${READ_ONLY}" \
+    --workdir /folder \
+    "$@"
 }
-complete -F __dhelp_completion dshell
+complete -F __drh_completion drh
 
 install-docker-compose-completion() {
   local DVER=${1:-master}
   mkdir -p ~/.dotfiles-extras
   curl -L "https://raw.githubusercontent.com/docker/compose/${DVER}/contrib/completion/bash/docker-compose" > "${HOME}/.dotfiles-extras/docker-compose.bash-completion"
 }
+
+__dps_completion() {
+  [[ "$(type -t _docker_container_run)" != "function" ]] && \
+    [[ -f /usr/share/bash-completion/completions/docker ]] && \
+    source /usr/share/bash-completion/completions/docker
+
+  local cur prev words cword
+  _get_comp_words_by_ref -n : cur prev words cword
+  _docker_ps
+}
+
+__drh_completion() {
+  [[ "$(type -t _docker_container_run)" != "function" ]] && \
+    [[ -f /usr/share/bash-completion/completions/docker ]] && \
+    source /usr/share/bash-completion/completions/docker
+
+  local cur prev words cword
+  _get_comp_words_by_ref -n : cur prev words cword
+  _docker_container_run
+}
+
 
 ################################################################################
 ################# macos docker #################################################

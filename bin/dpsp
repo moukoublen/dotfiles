@@ -1,2 +1,0 @@
-docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n" $@
-
