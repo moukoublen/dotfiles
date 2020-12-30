@@ -29,6 +29,14 @@ alias get-wm-class='xprop WM_CLASS'
 ################################################################################
 
 wcat() {
+  if [[ "$(type -t ${1})" == 'function' ]]; then
+    declare -f "${1}"
+    return
+  fi
+  if [[ "$(type -t ${1})" == 'alias' ]]; then
+    alias "${1}"
+    return
+  fi
   cat $(which "${1}")
 }
 complete -c wcat
