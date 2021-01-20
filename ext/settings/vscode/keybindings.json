@@ -4,5 +4,9 @@
     "key": "meta+k",
     "command": "workbench.action.terminal.clear",
     "when": "terminalFocus && !terminalFindVisible"
+  },
+  {
+    "key": "ctrl+alt+l",
+    "command": "workbench.files.action.showActiveFileInExplorer"
   }
 ]
