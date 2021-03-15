@@ -1,2 +1,29 @@
-GO111MODULE=on go get -u -v github.com/cli/cli/cmd/gh@latest
+#!/usr/bin/env bash
 
+# GO111MODULE=on go get -u -v github.com/cli/cli/cmd/gh@latest
+
+URL=$(\
+  curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest \
+  | \
+  jq '.assets[] | select(.name | endswith("_linux_amd64.tar.gz")) | .browser_download_url' --raw-output \
+)
+
+
+sudo test
+os_name=$(lsb_release -is)
+URL=""
+case "$os_name" in
+  "Fedora")
+    URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
+      jq '.assets[] | select(.name | endswith("_linux_amd64.rpm")) | .browser_download_url' --raw-output)
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint")
+    URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
+      jq '.assets[] | select(.name | endswith("_linux_amd64.deb")) | .browser_download_url' --raw-output)
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    ;;
+esac
+
+install-remote-package $URL
