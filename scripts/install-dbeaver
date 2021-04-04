@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
 
+__get_latest_version() {
+  curl --fail --silent --show-error --location https://api.github.com/repos/dbeaver/dbeaver/releases/latest | jq -r '.tag_name'
+}
+
+__get_local_release() {(
+  [[ ! -e /usr/share/dbeaver/.eclipseproduct ]] && echo "" && return
+  cat /usr/share/dbeaver/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
+)}
+
+current_version=$(__get_local_release)
+remote_version=$(__get_latest_version)
+
+if [[ $current_version == $remote_version ]]; then
+  echo "dbeaver is updated to $remote_version";
+  exit 0
+fi
+
 sudo test
 os_name=$(lsb_release -is)
 URL=""
