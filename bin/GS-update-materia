@@ -30,11 +30,10 @@ fi
 prnt "Remove current materia ($(echo /usr/share/themes/Materia{,-dark,-light}{,-compact}))"
 sudo rm -rf /usr/share/themes/Materia{,-dark,-light}{,-compact}
 prnt "Installing Materia"
-cd $HOME/gitrepos/materia-theme/
-#sudo ./install.sh #--dest /usr/local/share/themes #--gdm
-sudo rm -rf ./build/
-meson "build"
-sudo ninja -C "build" install
+cd $HOME/gitrepos/themes-icons/materia-theme/
+sudo rm -rf ./_build/
+meson _build
+sudo meson install -C _build
 )
 
 if [[ $GS_GTK_THEME == Materia* ]]; then
