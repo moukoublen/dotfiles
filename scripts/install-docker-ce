@@ -37,17 +37,28 @@ __os_version_codename() {(
 os_name=$(__os_name)
 case "$os_name" in
   "Fedora")
+    #sudo dnf remove docker \
+    #                docker-client \
+    #                docker-client-latest \
+    #                docker-common \
+    #                docker-latest \
+    #                docker-latest-logrotate \
+    #                docker-logrotate \
+    #                docker-selinux \
+    #                docker-engine-selinux \
+    #                docker-engine
     sudo dnf -y install dnf-plugins-core
     sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
     sudo dnf check-update
-    sudo dnf -y install docker-ce
+    sudo dnf -y install docker-ce docker-ce-cli containerd.io
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
-    sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(__os_version_codename) stable"
+    # sudo apt-get --purge --yes remove docker docker-engine docker.io containerd runc
+    sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update
-    sudo apt install -y docker-ce
+    sudo apt install -y docker-ce docker-ce-cli containerd.io
     ;;
   *)
     echo "this script does not have packages for this release"
@@ -61,3 +72,4 @@ sudo usermod -a -G docker $USER
 sudo systemctl start docker
 sudo systemctl enable docker
 
+echo -e "\e[1;32mDone\e[0m\n"

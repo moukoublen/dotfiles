@@ -32,7 +32,7 @@ __install_bibata_cursors_() {
   echo -e "    Exctracting \e[1;34m${NAME}.${EXT}\e[0m"
   ${UNCOMPRESS} "${NAME}"
   rm "${NAME}.${EXT}"
-  [[ -d "${HOME}/.icons/${NAME}" ]] && rm -rf "${HOME}/.icons/${NAME}"
+  [[ -d "${HOME}/.icons/${NAME}" ]] && echo -e "    Delete old  \e[1;34m${HOME}/.icons/${NAME}\e[0m" && rm -rf "${HOME}/.icons/${NAME}"
   echo -e "    Move to     \e[1;34m~/.icons/${NAME}\e[0m"
   mv $TMP_DIR/$NAME $HOME/.icons
   )
@@ -69,9 +69,9 @@ do
 done
 
 JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Extra_Cursor/releases/latest)
-for NAME in 'Bibata_Dark_Red' 'Bibata_Dodger_Blue' 'Bibata_Pink' 'Bibata_Turquoise'
+for NAME in 'Bibata-Modern-DarkRed' 'Bibata-Modern-DodgerBlue' 'Bibata-Modern-Pink' 'Bibata-Modern-Turquise'
 do
-  __install_bibata_cursors_zips "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
+  __install_bibata_cursors_targzs "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
 done
 
 rm -rf $TMP_DIR
