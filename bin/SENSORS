@@ -1,1 +1,2 @@
-watch -n 1  'sensors | grep -e "fan\|cpu\|CPU"'
+exec watch -n 1  'sensors | grep "CPUTI\|SYSTIN\|AUXTIN0\|fan1\|fan2"'
+
