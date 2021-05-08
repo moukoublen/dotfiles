@@ -17,8 +17,28 @@ __os_name() {(
   exit 1
 )}
 
+__get_remote_filename() {
+  # split string of argument $1 by / and get last part
+  f=${1##*/}
+
+  if [ -n "$f" ]; then
+    echo $f
+    return
+  fi
+
+  # try to parse filename from content-disposition header
+  f=$(curl --head --silent --fail --location "$1" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
+  if [ -n "$f" ]; then
+    echo $f
+    return
+  fi
+
+  # if none found, return random string
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1
+}
+
 TMP_DIR=$(mktemp --directory --tmpdir package_XXXXXXX)
-FILENAME=$(get-remote-filename $1)
+FILENAME=$(__get_remote_filename $1)
 rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
