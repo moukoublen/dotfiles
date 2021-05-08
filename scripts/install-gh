@@ -8,11 +8,8 @@ URL=$(\
   jq '.assets[] | select(.name | endswith("_linux_amd64.tar.gz")) | .browser_download_url' --raw-output \
 )
 
-
-sudo test
-os_name=$(lsb_release -is)
 URL=""
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
       jq '.assets[] | select(.name | endswith("_linux_amd64.rpm")) | .browser_download_url' --raw-output)

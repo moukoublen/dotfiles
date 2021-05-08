@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-sudo test
 URL=""
-os_name=$(lsb_release -is)
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     URL='https://go.skype.com/skypeforlinux-64.rpm'
     ;;

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-sudo test
 URL=""
-os_name=$(lsb_release -is)
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ;;

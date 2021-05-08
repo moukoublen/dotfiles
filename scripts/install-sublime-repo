@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-sudo test
-os_name=$(lsb_release -is)
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     sudo rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
     sudo dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo

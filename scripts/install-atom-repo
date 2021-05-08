@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-sudo test
-os_name=$(lsb_release -is)
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     sudo rpm --import https://packagecloud.io/AtomEditor/atom/gpgkey
     cat > /tmp/atom.repo << EOL

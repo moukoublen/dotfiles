@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-sudo test
-os_name=$(lsb_release -is)
 URL=""
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     URL="https://zoom.us/client/latest/zoom_x86_64.rpm"
     ;;

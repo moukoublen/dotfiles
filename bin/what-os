@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+
+if [[ -f /etc/os-release ]]; then
+  (
+  source /etc/os-release
+  echo "${NAME}"
+  )
+  exit 0
+fi
+
+if command -v lsb_release >/dev/null 2>&1; then
+  lsb_release -is
+  exit 0
+fi
+
+echo ""
+exit 1

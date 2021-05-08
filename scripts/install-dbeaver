@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-__os_name() {(
-  if [[ -f /etc/os-release ]]; then
-    source /etc/os-release
-    echo "${NAME}"
-    exit 0
-  fi
-
-  if command -v lsb_release >/dev/null 2>&1; then
-    lsb_release -is
-    exit 0
-  fi
-
-  echo "no available os name"
-  exit 1
-)}
-
 __get_latest_version() {
   curl --fail --silent --show-error --location https://api.github.com/repos/dbeaver/dbeaver/releases/latest | jq -r '.tag_name'
 }
@@ -31,7 +15,7 @@ if [[  "$(__get_local_release)" == "$(__get_latest_version)" ]]; then
 fi
 
 URL=""
-case "$(__os_name)" in
+case "$(what-os)" in
   "Fedora")
     URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;

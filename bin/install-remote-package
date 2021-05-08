@@ -1,22 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-__os_name() {(
-  if [[ -f /etc/os-release ]]; then
-    source /etc/os-release
-    echo "${NAME}"
-    exit 0
-  fi
-
-  if command -v lsb_release >/dev/null 2>&1; then
-    lsb_release -is
-    exit 0
-  fi
-
-  echo "no available os name"
-  exit 1
-)}
-
 __get_remote_filename() {
   # split string of argument $1 by / and get last part
   f=${1##*/}
@@ -47,7 +31,7 @@ printf "Downloading in \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
 curl --fail --location "$1" --output "$TMP_DIR/$FILENAME"
 
 printf "Installing \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
-case "$(__os_name)" in
+case "$(what-os)" in
   "Fedora")
     sudo dnf -y install $TMP_DIR/$FILENAME
     ;;

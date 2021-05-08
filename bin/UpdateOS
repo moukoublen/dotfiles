@@ -16,10 +16,8 @@ update_apt() {
     sudo apt upgrade
 }
 
-sudo test
-os_name=$(lsb_release -is)
 prnt $os_name
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     update_dnf
     ;;

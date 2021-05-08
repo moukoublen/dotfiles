@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-sudo test
-os_name=$(lsb_release -is)
-case "$os_name" in
+case "$(what-os)" in
   "Fedora")
     install-remote-package 'https://download.cdn.viber.com/desktop/Linux/viber.rpm'
     ;;
