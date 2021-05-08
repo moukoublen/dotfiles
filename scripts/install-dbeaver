@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+__os_name() {(
+  if [[ -f /etc/os-release ]]; then
+    source /etc/os-release
+    echo "${NAME}"
+    exit 0
+  fi
+
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -is
+    exit 0
+  fi
+
+  echo "no available os name"
+  exit 1
+)}
+
 __get_latest_version() {
   curl --fail --silent --show-error --location https://api.github.com/repos/dbeaver/dbeaver/releases/latest | jq -r '.tag_name'
 }
@@ -9,18 +25,13 @@ __get_local_release() {(
   cat /usr/share/dbeaver/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
 )}
 
-current_version=$(__get_local_release)
-remote_version=$(__get_latest_version)
-
-if [[ $current_version == $remote_version ]]; then
+if [[  "$(__get_local_release)" == "$(__get_latest_version)" ]]; then
   echo "dbeaver is updated to $remote_version";
   exit 0
 fi
 
-sudo test
-os_name=$(lsb_release -is)
 URL=""
-case "$os_name" in
+case "$(__os_name)" in
   "Fedora")
     URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;
@@ -33,3 +44,5 @@ case "$os_name" in
 esac
 
 install-remote-package $URL
+
+unset URL
