@@ -10,7 +10,7 @@
 [core]
   editor = vim
 [tag]
-  sort = version:refname
+  sort = -version:refname
 [url "git@github.com:"]
   insteadOf = https://github.com/
 
