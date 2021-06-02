@@ -139,20 +139,32 @@ __fnt_iosevka-etoile() {
   __install_font_localy "$URL" "iosevka-etoile.zip" "iosevka-etoile" __decomp __i
 }
 
+__fnt_cascadia-code() {
+  __installing "Cascadia Code"
+  URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/microsoft/cascadia-code/releases/latest | \
+        jq '.assets[0].browser_download_url' --raw-output)
+  __i(){
+    cp -r $1/ttf/*.ttf $2/
+  }
+  __install_font_localy "$URL" "cascadia-code.zip" "cascadia-code" __decomp __i
+}
+
+## disabled
+# input
+# manrope
+# advent
 
 __FNT_ALL=( \
-  input \
   hack \
   firacode \
   sourcesanspro \
   ibmplex \
-  manrope \
   inter \
-  advent \
   iosevka \
   iosevka-term \
   iosevka-aile \
-  iosevka-etoile
+  iosevka-etoile \
+  cascadia-code
 )
 
 __LP=()
