@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
 set -e
 
-case "$(what-os)" in
+whatos() {
+  if [[ -f /etc/os-release ]]; then
+    (
+    source /etc/os-release
+    echo "${NAME}"
+    )
+    return
+  fi
+
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -is
+    return
+  fi
+
+  echo ""
+}
+
+case "$(whatos)" in
   "Fedora")
     #sudo dnf remove docker \
     #                docker-client \
