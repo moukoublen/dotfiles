@@ -16,7 +16,7 @@ update_apt() {
     sudo apt upgrade
 }
 
-prnt $os_name
+prnt "$(what-os)"
 case "$(what-os)" in
   "Fedora")
     update_dnf
