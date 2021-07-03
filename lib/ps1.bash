@@ -192,11 +192,13 @@ __m_ps1() {
 
   local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
 
-  local d1=$'\u22EE'
-  local d2=$'\u22EE'
-  local prompt=$'\u2771'
+  #local d1=$'\u2506'
+  #local d2=$'\u2506'
+  #local prompt=$'\u2771'
+  local prompt=$'\u276F'
 
-  local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
+  #local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
+  local ps1_line1="${dl}"
   local ps1_line2="${C_MAI}${prompt}${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
