@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+sudo rm -f /var/cache/fontconfig/*
+rm -f ~/.cache/fontconfig/*
+
+sudo fc-cache -r
+fc-cache -r
