@@ -3,7 +3,7 @@
   email = moukoublen@gmail.com
 [alias]
   s = status -sb
-  mini = log --no-merges --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%an%C(reset)\t %s\"
+  mini = log --no-merges --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(22)%an%C(reset) %C(brightwhite)%s%C(reset) %C(cyan)%C(dim)%d%C(reset)\"
   hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
   arr = log --no-merges --pretty=format:\"|%C(yellow)%h%C(reset) | %C(blue)`%an`%C(reset) | %s |\"
   f = fetch --prune --prune-tags
