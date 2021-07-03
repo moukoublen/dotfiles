@@ -1,4 +1,4 @@
-add_to_path $MARMALADE_ENVS/kotlin/default/bin "after"
+#add_to_path $MARMALADE_ENVS/kotlin/default/bin "after"
 
 ################################################################################
 # Marmalade Env Management
