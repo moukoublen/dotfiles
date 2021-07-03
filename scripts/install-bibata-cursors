@@ -42,10 +42,6 @@ __install_bibata_cursors_() {
 # $1 = Github release json
 # $2 = Font name
 # $3 = Temp dir to download
-__install_bibata_cursors_zips() {
-  __install_bibata_cursors_ "$1" "$2" "$3" "zip" "__install_zips"
-}
-
 __install_bibata_cursors_targzs() {
   __install_bibata_cursors_ "$1" "$2" "$3" "tar.gz" "__install_targzs"
 }
@@ -69,15 +65,9 @@ do
 done
 
 JSON_TEXT_EXTRA=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Extra_Cursor/releases/latest)
-for NAME in 'Bibata-Modern-DarkRed' 'Bibata-Modern-DodgerBlue' 'Bibata-Modern-Pink' 'Bibata-Modern-Turquise'
+for NAME in 'Bibata-Modern-DarkRed' 'Bibata-Modern-DodgerBlue' 'Bibata-Modern-Pink' 'Bibata-Modern-Turquoise'
 do
   __install_bibata_cursors_targzs "${JSON_TEXT_EXTRA}" $NAME $TMP_DIR
 done
 
 rm -rf $TMP_DIR
-
-unset -f __install_bibata_cursors_zips
-unset -f __install_bibata_cursors_targzs
-unset TMP_DIR
-unset JSON_TEXT_MAIN
-unset JSON_TEXT_EXTRA
