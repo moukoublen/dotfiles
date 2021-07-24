@@ -89,7 +89,10 @@ __m_ps1_get_color() {
       __m_ps1_color 0 49 32
       ;;
     git)
-      __m_ps1_color 1 49 93
+      __m_ps1_color 0 49 93
+      ;;
+    gitwrap)
+      __m_ps1_color 0 49 33
       ;;
     kube_context)
       __m_ps1_color 1 49 34
@@ -102,7 +105,8 @@ __m_ps1_get_color() {
 
 
 __m_ps1_seperator() {
-  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}
+  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}
+  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' '}
   printf "%s%s%s" $(__m_ps1_get_color seperator) "$DSEP" $(__m_ps1_get_color reset)
 }
 
@@ -133,7 +137,8 @@ __m_ps1_host() {
 
 
 __m_ps1_pwd() {
-  printf "%s\w%s" $(__m_ps1_get_color path) $(__m_ps1_get_color reset)
+  printf "%s\w%s" \
+    $(__m_ps1_get_color path) $(__m_ps1_get_color reset)
 }
 
 
@@ -150,7 +155,10 @@ __m_ps1_git() {
 
   local gitp="$(__git_ps1 '%s')"
   if [[ -n "$gitp" ]]; then
-    printf "%s%s%s" "$(__m_ps1_get_color git)" "${gitp}" "$(__m_ps1_get_color reset)"
+    printf "%s{%s%s%s%s%s}%s" \
+      "$(__m_ps1_get_color gitwrap)" "$(__m_ps1_get_color reset)" \
+      "$(__m_ps1_get_color git)" "${gitp}" "$(__m_ps1_get_color reset)" \
+      "$(__m_ps1_get_color gitwrap)" "$(__m_ps1_get_color reset)"
   fi
 }
 
