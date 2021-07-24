@@ -22,22 +22,26 @@ __install_font_localy() {
   local DECOMP_FUNC=$4
   local INSTALL_FUNC=$5
   local TMP_DIRECTORY=$(mktemp --directory --tmpdir finst_XXXXXXX)
+  local FONTS_DIR="/usr/local/share/fonts"
+  local INSTALL_FULL_PATH="${FONTS_DIR}/${INSTALL_FOLDER}"
 
   echo -e "    Downloading   \e[34m${URL}\e[0m"
-  curl --fail --silent --show-error --location $URL --output $TMP_DIRECTORY/$DWN_FILE
+  curl --fail --silent --show-error --location $URL --output "${TMP_DIRECTORY}/${DWN_FILE}"
 
   echo -e "    Decompressing \e[34m${TMP_DIRECTORY}/${DWN_FILE}\e[0m"
   "${DECOMP_FUNC}" "${TMP_DIRECTORY}/${DWN_FILE}" "${TMP_DIRECTORY}"
 
-  printf "    Installing to \e[34m${HOME}/.fonts/${INSTALL_FOLDER}\e[0m"
-  if [[ -d "${HOME}/.fonts/${INSTALL_FOLDER}" ]]; then
+  printf "    Installing to \e[34m${INSTALL_FULL_PATH}\e[0m"
+  if [[ -d "${INSTALL_FULL_PATH}" ]]; then
     echo -e "  \e[37m(Deleting previous installation)\e[0m"
-    rm -rf "${HOME}/.fonts/${INSTALL_FOLDER}"
+    sudo rm -rf "${INSTALL_FULL_PATH}"
   else
     echo ""
   fi
-  mkdir -p $HOME/.fonts/$INSTALL_FOLDER
-  "${INSTALL_FUNC}" "${TMP_DIRECTORY}" "${HOME}/.fonts/${INSTALL_FOLDER}"
+  sudo mkdir -p "${INSTALL_FULL_PATH}"
+
+  # parse the function inside sudo sub-shell
+  sudo bash -c "$(declare -f ${INSTALL_FUNC}); ${INSTALL_FUNC} \"${TMP_DIRECTORY}\" \"${INSTALL_FULL_PATH}\""
 
   rm -rf $TMP_DIRECTORY
   printf "    Installation  \e[1;32mdone.\e[0m\n\n"
@@ -73,7 +77,10 @@ __fnt_firacode() {
 __fnt_sourcesanspro() {
   __installing "Source Sans Pro"
   URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest | jq '.assets[0].browser_download_url' --raw-output)
-  __i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
+  #__i(){ find $1// -name *.otf -exec cp {} $2/ \;; }
+  __i(){
+    cp -r ${1}/OTF/*.otf ${2}/
+  }
   __install_font_localy "$URL" "sourcesanspro.zip" "sourcesanspro" __decomp __i
 }
 
