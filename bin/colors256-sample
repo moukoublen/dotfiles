@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+fg=38
+bg=48
+rst='\e[0m'
+
+for s in {0..15} ; do
+  printf "\e[${fg};5;%sm %2s ${rst}" $s $s
+done
+echo
+for s in {0..15} ; do
+  printf "\e[${bg};5;%sm %2s ${rst}" $s $s
+done
+echo
+echo
+
+
+for s in {16..255..6} ; do
+  for color in $(seq --separator=' ' $s 1 $(($s+5))); do
+    printf "\e[${fg};5;%sm %3s ${rst}" $color $color
+  done
+  printf "    "
+  for color in $(seq --separator=' ' $s 1 $(($s+5))); do
+    printf "\e[${bg};5;%sm %3s ${rst}" $color $color
+  done
+  echo
+done
