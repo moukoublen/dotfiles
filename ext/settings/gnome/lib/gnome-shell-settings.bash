@@ -32,12 +32,12 @@ settings=( \
   ["org.gnome.desktop.wm.keybindings switch-windows"]="['<Alt>Tab']" \
   ["org.gnome.desktop.wm.preferences action-middle-click-titlebar"]="toggle-maximize-vertically" \
   ["org.gnome.desktop.wm.preferences button-layout"]="appmenu:minimize,maximize,close" \
-  ["org.gnome.desktop.interface font-name"]="Iosevka Aile 11" \
-  ["org.gnome.desktop.interface document-font-name"]="Iosevka Aile 11" \
-  ["org.gnome.desktop.interface monospace-font-name"]="Iosevka 12" \
-  ["org.gnome.desktop.wm.preferences titlebar-font"]="Iosevka Etoile 11" \
   ["org.gnome.desktop.interface cursor-size"]="32" \
 )
+  #["org.gnome.desktop.interface font-name"]="Iosevka Aile 11" \
+  #["org.gnome.desktop.interface document-font-name"]="Iosevka Aile 11" \
+  #["org.gnome.desktop.interface monospace-font-name"]="Iosevka 12" \
+  #["org.gnome.desktop.wm.preferences titlebar-font"]="Iosevka Etoile 11" \
 
 __set-settings() {
   for key in "${!settings[@]}"; do
