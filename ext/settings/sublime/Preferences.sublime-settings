@@ -1,9 +1,14 @@
 {
-	"color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+	// themes and colors
+	"color_scheme": "Mariana.sublime-color-scheme",
+	"theme": "auto",
+	"light_theme": "Default.sublime-theme",
+	"dark_theme": "Default Dark.sublime-theme",
+	// editor settings
 	"draw_white_space": "selection",
-	"font_face": "Fira Code",
-	"font_size": 14,
+	"font_face": "Cascadia Code Semi-Light",
+	"font_size": 15,
 	"mini_diff": "auto",
 	"show_encoding": true,
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,	
 }
