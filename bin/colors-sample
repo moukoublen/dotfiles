@@ -15,8 +15,12 @@ __msg1() {
 
 __show() {
   __msg1 39 49 "Default"
+
   __msg1 30 40 "Black"
   __msg1 90 100 "Light Black"
+  __msg1 37 47 "Grey"
+  __msg1 97 107 "Light Grey"
+
   __msg1 31 41 "Red"
   __msg1 91 101 "Light Red"
   __msg1 32 42 "Green"
@@ -29,8 +33,6 @@ __show() {
   __msg1 95 105 "Light Purple"
   __msg1 36 46 "Turquoise"
   __msg1 96 106 "Light Turquoise"
-  __msg1 37 47 "Grey"
-  __msg1 97 107 "Light Grey"
 }
 
 

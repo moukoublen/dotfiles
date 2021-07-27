@@ -1,27 +1,30 @@
 #!/usr/bin/env bash
 
-## Prime Dark Dimmed Mode
+## Primer Dark_dimmed Mode
+source __colors-primer.bash
 
-export C_FG="#adbac7"  # (gray-1)
-export C_BG="#22272e"  # (gray-9)
-export C_HFG="#22272e" # (gray-9)
-export C_HBG="#ea4aaa" # (pink-5) (from light)
+export C_FG=${primer_dark_dimmed['gray-1']}
+export C_BG=${primer_dark_dimmed['gray-9']}
+export C_HFG=${primer_dark_dimmed['gray-9']}
+export C_HBG=${primer_light['pink-5']}
 
-export C_00='#545d68'  # Black           (gray-5)
-export C_08='#636e7b'  # Light Black     (gray-4)
-export C_01='#f47067'  # Red             (red-3)
-export C_09='#ff938a'  # Light Red       (red-2)
-export C_02='#57ab5a'  # Green           (green-3)
-export C_10='#6bc46d'  # Light Green     (green-2)
-export C_03='#c69026'  # Yellow          (yellow-3)
-export C_11='#daaa3f'  # Light Yellow    (yellow-2)
-export C_04='#539bf5'  # Blue            (blue-3)
-export C_12='#6cb6ff'  # Light Blue      (blue-2)
-export C_05='#b083f0'  # Purple          (purple-3)
-export C_13='#dcbdfb'  # Light Purple    (purple-2)
-export C_06='#e275ad'  # Turquoise       (pink-3)
-export C_14='#fc8dc7'  # Light Turquoise (pink-2)
-export C_07='#909dab'  # Grey            (gray-2)
-export C_15='#cdd9e5'  # Light Grey      (gray-0)
+export C_00=${primer_dark_dimmed['gray-6']}   # Black
+export C_08=${primer_dark_dimmed['gray-4']}   # Light Black
+export C_07=${primer_dark_dimmed['gray-2']}   # Grey
+export C_15=${primer_dark_dimmed['gray-0']}   # Light Grey
+
+export C_01=${primer_dark_dimmed['red-4']}    # Red
+export C_09=${primer_dark_dimmed['red-3']}    # Light Red
+export C_02=${primer_dark_dimmed['green-4']}  # Green
+export C_10=${primer_dark_dimmed['green-3']}  # Light Green
+export C_03=${primer_dark_dimmed['yellow-4']} # Yellow
+export C_11=${primer_dark_dimmed['yellow-3']} # Light Yellow
+export C_04=${primer_dark_dimmed['blue-4']}   # Blue
+export C_12=${primer_dark_dimmed['blue-3']}   # Light Blue
+export C_05=${primer_dark_dimmed['purple-4']} # Purple
+export C_13=${primer_dark_dimmed['purple-3']} # Light Purple
+export C_06=${primer_dark_dimmed['pink-4']}   # Turquoise
+export C_14=${primer_dark_dimmed['pink-3']}   # Light Turquoise
+
 
 export C_PAL="['${C_00}','${C_01}','${C_02}','${C_03}','${C_04}','${C_05}','${C_06}','${C_07}','${C_08}','${C_09}','${C_10}','${C_11}','${C_12}','${C_13}','${C_14}','${C_15}']"
