@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+READ_ONLY=""
+args=()
+while (($#)); do
+  case "${1}" in
+    -R|--RO)
+      READ_ONLY=":ro"
+      shift
+      ;;
+    *)
+      args+=("${1}")
+      shift
+      ;;
+  esac
+done
+
+
+exec docker run --rm --interactive --tty --volume "${PWD}:/folder${READ_ONLY}" --workdir /folder "${args[@]}"
