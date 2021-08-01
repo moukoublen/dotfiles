@@ -71,7 +71,7 @@ __m_ps1_get_color() {
       __m_ps1_color
       ;;
     prefix)
-      __m_ps1_color 0 49 35
+      __m_ps1_color 1 49 35
       ;;
     main)
       __m_ps1_color 0 49 90
@@ -203,7 +203,7 @@ __m_ps1() {
   #local d1=$'\u2506'
   #local d2=$'\u2506'
   #local prompt=$'\u2771'
-  local prompt=$'\u276F'
+  local prompt=$'\u276D'
 
   #local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
   local ps1_line1="${dl}"

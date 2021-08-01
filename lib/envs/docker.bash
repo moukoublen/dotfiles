@@ -19,24 +19,6 @@ dpsp() {
   docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n" "$@"
 }
 complete -F __dps_completion dps dpsp
-
-drh() {
-  READ_ONLY=""
-  case "$1" in
-    -R|--RO)
-      READ_ONLY=":ro"
-      shift 1
-      ;;
-  esac
-
-  docker run \
-    --rm \
-    --interactive \
-    --tty \
-    --volume "${PWD}:/folder${READ_ONLY}" \
-    --workdir /folder \
-    "$@"
-}
 complete -F __drh_completion drh
 
 install-docker-compose-completion() {
@@ -81,7 +63,6 @@ if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion 
 fi
 ################################################################################
 ################################################################################
-
 
 
 ################################################################################

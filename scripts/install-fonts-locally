@@ -103,7 +103,7 @@ __fnt_manrope() {
 __fnt_inter() {
   __installing "Inter"
   URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/rsms/inter/releases/latest | jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output)
-  __i(){ cp -r $1/Inter\ Desktop/* $2/; }
+  __i(){ cp -r $1/Inter\ Desktop/*.otf $2/; }
   __install_font_localy "$URL" "inter.zip" "inter" __decomp __i
 }
 
