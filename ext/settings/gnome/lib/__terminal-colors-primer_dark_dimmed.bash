@@ -5,8 +5,8 @@ source __colors-primer.bash
 
 export C_FG=${primer_dark_dimmed['gray-1']}
 export C_BG=${primer_dark_dimmed['gray-9']}
-export C_HFG=${primer_dark_dimmed['gray-9']}
-export C_HBG=${primer_light['pink-5']}
+export C_HFG=${primer_dark_dimmed['gray-0']}
+export C_HBG=${primer_dark_dimmed['pink-8']}
 
 export C_00=${primer_dark_dimmed['gray-6']}   # Black
 export C_08=${primer_dark_dimmed['gray-4']}   # Light Black
