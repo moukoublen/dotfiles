@@ -37,11 +37,12 @@ case "$(whatos)" in
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     # sudo apt-get --purge --yes remove docker docker-engine docker.io containerd runc
-    sudo apt install --yes apt-transport-https ca-certificates curl gnupg lsb-release
+    sudo apt-get install --assume-yes apt-transport-https ca-certificates curl gnupg lsb-release
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt update
-    sudo apt install -y docker-ce docker-ce-cli containerd.io
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
+      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
     ;;
   *)
     echo "this script does not have packages for this release"
@@ -56,3 +57,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 
 echo -e "\e[1;32mDone\e[0m\n"
+
+## to uninstall remove the packages and also:
+# sudo rm -rf /var/lib/docker
+# sudo rm -rf /var/lib/containerd
