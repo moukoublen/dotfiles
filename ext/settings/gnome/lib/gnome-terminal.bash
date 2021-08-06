@@ -1,20 +1,63 @@
 #!/usr/bin/env bash
 
+# it prints  "[name] [uuid]"
+__gnome_terminal_profile_name_and_uuid() {
+  local REQ_NAME="${1}"
+  if [[ -z "${REQ_NAME}" ]]; then
+    echo "Default $(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
+    return
+  fi
+
+  local PROFILES_ARRAY=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
+  for PRF in "${PROFILES_ARRAY[@]}"; do
+    local name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
+    if [[ $name == "'${REQ_NAME}'" ]]; then
+      echo "$REQ_NAME $PRF"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# prints (name, uuid, profile_path)
+__gnome_terminal_profile() {
+  local GT_OUTPUT=()
+  if ! GT_OUTPUT=($(__gnome_terminal_profile_name_and_uuid "${1}")); then
+    return 1
+  fi
+
+  echo "${GT_OUTPUT[0]} ${GT_OUTPUT[1]} org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${GT_OUTPUT[1]}/"
+}
+
+__gnome_terminal_profile_list() {
+  echo -e "\e[0;37mAvailable profiles:\e[0m"
+  local PROFILES_ARRAY=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
+  for PRF in "${PROFILES_ARRAY[@]}"; do
+    local NAME=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
+    echo -e "  \e[0;36m${NAME}\e[0m" | tr -d \'
+  done
+}
+
 __help() {
   echo "Usage: "
-  echo "       get"
-  echo "       set <color file>"
+  echo -e "       \e[0;35mget\e[0m \e[1;39m[\e[0;37mprofile name (optional)\e[1;39m]\e[0m"
+  echo -e "       \e[0;35mset\e[0m \e[1;39m[\e[0;37mcolor file\e[1;39m]\e[0m \e[1;39m[\e[0;37mprofile name (optional)\e[1;39m]\e[0m"
+  echo ""
+  __gnome_terminal_profile_list
 }
 
 func=
 case $1 in
   get)
     func="__get-settings"
+    shift 1
     ;;
   set)
     [ -z "$2" ] && __help && exit 1
     source $2
     func="__set-settings"
+    shift 2
     ;;
   *)
     __help
@@ -60,68 +103,38 @@ profilesettings=( \
 )
 
 __set-settings() {
-  gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
-  default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
+  local PROFILE=()
+  if ! PROFILE=($(__gnome_terminal_profile ${1})); then
+    echo -e "\e[0;31mWrong profile name \e[1;31m${1}\e[0m"
+    __gnome_terminal_profile_list
+    return 1
+  fi
 
-  for key in "${!globalsettings[@]}"; do
-    gsettings-set "${key}" "${globalsettings[$key]}"
+  for KEY in "${!globalsettings[@]}"; do
+    gsettings-set "${KEY}" "${globalsettings[$KEY]}"
   done
 
-  for key in "${!profilesettings[@]}"; do
-    gsettings-set "${default_profile_path} ${key}" "${profilesettings[$key]}"
+  for KEY in "${!profilesettings[@]}"; do
+    gsettings-set "${PROFILE[2]} ${KEY}" "${profilesettings[$KEY]}"
   done
 }
 
 __get-settings() {
-  gdp=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
-  default_profile_path="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${gdp}/"
+  local PROFILE=()
+  if ! PROFILE=($(__gnome_terminal_profile ${1})); then
+    echo -e "\e[0;31mWrong profile name \e[1;31m${1}\e[0m"
+    __gnome_terminal_profile_list
+    return 1
+  fi
 
-  for key in "${!globalsettings[@]}"; do
-    gsettings-get "${key}"
+  echo -e "Profile: \e[0;94m${PROFILE[0]} \e[0m(\e[3m${PROFILE[1]}\e[0m)\e[0m"
+  for KEY in "${!globalsettings[@]}"; do
+    gsettings-get "${KEY}"
   done
 
-  for key in "${!profilesettings[@]}"; do
-    gsettings-get "${default_profile_path} ${key}"
+  for KEY in "${!profilesettings[@]}"; do
+    gsettings-get "${PROFILE[2]} ${KEY}"
   done
 }
 
-${func}
-
-##__gnome_terminal_profile_name_and_uuid_by_name() {
-##  local req_name="$1"
-##  if [[ -z "${req_name}" ]]; then
-##    return 1
-##  fi
-##
-##  local profiles_array=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
-##  for prf in "${profiles_array[@]}"; do
-##    local name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${prf}/" visible-name)
-##    if [[ $name == "'${req_name}'" ]]; then
-##      echo "$req_name $prf"
-##      return 0
-##    fi
-##  done
-##
-##  return 1
-##}
-##
-##__gnome_terminal_default_profile_name_and_uuid() {
-##  local uuid="$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
-##  echo "Default $uuid"
-##}
-##
-##  local GP_NAME=
-##  local GP_UUID=
-##  if [[ -z "${1-}" ]]; then
-##    read GP_NAME GP_UUID < <(__gnome_terminal_default_profile_name_and_uuid)
-##  else
-##    local GT_OUTPUT=""
-##    if GT_OUTPUT=$(__gnome_terminal_profile_name_and_uuid_by_name "$1"); then
-##      read GP_NAME GP_UUID < <(echo "$GT_OUTPUT");
-##    else
-##      echo "No valid profile name $1"
-##      return 1
-##    fi
-##  fi
-##
-##  local GS_PRF_PATH="org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${GP_UUID}/"
+${func} "${1}"
