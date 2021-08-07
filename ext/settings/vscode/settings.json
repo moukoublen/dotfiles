@@ -15,8 +15,8 @@
   "editor.insertSpaces": true,
   "editor.lineHeight": 0,
   "editor.fontSize": 19,
-  "editor.fontFamily": "Cascadia Code",
-  "editor.fontWeight": "400",
+  "editor.fontFamily": "Cascadia Code SemiLight",
+  "editor.fontWeight": "normal",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
@@ -25,7 +25,7 @@
   "terminal.integrated.cursorWidth": 1,
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontFamily": "Cascadia Code",
+  "terminal.integrated.fontFamily": "Cascadia Mono SemiLight",
   "terminal.integrated.fontSize": 19,
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.fontWeightBold": "normal",
@@ -34,7 +34,22 @@
   "terminal.integrated.scrollback": 99999999,
   "workbench.colorTheme": "GitHub Dark Dimmed",
   "workbench.colorCustomizations": {
-    "editor.selectionBackground": "#69264a",
+    "editor.findMatchBackground": "#57ab5a99",
+    "editor.findMatchHighlightBackground": "#57ab5a66",
+
+    "editor.selectionHighlightBackground": "#b083f033",
+    "editor.selectionHighlightBorder": "#b083f000",
+    "editor.wordHighlightBackground": "#b083f000",
+    "editor.wordHighlightStrongBackground": "#b083f000",
+    "editor.wordHighlightBorder": "#b083f099",
+    "editor.wordHighlightStrongBorder": "#b083f066",
+    "editorBracketMatch.background": "#b083f050",
+    "editorBracketMatch.border": "#b083f000",
+
+    "editor.linkedEditingBackground": "#ea4aaa22",
+    "editor.inactiveSelectionBackground": "#ea4aaa22",
+    "editor.selectionBackground": "#ea4aaa44",
+
     "editorWhitespace.foreground": "#373e47",
     // terminal
     "terminal.selectionBackground": "#69264a",
