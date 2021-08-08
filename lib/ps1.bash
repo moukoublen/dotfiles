@@ -112,7 +112,8 @@ __m_ps1_seperator() {
 
 
 __m_ps1_user() {
-  if [[  "${MARMALADE_PS1_DISPLAY_USER}" == 'false' ]] && [[ ! "`id -u`" -eq 0 ]]; then
+  local disp=${MARMALADE_PS1_DISPLAY_USER:-false}
+  if [[  "${disp}" == 'false' ]] && [[ ! "`id -u`" -eq 0 ]]; then
     return
   fi
 
@@ -126,7 +127,8 @@ __m_ps1_user() {
 
 
 __m_ps1_host() {
-  if [[ "${MARMALADE_PS1_DISPLAY_HOSTNAME}" == 'false' ]]; then
+  local disp=${MARMALADE_PS1_DISPLAY_HOSTNAME:-false}
+  if [[ "${disp}" == 'false' ]]; then
     return
   fi
 
