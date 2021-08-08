@@ -5,10 +5,10 @@
 	"light_theme": "Default.sublime-theme",
 	"dark_theme": "Default Dark.sublime-theme",
 	// editor settings
-	"draw_white_space": "selection",
-	"font_face": "Cascadia Code Semi-Light",
-	"font_size": 15,
+	"draw_white_space": ["all_tabs", "selection_all", "trailing"],
+	"font_face": "Cascadia Code Light",
+	"font_size": 16,
 	"mini_diff": "auto",
 	"show_encoding": true,
-	"translate_tabs_to_spaces": true,	
+	"translate_tabs_to_spaces": true,
 }
