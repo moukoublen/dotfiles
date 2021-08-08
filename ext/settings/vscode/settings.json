@@ -1,77 +1,37 @@
 {
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "vscode-icons",
-  "workbench.settings.useSplitJSON": true,
-  "workbench.settings.editor": "json",
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
-  },
   "window.zoomLevel": 0,
   "files.trimTrailingWhitespace": true,
+  "files.autoSave": "afterDelay",
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
+  "editor.renderControlCharacters": true,
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.lineHeight": 0,
   "editor.fontSize": 19,
-  "editor.fontFamily": "Cascadia Code SemiLight",
+  "editor.fontFamily": "'Cascadia Code SemiLight'",
   "editor.fontWeight": "normal",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
+  "workbench.settings.useSplitJSON": true,
+  "workbench.settings.editor": "json",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "underline",
   "terminal.integrated.cursorWidth": 1,
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontFamily": "Cascadia Mono SemiLight",
   "terminal.integrated.fontSize": 19,
+  "terminal.integrated.fontFamily": "'Cascadia Code SemiLight'",
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.fontWeightBold": "normal",
   "terminal.integrated.letterSpacing": 0,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.scrollback": 99999999,
-  "workbench.colorTheme": "GitHub Dark Dimmed",
-  "workbench.colorCustomizations": {
-    "editor.findMatchBackground": "#57ab5a99",
-    "editor.findMatchHighlightBackground": "#57ab5a66",
-
-    "editor.selectionHighlightBackground": "#b083f033",
-    "editor.selectionHighlightBorder": "#b083f000",
-    "editor.wordHighlightBackground": "#b083f000",
-    "editor.wordHighlightStrongBackground": "#b083f000",
-    "editor.wordHighlightBorder": "#b083f099",
-    "editor.wordHighlightStrongBorder": "#b083f066",
-    "editorBracketMatch.background": "#b083f050",
-    "editorBracketMatch.border": "#b083f000",
-
-    "editor.linkedEditingBackground": "#ea4aaa22",
-    "editor.inactiveSelectionBackground": "#ea4aaa22",
-    "editor.selectionBackground": "#ea4aaa44",
-
-    "editorWhitespace.foreground": "#373e47",
-    // terminal
-    "terminal.selectionBackground": "#69264a",
-    "terminal.background": "#22272e",
-    "terminal.foreground": "#adbac7",
-    "terminal.ansiBlack": "#444c56",
-    "terminal.ansiBrightBlack": "#636e7b",
-    "terminal.ansiWhite": "#909dab",
-    "terminal.ansiBrightWhite": "#cdd9e5",
-    "terminal.ansiRed": "#e5534b",
-    "terminal.ansiBrightRed": "#f47067",
-    "terminal.ansiGreen": "#46954a",
-    "terminal.ansiBrightGreen": "#57ab5a",
-    "terminal.ansiYellow": "#ae7c14",
-    "terminal.ansiBrightYellow": "#c69026",
-    "terminal.ansiBlue": "#4184e4",
-    "terminal.ansiBrightBlue": "#539bf5",
-    "terminal.ansiMagenta": "#986ee2",
-    "terminal.ansiBrightMagenta": "#b083f0",
-    "terminal.ansiCyan": "#c96198",
-    "terminal.ansiBrightCyan": "#e275ad",
-  },
   "[yaml]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -101,6 +61,8 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
   },
+  // ===============
+  // >>> Go lang <<<
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
@@ -189,8 +151,126 @@
   },
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "go.toolsManagement.autoUpdate": true,
+  // >>> Go lang <<<
+  // ===============
   "C_Cpp.updateChannel": "Insiders",
   "redhat.telemetry.enabled": true,
   "gitlens.codeLens.enabled": false,
-  "files.autoSave": "afterDelay",
+  "cSpell.enabled": false,
+  // ==============
+  // >>> colors <<<
+  "editor.tokenColorCustomizations": {
+    "[GitHub Dark Dimmed]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "comment",
+            "punctuation.definition.comment",
+            "string.comment"
+          ],
+          "settings": {
+            "foreground": "#636e7b", // [Dark_dimmed Mode] gray-4
+          },
+        },
+        {
+          "scope": [
+            "keyword",
+            "storage",
+            "storage.type"
+          ],
+          "settings": {
+            "foreground": "#b083f0" // [Dark_dimmed Mode] purple-3
+          }
+        },
+        {
+          "scope": [
+            "keyword.operator.comparison.go",
+            "keyword.operator.assignment.go",
+          ],
+          "settings": {
+            "foreground": "#dcbdfb" // [Dark_dimmed Mode] purple-2
+          }
+        },
+        {
+          "scope": [
+            "support"
+          ],
+          "settings": {
+            "foreground": "#e275ad" // [Dark_dimmed Mode] pink-3
+          }
+        },
+        {
+          "scope": [
+            "string",
+            "punctuation.definition.string",
+            "entity.name.import.go"
+          ],
+          "settings": {
+            "foreground": "#e0823d" // [Dark_dimmed Mode] orange-3
+          }
+        },
+        {
+          "scope": [
+            "entity.name",
+            "entity.name.function",
+          ],
+          "settings": {
+            "foreground": "#c69026" // [Dark_dimmed Mode] yellow-3
+          }
+        },
+        {
+          "scope": [
+            "constant"
+          ],
+          "settings": {
+            "foreground": "#6cb6ff" // [Dark_dimmed Mode] blue-2
+          }
+        },
+      ]
+    }
+  },
+  "workbench.colorCustomizations": {
+    "[GitHub Dark Dimmed]": {
+      // [Dark_dimmed Mode] green-5 (default: Light Mode yellow-5 #ffd33d with 44 and 22 opacity)
+      "editor.findMatchBackground": "#347d3988",
+      "editor.findMatchHighlightBackground": "#347d3944",
+      // [Dark_dimmed Mode] purple-3 (default: #17E5E6)
+      "editor.selectionHighlightBackground": "#b083f033",
+      "editor.selectionHighlightBorder": "#b083f000",
+      "editor.wordHighlightBackground": "#b083f000",
+      "editor.wordHighlightStrongBackground": "#b083f000",
+      "editor.wordHighlightBorder": "#b083f099",
+      "editor.wordHighlightStrongBorder": "#b083f066",
+      "editorBracketMatch.background": "#b083f050",
+      "editorBracketMatch.border": "#b083f000",
+      // [Dark_dimmed Mode] pink-5 (default: #3392FF)
+      "editor.linkedEditingBackground": "#ea4aaa22",
+      "editor.inactiveSelectionBackground": "#ea4aaa22",
+      "editor.selectionBackground": "#ea4aaa44",
+      // [Dark_dimmed Mode] gray-7
+      "editorWhitespace.foreground": "#373e47",
+      // terminal
+      "terminal.selectionBackground": "#69264a",
+      "terminal.background": "#22272e",
+      "terminal.foreground": "#adbac7",
+      "terminal.ansiBlack": "#444c56",
+      "terminal.ansiBrightBlack": "#636e7b",
+      "terminal.ansiWhite": "#909dab",
+      "terminal.ansiBrightWhite": "#cdd9e5",
+      "terminal.ansiRed": "#e5534b",
+      "terminal.ansiBrightRed": "#f47067",
+      "terminal.ansiGreen": "#46954a",
+      "terminal.ansiBrightGreen": "#57ab5a",
+      "terminal.ansiYellow": "#ae7c14",
+      "terminal.ansiBrightYellow": "#c69026",
+      "terminal.ansiBlue": "#4184e4",
+      "terminal.ansiBrightBlue": "#539bf5",
+      "terminal.ansiMagenta": "#986ee2",
+      "terminal.ansiBrightMagenta": "#b083f0",
+      "terminal.ansiCyan": "#c96198",
+      "terminal.ansiBrightCyan": "#e275ad",
+    },
+  },
+  // >>> colors <<<
+  // ==============
 }
