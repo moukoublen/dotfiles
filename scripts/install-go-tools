@@ -4,12 +4,35 @@ export CGO_ENABLED=0
 
 set -x
 
-go install -a -ldflags '-s -w -extldflags "-static"' 'go.mozilla.org/sops/v3/cmd/sops@v3.7.1'
+
+# https://pkg.go.dev/golang.org/x/lint/golint?tab=versions    ## Golint is deprecated and frozen.
+# go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/lint/golint@v0.0.0-20210508222113-6edffad5e616' 
+
+# https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=versions
 go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/tools/cmd/goimports@v0.1.5'
+
+# https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
 go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/staticcheck@2021.1.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/structlayout@2021.1.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/structlayout-pretty@2021.1.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/structlayout-optimize@2021.1.1'
+
+# https://github.com/golangci/golangci-lint/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.0'
+
+# https://github.com/securego/gosec/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.8.1'
 
+
+################################################################
+################################################################
+
+# https://github.com/mozilla/sops/releases
+go install -a -ldflags '-s -w -extldflags "-static"' 'go.mozilla.org/sops/v3/cmd/sops@v3.7.1'
+
+# https://github.com/muesli/duf/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/muesli/duf@v0.6.2'
+
+# https://github.com/xxxserxxx/gotop/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/xxxserxxx/gotop/v4/cmd/gotop@v4.1.2'
 
