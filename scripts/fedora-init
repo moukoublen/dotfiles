@@ -6,7 +6,7 @@ sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
 sudo dnf install \
-  git sqlite gcc gcc-c++ strace gdb cmake automake make \
+  git sqlite gcc gcc-c++ strace gdb cmake automake make binutils-devel glibc-devel glibc-static \
   jq curl wget redhat-lsb-core htop vim vim-common vim-enhanced nano \
   ack ripgrep
 
@@ -52,4 +52,6 @@ sudo dnf install \
   kernel-modules-extra
 
 #sudo dnf install akmods akmod-wl broadcom-wl
+
+sudo dnf grouperase "Container Management"
 
