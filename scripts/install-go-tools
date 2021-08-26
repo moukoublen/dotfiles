@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+export CGO_ENABLED=0
+
+set -x
+
+go install -a -ldflags '-s -w -extldflags "-static"' 'go.mozilla.org/sops/v3/cmd/sops@v3.7.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/tools/cmd/goimports@v0.1.5'
+go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/staticcheck@2021.1.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.0'
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.8.1'
+
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/muesli/duf@v0.6.2'
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/xxxserxxx/gotop/v4/cmd/gotop@v4.1.2'
+
