@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+cat << EOL | sudo tee /etc/sysctl.d/98-file-max.conf
+fs.file-max = 65535
+EOL
+
 cat << EOL | sudo tee /etc/sysctl.d/98-inotify.conf
 fs.inotify.max_user_watches = 524288
 EOL
