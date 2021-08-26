@@ -7,6 +7,8 @@ export C_FG=${primer_light['gray-9']}
 export C_BG=${primer_light['gray-2']}
 export C_HFG=${primer_light['gray-0']}
 export C_HBG=${primer_light['pink-5']}
+export C_CFG=${primer_light['gray-0']}
+export C_CBG=${primer_light['pink-5']}
 
 export C_00=${primer_light['gray-8']}   # Black
 export C_08=${primer_light['gray-7']}   # Light Black
