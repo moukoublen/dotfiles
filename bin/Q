@@ -1,53 +1,59 @@
 #!/usr/bin/env bash
 
-__update-repo() {(
-  local LEN=${2:-20}
-  printf "%-${LEN}.${LEN}s" $(basename $1)
-  cd $1
-  git fetch --quiet
-  LOCAL=$(git rev-parse @)
-  REMOTE=$(git rev-parse @{u})
-  BASE=$(git merge-base @ @{u})
-
-  if [[ $LOCAL = $REMOTE ]]; then
-    printf "\e[32mUp to date\e[0m\n"
-  elif [[ $LOCAL = $BASE ]]; then
-      printf "\e[33mPulling updates...\e[0m "
-      git pull --quiet --ff-only
-      printf "\e[32mok! \e[0m\n"
-  elif [[ $REMOTE = $BASE ]]; then
-      printf "\e[31mNeed to push\e[0m\n"
-  else
-      printf "\e[31mDiverged\e[0m\n"
-  fi
-)}
-
 __max() {
-  [[ $1 -gt $2 ]] && echo $1 && return
-  echo $2
+  [[ $1 -gt $2 ]] && echo "${1}" && return
+  echo "${2}"
 }
 
-__update-repos() {
-  local MAX_LEN=-1
-  for s in "$@"; do
-    MAX_LEN=$(__max ${#s} $MAX_LEN)
-  done
-
-  for i in "$@"; do
-    __update-repo "$i" $MAX_LEN
-  done
-}
-
+# Read and evaluate full real paths of repos in file ~/.q
+FULL_PATHS=()
 if [ -f ~/.q ]; then
-  while read r; do
+  while read -r r; do
     [[ $r = "" ]] && continue
-    r=$(eval echo \"$r\")
-    __update-repo "${r/#~/$HOME}"
+    r=$(eval echo "$r")
+    r="${r/#~/$HOME}"
+    FULL_PATHS[${#FULL_PATHS[@]}]="${r}"
   done < ~/.q
   unset r
 fi
 
 
-unset -f __update-repo
-unset -f __update-repos
-unset -f __max
+MAX_NAME_LEN=2
+for p in "${FULL_PATHS[@]}"; do
+  p=$(basename "${p}")
+  MAX_NAME_LEN=$(__max ${#p} $MAX_NAME_LEN)
+done
+
+
+__update-repo() {(
+  printf "%-${MAX_NAME_LEN}.${MAX_NAME_LEN}s " "$(basename "${1}")"
+  cd "${1}" || (printf "\e[31mError\e[0m\n" && return)
+  git fetch --quiet
+  LOCAL=$(git rev-parse '@' 2> /dev/null)
+  REMOTE=$(git rev-parse '@{u}' 2> /dev/null)
+  BASE=$(git merge-base '@' '@{u}' 2> /dev/null)
+
+  if [[ $LOCAL = "${REMOTE}" ]]; then
+    printf "\e[32mUp to date\e[0m\n"
+    return
+  fi
+
+  if [[ $LOCAL = "${BASE}" ]]; then
+    printf "\e[33mPulling updates...\e[0m "
+    git pull --quiet --ff-only &> /dev/null 
+    printf "\e[32mok! \e[0m\n"
+    return
+  fi
+
+  if [[ $REMOTE = "${BASE}" ]]; then
+    printf "\e[31mNeed to push\e[0m\n"
+    return
+  fi
+  
+  printf "\e[31mDiverged\e[0m\n"
+)}
+
+
+for p in "${FULL_PATHS[@]}"; do
+  __update-repo "${p}"
+done
