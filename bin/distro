@@ -1,12 +1,18 @@
 #!/usr/bin/env bash
 
 
+__prnt() {
+  printf "\e[0;96m%-9.9s\e[0;36m:\e[0m %s\n" "${1}" "${2}"
+}
+
 (
+
 if [[ -f /etc/os-release ]]; then
   source /etc/os-release
-  echo "Name     : ${NAME}"
-  echo "Version  : ${VERSION}"
-  echo "Code Name: ${VERSION_CODENAME}"
+  __prnt "Name" "${NAME}"
+  __prnt "Version" "${VERSION}"
+  __prnt "Codename" "${VERSION_CODENAME}"
+  [ -n "$PRETTY_NAME" ] && __prnt "Full Name" "${PRETTY_NAME}"
   exit 0
 fi
 
