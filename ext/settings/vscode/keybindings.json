@@ -8,5 +8,21 @@
   {
     "key": "ctrl+alt+l",
     "command": "workbench.files.action.showActiveFileInExplorer"
+  },
+  {
+    "key": "ctrl+meta+t",
+    "command": "go.add.tags"
+  },
+  {
+    "key": "ctrl+meta+g",
+    "command": "go.toggle.gc_details"
+  },
+  {
+    "key": "ctrl+meta+d",
+    "command": "go.debug.cursor"
+  },
+  {
+    "key": "ctrl+meta+r",
+    "command": "go.test.cursorOrPrevious"
   }
 ]

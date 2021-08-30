@@ -66,10 +66,7 @@
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    }
+    "editor.formatOnSave": true
   },
   "[go.mod]": {
     "editor.tabSize": 2,
@@ -81,7 +78,7 @@
   "go.editorContextMenuCommands": {
     "toggleTestFile": true,
     "addTags": true,
-    "removeTags": false,
+    "removeTags": true,
     "fillStruct": true,
     "testAtCursor": true,
     "testFile": false,
@@ -89,9 +86,9 @@
     "generateTestForFunction": true,
     "generateTestForFile": true,
     "generateTestForPackage": false,
-    "addImport": true,
+    "addImport": false,
     "testCoverage": true,
-    "playground": true,
+    "playground": false,
     "debugTestAtCursor": true,
     "benchmarkAtCursor": false
   },
