@@ -136,17 +136,6 @@
     "ui.completion.completionBudget": "100ms",
     "ui.completion.experimentalPostfixCompletions": true
   },
-  "go.delveConfig": {
-    "dlvLoadConfig": {
-      "followPointers": true,
-      "maxVariableRecurse": 1,
-      "maxStringLen": 5000,
-      "maxArrayValues": 64,
-      "maxStructFields": -1
-    },
-    "apiVersion": 2,
-    "showGlobalVariables": true
-  },
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "go.toolsManagement.autoUpdate": true,
   // >>> Go lang <<<
