@@ -13,6 +13,7 @@
   sort = -version:refname
 [url "git@github.com:"]
   insteadOf = https://github.com/
-
 [pull]
-	ff = only
+  ff = only
+[color "diff"]
+  whitespace = red reverse
