@@ -2,6 +2,7 @@
   "window.zoomLevel": 0,
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
+  "editor.bracketPairColorization.enabled": true,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
@@ -143,7 +144,7 @@
   "C_Cpp.updateChannel": "Insiders",
   "redhat.telemetry.enabled": true,
   "gitlens.codeLens.enabled": false,
-  "cSpell.enabled": false,
+  "cSpell.enabled": true,
   // ==============
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
@@ -218,6 +219,13 @@
   },
   "workbench.colorCustomizations": {
     "[GitHub Dark Dimmed]": {
+      "editorBracketHighlight.foreground1": "#f66a0a",
+      "editorBracketHighlight.foreground2": "#ffd33d",
+      "editorBracketHighlight.foreground3": "#6f42c1",
+      "editorBracketHighlight.foreground4": "#28a745",
+      "editorBracketHighlight.foreground5": "#0366d6",
+      "editorBracketHighlight.foreground6": "#ea4aaa",
+      "editorBracketHighlight.unexpectedBracket.foreground": "#d73a49",
       // [Dark_dimmed Mode] green-5 (default: Light Mode yellow-5 #ffd33d with 44 and 22 opacity)
       "editor.findMatchBackground": "#347d3988",
       "editor.findMatchHighlightBackground": "#347d3944",
