@@ -7,6 +7,7 @@ prnt() {
 update_dnf() {
     prnt "sudo dnf update --refresh"
     sudo dnf update --refresh
+    sudo dnf needs-restarting
 }
 
 update_apt() {

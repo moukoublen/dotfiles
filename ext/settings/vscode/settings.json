@@ -36,31 +36,31 @@
   "[yaml]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": true
   },
   "[json]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": true
   },
   "[jsonc]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": true,
+    "editor.formatOnPaste": true
   },
   "[shellscript]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": false,
+    "editor.formatOnPaste": false
   },
   "[scala]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": false,
+    "editor.formatOnPaste": false
   },
   "[makefile]": {
     "editor.tabSize": 2,
-    "editor.insertSpaces": false,
+    "editor.insertSpaces": false
   },
   // ===============
   // >>> Go lang <<<
@@ -97,40 +97,34 @@
     "references": false,
     "runtest": true
   },
-  "go.useLanguageServer": true,
-  "go.languageServerFlags": [
-    //"-rpc.trace",
-    "-logfile",
-    "/tmp/gopls.log"
-  ],
-  "go.formatTool": "default",
   "go.lintTool": "golangci-lint",
   "go.lintFlags": [],
   "go.testFlags": [
+    "-count=1",
     "-v",
-    "-a"
+    "-race"
   ],
-  "go.toolsEnvVars": {
-    //"GOFLAGS": "-mod=vendor"
-  },
   "go.gotoSymbol.includeImports": true,
+  "go.formatTool": "default",
+  "go.useLanguageServer": true,
   "gopls": {
+    "formatting.gofumpt": true,
     "build.allowImplicitNetworkAccess": true,
     "build.experimentalWorkspaceModule": false,
     "build.buildFlags": [
-      //"-mod=vendor"
+      //"-mod=vendor",
+      //"-tags=?"
     ],
     "build.env": {
       "GO111MODULE": "on"
     },
-    "formatting.gofumpt": true,
     "codelenses": {
       "gc_details": true,
       "generate": false,
-      "regenerate_cgo": true,
+      "regenerate_cgo": false,
       "tidy": true,
       "upgrade_dependency": true,
-      "vendor": true
+      "vendor": false
     },
     "ui.completion.usePlaceholders": true,
     "ui.completion.matcher": "Fuzzy",
@@ -220,10 +214,10 @@
   "workbench.colorCustomizations": {
     "[GitHub Dark Dimmed]": {
       "editorBracketHighlight.foreground1": "#f66a0a",
-      "editorBracketHighlight.foreground2": "#ffd33d",
+      "editorBracketHighlight.foreground2": "#2188ff",
       "editorBracketHighlight.foreground3": "#6f42c1",
       "editorBracketHighlight.foreground4": "#28a745",
-      "editorBracketHighlight.foreground5": "#0366d6",
+      "editorBracketHighlight.foreground5": "#ffd33d",
       "editorBracketHighlight.foreground6": "#ea4aaa",
       "editorBracketHighlight.unexpectedBracket.foreground": "#d73a49",
       // [Dark_dimmed Mode] green-5 (default: Light Mode yellow-5 #ffd33d with 44 and 22 opacity)

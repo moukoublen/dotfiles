@@ -26,6 +26,8 @@ go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golang
 # https://github.com/securego/gosec/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.8.1'
 
+# https://github.com/mvdan/gofumpt/releases
+go install -a -ldflags '-s -w -extldflags "-static"' 'mvdan.cc/gofumpt@v0.1.1'
 
 ################################################################
 ################################################################
