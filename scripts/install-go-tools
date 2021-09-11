@@ -8,11 +8,10 @@ set -x
 # https://pkg.go.dev/golang.org/x/lint/golint?tab=versions    ## Golint is deprecated and frozen.
 # go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/lint/golint@v0.0.0-20210508222113-6edffad5e616'
 
-# https://pkg.go.dev/golang.org/x/tools/cmd/goimports?tab=versions
+# https://pkg.go.dev/golang.org/x/tools?tab=versions
 go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/tools/cmd/goimports@v0.1.5'
-
-# https://pkg.go.dev/golang.org/x/tools/cmd/fieldalignment?tab=versions
 go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@v0.1.5'
+go install -a -ldflags '-s -w -extldflags "-static"' 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.5'
 
 # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
 go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/staticcheck@2021.1.1'
@@ -21,13 +20,16 @@ go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/str
 go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/structlayout-optimize@2021.1.1'
 
 # https://github.com/golangci/golangci-lint/releases
-go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.0'
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1'
 
 # https://github.com/securego/gosec/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.8.1'
 
 # https://github.com/mvdan/gofumpt/releases
-go install -a -ldflags '-s -w -extldflags "-static"' 'mvdan.cc/gofumpt@v0.1.1'
+go install  -a -ldflags '-s -w -extldflags "-static"' 'mvdan.cc/gofumpt@v0.1.1'
+
+# https://github.com/mgechev/revive/releases
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/mgechev/revive@v1.1.1'
 
 ################################################################
 ################################################################
