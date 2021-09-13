@@ -2,7 +2,7 @@
   "window.zoomLevel": 0,
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
-  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.enabled": false,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
@@ -151,7 +151,7 @@
             "string.comment"
           ],
           "settings": {
-            "foreground": "#636e7b", // [Dark_dimmed Mode] gray-4
+            "foreground": "#545d68", // [Dark_dimmed Mode] gray-5
           },
         },
         {
@@ -168,9 +168,14 @@
           "scope": [
             "keyword.operator.comparison.go",
             "keyword.operator.assignment.go",
+            "punctuation.definition.begin.bracket.round.go",
+            "punctuation.definition.end.bracket.round.go",
+            "punctuation.definition.begin.bracket.curly.go",
+            "punctuation.definition.end.bracket.curly.go",
+            "punctuation.definition.bracket.square.go",
           ],
           "settings": {
-            "foreground": "#dcbdfb" // [Dark_dimmed Mode] purple-2
+            "foreground": "#ffdf5d" // [Dark_dimmed Mode] blue-3
           }
         },
         {
@@ -205,7 +210,7 @@
             "constant"
           ],
           "settings": {
-            "foreground": "#6cb6ff" // [Dark_dimmed Mode] blue-2
+            "foreground": "#6cb6ff" // [Dark_dimmed Mode] blue-3
           }
         },
       ]
