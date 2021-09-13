@@ -46,3 +46,6 @@ go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/xxxserxxx/gotop
 # https://github.com/orijtech/structslop/releases
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/orijtech/structslop/cmd/structslop@v0.0.6'
 
+
+# https://github.com/bcicen/ctop/releases
+# go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/bcicen/ctop@v0.7.6'
