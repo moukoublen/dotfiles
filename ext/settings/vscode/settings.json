@@ -175,15 +175,7 @@
             "punctuation.definition.bracket.square.go",
           ],
           "settings": {
-            "foreground": "#ffdf5d" // [Dark_dimmed Mode] blue-3
-          }
-        },
-        {
-          "scope": [
-            "support"
-          ],
-          "settings": {
-            "foreground": "#e275ad" // [Dark_dimmed Mode] pink-3
+            "foreground": "#768390" // [Dark_dimmed Mode] gray-3
           }
         },
         {
@@ -193,16 +185,25 @@
             "entity.name.import.go"
           ],
           "settings": {
-            "foreground": "#e0823d" // [Dark_dimmed Mode] orange-3
+            "foreground": "#c69026" // [Dark_dimmed Mode] yellow-3
           }
         },
         {
           "scope": [
             "entity.name",
             "entity.name.function",
+            "string.unquoted.go.mod",
           ],
           "settings": {
-            "foreground": "#c69026" // [Dark_dimmed Mode] yellow-3
+            "foreground": "#e275ad" // [Dark_dimmed Mode] pink-3
+          }
+        },
+        {
+          "scope": [
+            "support",
+          ],
+          "settings": {
+            "foreground": "#e0823d" // [Dark_dimmed Mode] orange-3
           }
         },
         {
