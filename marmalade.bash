@@ -21,16 +21,26 @@ path-real() {
 
 export MARMALADE_PATH="$(path-real ${BASH_SOURCE[0]})"
 
+alias to-ack='ack --files-from=-' #pipe find results
+alias to-grep='xargs grep --color=auto' #pipe find results
+alias path-to-lines='echo $PATH | tr ":" "\n"'
+alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
+
+S() {
+  find . -name "*$@*"
+}
+
+
 ################################################################################
 ######### Source libs ##########################################################
 source $MARMALADE_PATH/lib/ps1.bash
 source $MARMALADE_PATH/lib/pathmixer.bash
-source $MARMALADE_PATH/lib/common.bash
 
-# Mac or Linux?
 if [[ $(uname) = "Darwin" ]]; then
   source $MARMALADE_PATH/lib/macos_marmalade.bash
-else
+fi
+
+if [[ $(uname) = "Linux" ]]; then
   source $MARMALADE_PATH/lib/linux_marmalade.bash
 fi
 
@@ -44,7 +54,5 @@ done
 ################################################################################
 ################################################################################
 
-add_to_path $MARMALADE_PATH/bin
 
-load_path_file_to_path
-#unset MARMALADE_PATH
+add_to_path $MARMALADE_PATH/bin
