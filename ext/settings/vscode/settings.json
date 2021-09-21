@@ -219,6 +219,12 @@
   },
   "workbench.colorCustomizations": {
     "[GitHub Dark Dimmed]": {
+      //"tab.activeModifiedBorder": "#f66a0a",
+      "tab.activeBackground": "#22272e",
+      "tab.activeBorder": "#ae4c82",
+      "tab.activeBorderTop": "#ae4c82",
+      "tab.activeForeground": "#fc8dc7",
+      "tab.hoverBackground": "#551639",
       "editorBracketHighlight.foreground1": "#f66a0a",
       "editorBracketHighlight.foreground2": "#2188ff",
       "editorBracketHighlight.foreground3": "#6f42c1",
