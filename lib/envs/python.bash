@@ -10,3 +10,9 @@ if [[ -d $HOME/.pyenv/bin ]]; then
 fi
 #alias update-pyenv='(cd ~/.pyenv/; git pull)'
 #alias install-pyenv='git clone https://github.com/yyuu/pyenv.git ~/.pyenv'
+
+alias pip3-outdated='pip3 list --user --outdated'
+alias pip3-list='pip3 list --user'
+
+# pip install --user --upgrade <package>
+

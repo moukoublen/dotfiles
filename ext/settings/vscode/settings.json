@@ -1,5 +1,4 @@
 {
-  "window.zoomLevel": 0,
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
   "editor.bracketPairColorization.enabled": false,
@@ -274,6 +273,7 @@
       "terminalCursor.foreground": "#ea4aaa",
     },
   },
+  "window.zoomLevel": 2,
   // >>> colors <<<
   // ==============
 }

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 sudo dnf -y install \
+  google-cousine-fonts \
+  google-arimo-fonts \
+  google-tinos-fonts \
   aajohan-comfortaa-fonts \
   adobe-source-code-pro-fonts \
   google-roboto-condensed-fonts \
