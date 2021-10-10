@@ -5,7 +5,7 @@ marmalade() {
   # $2: env
   if [[ $1 == "update" ]]; then
     if [[ "$2" == "" ]]; then
-      for env_name in gradle maven node sbt scala docker-compose docker-machine
+      for env_name in gradle maven node sbt docker-machine
       do
         (set -e; _marmalade_update $env_name)
       done
