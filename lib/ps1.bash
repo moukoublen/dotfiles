@@ -105,8 +105,11 @@ __m_ps1_get_color() {
 
 
 __m_ps1_seperator() {
-  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}
-  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' '}
+  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}  # https://codepoints.net/U+2423
+  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u203F '}  # https://codepoints.net/U+203F
+  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2219 '}  # https://codepoints.net/U+2219
+  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2022 '}  # https://codepoints.net/U+2022
+  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' '}
   printf "%s%s%s" $(__m_ps1_get_color seperator) "$DSEP" $(__m_ps1_get_color reset)
 }
 
@@ -157,8 +160,8 @@ __m_ps1_git() {
 
   local gitp="$(__git_ps1 '%s')"
   if [[ -n "$gitp" ]]; then
-    printf "%s{%s%s%s%s%s}%s" \
-      "$(__m_ps1_get_color gitwrap)" "$(__m_ps1_get_color reset)" \
+    printf "%s%s%s%s%s%s%s%s" \
+      "$(__m_ps1_get_color gitwrap)" $'\uE0A0 ' "$(__m_ps1_get_color reset)" \
       "$(__m_ps1_get_color git)" "${gitp}" "$(__m_ps1_get_color reset)" \
       "$(__m_ps1_get_color gitwrap)" "$(__m_ps1_get_color reset)"
   fi
@@ -204,8 +207,11 @@ __m_ps1() {
 
   #local d1=$'\u2506'
   #local d2=$'\u2506'
-  #local prompt=$'\u2771'
-  local prompt=$'\u276D'
+  #local prompt=$'\u2771' # ❱
+  #local prompt=$'\u276D' # ❭
+  #local prompt=$'\u2192' # →
+  #local prompt=$'\u21D2' # ⇒
+  local prompt=$'\u279C' # ➜
 
   #local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
   local ps1_line1="${dl}"
