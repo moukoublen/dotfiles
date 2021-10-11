@@ -208,6 +208,18 @@ __fnt_cascadiacode() {
   __install_font_localy "${URL}" "cascadia-code.zip" "cascadia-code" __decomp __install_cascadiacode
 }
 
+__install_jetbrainsmono() {
+  cp -r "${1}"/fonts/variable/*.ttf "${2}"/
+}
+__fnt_jetbrainsmono() {
+  __installing "Jetbrains Mono"
+  URL=$( \
+    curl --fail --silent --show-error --location https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest | \
+    jq '.assets[0].browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "JetBrainsMono.zip" "jetbrains-mono" __decomp __install_jetbrainsmono
+}
+
 ## disabled
 # input
 # manrope
@@ -220,6 +232,7 @@ __FNT_ALL=( \
   ibmplex \
   inter \
   iosevka \
+  jetbrainsmono \
   cascadiacode
 )
 
