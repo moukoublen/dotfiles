@@ -147,15 +147,16 @@ __m_ps1_pwd() {
 }
 
 
-if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
-  source /usr/share/git-core/contrib/completion/git-prompt.sh
-fi
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
 __m_ps1_git() {
   if [[ "$(type -t __git_ps1)" != 'function' ]]; then
-    return
+    if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
+      source /usr/share/git-core/contrib/completion/git-prompt.sh
+    else
+      return
+    fi
   fi
 
   local gitp="$(__git_ps1 '%s')"

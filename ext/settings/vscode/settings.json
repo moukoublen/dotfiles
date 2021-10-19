@@ -144,6 +144,13 @@
   "redhat.telemetry.enabled": true,
   "gitlens.codeLens.enabled": false,
   "cSpell.enabled": true,
+  "cSpell.enableFiletypes": [
+    "git-rebase",
+    "go.sum",
+    "ignore",
+    "makefile",
+    "sql"
+  ],
   // ==============
   // >>> colors <<<
   "editor.tokenColorCustomizations": {

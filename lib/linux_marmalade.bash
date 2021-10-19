@@ -44,7 +44,7 @@ wcat() {
     return
   fi
 
-  cat_cmd="${cat_cmd} --paging=never --style=plain,header"
+  cat_cmd="${cat_cmd} --paging=never --style=plain,header --wrap=never --theme=Nord"
 
   if [[ "$(type -t ${1})" == 'function' ]]; then
     declare -f "${1}" | ${cat_cmd} --language=bash --file-name="${1}"
