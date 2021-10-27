@@ -1,6 +1,5 @@
 {
   "files.trimTrailingWhitespace": true,
-  "files.autoSave": "afterDelay",
   "editor.bracketPairColorization.enabled": false,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
@@ -9,9 +8,9 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.lineHeight": 1.6,
-  "editor.fontSize": 19,
-  "editor.fontFamily": "'JetBrains Mono'",
-  "editor.fontWeight": "300",
+  "editor.fontSize": 21,
+  "editor.fontFamily": "'Cascadia Code SemiLight'",
+  //"editor.fontWeight": "300",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
@@ -185,6 +184,8 @@
             "punctuation.definition.begin.bracket.curly.go",
             "punctuation.definition.end.bracket.curly.go",
             "punctuation.definition.bracket.square.go",
+            "punctuation.definition.variables.begin.bracket.round.go",
+            "punctuation.definition.variables.end.bracket.round.go",
           ],
           "settings": {
             "foreground": "#983b6e" // [Dark_dimmed Mode] gray-3
@@ -286,6 +287,7 @@
       "terminalCursor.foreground": "#ea4aaa",
     },
   },
+  "files.autoSave": "afterDelay",
   // >>> colors <<<
   // ==============
 }
