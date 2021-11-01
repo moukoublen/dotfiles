@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 
 READ_ONLY=""
+USR=""
 args=()
 while (($#)); do
   case "${1}" in
     -R|--RO)
       READ_ONLY=":ro"
+      shift
+      ;;
+    --ME)
+      USR="--user=$(id -u):$(id -g)"
       shift
       ;;
     *)
@@ -15,5 +20,8 @@ while (($#)); do
   esac
 done
 
+FOLDER="/PORTAL/$(basename "${PWD}")"
 
-exec docker run --rm --interactive --tty --volume "${PWD}:/folder${READ_ONLY}" --workdir /folder "${args[@]}"
+set -x
+
+exec docker run --rm --interactive --tty ${USR} --volume "${PWD}:${FOLDER}${READ_ONLY}" --workdir "${FOLDER}" "${args[@]}"
