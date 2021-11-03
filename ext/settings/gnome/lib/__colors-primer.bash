@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
 
+########################################################################################
+#### javascript to generate the bash tables
+########################################################################################
+# const primitives = require('@primer/primitives').default
+# const colors = primitives.colors;
+# const bashTable = (name) => (key, val) => `${name}['${key}']='${val}'`;
+# [
+#     [colors.light, 'primer_light'],
+#     [colors.dark, 'primer_dark'],
+#     [colors.dark_dimmed, 'primer_dark_dimmed'],
+# ]
+# .map(([palette, bashName]) => [palette.scale, bashTable(bashName)])
+# .flatMap(([scale, format]) =>
+#     Object.entries(scale).flatMap(([key, value]) =>
+#         Array.isArray(value)
+#             ? value.map((color, idx) => format(`${key}-${idx}`, color))
+#             : [format(key, value)]
+#     )
+# )
+# .forEach(x => console.log(x))
+########################################################################################
+
+
 declare -A primer_dark_dimmed
 declare -A primer_dark
 declare -A primer_light

@@ -139,8 +139,6 @@
   "go.toolsManagement.autoUpdate": true,
   // >>> Go lang <<<
   // ===============
-  "C_Cpp.updateChannel": "Insiders",
-  "redhat.telemetry.enabled": true,
   "gitlens.codeLens.enabled": false,
   "cSpell.enabled": true,
   "cSpell.enableFiletypes": [
