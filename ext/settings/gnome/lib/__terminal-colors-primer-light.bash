@@ -3,7 +3,7 @@
 ## Primer Light Mode
 source __colors-primer.bash
 
-export C_FG=${primer_light['gray-9']}
+export C_FG=${primer_light['black']}
 export C_BG=${primer_light['gray-2']}
 export C_HFG=${primer_light['gray-0']}
 export C_HBG=${primer_light['pink-5']}

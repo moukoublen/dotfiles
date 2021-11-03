@@ -3,8 +3,8 @@
 ## Primer Dark_dimmed Mode
 source __colors-primer.bash
 
-export C_FG=${primer_dark_dimmed['gray-1']}
-export C_BG=${primer_dark_dimmed['gray-9']}
+export C_FG=${primer_dark_dimmed['white']}
+export C_BG=${primer_dark_dimmed['black']}
 export C_HFG=${primer_dark_dimmed['gray-0']}
 export C_HBG=${primer_dark_dimmed['pink-8']}
 export C_CFG=${primer_dark_dimmed['purple-8']}
