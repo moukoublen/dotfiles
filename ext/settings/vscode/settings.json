@@ -162,7 +162,7 @@
             "string.comment"
           ],
           "settings": {
-            "foreground": "#545d68", // [Dark_dimmed Mode] gray-5
+            "foreground": "#545d68", // [Dark_dimmed Mode] scale.gray.5
           },
         },
         {
@@ -172,7 +172,7 @@
             "storage.type"
           ],
           "settings": {
-            "foreground": "#b083f0" // [Dark_dimmed Mode] purple-3
+            "foreground": "#b083f0" // [Dark_dimmed Mode] scale.purple.3
           }
         },
         {
@@ -188,7 +188,7 @@
             "punctuation.definition.variables.end.bracket.round.go",
           ],
           "settings": {
-            "foreground": "#983b6e" // [Dark_dimmed Mode] gray-3
+            "foreground": "#ae4c82" // [Dark_dimmed Mode] scale.pink.5
           }
         },
         {
@@ -198,7 +198,7 @@
             "entity.name.import.go"
           ],
           "settings": {
-            "foreground": "#c69026" // [Dark_dimmed Mode] yellow-3
+            "foreground": "#c69026" // [Dark_dimmed Mode] scale.yellow.3
           }
         },
         {
@@ -208,7 +208,7 @@
             "string.unquoted.go.mod",
           ],
           "settings": {
-            "foreground": "#e275ad" // [Dark_dimmed Mode] pink-3
+            "foreground": "#e275ad" // [Dark_dimmed Mode] scale.pink.3
           }
         },
         {
@@ -216,7 +216,7 @@
             "support",
           ],
           "settings": {
-            "foreground": "#e0823d" // [Dark_dimmed Mode] orange-3
+            "foreground": "#e0823d" // [Dark_dimmed Mode] scale.orange.3
           }
         },
         {
@@ -224,7 +224,7 @@
             "constant"
           ],
           "settings": {
-            "foreground": "#6cb6ff" // [Dark_dimmed Mode] blue-3
+            "foreground": "#6cb6ff" // [Dark_dimmed Mode] scale.blue.2
           }
         },
       ]
@@ -232,12 +232,16 @@
   },
   "workbench.colorCustomizations": {
     "[GitHub Dark Dimmed]": {
+      "list.errorForeground": "#EC775C", // scale.coral.3
+      "list.warningForeground": "#e0823d", // scale.orange.3
+      "gitDecoration.modifiedResourceForeground": "#c69026", // scale.yellow.3
+      "gitDecoration.untrackedResourceForeground": "#57ab5a", // scale.green.3
       //"tab.activeModifiedBorder": "#f66a0a",
-      "tab.activeBackground": "#22272e",
-      "tab.activeBorder": "#ae4c82",
-      "tab.activeBorderTop": "#ae4c82",
-      "tab.activeForeground": "#fc8dc7",
-      "tab.hoverBackground": "#551639",
+      "tab.activeBackground": "#22272e", // scale.gray.9
+      "tab.activeBorder": "#ae4c82", // scale.pink.5
+      "tab.activeBorderTop": "#ae4c82", // scale.pink.5
+      "tab.activeForeground": "#fc8dc7", // scale.pink.2
+      "tab.hoverBackground": "#551639", // scale.pink.9
       "editorBracketHighlight.foreground1": "#f66a0a",
       "editorBracketHighlight.foreground2": "#2188ff",
       "editorBracketHighlight.foreground3": "#6f42c1",
@@ -245,10 +249,10 @@
       "editorBracketHighlight.foreground5": "#ffd33d",
       "editorBracketHighlight.foreground6": "#ea4aaa",
       "editorBracketHighlight.unexpectedBracket.foreground": "#d73a49",
-      // [Dark_dimmed Mode] green-5 (default: Light Mode yellow-5 #ffd33d with 44 and 22 opacity)
+      // [Dark_dimmed Mode] scale.green.5
       "editor.findMatchBackground": "#347d3988",
       "editor.findMatchHighlightBackground": "#347d3944",
-      // [Dark_dimmed Mode] purple-3 (default: #17E5E6)
+      // [Dark_dimmed Mode] scale.purple.3
       "editor.selectionHighlightBackground": "#b083f033",
       "editor.selectionHighlightBorder": "#b083f000",
       "editor.wordHighlightBackground": "#b083f000",
@@ -257,33 +261,33 @@
       "editor.wordHighlightStrongBorder": "#b083f066",
       "editorBracketMatch.background": "#b083f050",
       "editorBracketMatch.border": "#b083f000",
-      // [Dark_dimmed Mode] pink-5 (default: #3392FF)
-      "editor.linkedEditingBackground": "#ea4aaa22",
-      "editor.inactiveSelectionBackground": "#ea4aaa22",
-      "editor.selectionBackground": "#ea4aaa44",
-      // [Dark_dimmed Mode] gray-7
+      // [Dark_dimmed Mode] scale.pink.6
+      "editor.linkedEditingBackground": "#9e367022",
+      "editor.inactiveSelectionBackground": "#9e367022",
+      "editor.selectionBackground": "#9e367044",
+      // [Dark_dimmed Mode] scale.gray.7
       "editorWhitespace.foreground": "#373e47",
       // terminal
-      "terminal.selectionBackground": "#69264a",
-      "terminal.background": "#22272e",
-      "terminal.foreground": "#adbac7",
-      "terminal.ansiBlack": "#444c56",
-      "terminal.ansiBrightBlack": "#636e7b",
-      "terminal.ansiWhite": "#909dab",
-      "terminal.ansiBrightWhite": "#cdd9e5",
-      "terminal.ansiRed": "#e5534b",
-      "terminal.ansiBrightRed": "#f47067",
-      "terminal.ansiGreen": "#46954a",
-      "terminal.ansiBrightGreen": "#57ab5a",
-      "terminal.ansiYellow": "#ae7c14",
-      "terminal.ansiBrightYellow": "#c69026",
-      "terminal.ansiBlue": "#4184e4",
-      "terminal.ansiBrightBlue": "#539bf5",
-      "terminal.ansiMagenta": "#986ee2",
-      "terminal.ansiBrightMagenta": "#b083f0",
-      "terminal.ansiCyan": "#c96198",
-      "terminal.ansiBrightCyan": "#e275ad",
-      "terminalCursor.background": "#472c82",
+      "terminal.selectionBackground": "#69264a", // scale.pink.8
+      "terminal.background": "#1c2128", // scale.black
+      "terminal.foreground": "#adbac7", // scale.gray.1
+      "terminal.ansiBlack": "#444c56", // scale.gray.6
+      "terminal.ansiBrightBlack": "#636e7b", // scale.gray.4
+      "terminal.ansiWhite": "#909dab", // scale.gray.2
+      "terminal.ansiBrightWhite": "#cdd9e5", // scale.gray.0 / scale.white
+      "terminal.ansiRed": "#e5534b", // scale.red.4
+      "terminal.ansiBrightRed": "#f47067", // scale.red.3
+      "terminal.ansiGreen": "#46954a", // scale.green.4
+      "terminal.ansiBrightGreen": "#57ab5a", // scale.green.3
+      "terminal.ansiYellow": "#ae7c14", // scale.yellow.4
+      "terminal.ansiBrightYellow": "#c69026", // scale.yellow.3
+      "terminal.ansiBlue": "#4184e4", // scale.blue.4
+      "terminal.ansiBrightBlue": "#539bf5", // scale.blue.3
+      "terminal.ansiMagenta": "#986ee2", // scale.purple.4
+      "terminal.ansiBrightMagenta": "#b083f0", // scale.purple.3
+      "terminal.ansiCyan": "#c96198", // scale.pink.4
+      "terminal.ansiBrightCyan": "#e275ad", // scale.pink.3
+      "terminalCursor.background": "#472c82", // scale.purple.8
       "terminalCursor.foreground": "#ea4aaa",
     },
   },
