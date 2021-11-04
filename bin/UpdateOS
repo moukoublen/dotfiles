@@ -19,7 +19,7 @@ update_apt() {
 
 prnt "$(what-os)"
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"| "Fedora Linux")
     update_dnf
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
