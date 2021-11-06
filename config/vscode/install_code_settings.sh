@@ -8,7 +8,7 @@ __install_settings_file() {
   local VSCODE_CONF_PATH=~/.config/Code/User/
   [[ -f $VSCODE_CONF_PATH/$fl ]] && [[ ! -h $VSCODE_CONF_PATH/$fl ]] && mv $VSCODE_CONF_PATH/$fl{,.backup}
   [[ -h $VSCODE_CONF_PATH/$fl ]] && echo "Link for $fl already exists" && return
-  ln -s $MARMALADE_PATH/ext/settings/vscode/$fl $VSCODE_CONF_PATH/$fl
+  ln -s $MARMALADE_PATH/config/vscode/$fl $VSCODE_CONF_PATH/$fl
 }
 
 __install_settings_file settings.json
