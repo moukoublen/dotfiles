@@ -10,7 +10,7 @@ URL=$(\
 
 URL=""
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
       jq '.assets[] | select(.name | endswith("_linux_amd64.rpm")) | .browser_download_url' --raw-output)
     ;;

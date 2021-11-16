@@ -5,3 +5,7 @@ if [ -d /usr/local/go ]; then
   export GOPATH=$HOME/goworkspace
   add_to_path $GOPATH/bin
 fi
+
+go-install() {
+  go install -a -ldflags '-s -w -extldflags "-static"' "$@"
+}

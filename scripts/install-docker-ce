@@ -19,7 +19,7 @@ whatos() {
 }
 
 case "$(whatos)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     #sudo dnf remove docker \
     #                docker-client \
     #                docker-client-latest \

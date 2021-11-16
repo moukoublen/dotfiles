@@ -2,7 +2,7 @@
 
 URL=""
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     URL='https://go.skype.com/skypeforlinux-64.rpm'
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")

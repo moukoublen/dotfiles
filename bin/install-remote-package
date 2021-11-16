@@ -32,7 +32,7 @@ curl --fail --location "$1" --output "$TMP_DIR/$FILENAME"
 
 printf "Installing \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     sudo dnf -y install $TMP_DIR/$FILENAME
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")

@@ -16,7 +16,7 @@ fi
 
 URL=""
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")

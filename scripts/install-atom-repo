@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     sudo rpm --import https://packagecloud.io/AtomEditor/atom/gpgkey
     cat > /tmp/atom.repo << EOL
 [Atom]

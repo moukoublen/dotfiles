@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     dnf provides "$@"
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")

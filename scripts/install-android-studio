@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     sudo dnf -y install zlib.i686 ncurses-libs.i686 bzip2-libs.i686
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")

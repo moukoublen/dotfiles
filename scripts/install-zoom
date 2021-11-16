@@ -2,7 +2,7 @@
 
 URL=""
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     URL="https://zoom.us/client/latest/zoom_x86_64.rpm"
     ;;
   "Ubuntu"|"Debian"|"LinuxMint")

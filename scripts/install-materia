@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$(what-os)" in
-  "Fedora")
+  "Fedora"|"Fedora Linux")
     echo "installing materia requirements..."
     sudo dnf install -y \
       gtk2-engines gtk-murrine-engine gdk-pixbuf2 gnome-themes-extra sassc
