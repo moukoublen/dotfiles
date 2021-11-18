@@ -12,6 +12,13 @@ docker-stop-all() {
   done
 }
 
+docker-clean-all() {
+  # --force           Do not prompt for confirmation
+  docker system prune --force
+  docker network prune --force
+  docker volume prune --force
+}
+
 dps() {
   docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}" "$@"
 }
