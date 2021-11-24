@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+__latest_version_url() {
+  curl --fail --silent --show-error --location https://api.github.com/repos/sharkdp/bat/releases/latest | \
+    jq '.assets[] | select(.name | endswith("x86_64-unknown-linux-gnu.tar.gz")) | .browser_download_url' --raw-output
+}
+
+__latest_version() {
+  curl --fail --silent --show-error --location https://api.github.com/repos/sharkdp/bat/releases/latest | \
+    jq '.tag_name' --raw-output | \
+    cut -c2-
+}
+
+__local_version() {(
+  bat --version | cut -d ' ' -f 2
+)}
+
+remote_version=$(__latest_version)
+if [[  "$(__local_version)" == "${remote_version}" ]]; then
+  echo "bat is updated to $remote_version";
+  exit 0
+fi
+
+
