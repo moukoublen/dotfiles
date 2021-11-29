@@ -197,7 +197,7 @@ __fnt_iosevka() {
 
 
 __install_cascadiacode() {
-  cp -r "${1}"/otf/static/*.otf "${2}"/
+  cp -r "${1}"/ttf/*.ttf "${2}"/
 }
 __fnt_cascadiacode() {
   __installing "Cascadia Code"

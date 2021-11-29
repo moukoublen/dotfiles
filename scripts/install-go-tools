@@ -23,7 +23,7 @@ go install -a -ldflags '-s -w -extldflags "-static"' 'honnef.co/go/tools/cmd/str
 go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.43.0'
 
 # https://github.com/securego/gosec/releases
-go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.9.1'
+go install -a -ldflags '-s -w -extldflags "-static"' 'github.com/securego/gosec/v2/cmd/gosec@v2.9.3'
 
 # https://github.com/mvdan/gofumpt/releases
 go install  -a -ldflags '-s -w -extldflags "-static"' 'mvdan.cc/gofumpt@v0.2.0'

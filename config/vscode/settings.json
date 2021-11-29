@@ -1,5 +1,6 @@
 {
   "files.trimTrailingWhitespace": true,
+  "files.autoSave": "afterDelay",
   "editor.bracketPairColorization.enabled": false,
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
@@ -9,16 +10,16 @@
   "editor.insertSpaces": true,
   "editor.lineHeight": 1.6,
   "editor.fontSize": 21,
-  "editor.fontFamily": "'Cascadia Code SemiLight'",
-  //"editor.fontWeight": "300",
+  "editor.fontFamily": "'Cascadia Code'",
+  "editor.fontWeight": "350",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "vscode-icons",
   "workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.iconTheme": "vscode-icons",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
@@ -31,6 +32,7 @@
   "terminal.integrated.letterSpacing": 0,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.scrollback": 99999999,
+  "yaml.format.printWidth": 280,
   "[xml]": {
     "editor.autoClosingBrackets": "never",
     "files.trimFinalNewlines": true,
@@ -289,7 +291,6 @@
       "terminalCursor.foreground": "#ea4aaa",
     },
   },
-  "files.autoSave": "afterDelay",
   // >>> colors <<<
   // ==============
 }
