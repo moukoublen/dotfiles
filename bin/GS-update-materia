@@ -33,7 +33,7 @@ prnt "Installing Materia"
 cd $HOME/gitrepos/themes-icons/materia-theme/
 sudo rm -rf ./_build/
 meson _build
-sudo meson install -C _build
+meson install -C _build
 )
 
 if [[ $GS_GTK_THEME == Materia* ]]; then
