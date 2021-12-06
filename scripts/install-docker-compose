@@ -17,9 +17,10 @@ fi
 
 printf "Updating    \e[1;34mdocker-compose\e[0m from    \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${__LOCAL_VER}" "${__REMOTE_VER}"
 printf "Downloading \e[1;34mdocker-compose\e[0m version \e[1;34m%s\e[0m under ${PLUGINS} ... " $__REMOTE_VER
+
 [[ -f "${PLUGINS}/docker-compose.new" ]] && sudo rm -f "${PLUGINS}/docker-compose.new"
 
-sudo curl \
+curl \
   --silent \
   --show-error \
   --fail \
