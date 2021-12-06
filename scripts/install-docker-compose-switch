@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -e
+
+
+__REMOTE_VER=$(curl --silent --show-error --fail --location https://api.github.com/repos/docker/compose-switch/releases/latest | jq -r '.name')
+
+printf "Downloading \e[1;34mcompose-switch\e[0m version \e[1;34m%s\e[0m ... " $__REMOTE_VER
+[[ -f "/usr/local/bin/compose-switch.new" ]] && sudo rm -f "/usr/local/bin/compose-switch.new"
+
+sudo curl \
+  --silent \
+  --show-error \
+  --fail \
+  --location \
+  "https://github.com/docker/compose-switch/releases/download/${__REMOTE_VER}/docker-compose-linux-amd64" \
+  -o "/usr/local/bin/compose-switch.new"
+
+[[ -f "/usr/local/bin/compose-switch" ]] && sudo rm -f "/usr/local/bin/compose-switch"
+sudo mv "/usr/local/bin/compose-switch.new" "/usr/local/bin/compose-switch"
+sudo chmod +x "/usr/local/bin/compose-switch"
+printf "\e[1;32mDone\e[0m\n"
