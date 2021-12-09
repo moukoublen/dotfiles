@@ -1,4 +1,4 @@
-export M3_HOME=$MARMALADE_ENVS/maven/default
+export M3_HOME=$DOTFILES_ENVS/maven/default
 export M3=$M3_HOME/bin
 export MAVEN_OPTS="-Xmx8g"
 alias mvn-no-tests="mvn -Dmaven.test.skip=true -DskipTests=true"
@@ -19,13 +19,13 @@ _marmalade_get_latest_version_number__maven() {
 }
 
 _marmalade_get_local_latest_version_number__maven() {
-  ls -1 $MARMALADE_ENVS/maven/ | grep -v default | sort -V | tail -n 1
+  ls -1 $DOTFILES_ENVS/maven/ | grep -v default | sort -V | tail -n 1
 }
 
 _marmalade_install__maven() {
   # $1: version e.g. 3.5.0
   curl --fail --silent --show-error --location https://downloads.apache.org/maven/maven-3/$1/binaries/apache-maven-$1-bin.tar.gz > /tmp/maven.tar.gz
-  mkdir -p $MARMALADE_ENVS/maven/$1
-  tar xf /tmp/maven.tar.gz --strip-components=1 -C $MARMALADE_ENVS/maven/$1
+  mkdir -p $DOTFILES_ENVS/maven/$1
+  tar xf /tmp/maven.tar.gz --strip-components=1 -C $DOTFILES_ENVS/maven/$1
   rm /tmp/maven.tar.gz
 }

@@ -19,7 +19,7 @@ path-real() {
   echo "$(path-abs $SOURCE)"
 }
 
-export MARMALADE_PATH="$(path-real ${BASH_SOURCE[0]})"
+export DOTFILES_PATH="$(path-real ${BASH_SOURCE[0]})"
 
 alias to-ack='ack --files-from=-' #pipe find results
 alias to-grep='xargs grep --color=auto' #pipe find results
@@ -33,26 +33,26 @@ S() {
 
 ################################################################################
 ######### Source libs ##########################################################
-source $MARMALADE_PATH/lib/ps1.bash
-source $MARMALADE_PATH/lib/pathmixer.bash
+source $DOTFILES_PATH/lib/ps1.bash
+source $DOTFILES_PATH/lib/pathmixer.bash
 
 if [[ $(uname) = "Darwin" ]]; then
-  source $MARMALADE_PATH/lib/macos_marmalade.bash
+  source $DOTFILES_PATH/lib/macos_marmalade.bash
 fi
 
 if [[ $(uname) = "Linux" ]]; then
-  source $MARMALADE_PATH/lib/linux_marmalade.bash
+  source $DOTFILES_PATH/lib/linux_marmalade.bash
 fi
 
 for e in $( ls $HOME/.dotfiles-extras/* 2>/dev/null ); do
   source $e
 done
 
-for e in $( ls $MARMALADE_PATH/extras-* 2>/dev/null ); do
+for e in $( ls $DOTFILES_PATH/extras-* 2>/dev/null ); do
   source $e
 done
 ################################################################################
 ################################################################################
 
 
-add_to_path $MARMALADE_PATH/bin
+add_to_path $DOTFILES_PATH/bin

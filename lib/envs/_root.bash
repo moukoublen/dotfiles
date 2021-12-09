@@ -39,7 +39,7 @@ _marmalade_update() {
   fi
   if [[ "$local_ver" != "$latest_ver" ]]; then
     echo "==> $1: Updating from $local_ver to $latest_ver"
-    if [[ ! -d $MARMALADE_ENVS/$1/$latest_ver ]]; then
+    if [[ ! -d $DOTFILES_ENVS/$1/$latest_ver ]]; then
       eval "_marmalade_install__$1" $latest_ver
     else
       echo "    ...$1 version $latest_ver is already installed"
@@ -54,10 +54,10 @@ _marmalade_update() {
 }
 
 _marmalade_make_default() {
-  if [[ -d $MARMALADE_ENVS/$1/default ]]; then
-    unlink $MARMALADE_ENVS/$1/default
+  if [[ -d $DOTFILES_ENVS/$1/default ]]; then
+    unlink $DOTFILES_ENVS/$1/default
   fi
-  if [[ -d $MARMALADE_ENVS/$1 ]]; then
-    (cd $MARMALADE_ENVS/$1/; ln -s $2 default)
+  if [[ -d $DOTFILES_ENVS/$1 ]]; then
+    (cd $DOTFILES_ENVS/$1/; ln -s $2 default)
   fi
 }

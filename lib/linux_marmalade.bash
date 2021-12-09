@@ -68,9 +68,9 @@ bind 'set mark-symlinked-directories on'
 
 ################################################################################
 ######### Marmalade Envs #######################################################
-export MARMALADE_ENVS=$HOME/.marmalade.envs
+export DOTFILES_ENVS=$HOME/.marmalade.envs
 
-for i in $MARMALADE_PATH/lib/envs/*.bash ; do
+for i in $DOTFILES_PATH/lib/envs/*.bash ; do
   if [ -r "$i" ]; then
     source "$i"
   fi
