@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+__REMOTE_VER=$(curl --silent --show-error --fail --location https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.name')
+
+echo ${__REMOTE_VER}
+
+# https://releases.hashicorp.com/terraform/1.1.0/terraform_1.1.0_linux_amd64.zip

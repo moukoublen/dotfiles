@@ -9,7 +9,7 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.lineHeight": 1.6,
-  "editor.fontSize": 20,
+  "editor.fontSize": 16,
   "editor.fontFamily": "'Cascadia Code'",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
@@ -158,6 +158,30 @@
       "textMateRules": [
         {
           "scope": [
+            "source.go"
+          ],
+          "settings": {
+            "foreground": "#cdd9e5", // [Dark_dimmed Mode] scale.white
+          },
+        },
+        {
+          "scope":[
+            "punctuation.other.comma.go"
+          ],
+          "settings": {
+            "foreground": "#986ee2", // [Dark_dimmed Mode] scale.purple.4
+          },
+        },
+        {
+          "scope": [
+            "variable.other.assignment.go"
+          ],
+          "settings": {
+            "foreground": "#909dab", // [Dark_dimmed Mode] scale.gray.2
+          },
+        },
+        {
+          "scope": [
             "comment",
             "punctuation.definition.comment",
             "string.comment"
@@ -189,7 +213,7 @@
             "punctuation.definition.variables.end.bracket.round.go",
           ],
           "settings": {
-            "foreground": "#ae4c82" // [Dark_dimmed Mode] scale.pink.5
+            "foreground": "#C2442D" // [Dark_dimmed Mode] scale.coral.5
           }
         },
         {
@@ -206,10 +230,17 @@
           "scope": [
             "entity.name",
             "entity.name.function",
-            "string.unquoted.go.mod",
           ],
           "settings": {
             "foreground": "#e275ad" // [Dark_dimmed Mode] scale.pink.3
+          }
+        },
+        {
+          "scope": [
+            "string.unquoted.go.mod",
+          ],
+          "settings": {
+            "foreground": "#EC775C" // [Dark_dimmed Mode] scale.coral.3
           }
         },
         {
