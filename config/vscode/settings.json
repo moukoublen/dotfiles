@@ -20,7 +20,7 @@
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "GitHub Dark Dimmed",
   "workbench.iconTheme": "vscode-icons",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
@@ -158,10 +158,12 @@
       "textMateRules": [
         {
           "scope": [
-            "source.go"
+            "source.go",
+            "variable.other.assignment.go",
+            "variable.other.declaration.go"
           ],
           "settings": {
-            "foreground": "#cdd9e5", // [Dark_dimmed Mode] scale.white
+            "foreground": "#adbac7", // [Dark_dimmed Mode] scale.white
           },
         },
         {
@@ -174,20 +176,12 @@
         },
         {
           "scope": [
-            "variable.other.assignment.go"
-          ],
-          "settings": {
-            "foreground": "#909dab", // [Dark_dimmed Mode] scale.gray.2
-          },
-        },
-        {
-          "scope": [
             "comment",
             "punctuation.definition.comment",
             "string.comment"
           ],
           "settings": {
-            "foreground": "#545d68", // [Dark_dimmed Mode] scale.gray.5
+            "foreground": "#444c56", // [Dark_dimmed Mode] scale.gray.6
           },
         },
         {
@@ -213,7 +207,7 @@
             "punctuation.definition.variables.end.bracket.round.go",
           ],
           "settings": {
-            "foreground": "#C2442D" // [Dark_dimmed Mode] scale.coral.5
+            "foreground": "#DE5B41" // [Dark_dimmed Mode] scale.coral.4
           }
         },
         {
