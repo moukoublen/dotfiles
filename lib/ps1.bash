@@ -57,100 +57,78 @@
 ##  107 White
 ################################################################################
 
-__m_ps1_color() {
+__ps1_color() {
   if [[ "$#" = 0 ]]; then
-    echo -n "\[\e[0m\]"
+    printf "\[\e[0m\]"
   else
-    echo -n "\[\e[${1};${2};${3}m\]"
+    printf "\[\e[${1};${2};${3}m\]"
   fi
 }
 
-__m_ps1_get_color() {
-  case "$1" in
-    reset)
-      __m_ps1_color
-      ;;
-    prefix)
-      __m_ps1_color 1 49 35
-      ;;
-    main)
-      __m_ps1_color 0 49 90
-      ;;
-    seperator)
-      __m_ps1_color 0 49 37
-      ;;
-    user)
-      __m_ps1_color 0 49 36
-      ;;
-    root)
-      __m_ps1_color 0 49 31
-      ;;
-    path)
-      __m_ps1_color 0 49 32
-      ;;
-    git)
-      __m_ps1_color 0 49 93
-      ;;
-    gitwrap)
-      __m_ps1_color 0 49 33
-      ;;
-    kube_context)
-      __m_ps1_color 1 49 34
-      ;;
-    kube_nsp)
-      __m_ps1_color 0 49 37
-      ;;
-  esac
+declare -A __PS1_COLORS=( \
+  ["reset"]="$(__ps1_color)" \
+  ["prefix"]="$(__ps1_color 1 49 35)" \
+  ["main"]="$(__ps1_color 0 49 90)" \
+  ["seperator"]="$(__ps1_color 0 49 37)" \
+  ["user"]="$(__ps1_color 0 49 32)" \
+  ["root"]="$(__ps1_color 0 49 31)" \
+  ["path"]="$(__ps1_color 0 49 36)" \
+  ["git"]="$(__ps1_color 0 49 93)" \
+  ["gitwrap"]="$(__ps1_color 0 49 33)" \
+  ["kube_context"]="$(__ps1_color 1 49 34)" \
+  ["kube_nsp"]="$(__ps1_color 0 49 37)" \
+)
+
+
+
+__ps1_seperator() {
+  #local DSEP=${__PS1_SEPERATOR:-$' \u2423 '}  # https://codepoints.net/U+2423
+  #local DSEP=${__PS1_SEPERATOR:-$' \u203F '}  # https://codepoints.net/U+203F
+  #local DSEP=${__PS1_SEPERATOR:-$' \u2219 '}  # https://codepoints.net/U+2219
+  local DSEP=${__PS1_SEPERATOR:-$' \u2022 '}  # https://codepoints.net/U+2022
+  #local DSEP=${__PS1_SEPERATOR:-$' '}
+  printf "%s%s%s" "${__PS1_COLORS[seperator]}" "$DSEP" "${__PS1_COLORS[reset]}"
 }
 
 
-__m_ps1_seperator() {
-  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2423 '}  # https://codepoints.net/U+2423
-  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u203F '}  # https://codepoints.net/U+203F
-  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2219 '}  # https://codepoints.net/U+2219
-  local DSEP=${MARMALADE_PS1_SEPERATOR:-$' \u2022 '}  # https://codepoints.net/U+2022
-  #local DSEP=${MARMALADE_PS1_SEPERATOR:-$' '}
-  printf "%s%s%s" $(__m_ps1_get_color seperator) "$DSEP" $(__m_ps1_get_color reset)
-}
-
-
-__m_ps1_user() {
-  local disp=${MARMALADE_PS1_DISPLAY_USER:-false}
+__ps1_user() {
+  local disp=${__PS1_DISPLAY_USER:-false}
   if [[  "${disp}" == 'false' ]] && [[ ! "`id -u`" -eq 0 ]]; then
     return
   fi
 
-  local USR="$(__m_ps1_get_color user)$USER$(__m_ps1_get_color reset)"
+  local USR="${__PS1_COLORS[user]}${USER}${__PS1_COLORS[reset]}"
   if [[ "`id -u`" -eq 0 ]]; then
-    USR="$(__m_ps1_get_color root)root$(__m_ps1_get_color reset)"
+    USR="${__PS1_COLORS[root]}root${__PS1_COLORS[reset]}"
   fi
 
   printf "%s" "${USR}"
 }
 
 
-__m_ps1_host() {
-  local disp=${MARMALADE_PS1_DISPLAY_HOSTNAME:-false}
+__ps1_host() {
+  local disp=${__PS1_DISPLAY_HOSTNAME:-false}
   if [[ "${disp}" == 'false' ]]; then
     return
   fi
 
-  local TO_PRINT=${MARMALADE_PS1_HOSTNAME:-$HOSTNAME}
+  local TO_PRINT=${__PS1_HOSTNAME:-$HOSTNAME}
 
-  printf "%s%s%s" "$(__m_ps1_get_color user)" "${TO_PRINT}" "$(__m_ps1_get_color reset)"
+  printf "%s%s%s" "${__PS1_COLORS[user]}" "${TO_PRINT}" "${__PS1_COLORS[reset]}"
 }
 
 
-__m_ps1_pwd() {
+__ps1_pwd() {
   printf "%s\w%s" \
-    $(__m_ps1_get_color path) $(__m_ps1_get_color reset)
+    "${__PS1_COLORS[path]}" \
+    "${__PS1_COLORS[reset]}"
 }
 
 
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
 export GIT_PS1_SHOWUPSTREAM="verbose name"
-__m_ps1_git() {
+__ps1_git() {
   if [[ "$(type -t __git_ps1)" != 'function' ]]; then
     if [[ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]]; then
       source /usr/share/git-core/contrib/completion/git-prompt.sh
@@ -161,73 +139,73 @@ __m_ps1_git() {
 
   local gitp="$(__git_ps1 '%s')"
   if [[ -n "$gitp" ]]; then
-    printf "%s%s%s%s%s%s%s%s" \
-      "$(__m_ps1_get_color gitwrap)" $'\uE0A0 ' "$(__m_ps1_get_color reset)" \
-      "$(__m_ps1_get_color git)" "${gitp}" "$(__m_ps1_get_color reset)" \
-      "$(__m_ps1_get_color gitwrap)" "$(__m_ps1_get_color reset)"
+    printf "%s%s%s%s%s%s" \
+      "${__PS1_COLORS[gitwrap]}" \
+      $'\uE0A0 ' \
+      "${__PS1_COLORS[reset]}" \
+      "${__PS1_COLORS[git]}" \
+      "${gitp}" \
+      "${__PS1_COLORS[reset]}"
   fi
 }
 
 
-__m_ps1_kube() {
-  if [[ -z "${MARMALADE_PS1_DISPLAY_KUBE-}" ]] || [[ ! -x "$(command -v kubectl)" ]]; then
+__ps1_kube() {
+  if [[ -z "${__PS1_DISPLAY_KUBE-}" ]] || [[ ! -x "$(command -v kubectl)" ]]; then
     return
   fi
 
-  local C_CTXD=$(__m_ps1_get_color kube_context)
-  local C_NSP=$(__m_ps1_get_color kube_nsp)
-  local C_RST=$(__m_ps1_get_color reset)
+  local C_CTXD="${__PS1_COLORS[kube_context]}"
+  local C_NSP="${__PS1_COLORS[kube_nsp]}"
+  local C_RST="${__PS1_COLORS[reset]}"
   printf "%s" $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
 }
 
+__join() {
+  local sep="$(__ps1_seperator)"
+  local BUF=""
 
-__m_ps1() {
+  if [[ "$#" -eq 0 ]]; then
+    return
+  fi
 
-  __m_join() {
-    local B=""
-
-    if [[ "$#" -eq 0 ]]; then
-      return
+  for fn in "${@}"; do
+    [[ -z "$fn" ]] && continue
+    if [[ "${BUF}" == "" ]]; then
+      BUF="${fn}"
+      continue
     fi
+    BUF="${BUF}${sep}${fn}"
+  done
 
-    for s in "${@}"; do
-      [[ -z "$s" ]] && continue
-      local sep="$(__m_ps1_seperator)"
-      [[ "${B}" == "" ]] && sep=""
-      B="${B}${sep}${s}"
-    done
+  printf "%s" "$BUF"
+}
 
-    printf "%s" "$B"
-  }
+__ps1() {
+  local dl=$(__join "$(__ps1_user)" "$(__ps1_host)" "$(__ps1_pwd)" "$(__ps1_git)" "$(__ps1_kube)")
 
-  local C_MAI=$(__m_ps1_get_color prefix)
-  local C_SEP=$(__m_ps1_get_color seperator)
-  local C_RST=$(__m_ps1_get_color reset)
-
-  local dl=$(__m_join "$(__m_ps1_user)" "$(__m_ps1_host)" "$(__m_ps1_pwd)" "$(__m_ps1_git)" "$(__m_ps1_kube)")
-
-  #local d1=$'\u2506'
-  #local d2=$'\u2506'
   #local prompt=$'\u2771' # ❱
-  #local prompt=$'\u276D' # ❭
+  local prompt=$'\u276D' # ❭
   #local prompt=$'\u2192' # →
   #local prompt=$'\u21D2' # ⇒
-  local prompt=$'\u279C' # ➜
+  #local prompt=$'\u279C' # ➜
 
-  #local ps1_line1="${C_SEP}${d1}${C_SEP} ${dl} ${C_SEP}${d2}${C_SEP}"
+  local C_MAI="${__PS1_COLORS[prefix]}"
+  local C_RST="${__PS1_COLORS[reset]}"
+
   local ps1_line1="${dl}"
   local ps1_line2="${C_MAI}${prompt}${C_RST} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
 
-export PROMPT_COMMAND=__m_ps1
+export PROMPT_COMMAND=__ps1
 
 
 ps1-kube() {
-  if [[ -n "${MARMALADE_PS1_DISPLAY_KUBE-}" ]]; then
-    unset MARMALADE_PS1_DISPLAY_KUBE
+  if [[ -n "${__PS1_DISPLAY_KUBE-}" ]]; then
+    unset __PS1_DISPLAY_KUBE
   else
-    export MARMALADE_PS1_DISPLAY_KUBE=true
+    export __PS1_DISPLAY_KUBE=true
   fi
 }
