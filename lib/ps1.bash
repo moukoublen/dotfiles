@@ -161,7 +161,7 @@ __ps1_kube() {
   printf "%s" $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
 }
 
-__join() {
+__ps1_join() {
   local sep="$(__ps1_seperator)"
   local BUF=""
 
@@ -182,7 +182,7 @@ __join() {
 }
 
 __ps1() {
-  local dl=$(__join "$(__ps1_user)" "$(__ps1_host)" "$(__ps1_pwd)" "$(__ps1_git)" "$(__ps1_kube)")
+  local dl=$(__ps1_join "$(__ps1_user)" "$(__ps1_host)" "$(__ps1_pwd)" "$(__ps1_git)" "$(__ps1_kube)")
 
   #local prompt=$'\u2771' # ❱
   local prompt=$'\u276D' # ❭
@@ -190,11 +190,8 @@ __ps1() {
   #local prompt=$'\u21D2' # ⇒
   #local prompt=$'\u279C' # ➜
 
-  local C_MAI="${__PS1_COLORS[prefix]}"
-  local C_RST="${__PS1_COLORS[reset]}"
-
   local ps1_line1="${dl}"
-  local ps1_line2="${C_MAI}${prompt}${C_RST} "
+  local ps1_line2="${__PS1_COLORS[prefix]}${prompt}${__PS1_COLORS[reset]} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
