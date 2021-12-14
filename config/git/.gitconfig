@@ -2,7 +2,7 @@
   name = Kostas Stamatakis
   email = moukoublen@gmail.com
 [alias]
-  s = status -sb
+  s = status --short --branch
   mini = log --no-merges --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(22)%an%C(reset) %C(brightwhite)%s%C(reset) %C(cyan)%C(dim)%d%C(reset)\"
   hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
   arr = log --no-merges --pretty=format:\"|%C(yellow)%h%C(reset) | %C(blue)`%an`%C(reset) | %s |\"
@@ -17,3 +17,4 @@
   ff = only
 [color "diff"]
   whitespace = red reverse
+
