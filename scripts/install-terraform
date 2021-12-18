@@ -1,7 +1,40 @@
 #!/usr/bin/env bash
+set -e
 
-__REMOTE_VER=$(curl --silent --show-error --fail --location https://api.github.com/repos/hashicorp/terraform/releases/latest | jq -r '.name')
+whatos() {
+  if [[ -f /etc/os-release ]]; then
+    (
+    source /etc/os-release
+    echo "${NAME}"
+    )
+    return
+  fi
 
-echo ${__REMOTE_VER}
+  if command -v lsb_release >/dev/null 2>&1; then
+    lsb_release -is
+    return
+  fi
 
-# https://releases.hashicorp.com/terraform/1.1.0/terraform_1.1.0_linux_amd64.zip
+  echo ""
+}
+
+case "$(whatos)" in
+  "Fedora"|"Fedora Linux")
+    sudo dnf install -y dnf-plugins-core
+    sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    sudo dnf -y install terraform
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    sudo apt-get update && sudo apt-get install terraform
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    exit 1
+    ;;
+esac
+
+echo -e "\e[1;32mDone\e[0m\n"
+
+terraform -install-autocomplete
