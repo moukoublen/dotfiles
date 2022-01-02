@@ -20,7 +20,7 @@ while (($#)); do
   esac
 done
 
-FOLDER="/PORTAL/$(basename "${PWD}")"
+FOLDER="/v/$(basename "${PWD}")"
 
 set -x
 
