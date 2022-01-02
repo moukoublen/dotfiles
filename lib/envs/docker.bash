@@ -19,41 +19,15 @@ docker-clean-all() {
   docker volume prune --force
 }
 
-dps() {
-  docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Image}}" "$@"
-}
-dpsp() {
-  docker ps --format "{{.ID}}\t{{.Names}}\n\t\t{{.Ports}}\n" "$@"
-}
-complete -F __dps_completion dps dpsp
-complete -F __drh_completion drh
+if command -v drh 1>/dev/null 2>&1; then
+  source <(drh --completion)
+fi
 
 install-docker-compose-completion() {
   local DVER=${1:-master}
   mkdir -p ~/.dotfiles-extras
   curl -L "https://raw.githubusercontent.com/docker/compose/${DVER}/contrib/completion/bash/docker-compose" > "${HOME}/.dotfiles-extras/docker-compose.bash-completion"
 }
-
-__dps_completion() {
-  [[ "$(type -t _docker_container_run)" != "function" ]] && \
-    [[ -f /usr/share/bash-completion/completions/docker ]] && \
-    source /usr/share/bash-completion/completions/docker
-
-  local cur prev words cword
-  _get_comp_words_by_ref -n : cur prev words cword
-  _docker_ps
-}
-
-__drh_completion() {
-  [[ "$(type -t _docker_container_run)" != "function" ]] && \
-    [[ -f /usr/share/bash-completion/completions/docker ]] && \
-    source /usr/share/bash-completion/completions/docker
-
-  local cur prev words cword
-  _get_comp_words_by_ref -n : cur prev words cword
-  _docker_container_run
-}
-
 
 ################################################################################
 ################# macos docker #################################################

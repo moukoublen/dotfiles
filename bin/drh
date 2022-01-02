@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+# drh is a shortcut to execute `docker run` command with the current directory binded in the container.
+#   eg: drh golang:1.18beta1
+# All arguments are passed to docker run except:
+#   -R, --RO    which is translated to read-only `:ro` volume bind of the current directory
+#   --ME        which is translated to `--user=$(id -u):$(id -g)`
+#
+# To enable `docker run` run (or put in ~/.bashrc or ~/.profile e.t.c.):
+#
+# source <(drh --completion)
+#
+
+__drh_bash_completion() {
+  [[ "$(type -t _docker_container_run)" != "function" ]] && \
+    [[ -f /usr/share/bash-completion/completions/docker ]] && \
+    source /usr/share/bash-completion/completions/docker
+
+  local cur prev words cword
+  _get_comp_words_by_ref -n : cur prev words cword
+  _docker_container_run
+}
+
 READ_ONLY=""
 USR=""
 args=()
@@ -12,6 +33,12 @@ while (($#)); do
     --ME)
       USR="--user=$(id -u):$(id -g)"
       shift
+      ;;
+    --completion)
+      declare -f __drh_bash_completion
+      echo ''
+      echo 'complete -F __drh_bash_completion drh'
+      exit 0
       ;;
     *)
       args+=("${1}")
