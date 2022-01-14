@@ -25,7 +25,14 @@ attilathedud.data-converter
 eamodio.gitlens
 GitHub.github-vscode-theme
 golang.go
+GraphQL.vscode-graphql
+humao.rest-client
+mitchdenny.ecdc
 ms-azuretools.vscode-docker
+ms-vscode-remote.remote-containers
+redhat.vscode-yaml
+streetsidesoftware.code-spell-checker
+vscode-icons-team.vscode-icons
 )
 
 for ext in "${extensions[@]}"

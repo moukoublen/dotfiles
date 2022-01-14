@@ -69,6 +69,9 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": false
   },
+  "rest-client.fontFamily": "JetBrains Mono",
+  "rest-client.fontWeight": "300",
+  "rest-client.fontSize": 15,
   // ===============
   // >>> Go lang <<<
   "[go]": {

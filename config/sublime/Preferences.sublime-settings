@@ -7,7 +7,7 @@
 	// editor settings
 	"draw_white_space": ["all_tabs", "selection_all", "trailing"],
 	"font_face": "Cascadia Code",
-	"font_size": 14,
+	"font_size": 18,
 	"mini_diff": "auto",
 	"show_encoding": true,
 	"translate_tabs_to_spaces": true,
