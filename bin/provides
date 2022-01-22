@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     dnf provides "$@"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "apt")
     dpkg -S "$@"
     ;;
   *)

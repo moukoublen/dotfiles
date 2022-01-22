@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     sudo dnf -y install zlib.i686 ncurses-libs.i686 bzip2-libs.i686
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "apt")
     sudo apt-get install -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
     ;;
   *)

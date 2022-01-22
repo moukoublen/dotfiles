@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 URL=""
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "apt")
     URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     ;;
   *)

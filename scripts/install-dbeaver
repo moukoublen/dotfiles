@@ -15,11 +15,11 @@ if [[  "$(__get_local_release)" == "$(__get_latest_version)" ]]; then
 fi
 
 URL=""
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "apt")
     URL="https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
     ;;
   *)

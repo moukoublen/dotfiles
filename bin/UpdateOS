@@ -17,12 +17,12 @@ update_apt() {
     sudo apt upgrade
 }
 
-prnt "$(what-os)"
-case "$(what-os)" in
-  "Fedora"| "Fedora Linux")
+prnt "$(what-os) - $(what-pm)"
+case "$(what-pm)" in
+  "dnf")
     update_dnf
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "apt")
     update_apt
     ;;
   *)

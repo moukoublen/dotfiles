@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     echo "installing materia requirements..."
     sudo dnf install -y \
       gtk2-engines gtk-murrine-engine gdk-pixbuf2 gnome-themes-extra sassc
     ;;
-  "Ubuntu"|"LinuxMint"|"Pop")
+  "apt")
     sudo apt install -y \
       gtk2-engines-pixbuf gtk2-engines-murrine gnome-themes-standard sassc
     ;;

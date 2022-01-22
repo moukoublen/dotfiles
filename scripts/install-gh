@@ -9,12 +9,12 @@ URL=$(\
 )
 
 URL=""
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
       jq '.assets[] | select(.name | endswith("_linux_amd64.rpm")) | .browser_download_url' --raw-output)
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
+  "apt")
     URL=$(curl --fail --silent --show-error --location https://api.github.com/repos/cli/cli/releases/latest | \
       jq '.assets[] | select(.name | endswith("_linux_amd64.deb")) | .browser_download_url' --raw-output)
     ;;

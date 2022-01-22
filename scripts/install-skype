@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 URL=""
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf")
     URL='https://go.skype.com/skypeforlinux-64.rpm'
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "apt")
     URL='https://go.skype.com/skypeforlinux-64.deb'
     ;;
   *)

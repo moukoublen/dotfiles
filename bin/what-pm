@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+case "$(what-os)" in
+  "Fedora"|"Fedora Linux")
+    echo "dnf"
+    ;;
+  "Ubuntu"|"Debian"|"LinuxMint"|"Pop"|"Pop!_OS")
+    echo "apt"
+    ;;
+  *)
+    echo "this script does not have packages for this release"
+    exit 1
+    ;;
+esac
