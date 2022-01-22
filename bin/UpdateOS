@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
-prnt() {
-  echo -e "\e[1;34m ╍\e[m $1"
-}
-
 update_dnf() {
-    prnt "sudo dnf update --refresh"
+    echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
     sudo dnf update --refresh
     sudo dnf needs-restarting
 }
 
 update_apt() {
-    prnt "sudo apt update"
+    echo -e "\e[0;96m->\e[0m \e[0;90msudo apt update\e[0m"
     sudo apt update
-    prnt "sudo apt upgrade"
+    echo -e "\e[0;96m->\e[0m \e[0;90msudo apt upgrade\e[0m"
     sudo apt upgrade
 }
 
-prnt "$(what-os) - $(what-pm)"
+echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
 case "$(what-pm)" in
   "dnf")
     update_dnf
