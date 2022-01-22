@@ -1,34 +1,32 @@
 #!/usr/bin/env bash
 
 ## Material colors
+source __colors-material.bash
 
-export C_FG="#F5F5F5"  # (grey 100)
-export C_BG="#202020"  #
-export C_HFG="#000000" # (full black)
-export C_HBG="#FF4081" # (pink A 200)
+export C_FG="${material['BlueGray-50']}"
+export C_BG="${material['Gray-900']}"
+export C_HFG="${material['White']}"
+export C_HBG="${material['Pink-A700']}"
+export C_CFG="${material['Purple-600']}"
+export C_CBG="${material['Pink-400']}"
 
-export C_00='#424242'  # Black (grey 800)
-export C_08='#9E9E9E'  # Light Black (grey 500)
+export C_00="${material['Gray-800']}"  # Black
+export C_08="${material['Gray-500']}"  # Light Black
+export C_07="${material['BlueGray-500']}"  # Grey
+export C_15="${material['BlueGray-300']}"  # Light Grey
 
-export C_01='#F44336'  # Red (red 500)
-export C_09='#E57373'  # Light Red (red 300)
+export C_01="${material['Red-400']}"  # Red
+export C_09="${material['Red-300']}"  # Light Red
+export C_02="${material['Green-400']}"  # Green
+export C_10="${material['Green-300']}"  # Light Green
+export C_03="${material['Yellow-700']}"  # Yellow
+export C_11="${material['Yellow-600']}"  # Light Yellow
+export C_04="${material['Blue-400']}"  # Blue
+export C_12="${material['Blue-300']}"  # Light Blue
+export C_05="${material['DeepPurple-400']}"  # Purple
+export C_13="${material['DeepPurple-300']}"  # Light Purple
+export C_06="${material['Pink-400']}"  # Turquoise
+export C_14="${material['Pink-300']}"  # Light Turquoise
 
-export C_02='#8BC34A'  # Green (lightGreen 500)
-export C_10='#AED581'  # Light Green (lightGreen 300)
-
-export C_03='#FFEB3B'  # Yellow (yellow 500)
-export C_11='#FFF176'  # Light Yellow (yellow 300)
-
-export C_04='#03A9F4'  # Blue (lightBlue 500)
-export C_12='#4FC3F7'  # Light Blue (lightBlue 300)
-
-export C_05='#9C27B0'  # Purple (purple 500)
-export C_13='#BA68C8'  # Light Purple (purple 300)
-
-export C_06='#009688'  # Turquoise (teal 500)
-export C_14='#4DB6AC'  # Light Turquoise (teal 300)
-
-export C_07='#607D8B'  # Grey (blueGrey 500)
-export C_15='#90A4AE'  # Light Grey (blueGrey 300)
 
 export C_PAL="['${C_00}','${C_01}','${C_02}','${C_03}','${C_04}','${C_05}','${C_06}','${C_07}','${C_08}','${C_09}','${C_10}','${C_11}','${C_12}','${C_13}','${C_14}','${C_15}']"
