@@ -9,18 +9,21 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.lineHeight": 1.6,
-  "editor.fontSize": 16,
+  "editor.fontSize": 18,
   "editor.fontFamily": "'Cascadia Code'",
-  "editor.fontWeight": "400",
+  "editor.fontWeight": "350",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
   "editor.cursorBlinking": "phase",
+  "explorer.autoReveal": true,
+  "explorer.decorations.badges": false,
+  "explorer.decorations.colors": true,
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.colorTheme": "GitHub Dark Dimmed",
   "workbench.iconTheme": "vscode-icons",
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
@@ -72,7 +75,16 @@
   "rest-client.fontFamily": "JetBrains Mono",
   "rest-client.fontWeight": "300",
   "rest-client.fontSize": 15,
-  // ===============
+  "gitlens.codeLens.enabled": false,
+  "cSpell.enabled": true,
+  "cSpell.enableFiletypes": [
+    "git-rebase",
+    "go.sum",
+    "ignore",
+    "makefile",
+    "sql"
+  ],
+  // _______________
   // >>> Go lang <<<
   "[go]": {
     "editor.tabSize": 2,
@@ -117,8 +129,7 @@
   ],
   "go.gotoSymbol.includeImports": true,
   "go.formatTool": "default",
-  // ~~Language Server~~
-  //https://github.com/golang/tools/blob/master/gopls/doc/settings.md
+  // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
   "gopls": {
     "formatting.gofumpt": true,
@@ -146,19 +157,7 @@
   },
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "go.toolsManagement.autoUpdate": true,
-  // >>> Go lang <<<
-  // ===============
-  "gitlens.codeLens.enabled": false,
-  "cSpell.enabled": true,
-  "cSpell.enableFiletypes": [
-    "git-rebase",
-    "go.sum",
-    "ignore",
-    "makefile",
-    "sql"
-  ],
-  "redhat.telemetry.enabled": true,
-  // ==============
+  // ______________
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
     "[GitHub Dark Dimmed]": {
@@ -324,7 +323,31 @@
       "terminalCursor.background": "#472c82", // scale.purple.8
       "terminalCursor.foreground": "#ea4aaa",
     },
+    "[Material Theme]": {
+      "activityBarBadge.background": "#FF4081",
+      "activityBar.activeBorder": "#FF4081",
+      "list.activeSelectionForeground": "#FF4081",
+      "list.inactiveSelectionForeground": "#FF4081",
+      "list.highlightForeground": "#FF4081",
+      "scrollbarSlider.activeBackground": "#FF408150",
+      "editorSuggestWidget.highlightForeground": "#FF4081",
+      "textLink.foreground": "#FF4081",
+      "progressBar.background": "#FF4081",
+      "pickerGroup.foreground": "#FF4081",
+      "tab.activeBorder": "#FF4081",
+      "notificationLink.foreground": "#FF4081",
+      "editorWidget.resizeBorder": "#FF4081",
+      "editorWidget.border": "#FF4081",
+      "settings.modifiedItemIndicator": "#FF4081",
+      "settings.headerForeground": "#FF4081",
+      "panelTitle.activeBorder": "#FF4081",
+      "breadcrumb.activeSelectionForeground": "#FF4081",
+      "menu.selectionForeground": "#FF4081",
+      "menubar.selectionForeground": "#FF4081",
+      "editor.findMatchBorder": "#FF4081",
+      "selection.background": "#FF408140",
+      "statusBarItem.remoteBackground": "#FF4081"
+    }
   },
-  // >>> colors <<<
-  // ==============
+  "materialTheme.accent": "Pink",
 }

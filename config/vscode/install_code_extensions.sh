@@ -23,6 +23,9 @@
 extensions=(
 attilathedud.data-converter
 eamodio.gitlens
+Equinusocio.vsc-community-material-theme
+Equinusocio.vsc-material-theme
+equinusocio.vsc-material-theme-icons
 GitHub.github-vscode-theme
 golang.go
 GraphQL.vscode-graphql

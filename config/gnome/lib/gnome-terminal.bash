@@ -75,7 +75,7 @@ globalsettings=( \
   ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Super>v" \
   ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Super>t" \
   ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Super>w" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Super>k" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Shift><Super>k" \
 )
 
 declare -A profilesettings
