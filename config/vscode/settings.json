@@ -24,13 +24,14 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.iconTheme": "vscode-icons",
   "window.zoomLevel": 1,
+  "terminal.integrated.gpuAcceleration": "auto",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontSize": 17,
-  "terminal.integrated.fontFamily": "'Cascadia Mono PL'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'Cascadia Mono PL'",
   "terminal.integrated.fontWeight": "400",
   "terminal.integrated.fontWeightBold": "450",
   "terminal.integrated.letterSpacing": 0,
@@ -127,14 +128,11 @@
     "-v",
     "-race"
   ],
-  "go.gotoSymbol.includeImports": true,
   "go.formatTool": "default",
   // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
   "gopls": {
     "formatting.gofumpt": true,
-    "build.allowImplicitNetworkAccess": true,
-    "build.experimentalWorkspaceModule": false,
     "build.buildFlags": [
       "-mod=vendor",
       //"-tags=?"
@@ -142,6 +140,8 @@
     "build.env": {
       "GO111MODULE": "on"
     },
+    "build.allowImplicitNetworkAccess": true,
+    "build.experimentalWorkspaceModule": false,
     "codelenses": {
       "gc_details": true,
       "generate": false,
@@ -153,8 +153,53 @@
     "ui.completion.usePlaceholders": true,
     "ui.completion.matcher": "Fuzzy",
     "ui.completion.completionBudget": "100ms",
-    "ui.completion.experimentalPostfixCompletions": true
+    "ui.completion.experimentalPostfixCompletions": true,
+    "ui.diagnostic.analyses": {
+      "assign": true,
+      "atomicalign": true,
+      "atomic": true,
+      "bools": true,
+      "buildtag": true,
+      "composites": true,
+      "copylocks": true,
+      "errorsas": true,
+      "fieldalignment": true,
+      "fillreturns": true,
+      "fillstruct": true,
+      "ifaceassert": true,
+      "httpresponse": true,
+      "infertypeargs": true,
+      "loopclosure": true,
+      "lostcancel": true,
+      "nilfunc": true,
+      "nilness": true,
+      "nonewvars": true,
+      "noresultvalues": true,
+      "printf": true,
+      "shadow": true,
+      "simplifycompositelit": true,
+      "simplifyslice": true,
+      "simplifyrange": true,
+      "sortslice": true,
+      "stdmethods": true,
+      "stringintconv": true,
+      "structtag": true,
+      "testinggoroutine": true,
+      "tests": true,
+      "undeclaredname": true,
+      "unmarshal": true,
+      "unreachable": true,
+      "unsafeptr": true,
+      "unusedparams": true,
+      "unusedresult": true,
+      "unusedwrite": true,
+      "useany": true
+    },
+    "ui.documentation.hoverKind": "SingleLine",
+    "ui.documentation.linksInHover": false,
+    "ui.navigation.importShortcut": "Definition",
   },
+  "go.toolsEnvVars": {},
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "go.toolsManagement.autoUpdate": true,
   // ______________
@@ -368,9 +413,9 @@
       "editorBracketHighlight.foreground5": "#bf8700", // [Light] scale.yellow.4
       "editorBracketHighlight.foreground6": "#EC6547", // [Light] scale.coral.4
       "editorBracketHighlight.unexpectedBracket.foreground": "#fa4549", // [Light] scale.red.4
-      // [Dark Mode] scale.green.5
-      "editor.findMatchBackground": "#23863688",
-      "editor.findMatchHighlightBackground": "#23863644",
+      // [Dark Mode] scale.green.6
+      "editor.findMatchBackground": "#196c2e80",
+      "editor.findMatchHighlightBackground": "#196c2e50",
       // [Dark Mode] scale.orange.4
       "editor.selectionHighlightBackground": "#db6d2830",
       "editor.selectionHighlightBorder": "#db6d2800",
