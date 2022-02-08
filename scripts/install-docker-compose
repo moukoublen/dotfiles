@@ -2,6 +2,7 @@
 
 set -e
 
+# global path: /usr/local/lib/docker/cli-plugins
 mkdir -p ~/.docker/cli-plugins/
 PLUGINS=~/.docker/cli-plugins/
 
@@ -11,14 +12,13 @@ __LOCAL_VER=""
   __LOCAL_VER=$("${PLUGINS}/docker-compose" version | awk '{ print $4 }')
 
 if [[ $__REMOTE_VER == $__LOCAL_VER ]]; then
-  echo "docker-compose is updated to ${__REMOTE_VER}";
+  echo "docker compose is updated to ${__REMOTE_VER}";
   exit 0
 fi
 
 printf "Updating    \e[1;34mdocker-compose\e[0m from    \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${__LOCAL_VER}" "${__REMOTE_VER}"
 printf "Downloading \e[1;34mdocker-compose\e[0m version \e[1;34m%s\e[0m under ${PLUGINS} ... " $__REMOTE_VER
-
-[[ -f "${PLUGINS}/docker-compose.new" ]] && sudo rm -f "${PLUGINS}/docker-compose.new"
+[[ -f "${PLUGINS}/docker-compose.new" ]] && rm -f "${PLUGINS}/docker-compose.new"
 
 curl \
   --silent \
@@ -28,7 +28,7 @@ curl \
   "https://github.com/docker/compose/releases/download/${__REMOTE_VER}/docker-compose-linux-x86_64" \
   -o "${PLUGINS}/docker-compose.new"
 
-[[ -f "${PLUGINS}/docker-compose" ]] && sudo rm -f "${PLUGINS}/docker-compose"
-sudo mv "${PLUGINS}/docker-compose.new" "${PLUGINS}/docker-compose"
-sudo chmod +x "${PLUGINS}/docker-compose"
+[[ -f "${PLUGINS}/docker-compose" ]] && rm -f "${PLUGINS}/docker-compose"
+mv "${PLUGINS}/docker-compose.new" "${PLUGINS}/docker-compose"
+chmod +x "${PLUGINS}/docker-compose"
 printf "\e[1;32mDone\e[0m\n"

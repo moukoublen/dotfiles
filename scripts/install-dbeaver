@@ -5,12 +5,12 @@ __get_latest_version() {
 }
 
 __get_local_release() {(
-  [[ ! -e /usr/share/dbeaver/.eclipseproduct ]] && echo "" && return
-  cat /usr/share/dbeaver/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
+  [[ ! -e /usr/share/dbeaver-ce/.eclipseproduct ]] && echo "" && return
+  cat /usr/share/dbeaver-ce/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
 )}
 
 if [[  "$(__get_local_release)" == "$(__get_latest_version)" ]]; then
-  echo "dbeaver is updated to $remote_version";
+  echo "dbeaver is updated";
   exit 0
 fi
 
