@@ -10,7 +10,7 @@ module.exports = {
         // default font size in pixels for all tabs
         fontSize: 16,
         // font family with optional fallbacks
-        fontFamily: 'Cascadia Mono PL',
+        fontFamily: '"Cascadia Mono PL", monospace',
         // default font weight: 'normal' or 'bold'
         fontWeight: 'normal',
         // font weight for bold characters: 'normal' or 'bold'
@@ -20,22 +20,22 @@ module.exports = {
         // letter spacing as a relative unit
         letterSpacing: 0,
         // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-        cursorColor: '#ea4aaa',
+        cursorColor: '#7d2457',
         // terminal text color under BLOCK cursor
-        cursorAccentColor: '#472c82',
+        cursorAccentColor: '#bf3989',
         // `'BEAM'` for |, `'UNDERLINE'` for _, `'BLOCK'` for █
-        cursorShape: 'BLOCK',
+        cursorShape: 'UNDERLINE',
         // set to `true` (without backticks and without quotes) for blinking cursor
-        cursorBlink: true,
+        cursorBlink: false,
         // color of the text
-        foregroundColor: '#adbac7',
+        foregroundColor: '#b1bac4',
         // terminal background color
         // opacity is only supported on macOS
-        backgroundColor: '#22272e',
+        backgroundColor: '#0d1117',
         // terminal selection color
-        selectionColor: '#69264a',
+        selectionColor: '#7d2457',
         // border color (window, tabs)
-        borderColor: '#ea4aaa',
+        borderColor: '#6e7681',
         // custom CSS to embed in the main window
         css: '',
         // custom CSS to embed in the terminal window
@@ -50,50 +50,31 @@ module.exports = {
         // default: `true` (without backticks and without quotes) on Windows and Linux, ignored on macOS
         showWindowControls: '',
         // custom padding (CSS format, i.e.: `top right bottom left`)
-        padding: '8px 8px',
+        padding: '12px 14px',
         // the full list. if you're going to provide the full color palette,
         // including the 6 x 6 color cubes and the grayscale map, just provide
         // an array here instead of a color map object
         colors: {
-            black: '#444c56',
-            red: '#e5534b',
-            green: '#46954a',
-            yellow: '#ae7c14',
-            blue: '#4184e4',
-            magenta: '#986ee2',
-            cyan: '#c96198',
-            white: '#909dab',
-            lightBlack: '#636e7b',
-            lightRed: '#f47067',
-            lightGreen: '#57ab5a',
-            lightYellow: '#c69026',
-            lightBlue: '#539bf5',
-            lightMagenta: '#b083f0',
-            lightCyan: '#e275ad',
-            lightWhite: '#cdd9e5',
-
-            limeGreen: '#32CD32',
-            lightCoral: '#F08080',
+            black:        '#30363d',
+            lightBlack:   '#6e7681',
+            white:        '#f0f6fc',
+            lightWhite:   '#FFFFFF',
+            red:          '#da3633',
+            lightRed:     '#f85149',
+            green:        '#238636',
+            lightGreen:   '#2ea043',
+            yellow:       '#9e6a03',
+            lightYellow:  '#bb8009',
+            blue:         '#1f6feb',
+            lightBlue:    '#388bfd',
+            magenta:      '#8957e5',
+            lightMagenta: '#a371f7',
+            cyan:         '#bf4b8a',
+            lightCyan:    '#db61a2',
+            limeGreen:    '#3fb950',
+            lightCoral:   '#F78166',
         },
-        // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
-        // if left empty, your system's login shell will be used by default
-        //
-        // Windows
-        // - Make sure to use a full path if the binary name doesn't work
-        // - Remove `--login` in shellArgs
-        //
-        // Windows Subsystem for Linux (WSL) - previously Bash on Windows
-        // - Example: `C:\\Windows\\System32\\wsl.exe`
-        //
-        // Git-bash on Windows
-        // - Example: `C:\\Program Files\\Git\\bin\\bash.exe`
-        //
-        // PowerShell on Windows
-        // - Example: `C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe`
-        //
-        // Cygwin
-        // - Example: `C:\\cygwin64\\bin\\bash.exe`
-        shell: '',
+        shell: '/usr/bin/bash',
         // for setting shell arguments (i.e. for using interactive shellArgs: `['-i']`)
         // by default `['--login']` will be used
         shellArgs: ['--login'],
@@ -102,7 +83,7 @@ module.exports = {
         // Supported Options:
         //  1. 'SOUND' -> Enables the bell as a sound
         //  2. false: turns off the bell
-        bell: false,
+        bell: 'false',
         // An absolute file path to a sound file on the machine.
         // bellSoundURL: '/path/to/sound/file',
         // if `true` (without backticks and without quotes), selected text will automatically be copied to the clipboard
@@ -126,9 +107,11 @@ module.exports = {
         disableLigatures: true,
         // set to true to disable auto updates
         disableAutoUpdates: false,
+        // set to true to enable screen reading apps (like NVDA) to read the contents of the terminal
+        screenReaderMode: false,
+        // set to true to preserve working directory when creating splits or tabs
+        preserveCWD: true,
         // for advanced config flags please refer to https://hyper.is/#cfg
-        scrollback: 99999999,
-        modifierKeys: {altIsMeta: false},
     },
     // a list of plugins to fetch and install from npm
     // format: [@org/]project[#version]
@@ -142,10 +125,57 @@ module.exports = {
     // to load it and avoid it being `npm install`ed
     localPlugins: [],
     keymaps: {
-        "tab:new": "meta+t",
-        "editor:clearBuffer": "meta+k",
-        "pane:splitRight": "ctrl+alt+]",
-        "pane:splitDown": "ctrl+alt+'",
+        "window:devtools": "ctrl+shift+i",
+        "window:reload": "ctrl+shift+r",
+        "window:reloadFull": "ctrl+shift+f5",
+        "window:preferences": "ctrl+,",
+        "window:hamburgerMenu": "alt+f",
+        "zoom:reset": "ctrl+0",
+        "zoom:in": "ctrl+=",
+        "zoom:out": "ctrl+-",
+        "window:new": "ctrl+shift+n",
+        "window:minimize": "ctrl+shift+m",
+        "window:zoom": "ctrl+shift+alt+m",
+        "window:toggleFullScreen": "f11",
+        "window:close": "ctrl+shift+q",
+        "tab:new": "cmd+t",
+        "tab:next": [
+            "ctrl+shift+]",
+            "ctrl+shift+right",
+            "ctrl+alt+right",
+            "ctrl+tab"
+        ],
+        "tab:prev": [
+            "ctrl+shift+[",
+            "ctrl+shift+left",
+            "ctrl+alt+left",
+            "ctrl+shift+tab"
+        ],
+        "tab:jump:prefix": "ctrl",
+        "pane:next": "ctrl+pageup",
+        "pane:prev": "ctrl+pagedown",
+        "pane:splitRight": "cmd+r",
+        "pane:splitDown": "cmd+d",
+        "pane:close": "ctrl+shift+w",
+        "editor:undo": "ctrl+shift+z",
+        "editor:redo": "ctrl+shift+y",
+        "editor:cut": "ctrl+shift+x",
+        "editor:copy": "cmd+c",
+        "editor:paste": "cmd+v",
+        "editor:selectAll": "ctrl+shift+a",
+        "editor:search": "ctrl+shift+f",
+        "editor:search-close": "esc",
+        "editor:movePreviousWord": "ctrl+left",
+        "editor:moveNextWord": "ctrl+right",
+        "editor:moveBeginningLine": "home",
+        "editor:moveEndLine": "end",
+        "editor:deletePreviousWord": "ctrl+backspace",
+        "editor:deleteNextWord": "ctrl+del",
+        "editor:deleteBeginningLine": "ctrl+home",
+        "editor:deleteEndLine": "ctrl+end",
+        "editor:clearBuffer": "cmd+shift+k",
+        "editor:break": "ctrl+c",
+        "plugins:update": "ctrl+shift+u"
     },
 };
 //# sourceMappingURL=config-default.js.map

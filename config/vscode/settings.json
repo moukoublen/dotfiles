@@ -8,7 +8,7 @@
   "editor.renderControlCharacters": true,
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
-  "editor.lineHeight": 1.6,
+  "editor.lineHeight": 1.4,
   "editor.fontSize": 18,
   "editor.fontFamily": "'Cascadia Code'",
   "editor.fontWeight": "350",
