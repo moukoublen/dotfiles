@@ -9,7 +9,7 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.lineHeight": 1.4,
-  "editor.fontSize": 18,
+  "editor.fontSize": 19,
   "editor.fontFamily": "'Cascadia Code'",
   "editor.fontWeight": "350",
   "editor.fontLigatures": true,
@@ -24,7 +24,7 @@
   "workbench.colorTheme": "GitHub Dark Default",
   "workbench.iconTheme": "vscode-icons",
   "window.zoomLevel": 1,
-  "terminal.integrated.gpuAcceleration": "auto",
+  "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
@@ -97,8 +97,8 @@
     "editor.insertSpaces": false,
     "editor.formatOnSave": true
   },
-  "go.autocompleteUnimportedPackages": true,
   "go.useCodeSnippetsOnFunctionSuggest": true,
+  "go.useCodeSnippetsOnFunctionSuggestWithoutType": false,
   "go.editorContextMenuCommands": {
     "toggleTestFile": true,
     "addTags": true,
@@ -120,14 +120,9 @@
     "references": false,
     "runtest": true
   },
-  "go.lintTool": "golangci-lint",
-  "go.lintFlags": [],
-  //"go.buildFlags": [ "-mod=vendor", "-tags=?" ],
-  "go.testFlags": [
-    "-count=1",
-    "-v",
-    "-race"
-  ],
+  "go.languageServerExperimentalFeatures": {
+    "diagnostics": true
+  },
   "go.formatTool": "default",
   // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
@@ -163,7 +158,7 @@
       "composites": true,
       "copylocks": true,
       "errorsas": true,
-      "fieldalignment": true,
+      "fieldalignment": false,
       "fillreturns": true,
       "fillstruct": true,
       "ifaceassert": true,
