@@ -8,7 +8,7 @@ add_to_path $NODE_HOME/bin "after"
 #
 ################################################################################
 _marmalade_get_latest_version_number__node() {
-  curl -s https://nodejs.org/dist/index.json | jq -r '.[0].version' | cut -c 2- # v8.6.0 -> 8.6.0
+  curl -s https://nodejs.org/dist/index.json | jq -r 'map( select( .lts != false ) )[0].version' | cut -c 2- # v8.6.0 -> 8.6.0
 }
 
 _marmalade_get_local_latest_version_number__node() {
