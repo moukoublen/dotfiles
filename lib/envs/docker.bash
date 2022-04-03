@@ -48,20 +48,20 @@ fi
 
 ################################################################################
 ################# marmalade functions ##########################################
-_marmalade_get_latest_version_number__docker-machine() {
-  curl -s https://api.github.com/repos/docker/machine/releases/latest | jq -r '.name'
-}
+#_marmalade_get_latest_version_number__docker-machine() {
+#  curl -s https://api.github.com/repos/docker/machine/releases/latest | jq -r '.name'
+#}
 
-_marmalade_get_local_latest_version_number__docker-machine() {
-  ls -1 $DOTFILES_ENVS/docker-machine/ | grep -v default | sort -V | tail -n 1
-}
+#_marmalade_get_local_latest_version_number__docker-machine() {
+#  ls -1 $DOTFILES_ENVS/docker-machine/ | grep -v default | sort -V | tail -n 1
+#}
 
-_marmalade_install__docker-machine() {
-  # $1: version e.g. 1.16.1
-  # https://github.com/docker/machine/releases/download/1.16.1/docker-compose-Linux-x86_64
-  mkdir -p $DOTFILES_ENVS/docker-machine/$1
-  curl -L --fail https://github.com/docker/machine/releases/download/$1/docker-machine-$(uname -s)-$(uname -m) > $DOTFILES_ENVS/docker-machine/$1/docker-machine
-  chmod +x $DOTFILES_ENVS/docker-machine/$1/docker-machine
-}
+#_marmalade_install__docker-machine() {
+#  # $1: version e.g. 1.16.1
+#  # https://github.com/docker/machine/releases/download/1.16.1/docker-compose-Linux-x86_64
+#  mkdir -p $DOTFILES_ENVS/docker-machine/$1
+#  curl -L --fail https://github.com/docker/machine/releases/download/$1/docker-machine-$(uname -s)-$(uname -m) > $DOTFILES_ENVS/docker-machine/$1/docker-machine
+#  chmod +x $DOTFILES_ENVS/docker-machine/$1/docker-machine
+#}
 ################################################################################
 ################################################################################
