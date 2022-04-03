@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-gsettings set org.gnome.software download-updates false
+#gsettings set org.gnome.software download-updates false
 
 sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
@@ -53,7 +53,7 @@ sudo dnf install \
 
 #sudo dnf install akmods akmod-wl broadcom-wl
 
-sudo dnf grouperase "Container Management"
+#sudo dnf grouperase "Container Management"
 
 sudo dnf install atop iftop iotop nmon procps-ng
 
