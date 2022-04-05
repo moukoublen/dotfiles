@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+for img in $(docker ps --format "{{.ID}}");
+do
+  docker inspect "${img}"
+done
+
+exit 0
+
+exec docker ps --format "{{.Names}} ({{.ID}}) ({{.Status}}, Created At {{.CreatedAt}})
+  Ports:    {{.Ports}}  {{.Networks}}
+  Mounts:   {{.Mounts}}
+" "$@"
+
