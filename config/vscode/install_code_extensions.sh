@@ -1,26 +1,8 @@
 #!/usr/bin/env bash
 
 
-# asciidoctor.asciidoctor-vscode
-# bierner.markdown-mermaid
-# dracula-theme.theme-dracula
-# rangav.vscode-thunder-client
-# scala-lang.scala
-# scala-lang.scala-snippets
-# streetsidesoftware.code-spell-checker
-# ms-python.python
-# ms-python.vscode-pylance
-# ms-toolsai.jupyter
-# ms-vscode.cpptools
-# PKief.material-icon-theme
-# recode4dev.jenkinsfile
-# redhat.vscode-commons
-# redhat.vscode-xml
-# arcticicestudio.nord-visual-studio-code
-
-
-
 extensions=(
+anweber.vscode-httpyac
 attilathedud.data-converter
 eamodio.gitlens
 Equinusocio.vsc-community-material-theme
@@ -29,7 +11,7 @@ equinusocio.vsc-material-theme-icons
 GitHub.github-vscode-theme
 golang.go
 GraphQL.vscode-graphql
-humao.rest-client
+hashicorp.terraform
 mitchdenny.ecdc
 ms-azuretools.vscode-docker
 ms-vscode-remote.remote-containers
