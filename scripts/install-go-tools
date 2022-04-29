@@ -25,10 +25,10 @@ __go_install 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.10'
 __install "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
 # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
-__go_install 'honnef.co/go/tools/cmd/staticcheck@2022.1'
-__go_install 'honnef.co/go/tools/cmd/structlayout@2022.1'
-__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@2022.1'
-__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@2022.1'
+__go_install 'honnef.co/go/tools/cmd/staticcheck@2022.1.1'
+__go_install 'honnef.co/go/tools/cmd/structlayout@2022.1.1'
+__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@2022.1.1'
+__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@2022.1.1'
 __install "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
 # https://github.com/golangci/golangci-lint/releases
@@ -44,7 +44,7 @@ __go_install 'mvdan.cc/gofumpt@v0.3.1'
 __install "${GOPATH}"/bin/gofumpt
 
 # https://github.com/mgechev/revive/releases
-__go_install 'github.com/mgechev/revive@v1.2.0'
+__go_install 'github.com/mgechev/revive@v1.2.1'
 __install "${GOPATH}"/bin/revive
 
 ################################################################
@@ -67,4 +67,4 @@ __install "${GOPATH}"/bin/structslop
 # __install "${GOPATH}"/bin/gotop
 
 # https://github.com/bcicen/ctop/releases
-# __go_install 'github.com/bcicen/ctop@v0.7.6'
+# __go_install 'github.com/bcicen/ctop@v0.7.7'
