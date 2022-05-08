@@ -3,7 +3,7 @@
 update_dnf() {
     echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
     sudo dnf update --refresh
-    sudo dnf needs-restarting
+    sudo dnf needs-restarting --reboothint
 }
 
 update_apt() {
