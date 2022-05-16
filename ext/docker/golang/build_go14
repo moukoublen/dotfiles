@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-docker build --build-arg GO_VERSION=1.14.8 . -t godev14
