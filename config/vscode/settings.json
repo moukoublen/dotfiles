@@ -1,7 +1,7 @@
 {
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
-  "editor.bracketPairColorization.enabled": false, //todo: revisit
+  "editor.bracketPairColorization.enabled": true, //todo: revisit
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
@@ -507,5 +507,6 @@
       "terminalCursor.background": "#472c82", // scale.purple.8
       "terminalCursor.foreground": "#ea4aaa",
     }
-  }
+  },
+  "redhat.telemetry.enabled": true
 }
