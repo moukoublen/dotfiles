@@ -12,12 +12,12 @@ docker-stop-all() {
   done
 }
 
-docker-clean-all() {
+docker-clean-all() {( set -ex
   # --force           Do not prompt for confirmation
   docker system prune --force
   docker network prune --force
   docker volume prune --force
-}
+)}
 
 if command -v drh 1>/dev/null 2>&1; then
   source <(drh --completion)
