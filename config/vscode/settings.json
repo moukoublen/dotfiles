@@ -59,6 +59,11 @@
     "editor.tabSize": 2,
     "editor.formatOnPaste": true
   },
+  "[graphql]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.formatOnPaste": true
+  },
   "[shellscript]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
@@ -508,5 +513,4 @@
       "terminalCursor.foreground": "#ea4aaa",
     }
   },
-  "redhat.telemetry.enabled": true
 }
