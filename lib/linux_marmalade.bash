@@ -59,6 +59,10 @@ wcat() {
 }
 complete -c wcat
 
+sedit() {
+  gnome-text-editor admin://"$1"
+}
+
 alias dnf-display-package-contents='dnf repoquery -l'
 alias dnf-display-local-package-contents='dnf repoquery --installed -l'
 

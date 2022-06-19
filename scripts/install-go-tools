@@ -19,9 +19,9 @@ __go_install() {
 # __go_install 'golang.org/x/lint/golint@v0.0.0-20210508222113-6edffad5e616'
 
 # https://pkg.go.dev/golang.org/x/tools?tab=versions
-__go_install 'golang.org/x/tools/cmd/goimports@v0.1.10'
-__go_install 'golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@v0.1.10'
-__go_install 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.10'
+__go_install 'golang.org/x/tools/cmd/goimports@v0.1.11'
+__go_install 'golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@v0.1.11'
+__go_install 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.11'
 __install "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
 # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
@@ -36,7 +36,7 @@ __go_install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2'
 __install "${GOPATH}"/bin/golangci-lint
 
 # https://github.com/securego/gosec/releases
-__go_install 'github.com/securego/gosec/v2/cmd/gosec@v2.11.0'
+__go_install 'github.com/securego/gosec/v2/cmd/gosec@v2.12.0'
 __install "${GOPATH}"/bin/gosec
 
 # https://github.com/mvdan/gofumpt/releases

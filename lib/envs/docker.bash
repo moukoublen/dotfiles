@@ -15,6 +15,7 @@ docker-stop-all() {
 docker-clean-all() {( set -ex
   # --force           Do not prompt for confirmation
   docker system prune --force
+  docker image prune --force
   docker network prune --force
   docker volume prune --force
 )}

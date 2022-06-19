@@ -21,7 +21,6 @@
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.colorTheme": "GitHub Dark Default",
   "workbench.iconTheme": "vscode-icons",
   "window.zoomLevel": 2,
   "terminal.integrated.gpuAcceleration": "off",
@@ -392,6 +391,9 @@
     }
   },
   "workbench.colorCustomizations": {
+    "[Default Dark+]": {
+      "editor.selectionBackground": "#9e367060",
+    },
     "[GitHub Dark Default]": {
       "list.errorForeground": "#f85149", // scale.red.4
       "list.warningForeground": "#e3b341", // scale.yellow.2
@@ -513,4 +515,6 @@
       "terminalCursor.foreground": "#ea4aaa",
     }
   },
+  "workbench.colorTheme": "GitHub Dark Default",
+  "diffEditor.ignoreTrimWhitespace": false,
 }
