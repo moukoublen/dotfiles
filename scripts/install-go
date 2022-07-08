@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 (
 set -e
-# $1: version e.g. 1.12.7
-# https://storage.googleapis.com/golang/go1.12.7.linux-amd64.tar.gz
+# $1: version e.g. 1.17.11
+# https://storage.googleapis.com/golang/go1.17.11.linux-amd64.tar.gz
 [[ -z $1  ]] && echo "Error: No go version specified" && exit 1
+
+command -v go &> /dev/null && [[ ! -d /usr/local/go ]] && echo -e "\e[32mGo has been installed in a different whay and not in path /usr/local/go.\e[0m Aborting..." && exit 1
+
 
 DR=$(mktemp --directory --tmpdir golang_XXXXXXX)
 cd $DR
