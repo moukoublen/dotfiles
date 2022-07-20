@@ -6,7 +6,7 @@
 	"dark_theme": "Default Dark.sublime-theme",
 	// editor settings
 	"draw_white_space": ["all_tabs", "selection_all", "trailing"],
-	"font_face": "Cascadia Code",
+	"font_face": "JetBrains Mono",
 	"font_size": 16,
 	"mini_diff": "auto",
 	"show_encoding": true,
