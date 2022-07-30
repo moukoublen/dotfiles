@@ -55,5 +55,5 @@ sudo dnf install \
 
 #sudo dnf grouperase "Container Management"
 
-sudo dnf install atop iftop iotop nmon procps-ng
+sudo dnf install atop iftop iotop nmon procps-ng bat duf
 
