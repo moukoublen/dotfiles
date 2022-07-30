@@ -1,6 +1,7 @@
 {
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
+  "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": true, //todo: revisit
   "editor.minimap.enabled": false,
   "editor.detectIndentation": false,
@@ -22,13 +23,16 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
-  "terminal.integrated.gpuAcceleration": "off",
+  "window.titleSeparator": " • ",
+  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
+  "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
+  "terminal.integrated.tabs.separator": " • ",
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontSize": 17,
   "terminal.integrated.fontFamily": "'JetBrains Mono', 'Cascadia Mono PL'",
   "terminal.integrated.fontWeight": "400",
   "terminal.integrated.fontWeightBold": "450",
@@ -201,7 +205,24 @@
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
     "[Default Dark+]": {
-      "textMateRules": [],
+      "textMateRules": [
+        {
+          "scope": [
+            "string",
+          ],
+          "settings": {
+            "foreground": "#FFCA28" // Amber 400
+          }
+        },
+        {
+          "scope": [
+            "comment",
+          ],
+          "settings": {
+            "foreground": "#616161" // Gray 600
+          }
+        },
+      ],
     },
     "[GitHub Dark Default]": {
       "textMateRules": [
@@ -400,12 +421,12 @@
       "editor.selectionBackground": "#f0629260",
       "activityBar.background": "#1E1E1E",
       "activityBar.border": "#414141",
-      "editorBracketHighlight.foreground1": "#FFD700",
-      "editorBracketHighlight.foreground2": "#DA70D6",
-      "editorBracketHighlight.foreground3": "#179FFF",
-      "editorBracketHighlight.foreground4": "#81C784",
+      "editorBracketHighlight.foreground1": "#F06292",
+      "editorBracketHighlight.foreground2": "#BA68C8",
+      "editorBracketHighlight.foreground3": "#7986CB",
+      "editorBracketHighlight.foreground4": "#64B5F6",
       "editorBracketHighlight.foreground5": "#4DB6AC",
-      "editorBracketHighlight.foreground6": "#FF8A65",
+      "editorBracketHighlight.foreground6": "#AED581",
       // terminal
       "terminal.selectionBackground": "#7d2457", // scale.pink.8
       "terminal.background": "#0d1117", // scale.gray.9
