@@ -455,10 +455,11 @@
       //"gitDecoration.modifiedResourceForeground": "#a371f7", // scale.purple.4
       //"gitDecoration.untrackedResourceForeground": "#2ea043", // scale.green.4
       //"tab.activeModifiedBorder": "#640D04", // scale.coral.8
-      //"tab.activeBorder": "#bf4b8a", // scale.pink.5
-      //"tab.activeBorderTop": "#32383f", // scale.gray.8
-      //"tab.activeBackground": "#30363d", // scale.gray.6
-      //"tab.activeBorder": "#32383f", // scale.gray.8
+      "tab.activeBorder": "#bf4b8a", // scale.pink.5
+      "tab.activeBorderTop": "#32383f", // scale.gray.8
+      "tab.activeBackground": "#7d2457", // scale.pink.7
+      "tab.activeBorder": "#32383f", // scale.gray.8
+      "tab.activeForeground": "#ffffff", // scale.white
       //"tab.hoverBackground": "#99286eA0", // scale.pink.5
       //"tab.hoverForeground": "#FFFFFF",
       //"tab.hoverBorder": "#424a53", // scale.gray.7
@@ -570,4 +571,5 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "files.autoSave": "afterDelay",
   "workbench.colorTheme": "GitHub Dark Default",
+  "window.zoomLevel": 1,
 }

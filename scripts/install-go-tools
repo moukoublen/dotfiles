@@ -25,18 +25,18 @@ __go_install 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.12'
 __install "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
 # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
-__go_install 'honnef.co/go/tools/cmd/staticcheck@2022.1.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout@2022.1.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@2022.1.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@2022.1.3'
+__go_install 'honnef.co/go/tools/cmd/staticcheck@v0.0.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout@v0.0.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@v0.0.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@v0.0.3'
 __install "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
 # https://github.com/golangci/golangci-lint/releases
-__go_install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.47.2'
+__go_install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.49.0'
 __install "${GOPATH}"/bin/golangci-lint
 
 # https://github.com/securego/gosec/releases
-__go_install 'github.com/securego/gosec/v2/cmd/gosec@v2.12.0'
+__go_install 'github.com/securego/gosec/v2/cmd/gosec@v2.13.1'
 __install "${GOPATH}"/bin/gosec
 
 # https://github.com/mvdan/gofumpt/releases
@@ -44,7 +44,7 @@ __go_install 'mvdan.cc/gofumpt@v0.3.1'
 __install "${GOPATH}"/bin/gofumpt
 
 # https://github.com/mgechev/revive/releases
-__go_install 'github.com/mgechev/revive@v1.2.1'
+__go_install 'github.com/mgechev/revive@v1.2.3'
 __install "${GOPATH}"/bin/revive
 
 ################################################################
