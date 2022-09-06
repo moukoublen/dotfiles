@@ -25,10 +25,10 @@ __go_install 'golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@v0.1.12'
 __install "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
 # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
-__go_install 'honnef.co/go/tools/cmd/staticcheck@v0.0.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout@v0.0.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@v0.0.3'
-__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@v0.0.3'
+__go_install 'honnef.co/go/tools/cmd/staticcheck@v0.3.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout@v0.3.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout-pretty@v0.3.3'
+__go_install 'honnef.co/go/tools/cmd/structlayout-optimize@v0.3.3'
 __install "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
 # https://github.com/golangci/golangci-lint/releases
