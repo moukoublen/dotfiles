@@ -175,14 +175,14 @@ __fnt_iosevka() {
     echo "${JSN}" | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka.zip" "iosevka" __decomp __install_iosevka
+  __install_font_localy "${URL}" "iosevka.zip" "iosevka-curly" __decomp __install_iosevka
 
   __installing "Iosevka Term Curly"
   URL=$( \
     echo "${JSN}" | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka.zip" "iosevka" __decomp __install_iosevka
+  __install_font_localy "${URL}" "iosevka.zip" "iosevka-term-curly" __decomp __install_iosevka
 
   __installing "Iosevka Aile"
   URL=$( \

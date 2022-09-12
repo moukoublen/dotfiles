@@ -571,5 +571,4 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "files.autoSave": "afterDelay",
   "workbench.colorTheme": "GitHub Dark Default",
-  "window.zoomLevel": 1,
 }
