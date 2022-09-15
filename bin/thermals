@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+
+for d in /sys/class/thermal/thermal_zone*/ ; do
+  cat "${d}/type"  | tr -d '\n' | tr ' ' '_'
+  echo -n -e "\t"
+  temp=$(cat "${d}/temp" | tr -d '\n')
+  echo "scale=2; ${temp} / 1000" | bc -l
+  echo ""
+done | column  -t 
+

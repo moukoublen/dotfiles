@@ -11,6 +11,7 @@ equinusocio.vsc-material-theme-icons
 GitHub.github-vscode-theme
 golang.go
 GraphQL.vscode-graphql
+GraphQL.vscode-graphql-syntax
 hashicorp.terraform
 mitchdenny.ecdc
 ms-azuretools.vscode-docker

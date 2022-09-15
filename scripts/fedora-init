@@ -12,7 +12,7 @@ sudo dnf install \
 
 sudo dnf install \
   meld gitg gitk \
-  gnome-tweak-tool gnome-shell-extension-user-theme chrome-gnome-shell gnome-usage \
+  gnome-tweak-tool gnome-extensions-app gnome-shell-extension-user-theme chrome-gnome-shell gnome-usage \
   gtk-murrine-engine gtk-unico-engine gtk2-engines pavucontrol
 
 sudo dnf groupinstall "Development Tools"
