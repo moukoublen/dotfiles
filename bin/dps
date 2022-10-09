@@ -2,11 +2,6 @@
 
 const { exec } = require("child_process");
 
-
-const printContainer = (c) => {
-    //console.table(c);
-};
-
 const transform = (c) => {
     return {
         id: c.ID,
