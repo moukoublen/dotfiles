@@ -25,7 +25,7 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.colorTheme": "dark-plus-syntax",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${dirty}${rootPath}",
   "terminal.integrated.gpuAcceleration": "on",
@@ -84,7 +84,6 @@
     "editor.insertSpaces": false
   },
   "gitlens.codeLens.enabled": false,
-  "cSpell.enabled": true,
   "cSpell.enableFiletypes": [
     "git-rebase",
     "go.sum",
@@ -207,7 +206,25 @@
   // ______________
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
-    "[Default Dark+]": {
+    "[dark-plus-syntax]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "punctuation.definition.dictionary.begin.json",
+            "punctuation.definition.dictionary.end.json",
+            "punctuation.separator.dictionary.pair.json",
+            "punctuation.separator.dictionary.key-value.json",
+            "punctuation.definition.array.begin.json",
+            "punctuation.definition.array.end.json",
+            "punctuation.separator.array.json",
+          ],
+          "settings": {
+            "foreground": "#808080"
+          }
+        },
+      ],
+    },
+    "[_Default Dark+]": {
       "textMateRules": [
         {
           "scope": [
@@ -417,7 +434,7 @@
     }
   },
   "workbench.colorCustomizations": {
-    "[Default Dark+]": {
+    "[_Default Dark+]": {
       "sideBar.border": "#414141",
       "sideBar.background": "#1E1E1E",
       "editor.background": "#1E1E1E",
@@ -570,6 +587,30 @@
       "terminal.ansiBrightCyan": "#e275ad", // scale.pink.3
       "terminalCursor.background": "#472c82", // scale.purple.8
       "terminalCursor.foreground": "#ea4aaa",
-    }
+    },
+    "[dark-plus-syntax]": {
+      // terminal
+      "terminal.selectionBackground": "#7d2457", // scale.pink.7
+      "terminal.background": "#0d1117", // scale.gray.9
+      "terminal.foreground": "#b1bac4", // scale.gray.2
+      "terminal.ansiBlack": "#30363d", // scale.gray.6
+      "terminal.ansiBrightBlack": "#6e7681", // scale.gray.4
+      "terminal.ansiWhite": "#f0f6fc", // scale.gray.0
+      "terminal.ansiBrightWhite": "#FFFFFF", // white
+      "terminal.ansiRed": "#da3633", // scale.red.5
+      "terminal.ansiBrightRed": "#f85149", // scale.red.4
+      "terminal.ansiGreen": "#238636", // scale.green.5
+      "terminal.ansiBrightGreen": "#2ea043", // scale.green.4
+      "terminal.ansiYellow": "#9e6a03", // scale.yellow.5
+      "terminal.ansiBrightYellow": "#bb8009", // scale.yellow.4
+      "terminal.ansiBlue": "#1f6feb", // scale.blue.5
+      "terminal.ansiBrightBlue": "#388bfd", // scale.blue.4
+      "terminal.ansiMagenta": "#8957e5", // scale.purple.5
+      "terminal.ansiBrightMagenta": "#a371f7", // scale.purple.4
+      "terminal.ansiCyan": "#bf4b8a", // scale.pink.5
+      "terminal.ansiBrightCyan": "#db61a2", // scale.pink.4
+      "terminalCursor.background": "#3c1e70", // scale.purple.8
+      "terminalCursor.foreground": "#9e3670" // scale.pink.6
+    },
   },
 }
