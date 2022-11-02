@@ -10,11 +10,18 @@ command -v go &> /dev/null && [[ ! -d /usr/local/go ]] && echo -e "\e[32mGo has 
 
 DR=$(mktemp --directory --tmpdir golang_XXXXXXX)
 cd $DR
-echo -e "Downloading \e[34mhttps://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz\e[0m in \e[34m${PWD}\e[0m"
-curl --fail --silent --show-error --location https://storage.googleapis.com/golang/go$1.linux-amd64.tar.gz > go.linux-amd64.tar.gz
+
+## https://dl.google.com/go/go1.19.3.linux-amd64.tar.gz
+DL_URL="https://dl.google.com/go/go$1.linux-amd64.tar.gz"
+
+echo -e "Downloading \e[34m${DL_URL}\e[0m in \e[34m${PWD}\e[0m"
+curl --fail --silent --show-error --location "${DL_URL}" > go.linux-amd64.tar.gz
+
 [[ -d /usr/local/go ]] && echo -e "\e[37mDelete previous go installation (\e[0m$(go version)\e[37m)\e[0m" && sudo rm -rf /usr/local/go
+
 echo -e "Installing go \e[34m$1\e[0m"
 sudo tar -C /usr/local -xzf go.linux-amd64.tar.gz
+
 cd /
 
 sudo rm -rf $DR

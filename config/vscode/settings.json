@@ -142,7 +142,6 @@
       "GO111MODULE": "on"
     },
     "build.allowImplicitNetworkAccess": true,
-    "build.experimentalWorkspaceModule": false,
     "codelenses": {
       "gc_details": true,
       "generate": false,

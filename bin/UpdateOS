@@ -28,3 +28,20 @@ esac
 
 unset -f update_dnf
 unset -f update_apt
+
+
+
+if command -v snap &> /dev/null
+then
+  (set -ex
+  sudo snap refresh
+  snap-clean-disabled
+  )
+fi
+
+if command -v flatpak &> /dev/null
+then
+  (set -ex
+  sudo flatpak update
+  )
+fi
