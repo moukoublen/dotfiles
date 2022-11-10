@@ -1,0 +1,55 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character] # The name of the module we are configuring is "character"
+#success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+[directory]
+truncation_length = 2
+truncation_symbol = "…/"
+truncate_to_repo = true
+fish_style_pwd_dir_length = 1
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[aws]
+disabled = true
+
+
+[git_branch]
+format="[$symbol$branch(:$remote_name)(:$remote_branch)]($style) "
+only_attached=true
+always_show_remote=false
+symbol = "\uE0A0 "
+#truncation_length = 4
+#truncation_symbol = ""
+#ignore_branches = ["master", "main"]
+
+[git_status]
+style="purple"
+format="([$all_status$ahead_behind]($style))"
+diverged = "\uf07d \ueaa0${count} \uea9d${count} "
+conflicted = "\uf292${count} "  # nerd font nf-fa-hashtag
+ahead = "\ueaa0${count} "       # nerd font nf-cod-arrow_small_up
+behind = "\uea9d${count} "      # nerd font nf-cod-arrow_small_down
+up_to_date = "\uf62b "           # nerd font nf-mdi-check
+untracked = "\uf8ef${count} "   # nerd font nf-mdi-percent
+stashed = "\ueb09${count} "     # nerd font nf-cod-inbox
+modified = "\uf881${count} "    # nerd font nf-mdi-multiplication
+renamed = "\uf942${count} "     # nerd font nf-mdi-ray_start_arrow
+deleted = "\uea81${count} "     # nerd font nf-cod-trash
+staged = '[++\($count\)](green) '
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[CHERRY PICKING](bold red)"
+
+[golang]
+disabled = true
+#format = "via [🏎💨 $version](bold cyan) "

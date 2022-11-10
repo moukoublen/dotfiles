@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+TMPDIR=/tmp/starship_download
+sudo rm -rf "${TMPDIR}"
+mkdir -p "${TMPDIR}"
+
+BINDIR=/usr/local/bin
+
+__REMOTE_VER=$(curl --silent --show-error --fail --location https://api.github.com/repos/starship/starship/releases/latest | jq -r '.name')
+__LOCAL_VER=""
+[[ -f "${BINDIR}/starship" ]] && \
+  __LOCAL_VER="v$("${BINDIR}/starship" --version | grep 'starship ' | awk '{ print $2 }')"
+
+if [[ $__REMOTE_VER == $__LOCAL_VER ]]; then
+  echo "starship is updated to ${__REMOTE_VER}";
+  exit 0
+fi
+
+printf "Updating    \e[1;34mstarship\e[0m from    \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${__LOCAL_VER}" "${__REMOTE_VER}"
+printf "Downloading \e[1;34mstarship\e[0m version \e[1;34m%s\e[0m under ${TMPDIR} ... " $__REMOTE_VER
+[[ -f "${BINDIR}/starship.new" ]] && rm -f "${BINDIR}/starship.new"
+
+curl \
+  --silent \
+  --show-error \
+  --fail \
+  --location \
+  "https://github.com/starship/starship/releases/download/${__REMOTE_VER}/starship-x86_64-unknown-linux-gnu.tar.gz" \
+  -o "${TMPDIR}/starship-x86_64-unknown-linux-gnu.tar.gz"
+
+(
+  cd "${TMPDIR}"
+  tar zxfv starship-x86_64-unknown-linux-gnu.tar.gz
+  sudo cp starship "${BINDIR}"
+)
+
+sudo rm -rf "${TMPDIR}"
+printf "\e[1;32mDone\e[0m\n"
