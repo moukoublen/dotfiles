@@ -33,8 +33,16 @@ S() {
 
 ################################################################################
 ######### Source libs ##########################################################
-source $DOTFILES_PATH/lib/ps1.bash
 source $DOTFILES_PATH/lib/pathmixer.bash
+
+if command -v starship &> /dev/null
+then
+  export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
+  eval "$(starship init bash)"
+else
+  source $DOTFILES_PATH/lib/ps1.bash
+fi
+
 
 if [[ $(uname) = "Darwin" ]]; then
   source $DOTFILES_PATH/lib/macos_marmalade.bash
