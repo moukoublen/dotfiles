@@ -23,10 +23,11 @@ disabled = true
 
 
 [git_branch]
+style = "purple"
 format="[$symbol$branch(:$remote_name)(:$remote_branch)]($style) "
 only_attached=true
 always_show_remote=false
-symbol = "\uE0A0 "
+symbol = "\ue725 " # nerd font nf-dev-git_branch
 #truncation_length = 4
 #truncation_symbol = ""
 #ignore_branches = ["master", "main"]
