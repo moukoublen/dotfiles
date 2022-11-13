@@ -1,10 +1,11 @@
-const primitives = require('@primer/primitives').default;
-const colors = primitives.colors;
+import * as primer from "@primer/primitives";
+
+const colors = primer.default.default.colors
 
 console.log('#!/usr/bin/env bash');
 console.log('');
 console.log('# To generate this file run:');
-console.log('#    npm run file --silent --prefix ./primer > __colors-primer.bash');
+console.log('#    npm run primer --silent --prefix ./palettes > __colors-primer.bash');
 console.log('');
 console.log('declare -A primer_dark_dimmed');
 console.log('declare -A primer_dark');

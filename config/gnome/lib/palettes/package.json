@@ -1,14 +1,17 @@
 {
-  "name": "primer",
+  "name": "palettes",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "file": "node index.js"
+    "primer": "node primer.js",
+    "material": "node material.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material/material-color-utilities": "^0.2.0",
     "@primer/primitives": "^7.10.0"
   }
 }

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # To generate this file run:
-#    npm run file --silent --prefix ./primer > __colors-primer.bash
+#    npm run primer --silent --prefix ./palettes > __colors-primer.bash
 
 declare -A primer_dark_dimmed
 declare -A primer_dark
