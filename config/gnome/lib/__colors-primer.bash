@@ -1,41 +1,11 @@
 #!/usr/bin/env bash
 
-########################################################################################
-#### javascript to generate the bash tables
-########################################################################################
-# const primitives = require('@primer/primitives').default
-# const colors = primitives.colors;
-# const bashTable = (name) => (key, val) => `${name}['${key}']='${val}'`;
-# [
-#     [colors.light, 'primer_light'],
-#     [colors.dark, 'primer_dark'],
-#     [colors.dark_dimmed, 'primer_dark_dimmed'],
-# ]
-# .map(([palette, bashName]) => [palette.scale, bashTable(bashName)])
-# .flatMap(([scale, format]) =>
-#     Object.entries(scale).flatMap(([key, value]) =>
-#         Array.isArray(value)
-#             ? value.map((color, idx) => format(`${key}-${idx}`, color))
-#             : [format(key, value)]
-#     )
-# )
-# .forEach(x => console.log(x))
-########################################################################################
-
+# To generate this file run:
+#    npm run file --silent --prefix ./primer > __colors-primer.bash
 
 declare -A primer_dark_dimmed
 declare -A primer_dark
 declare -A primer_light
-
-# for key in "${!primer_c[@]}"; do
-#   c=(${primer_c[${key}]})
-#   primer_dark_dimmed[${key}]="${c[2]}"
-#   primer_dark[${key}]="${c[1]}"
-#   primer_light[${key}]="${c[0]}"
-# done
-# for key in "${!primer_dark_dimmed[@]}"; do echo $key; done
-# for val in "${primer_dark_dimmed[@]}"; do echo $val; done
-
 
 primer_light['black']='#1b1f24'
 primer_light['white']='#ffffff'
@@ -89,7 +59,7 @@ primer_light['orange-6']='#953800'
 primer_light['orange-7']='#762c00'
 primer_light['orange-8']='#5c2200'
 primer_light['orange-9']='#471700'
-primer_light['red-0']='#FFEBE9'
+primer_light['red-0']='#ffebe9'
 primer_light['red-1']='#ffcecb'
 primer_light['red-2']='#ffaba8'
 primer_light['red-3']='#ff8182'
@@ -119,20 +89,18 @@ primer_light['pink-6']='#99286e'
 primer_light['pink-7']='#772057'
 primer_light['pink-8']='#611347'
 primer_light['pink-9']='#4d0336'
-primer_light['coral-0']='#FFF0EB'
-primer_light['coral-1']='#FFD6CC'
-primer_light['coral-2']='#FFB4A1'
-primer_light['coral-3']='#FD8C73'
-primer_light['coral-4']='#EC6547'
-primer_light['coral-5']='#C4432B'
-primer_light['coral-6']='#9E2F1C'
-primer_light['coral-7']='#801F0F'
+primer_light['coral-0']='#fff0eb'
+primer_light['coral-1']='#ffd6cc'
+primer_light['coral-2']='#ffb4a1'
+primer_light['coral-3']='#fd8c73'
+primer_light['coral-4']='#ec6547'
+primer_light['coral-5']='#c4432b'
+primer_light['coral-6']='#9e2f1c'
+primer_light['coral-7']='#801f0f'
 primer_light['coral-8']='#691105'
 primer_light['coral-9']='#510901'
-
-
 primer_dark['black']='#010409'
-primer_dark['white']='#f0f6fc'
+primer_dark['white']='#ffffff'
 primer_dark['gray-0']='#f0f6fc'
 primer_dark['gray-1']='#c9d1d9'
 primer_dark['gray-2']='#b1bac4'
@@ -213,18 +181,16 @@ primer_dark['pink-6']='#9e3670'
 primer_dark['pink-7']='#7d2457'
 primer_dark['pink-8']='#5e103e'
 primer_dark['pink-9']='#42062a'
-primer_dark['coral-0']='#FFDDD2'
-primer_dark['coral-1']='#FFC2B2'
-primer_dark['coral-2']='#FFA28B'
-primer_dark['coral-3']='#F78166'
-primer_dark['coral-4']='#EA6045'
-primer_dark['coral-5']='#CF462D'
-primer_dark['coral-6']='#AC3220'
+primer_dark['coral-0']='#ffddd2'
+primer_dark['coral-1']='#ffc2b2'
+primer_dark['coral-2']='#ffa28b'
+primer_dark['coral-3']='#f78166'
+primer_dark['coral-4']='#ea6045'
+primer_dark['coral-5']='#cf462d'
+primer_dark['coral-6']='#ac3220'
 primer_dark['coral-7']='#872012'
-primer_dark['coral-8']='#640D04'
+primer_dark['coral-8']='#640d04'
 primer_dark['coral-9']='#460701'
-
-
 primer_dark_dimmed['black']='#1c2128'
 primer_dark_dimmed['white']='#cdd9e5'
 primer_dark_dimmed['gray-0']='#cdd9e5'
@@ -286,7 +252,7 @@ primer_dark_dimmed['red-5']='#c93c37'
 primer_dark_dimmed['red-6']='#ad2e2c'
 primer_dark_dimmed['red-7']='#922323'
 primer_dark_dimmed['red-8']='#78191b'
-primer_dark_dimmed['red-9']='#5D0F12'
+primer_dark_dimmed['red-9']='#5d0f12'
 primer_dark_dimmed['purple-0']='#eedcff'
 primer_dark_dimmed['purple-1']='#dcbdfb'
 primer_dark_dimmed['purple-2']='#dcbdfb'
@@ -307,16 +273,16 @@ primer_dark_dimmed['pink-6']='#983b6e'
 primer_dark_dimmed['pink-7']='#7e325a'
 primer_dark_dimmed['pink-8']='#69264a'
 primer_dark_dimmed['pink-9']='#551639'
-primer_dark_dimmed['coral-0']='#FFDACF'
-primer_dark_dimmed['coral-1']='#FFB9A5'
-primer_dark_dimmed['coral-2']='#F79981'
-primer_dark_dimmed['coral-3']='#EC775C'
-primer_dark_dimmed['coral-4']='#DE5B41'
-primer_dark_dimmed['coral-5']='#C2442D'
-primer_dark_dimmed['coral-6']='#A93524'
-primer_dark_dimmed['coral-7']='#8D291B'
-primer_dark_dimmed['coral-8']='#771D13'
-primer_dark_dimmed['coral-9']='#5D1008'
+primer_dark_dimmed['coral-0']='#ffdacf'
+primer_dark_dimmed['coral-1']='#ffb9a5'
+primer_dark_dimmed['coral-2']='#f79981'
+primer_dark_dimmed['coral-3']='#ec775c'
+primer_dark_dimmed['coral-4']='#de5b41'
+primer_dark_dimmed['coral-5']='#c2442d'
+primer_dark_dimmed['coral-6']='#a93524'
+primer_dark_dimmed['coral-7']='#8d291b'
+primer_dark_dimmed['coral-8']='#771d13'
+primer_dark_dimmed['coral-9']='#5d1008'
 
 export primer_dark_dimmed
 export primer_dark

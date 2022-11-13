@@ -1,0 +1,14 @@
+{
+  "name": "primer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "file": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@primer/primitives": "^7.10.0"
+  }
+}
