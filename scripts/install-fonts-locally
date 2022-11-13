@@ -14,6 +14,8 @@ __installing() {
 
 __decomp(){ unzip -q "${1}" -d "${2}"; }
 
+__decomp_omit_1(){ unzip -q "${1}" -d "${2}"; }
+
 
 # Arguments
 #  1 download url
@@ -71,6 +73,18 @@ __install_font_localy() {
 }
 
 
+__install_victormono() {
+  cp -r "${1}"/OTF/*otf "${2}"/
+}
+__fnt_victormono() {
+  __installing "Victor Mono"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/rubjo/victor-mono/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL="https://rubjo.github.io/victor-mono/VictorMonoAll.zip"
+  __install_font_localy "${URL}" "VictorMonoAll.zip" "victormono" __decomp __install_victormono "${REMOTE_VERSION}"
+}
+
+
 __install_hack() {
   cp -r "${1}"/ttf/*ttf "${2}"/
 }
@@ -81,7 +95,7 @@ __fnt_hack() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "hack.zip" "hack" __decomp __install_hack  "${REMOTE_VERSION}"
+  __install_font_localy "${URL}" "hack.zip" "hack" __decomp __install_hack "${REMOTE_VERSION}"
 }
 
 
@@ -230,21 +244,6 @@ __fnt_nerdjetbrainsmono() {
   __install_font_localy "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
 }
 
-__install_nerdmplus() {
-  rm "${1}"/*"Windows Compatible"*
-  cp "${1}"/*.ttf "${2}"/
-}
-__fnt_nerdmplus() {
-  __installing "Nerd M Plus"
-  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
-  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
-  local URL=$( echo $BODY | \
-    jq '.assets[] | select(.name | test("MPlus.zip")) | .browser_download_url' --raw-output \
-  )
-  __install_font_localy "${URL}" "MPlus.zip" "nerd-mplus" __decomp __install_nerdmplus "${REMOTE_VERSION}"
-}
-
-
 __install_nerdcascadia() {
   rm "${1}"/*"Windows Compatible"*
   cp "${1}"/*.otf "${2}"/
@@ -260,12 +259,28 @@ __fnt_nerdcascadia() {
 }
 
 
+__install_nerdvictormono() {
+  rm "${1}"/*"Windows Compatible"*
+  cp "${1}"/*.ttf "${2}"/
+}
+__fnt_nerdvictormono() {
+  __installing "Nerd Victor Mono"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("VictorMono.zip")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "VictorMono.zip" "nerd-victor-mono" __decomp __install_nerdvictormono "${REMOTE_VERSION}"
+}
+
+
 ## disabled
 # input
 # manrope
 # advent
 
 __FNT_ALL=( \
+  victormono \
   hack \
   firacode \
   sourcesanspro \
@@ -275,8 +290,8 @@ __FNT_ALL=( \
   jetbrainsmono \
   cascadiacode \
   nerdjetbrainsmono \
-  nerdmplus \
-  nerdcascadia
+  nerdcascadia \
+  nerdvictormono
 )
 
 __LP=()
