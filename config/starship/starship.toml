@@ -10,9 +10,10 @@ add_newline = true
 
 [directory]
 truncation_length = 2
-truncation_symbol = "…/"
+truncation_symbol = "\uf6d7/" # nf-mdi-dots_horizontal
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
+read_only = "\uebe7" # nerd font nf-cod-lock_small
 
 # Disable the package module, hiding it from the prompt completely
 [package]
