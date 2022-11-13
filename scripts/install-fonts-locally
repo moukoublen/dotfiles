@@ -55,7 +55,7 @@ __install_font_localy() {
     echo ""
   fi
   sudo mkdir -p "${INSTALL_FULL_PATH}"
-  sudo touch "${FONTS_DIR}/${INSTALL_FOLDER}/.${REMOTE_VERSION}"
+
 
   # parse the function inside sudo sub-shell
   local FN_BODY
@@ -63,6 +63,9 @@ __install_font_localy() {
   sudo bash -c "${FN_BODY}; ${INSTALL_FUNC} \"${TMP_DIRECTORY}\" \"${INSTALL_FULL_PATH}\""
 
   rm -rf "${TMP_DIRECTORY}"
+
+  sudo touch "${FONTS_DIR}/${INSTALL_FOLDER}/.${REMOTE_VERSION}"
+
   printf "    Installation  \e[1;32mdone.\e[0m\n\n"
   )
 }
@@ -198,6 +201,7 @@ __fnt_cascadiacode() {
   __install_font_localy "${URL}" "cascadia-code.zip" "cascadia-code" __decomp __install_cascadiacode "${REMOTE_VERSION}"
 }
 
+
 __install_jetbrainsmono() {
   cp -r "${1}"/fonts/variable/*.ttf "${2}"/
 }
@@ -211,12 +215,13 @@ __fnt_jetbrainsmono() {
   __install_font_localy "${URL}" "JetBrainsMono.zip" "jetbrains-mono" __decomp __install_jetbrainsmono "${REMOTE_VERSION}"
 }
 
+
 __install_nerdjetbrainsmono() {
   rm "${1}"/*"Windows Compatible"*
   cp "${1}"/*.ttf "${2}"/
 }
 __fnt_nerdjetbrainsmono() {
-  __installing "Jetbrains Mono Nerd Font"
+  __installing "Nerd Jetbrains Mono"
   local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
   local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
   local URL=$( echo $BODY | \
@@ -224,6 +229,36 @@ __fnt_nerdjetbrainsmono() {
   )
   __install_font_localy "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
 }
+
+__install_nerdmplus() {
+  rm "${1}"/*"Windows Compatible"*
+  cp "${1}"/*.ttf "${2}"/
+}
+__fnt_nerdmplus() {
+  __installing "Nerd M Plus"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("MPlus.zip")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "MPlus.zip" "nerd-mplus" __decomp __install_nerdmplus "${REMOTE_VERSION}"
+}
+
+
+__install_nerdcascadia() {
+  rm "${1}"/*"Windows Compatible"*
+  cp "${1}"/*.otf "${2}"/
+}
+__fnt_nerdcascadia() {
+  __installing "Nerd Cascadia Code"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("CascadiaCode.zip")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "CascadiaCode.zip" "nerd-cascadia" __decomp __install_nerdcascadia "${REMOTE_VERSION}"
+}
+
 
 ## disabled
 # input
@@ -239,7 +274,9 @@ __FNT_ALL=( \
   iosevka \
   jetbrainsmono \
   cascadiacode \
-  nerdjetbrainsmono
+  nerdjetbrainsmono \
+  nerdmplus \
+  nerdcascadia
 )
 
 __LP=()
