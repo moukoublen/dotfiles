@@ -1,5 +1,4 @@
 {
-  "window.zoomLevel": 1,
   "diffEditor.ignoreTrimWhitespace": false,
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
@@ -25,7 +24,7 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "dark-plus-syntax",
+  "workbench.colorTheme": "GitHub Dark Default",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${dirty}${rootPath}",
   "terminal.integrated.gpuAcceleration": "on",
@@ -103,8 +102,6 @@
     "editor.insertSpaces": false,
     "editor.formatOnSave": true
   },
-  "go.useCodeSnippetsOnFunctionSuggest": true,
-  "go.useCodeSnippetsOnFunctionSuggestWithoutType": false,
   "go.editorContextMenuCommands": {
     "toggleTestFile": true,
     "addTags": true,
@@ -114,94 +111,52 @@
     "testFile": false,
     "testPackage": false,
     "generateTestForFunction": true,
-    "generateTestForFile": true,
+    "generateTestForFile": false,
     "generateTestForPackage": false,
-    "addImport": false,
+    "addImport": true,
     "testCoverage": true,
-    "playground": false,
+    "playground": true,
     "debugTestAtCursor": true,
     "benchmarkAtCursor": false
   },
   "go.enableCodeLens": {
-    "references": false,
     "runtest": true
   },
-  "go.languageServerExperimentalFeatures": {
-    "diagnostics": true
-  },
   "go.formatTool": "default",
+  "go.toolsEnvVars": {},
+  "go.toolsGopath": "${env:HOME}/vscode-gotools",
+  "go.toolsManagement.autoUpdate": true,
+  "go.toolsManagement.checkForUpdates": "proxy",
   // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
   "gopls": {
-    "formatting.gofumpt": true,
     "build.buildFlags": [
       "-mod=vendor",
-      //"-tags=?"
+      "-tags=test-e2e,other"
     ],
     "build.env": {
       "GO111MODULE": "on"
     },
-    "build.allowImplicitNetworkAccess": true,
-    "codelenses": {
-      "gc_details": true,
-      "generate": false,
+    "formatting.gofumpt": true,
+    "ui.completion.usePlaceholders": true,
+    "ui.completion.experimentalPostfixCompletions": true,
+    "ui.diagnostic.annotations": {
+      "bounds": true,
+      "escape": true,
+      "inline": true,
+      "nil": true
+    },
+    "ui.diagnostic.staticcheck": true,
+    "ui.codelenses": {
+      "gc_details": false,
+      "generate": true,
       "regenerate_cgo": false,
       "tidy": true,
       "upgrade_dependency": true,
       "vendor": true
     },
-    "ui.completion.usePlaceholders": true,
-    "ui.completion.matcher": "Fuzzy",
-    "ui.completion.completionBudget": "100ms",
-    "ui.completion.experimentalPostfixCompletions": true,
-    "ui.diagnostic.analyses": {
-      "assign": true,
-      "atomicalign": true,
-      "atomic": true,
-      "bools": true,
-      "buildtag": true,
-      "composites": true,
-      "copylocks": true,
-      "errorsas": true,
-      "fieldalignment": false,
-      "fillreturns": true,
-      "fillstruct": true,
-      "ifaceassert": true,
-      "httpresponse": true,
-      "infertypeargs": true,
-      "loopclosure": true,
-      "lostcancel": true,
-      "nilfunc": true,
-      "nilness": true,
-      "nonewvars": true,
-      "noresultvalues": true,
-      "printf": true,
-      "shadow": true,
-      "simplifycompositelit": true,
-      "simplifyslice": true,
-      "simplifyrange": true,
-      "sortslice": true,
-      "stdmethods": true,
-      "stringintconv": true,
-      "structtag": true,
-      "testinggoroutine": true,
-      "tests": true,
-      "undeclaredname": true,
-      "unmarshal": true,
-      "unreachable": true,
-      "unsafeptr": true,
-      "unusedparams": true,
-      "unusedresult": true,
-      "unusedwrite": true,
-      "useany": true
-    },
-    "ui.documentation.hoverKind": "SingleLine",
-    "ui.documentation.linksInHover": false,
-    "ui.navigation.importShortcut": "Definition",
-  },
-  "go.toolsEnvVars": {},
-  "go.toolsGopath": "${env:HOME}/vscode-gotools",
-  "go.toolsManagement.autoUpdate": true,
+    "ui.documentation.hoverKind": "FullDocumentation",
+  }
   // ______________
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
