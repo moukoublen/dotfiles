@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-(
-set -e
-sudo mkdir -p /usr/local/bin
-cd /usr/local/bin
-sudo curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo chmod +x minikube
-)
