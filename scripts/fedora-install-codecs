@@ -50,4 +50,5 @@ sudo dnf -y install \
     x265-libs \
     xvidcore
 
-#sudo dnf install celluloid.x86_64
+# sudo dnf install celluloid.x86_64
+# sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
