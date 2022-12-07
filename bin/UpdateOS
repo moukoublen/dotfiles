@@ -45,3 +45,7 @@ then
   sudo flatpak update
   )
 fi
+
+install-docker-compose
+install-docker-buildx
+install-dbeaver
