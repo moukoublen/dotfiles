@@ -63,4 +63,7 @@ install-go-tools() {(
   # https://github.com/orijtech/structslop/tags
   go-install 'github.com/orijtech/structslop/cmd/structslop@v0.0.7'
   #__install_binary "${GOPATH}"/bin/structslop
+
+  # https://github.com/jesseduffield/lazydocker/releases
+  go-install github.com/jesseduffield/lazydocker@latest
 )}
