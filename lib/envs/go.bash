@@ -8,7 +8,10 @@ fi
 
 go-install() {
   echo -e "> Installing \e[0;90m$@\e[0m"
-  go install -a -ldflags '-s -w -extldflags "-static"' "$@"
+  (
+    set -x
+    go install -a -ldflags '-s -w -extldflags "-static"' "$@"
+  )
 }
 
 
@@ -66,4 +69,7 @@ install-go-tools() {(
 
   # https://github.com/jesseduffield/lazydocker/releases
   go-install github.com/jesseduffield/lazydocker@latest
+
+  # https://github.com/gohugoio/hugo/releases
+  go-install -tags extended github.com/gohugoio/hugo@latest
 )}
