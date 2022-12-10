@@ -73,6 +73,34 @@ __install_font_localy() {
 }
 
 
+__install_monasans() {
+  cp -r "${1}"/Mona\ Sans/OTF/*otf "${2}"/
+}
+__fnt_monasans() {
+  __installing "Mona Sans"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/github/mona-sans/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output )
+  URL=$( echo $BODY | \
+    jq '.assets[0].browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "Mona.Sans.zip" "monasans" __decomp __install_monasans "${REMOTE_VERSION}"
+}
+
+
+__install_hubotsans() {
+  cp -r "${1}"/Hubot\ Sans/OTF/*otf "${2}"/
+}
+__fnt_hubotsans() {
+  __installing "Hubot Sans"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/github/hubot-sans/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output )
+  URL=$( echo $BODY | \
+    jq '.assets[0].browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "Hubot.Sans.zip" "hubotsans" __decomp __install_hubotsans "${REMOTE_VERSION}"
+}
+
+
 __install_victormono() {
   cp -r "${1}"/OTF/*otf "${2}"/
 }
@@ -291,7 +319,9 @@ __FNT_ALL=( \
   cascadiacode \
   nerdjetbrainsmono \
   nerdcascadia \
-  nerdvictormono
+  nerdvictormono \
+  hubotsans \
+  monasans
 )
 
 __LP=()
