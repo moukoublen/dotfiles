@@ -26,7 +26,7 @@ install-go-tools() {(
   #}
 
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
-  GO_X_TOOLS_VER=v0.3.0
+  GO_X_TOOLS_VER=v0.4.0
   go-install "golang.org/x/tools/cmd/goimports@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@${GO_X_TOOLS_VER}"
