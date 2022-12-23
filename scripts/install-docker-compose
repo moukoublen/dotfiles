@@ -50,7 +50,7 @@ __install_from_github_origin() {( set -e
 
 __remote_version() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.name' --raw-output
+  echo "${JS_BODY}" | jq -r '.name'
 }
 
 __local_version() {
@@ -60,7 +60,7 @@ __local_version() {
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq '.assets[] | select(.name | test("^docker-compose-linux-x86_64$")) | .browser_download_url' --raw-output
+  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^docker-compose-linux-x86_64$")) | .browser_download_url'
 }
 
 __install_exec() {
