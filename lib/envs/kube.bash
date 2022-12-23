@@ -16,3 +16,7 @@ fi
 if command -v minikube 1>/dev/null 2>&1; then
   source <(minikube completion bash)
 fi
+
+if command -v kind 1>/dev/null 2>&1; then
+  source <(kind completion bash)
+fi

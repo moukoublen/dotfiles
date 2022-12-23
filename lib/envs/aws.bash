@@ -3,5 +3,7 @@ if command -v aws_completer 1>/dev/null 2>&1; then
 fi
 
 install-awscli2() {(
-  ${DOTFILES_PATH}/scripts/install-awscli2 "$@"
+  "${DOTFILES_PATH}/scripts/install-awscli2" "$@"
 )}
+
+# sudo snap install aws-cli --classic

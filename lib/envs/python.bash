@@ -1,5 +1,7 @@
 if command -v ${HOME}/.local/bin/pip3 1>/dev/null 2>&1; then
   source <(${HOME}/.local/bin/pip3 completion --bash)
+elif command -v /usr/bin/pip3 1>/dev/null 2>&1; then
+  source <(/usr/bin/pip3 completion --bash)
 fi
 
 
@@ -16,3 +18,7 @@ alias pip3-list='pip3 list --user'
 
 # pip install --user --upgrade <package>
 
+## Ansible
+# sudo dnf install ansible
+# or
+# pip3 install --user ansible
