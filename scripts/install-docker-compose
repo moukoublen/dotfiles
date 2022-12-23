@@ -6,62 +6,23 @@ set -e
 PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
 mkdir -p "${PLUGINS_DIR}"
 
-__install_from_github_origin() {( set -e
-  local NAME="${1}"
-  local REPO="${2}"
-  local FN_REMOTE_VER="${3}"
-  local FN_LOCAL_VER="${4}"
-  local FN_GET_DL_LINK="${5}"
-  local DL_FILE="${6}"
-  local FN_INSTALL="${7}"
-  local BIN_DIR="${8:-/usr/local/bin}"
-
-  local TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
-
-  printf "Getting repo \e[1;34m%s\e[0m latest release info\n" "${REPO}"
-  local JS_BODY=$(curl --silent --show-error --fail --location "https://api.github.com/repos/${REPO}/releases/latest")
-
-  local REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}")
-  local LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}")
-
-  if [[ "${REMOTE_VER}" == "${LOCAL_VER}" ]]; then
-    printf "Local \e[1;34m%s\e[0m is updated to \e[1;34m%s\e[0m.\n" "${NAME}" "${LOCAL_VER}"
-    return 0
-  fi
-
-  printf "Updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
-
-  local DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
-  printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m under \e[1;34m%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}"
-  curl \
-    --silent \
-    --show-error \
-    --fail \
-    --location \
-    "${DL_URL}" \
-    -o "${TMP_DIR}/${DL_FILE}"
-
-  printf "Installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m\n" "${NAME}" "${BIN_DIR}"
-  "${FN_INSTALL}" "${BIN_DIR}" "${TMP_DIR}/${DL_FILE}"
-
-  sudo rm -rf "${TMP_DIR}"
-  printf "\e[1;32mDone\e[0m\n"
-)}
-
 __remote_version() {
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.name'
 }
+export -f __remote_version
 
 __local_version() {
   local BIN_DIR="${1:-/usr/local/bin}"
   [[ -f "${BIN_DIR}/docker-compose" ]] && "${BIN_DIR}/docker-compose" version | awk '{ print $4 }'
 }
+export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^docker-compose-linux-x86_64$")) | .browser_download_url'
 }
+export -f __get_dl_url
 
 __install_exec() {
   local BIN_DIR="${1}"
@@ -70,13 +31,15 @@ __install_exec() {
   cp "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}"/docker-compose
   chmod +x "${BIN_DIR}"/docker-compose
 }
+export -f __install_exec
 
-__install_from_github_origin \
-  "docker-compose" \
-  "docker/compose" \
-  "__remote_version" \
-  "__local_version" \
-  "__get_dl_url" \
-  "docker-compose-linux-x86_64" \
-  "__install_exec" \
-  "${PLUGINS_DIR}"
+
+install-from-github \
+  --name                 "docker-compose" \
+  --repo                 "docker/compose" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "docker-compose-linux-x86_64" \
+  --fn-install           "__install_exec" \
+  --destination          "${PLUGINS_DIR}"
