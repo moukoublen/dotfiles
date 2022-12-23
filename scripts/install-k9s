@@ -21,14 +21,14 @@ __install_from_github_origin() {( set -e
   local LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}")
 
   if [[ "${REMOTE_VER}" == "${LOCAL_VER}" ]]; then
-    echo "${NAME} is updated to ${LOCAL_VER}";
+    printf "Local \e[1;34m%s\e[0m is updated to \e[1;34m%s\e[0m.\n" "${NAME}" "${LOCAL_VER}"
     return 0
   fi
 
   printf "Updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
 
   local DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
-  printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m under %s \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}"
+  printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m under \e[1;34m%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}"
   curl \
     --silent \
     --show-error \
@@ -37,6 +37,7 @@ __install_from_github_origin() {( set -e
     "${DL_URL}" \
     -o "${TMP_DIR}/${DL_FILE}"
 
+  printf "Installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m\n" "${NAME}" "${BIN_DIR}"
   "${FN_INSTALL}" "${BIN_DIR}" "${TMP_DIR}/${DL_FILE}"
 
   sudo rm -rf "${TMP_DIR}"
