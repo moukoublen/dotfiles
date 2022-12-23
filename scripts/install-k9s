@@ -2,7 +2,6 @@
 
 set -e
 
-
 __install_from_github_origin() {( set -e
   local NAME="${1}"
   local REPO="${2}"
@@ -51,12 +50,12 @@ __remote_version() {
 
 __local_version() {
   local BIN_DIR="${1:-/usr/local/bin}"
-  [[ -f "${BIN_DIR}/starship" ]] && echo "v$("${BIN_DIR}/starship" --version | grep 'starship ' | awk '{ print $2 }')"
+  [[ -f "${BIN_DIR}"/k9s ]] && "${BIN_DIR}"/k9s version --short | grep --extended-regexp '^Version' | sed 's/Version *//'
 }
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq '.assets[] | select(.name | test("^starship-x86_64-unknown-linux-gnu.tar.gz$")) | .browser_download_url' --raw-output
+  echo "${JS_BODY}" | jq '.assets[] | select(.name | test("k9s_Linux_x86_64.tar.gz")) | .browser_download_url' --raw-output
 }
 
 __install_exec() {
@@ -64,13 +63,13 @@ __install_exec() {
   local DOWNLOADED_FULL_PATH="${2}"
   local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
-  sudo cp "${TMP_DIR}"/starship "${BIN_DIR}"/starship
+  sudo cp "${TMP_DIR}"/k9s "${BIN_DIR}"/k9s
 }
 
 
 __install_from_github_origin \
-  "starship" \
-  "starship/starship" \
+  "k9s" \
+  "derailed/k9s" \
   "__remote_version" \
   "__local_version" \
   "__get_dl_url" \
