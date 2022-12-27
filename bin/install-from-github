@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+NAME=""
+REPO=""
+FN_REMOTE_VER=""
+FN_LOCAL_VER=""
+FN_GET_DL_LINK=""
+DL_FILE=""
+FN_INSTALL=""
+BIN_DIR="/usr/local/bin"
+
+UNKNOWN_ARGS=()
+while (($#)); do
+  case "${1}" in
+    -n|--name)
+      NAME="${2}"
+      shift 2
+      ;;
+    -r|--repo)
+      REPO="${2}"
+      shift 2
+      ;;
+    -rv|--fn-remote-version)
+      FN_REMOTE_VER="${2}"
+      shift 2
+      ;;
+    -lv|--fn-local-version)
+      FN_LOCAL_VER="${2}"
+      shift 2
+      ;;
+    -dl|--fn-get-download-link)
+      FN_GET_DL_LINK="${2}"
+      shift 2
+      ;;
+    -f|--download-to-file)
+      DL_FILE="${2}"
+      shift 2
+      ;;
+    -i|--fn-install)
+      FN_INSTALL="${2}"
+      shift 2
+      ;;
+    -d|--destination)
+      BIN_DIR="${2}"
+      shift 2
+      ;;
+    *)
+      UNKNOWN_ARGS+=("${1}")
+      shift
+      ;;
+  esac
+done
+
+## TODO: validation
+
+
+TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
+
+printf "Getting repo \e[1;34m%s\e[0m latest release info\n" "${REPO}"
+JS_BODY=$(curl --silent --show-error --fail --location "https://api.github.com/repos/${REPO}/releases/latest")
+
+REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}")
+LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}")
+
+if [[ "${REMOTE_VER}" == "${LOCAL_VER}" ]]; then
+  printf "Local \e[1;34m%s\e[0m is updated to \e[1;34m%s\e[0m.\n" "${NAME}" "${LOCAL_VER}"
+  exit 0
+fi
+
+printf "Updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
+
+DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
+printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m under \e[1;34m%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}"
+curl \
+  --silent \
+  --show-error \
+  --fail \
+  --location \
+  "${DL_URL}" \
+  -o "${TMP_DIR}/${DL_FILE}"
+
+printf "Installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m\n" "${NAME}" "${BIN_DIR}"
+"${FN_INSTALL}" "${BIN_DIR}" "${TMP_DIR}/${DL_FILE}"
+
+sudo rm -rf "${TMP_DIR}"
+printf "\e[1;32mDone\e[0m\n"
