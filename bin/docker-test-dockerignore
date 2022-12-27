@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+docker build --no-cache --progress plain -t dockerignore-test:latest --file - . <<EOF
+FROM busybox
+COPY . /e
+WORKDIR /e
+RUN find .
+RUN du -h -d 1
+EOF
+
+docker rmi dockerignore-test:latest 
