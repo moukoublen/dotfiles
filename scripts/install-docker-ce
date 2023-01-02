@@ -38,9 +38,10 @@ case "$(whatos)" in
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
     # sudo apt-get --purge --yes remove docker docker-engine docker.io containerd runc
     sudo apt-get install --assume-yes apt-transport-https ca-certificates curl gnupg lsb-release
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | \
-      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+      $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt-get update
     sudo apt-get install --assume-yes docker-ce docker-ce-cli containerd.io
     ;;
@@ -52,9 +53,11 @@ esac
 
 echo "Installing group docker and adding the current user to it"
 sudo groupadd docker || true
-sudo usermod -a -G docker $USER
-sudo systemctl start docker
-sudo systemctl enable docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+sudo systemctl enable docker.service
+sudo systemctl enable containerd.service
 
 echo -e "\e[1;32mDone\e[0m\n"
 
