@@ -57,3 +57,6 @@ sudo dnf install \
 
 sudo dnf install atop iftop iotop nmon procps-ng bat duf
 
+sudo dnf -y groupinstall virtualization
+
+#sudo dnf -y install cabextract lzip p7zip p7zip-plugins unrar

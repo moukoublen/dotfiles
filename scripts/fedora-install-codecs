@@ -53,4 +53,4 @@ sudo dnf -y install \
 
 # sudo dnf install celluloid.x86_64
 # sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
-
+# sudo dnf install mesa-vdpau-drivers-freeworld

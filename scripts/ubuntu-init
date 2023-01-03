@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-sudo apt-get install -y git build-essential strace vim nano ack ripgrep \
-                    htop curl wget jq \
-                    make cmake automake autoconf lsb-release
+sudo apt-get install --assume-yes \
+  git build-essential strace make cmake automake autoconf \
+  vim nano \
+  ack ripgrep \
+  curl wget jq \
+  htop lsb-release
 
-sudo apt-get install -y \
+sudo apt-get install --assume-yes \
   default-jre default-jre-headless \
   default-jdk-doc default-jdk default-jdk-headless \
   openjdk-8-jre openjdk-8-jre-headless \
@@ -17,8 +20,8 @@ sudo apt-get install -y \
 # sudo update-java-alternatives --list
 # sudo update-java-alternatives --set java-1.17.0-openjdk-amd64
 
-sudo apt-get install -y ubuntu-restricted-addons
-sudo apt-get install -y meld gitg gitk #pavucontrol
+sudo apt-get install --assume-yes ubuntu-restricted-addons
+sudo apt-get install --assume-yes meld gitg gitk #pavucontrol
 
 sudo systemctl stop ufw.service
 sudo systemctl disable ufw.service
