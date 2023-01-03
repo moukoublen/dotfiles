@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 __help() {
-  echo "Usage: <set|get>"
+  echo "Usage: ${0} <set|get>"
 }
 
 func=
@@ -31,9 +31,9 @@ settings=( \
   ["org.gnome.desktop.wm.keybindings switch-applications"]="['<Super>Tab']" \
   ["org.gnome.desktop.wm.keybindings switch-windows"]="['<Alt>Tab']" \
   ["org.gnome.desktop.wm.preferences action-middle-click-titlebar"]="toggle-maximize-vertically" \
-  ["org.gnome.desktop.wm.preferences button-layout"]="appmenu:minimize,maximize,close" \
-  ["org.gnome.desktop.interface cursor-size"]="32" \
 )
+  #["org.gnome.desktop.interface cursor-size"]="32" \
+  #["org.gnome.desktop.wm.preferences button-layout"]="appmenu:minimize,maximize,close" \
   #["org.gnome.desktop.interface font-name"]="Iosevka Aile 11" \
   #["org.gnome.desktop.interface document-font-name"]="Iosevka Aile 11" \
   #["org.gnome.desktop.interface monospace-font-name"]="Iosevka 12" \
