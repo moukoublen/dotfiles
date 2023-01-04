@@ -22,3 +22,4 @@ alias pip3-list='pip3 list --user'
 # sudo dnf install ansible
 # or
 # pip3 install --user ansible
+# python3 -m pip install --upgrade --user ansible

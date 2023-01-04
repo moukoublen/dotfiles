@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -e
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}"/helm ]] && "${BIN_DIR}"/helm version --short | sed "s/\+.*//"
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+  local VERSION=$(echo "${JS_BODY}" | jq -r '.tag_name')
+  echo "https://get.helm.sh/helm-${VERSION}-linux-amd64.tar.gz"
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}" --strip-components=1
+
+  #install binary
+  sudo cp "${TMP_DIR}"/helm "${BIN_DIR}"/helm
+}
+export -f __install_exec
+
+
+install-from-github  \
+  --name                 "helm" \
+  --repo                 "helm/helm" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "downloaded.tar.gz" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin"

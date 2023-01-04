@@ -56,8 +56,9 @@ done
 
 TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
 
-printf "Getting repo \e[1;34m%s\e[0m latest release info\n" "${REPO}"
-JS_BODY=$(curl --silent --show-error --fail --location "https://api.github.com/repos/${REPO}/releases/latest")
+GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
+printf "Getting repo \e[1;34m%s\e[0m latest release info \e[0;90m(%s)\e[0m\n" "${REPO}" "${GH_API_LATEST_RELEASE}"
+JS_BODY=$(curl --silent --show-error --fail --location "${GH_API_LATEST_RELEASE}")
 
 REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}")
 LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}")
