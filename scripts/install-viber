@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 
-case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+case "$(what-pm)" in
+  "dnf"|"yum")
     install-remote-package 'https://download.cdn.viber.com/desktop/Linux/viber.rpm'
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint")
-    DOWNLOAD_DEST_FILE='/tmp/viber.deb'
-    wget 'https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb' -O $DOWNLOAD_DEST_FILE
-    #correct the libcurl3 to libcurl4 dependency problem...
-    dpkg-deb -x $DOWNLOAD_DEST_FILE /tmp/viber
-    dpkg-deb --control $DOWNLOAD_DEST_FILE /tmp/viber/DEBIAN
-    sed -i -e 's/libcurl3/libcurl4/g' /tmp/viber/DEBIAN/control
-    dpkg -b /tmp/viber /tmp/vibernew.deb
-    sudo apt install -y /tmp/vibernew.deb
-    rm $DOWNLOAD_DEST_FILE /tmp/vibernew.deb
-    rm -rf /tmp/viber
+  "apt")
+    install-remote-package "https://download.cdn.viber.com/cdn/desktop/Linux/viber.deb"
     ;;
   *)
     echo "this script does not have packages for this release"
