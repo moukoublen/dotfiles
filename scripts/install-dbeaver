@@ -1,32 +1,60 @@
 #!/usr/bin/env bash
 
-__get_latest_version() {
-  curl --fail --silent --show-error --location https://api.github.com/repos/dbeaver/dbeaver/releases/latest | jq -r '.tag_name'
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
 }
+export -f __remote_version
 
-__get_local_release() {(
+__local_version() {(
+  local BIN_DIR="${1:-/usr/local/bin}" # not used in this case
   [[ ! -e /usr/share/dbeaver-ce/.eclipseproduct ]] && echo "" && return
   cat /usr/share/dbeaver-ce/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
 )}
+export -f __local_version
 
-if [[  "$(__get_local_release)" == "$(__get_latest_version)" ]]; then
-  echo "dbeaver is updated";
-  exit 0
-fi
+__get_dl_url() {
+  case "$(what-pm)" in
+    "dnf")
+      echo "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
+      ;;
+    "apt")
+      echo "https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
+      ;;
+    *)
+      echo ""
+      ;;
+  esac
+}
+export -f __get_dl_url
 
-URL=""
-case "$(what-pm)" in
-  "dnf")
-    URL="https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
-    ;;
-  "apt")
-    URL="https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
-    ;;
-  *)
-    echo "this script does not have packages for this release"
-    ;;
-esac
+__install_exec() {
+  local BIN_DIR="${1}" # not used in this case
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
 
-install-remote-package $URL
+  case "$(what-pm)" in
+    "dnf")
+      sudo dnf -y install "${DOWNLOADED_FULL_PATH}"
+      ;;
+    "apt")
+      sudo chown -R _apt "${TMP_DIR}"
+      sudo apt -y install "${DOWNLOADED_FULL_PATH}"
+      ;;
+    *)
+      return -1
+      ;;
+  esac
+}
+export -f __install_exec
 
-unset URL
+
+install-from-github  \
+  --name                 "dbeaver" \
+  --repo                 "dbeaver/dbeaver" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin"

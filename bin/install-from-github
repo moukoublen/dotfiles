@@ -1,5 +1,25 @@
 #!/usr/bin/env bash
 
+__get_remote_filename() {
+  # split string of argument $1 by / and get last part
+  f=${1##*/}
+
+  if [ -n "$f" ]; then
+    echo $f
+    return
+  fi
+
+  # try to parse filename from content-disposition header
+  f=$(curl --head --silent --fail --location "$1" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
+  if [ -n "$f" ]; then
+    echo $f
+    return
+  fi
+
+  # if none found, return random string
+  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1
+}
+
 NAME=""
 REPO=""
 FN_REMOTE_VER=""
@@ -71,7 +91,10 @@ fi
 printf "Updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
 
 DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
-printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m under \e[1;34m%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}"
+if [[ "${DL_FILE}" == "" ]]; then
+  DL_FILE=$(__get_remote_filename "${DL_URL}")
+fi
+printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
 curl \
   --silent \
   --show-error \
