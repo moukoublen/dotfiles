@@ -11,6 +11,7 @@ update_apt() {
     sudo apt update
     echo -e "\e[0;96m->\e[0m \e[0;90msudo apt upgrade\e[0m"
     sudo apt upgrade
+    [[ -e /var/run/reboot-required ]] && echo -e "\e[0;96m->\e[0m \e[0;97mreboot is required\e[0m"
 }
 
 echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
