@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+set -e
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}"/kind ]] && "${BIN_DIR}"/kind --version | sed 's/kind version /v/'
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^kind-linux-amd64$")) | .browser_download_url'
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+
+  #install binary
+  sudo cp "${TMP_DIR}"/kind-linux-amd64 "${BIN_DIR}"/kind
+  sudo chmod +x "${BIN_DIR}"/kind
+}
+export -f __install_exec
+
+
+install-from-github  \
+  --name                 "kind" \
+  --repo                 "kubernetes-sigs/kind" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "kind-linux-amd64" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin"
