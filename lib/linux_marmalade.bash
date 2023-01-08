@@ -15,6 +15,7 @@ alias go-to-runlevel-5='sudo systemctl set-default graphical.target'
 alias get-wm-class='xprop WM_CLASS'
 alias p='ps -Aww -o user,pid,ppid,%cpu,%mem,vsz,rss,tty,stat,start_time,command --sort=-user,-ppid,-pid'
 alias PGREP='p | grep'
+alias crl='curl --silent --show-error --fail --location'
 ################################################################################
 ################################################################################
 

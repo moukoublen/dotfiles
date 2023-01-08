@@ -14,12 +14,14 @@ __local_version() {(
 export -f __local_version
 
 __get_dl_url() {
+  local JS_BODY="${1}"
+
   case "$(what-pm)" in
     "dnf")
-      echo "https://dbeaver.io/files/dbeaver-ce-latest-stable.x86_64.rpm"
+      echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^x86_64.rpm$")) | .browser_download_url'
       ;;
     "apt")
-      echo "https://dbeaver.io/files/dbeaver-ce_latest_amd64.deb"
+      echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("_amd64.deb$")) | .browser_download_url'
       ;;
     *)
       echo ""
