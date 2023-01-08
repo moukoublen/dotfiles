@@ -26,9 +26,19 @@ install-go-tools() {(
   #}
 
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
-  GO_X_TOOLS_VER=v0.4.0
+  GO_X_TOOLS_VER=v0.5.0
+  go-install "golang.org/x/tools/cmd/callgraph@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/cmd/cover@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/cmd/digraph@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/cmd/fiximports@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/goimports@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/cmd/gorename@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/findcall/cmd/findcall@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/ifaceassert/cmd/ifaceassert@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/lostcancel/cmd/lostcancel@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/nilness/cmd/nilness@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/ifaceassert/cmd/ifaceassert@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@${GO_X_TOOLS_VER}"
   #__install_binary "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
@@ -70,6 +80,6 @@ install-go-tools() {(
   # https://github.com/jesseduffield/lazydocker/releases
   go-install github.com/jesseduffield/lazydocker@latest
 
-  # https://github.com/gohugoio/hugo/releases
-  go-install -tags extended github.com/gohugoio/hugo@latest
+  # # https://github.com/gohugoio/hugo/releases
+  # go-install -tags extended github.com/gohugoio/hugo@latest
 )}
