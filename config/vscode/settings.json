@@ -34,8 +34,8 @@
   "terminal.integrated.tabs.separator": " • ",
   "terminal.integrated.defaultLocation": "editor",
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontSize": 17,
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font Mono', 'JetBrains Mono', 'Cascadia Mono PL'",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Cascadia Mono PL'",
   "terminal.integrated.fontWeight": "400",
   "terminal.integrated.fontWeightBold": "450",
   "terminal.integrated.letterSpacing": 0,
@@ -110,12 +110,12 @@
     "testAtCursor": true,
     "testFile": false,
     "testPackage": false,
-    "generateTestForFunction": true,
+    "generateTestForFunction": false,
     "generateTestForFile": false,
     "generateTestForPackage": false,
     "addImport": true,
     "testCoverage": true,
-    "playground": true,
+    "playground": false,
     "debugTestAtCursor": true,
     "benchmarkAtCursor": false
   },
@@ -130,33 +130,36 @@
   // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
   "gopls": {
-    "build.buildFlags": [
-      "-mod=vendor",
-      "-tags=test-e2e,other"
-    ],
-    "build.env": {
-      "GO111MODULE": "on"
-    },
     "formatting.gofumpt": true,
     "ui.completion.usePlaceholders": true,
     "ui.completion.experimentalPostfixCompletions": true,
-    "ui.diagnostic.annotations": {
-      "bounds": true,
-      "escape": true,
-      "inline": true,
-      "nil": true
-    },
-    "ui.diagnostic.staticcheck": true,
     "ui.codelenses": {
-      "gc_details": false,
+      "gc_details": true,
       "generate": true,
       "regenerate_cgo": false,
       "tidy": true,
       "upgrade_dependency": true,
-      "vendor": true
+      "vendor": true,
+      "run_govulncheck": true
     },
-    "ui.documentation.hoverKind": "FullDocumentation",
-  }
+    "ui.diagnostic.analyses": {
+      // https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+      "fieldalignment": true,
+      "nilness": true,
+      "shadow": true,
+      "unusedparams": true,
+      "unusedwrite": true,
+      "useany": true,
+      "unusedvariable": true,
+    },
+    "ui.diagnostic.staticcheck": true,
+    "ui.diagnostic.annotations": {
+      "bounds": true,
+      "escape": true,
+      "inline": true,
+      "nil": true,
+    },
+  },
   // ______________
   // >>> colors <<<
   "editor.tokenColorCustomizations": {
