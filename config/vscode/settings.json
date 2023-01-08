@@ -83,12 +83,16 @@
     "editor.insertSpaces": false
   },
   "gitlens.codeLens.enabled": false,
+  "cSpell.language": "en,el",
   "cSpell.enableFiletypes": [
-    "git-rebase",
-    "go.sum",
-    "ignore",
-    "makefile",
-    "sql"
+    "*"
+  ],
+  "cSpell.userWords": [
+    "Gopath",
+    "gopls",
+    "runtest",
+    "scrollback",
+    "zerolog"
   ],
   // _______________
   // >>> Go lang <<<
