@@ -1,4 +1,0 @@
-gsettings set org.gnome.desktop.interface gtk-theme Plata-Lumine-Compact
-gsettings set org.gnome.desktop.wm.preferences theme Plata-Lumine-Compact
-gsettings set org.gnome.shell.extensions.user-theme name Plata-Compact
-

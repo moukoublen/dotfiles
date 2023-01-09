@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mgtk-theme\e[0m          : \e[0;95m$(gsettings get org.gnome.desktop.interface gtk-theme)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.wm.preferences\e[0m \e[0;93mtheme\e[0m         : \e[0;95m$(gsettings get org.gnome.desktop.wm.preferences theme)\e[0m"
-echo -e "\e[0;32morg.gnome.shell.extensions.user-theme\e[0m \e[0;93mname\e[0m     : \e[0;95m$(gsettings get org.gnome.shell.extensions.user-theme name)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93micon-theme\e[0m         : \e[0;95m$(gsettings get org.gnome.desktop.interface icon-theme)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mcursor-theme\e[0m       : \e[0;95m$(gsettings get org.gnome.desktop.interface cursor-theme)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mcursor-size\e[0m        : \e[0;95m$(gsettings get org.gnome.desktop.interface cursor-size)\e[0m"
+gsget() {
+  local main="${1}"
+  local sub="${2}"
+  printf "\e[0;32m%s\e[0m \e[0;93m%s\e[0m: \e[0;95m%s\e[0m\n" "$main" "${sub}" "$(gsettings get "$main" "${sub}")"
+}
 
-echo ""
-echo -e "\e[0;37mFonts\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mfont-name\e[0m          : \e[0;95m$(gsettings get org.gnome.desktop.interface font-name)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mdocument-font-name\e[0m : \e[0;95m$(gsettings get org.gnome.desktop.interface document-font-name)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.interface\e[0m \e[0;93mmonospace-font-name\e[0m: \e[0;95m$(gsettings get org.gnome.desktop.interface monospace-font-name)\e[0m"
-echo -e "\e[0;32morg.gnome.desktop.wm.preferences\e[0m \e[0;93mtitlebar-font\e[0m : \e[0;95m$(gsettings get org.gnome.desktop.wm.preferences titlebar-font)\e[0m"
+print-all() {
+  gsget org.gnome.desktop.interface gtk-theme
+  gsget org.gnome.desktop.wm.preferences theme
+  gsget org.gnome.shell.extensions.user-theme name
+  gsget org.gnome.desktop.interface icon-theme
+  gsget org.gnome.desktop.interface cursor-theme
+  gsget org.gnome.desktop.interface cursor-size
+  echo ""
+  gsget org.gnome.desktop.interface font-name
+  gsget org.gnome.desktop.interface document-font-name
+  gsget org.gnome.desktop.interface monospace-font-name
+  gsget org.gnome.desktop.wm.preferences titlebar-font
+}
+
+
+print-all | column --table --separator ':'
