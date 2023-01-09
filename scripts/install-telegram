@@ -7,16 +7,16 @@ rm -rf $DOWNLOAD_DEST_FILE
 DESKTOP_FILE="$HOME/.local/share/applications/telegramdesktop.desktop"
 
 __LINK=$(curl -sSfL https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest | jq '.assets[] | select(.name | test("tsetup\\.[\\d|.]*\\.tar.xz")) | .browser_download_url' --raw-output)
-curl --fail --location $__LINK -o $DOWNLOAD_DEST_FILE
+curl --silent --show-error --fail --location $__LINK -o $DOWNLOAD_DEST_FILE
 mkdir -p ~/Applications/
 tar xf $DOWNLOAD_DEST_FILE -C ~/Applications/
 rm $DOWNLOAD_DEST_FILE
 
-cat > $DESKTOP_FILE <<EOL
-[Desktop Entry]
-Version=1.0
+echo "[Desktop Entry]
 Name=Telegram Desktop
 Comment=Official desktop version of Telegram messaging app
+TryExec=${HOME}/Applications/Telegram/Telegram
+Exec=${HOME}/Applications/Telegram/Telegram -- %u
 Icon=telegram
 Terminal=false
 StartupWMClass=TelegramDesktop
@@ -24,8 +24,13 @@ Type=Application
 Categories=Chat;Network;InstantMessaging;Qt;
 MimeType=x-scheme-handler/tg;
 Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
+Actions=Quit;
+SingleMainWindow=true
 X-GNOME-UsesNotifications=true
-EOL
+X-GNOME-SingleWindow=true
 
-echo "TryExec=${HOME}/Applications/Telegram/Telegram" >> $DESKTOP_FILE
-echo "Exec=${HOME}/Applications/Telegram/Telegram -- %u" >> $DESKTOP_FILE
+[Desktop Action Quit]
+Exec=${HOME}/Applications/Telegram/Telegram -quit
+Name=Quit Telegram
+Icon=application-exit
+" > $DESKTOP_FILE
