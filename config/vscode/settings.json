@@ -10,9 +10,9 @@
   "editor.renderControlCharacters": true,
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
-  "editor.lineHeight": 1.4,
+  "editor.lineHeight": 1.45,
   "editor.fontSize": 18,
-  "editor.fontFamily": "'Victor Mono'",
+  "editor.fontFamily": "'JetBrains Mono'",
   "editor.fontWeight": "400",
   "editor.fontLigatures": true,
   "editor.cursorStyle": "line",
@@ -88,11 +88,23 @@
     "*"
   ],
   "cSpell.userWords": [
+    "Cascadia",
+    "gotools"
     "Gopath",
     "gopls",
     "runtest",
     "scrollback",
-    "zerolog"
+    "zerolog",
+    "codelenses",
+    "staticcheck".
+    "fieldalignment",
+    "nilness",
+    "unusedparams",
+    "unusedwrite",
+    "useany",
+    "unusedvariable",
+    "govulncheck",
+    "gofumpt",
   ],
   // _______________
   // >>> Go lang <<<

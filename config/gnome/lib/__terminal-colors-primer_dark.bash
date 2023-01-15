@@ -5,15 +5,15 @@ source __colors-primer.bash
 
 export C_FG=${primer_dark['gray-2']}
 export C_BG=${primer_dark['gray-9']}
-export C_HFG=${primer_dark['gray-0']}
+export C_HFG=${primer_dark['white']}
 export C_HBG=${primer_dark['pink-7']}
 export C_CFG=${primer_dark['purple-8']}
 export C_CBG=${primer_light['pink-5']}
 
-export C_00=${primer_dark['gray-6']}   # Black
+export C_00=${primer_dark['gray-5']}   # Black
 export C_08=${primer_dark['gray-4']}   # Light Black
 export C_07=${primer_dark['gray-0']}   # Grey
-export C_15='#FFFFFF'                  # Light Grey
+export C_15=${primer_dark['white']}    # Light Grey
 
 export C_01=${primer_dark['red-5']}    # Red
 export C_09=${primer_dark['red-4']}    # Light Red

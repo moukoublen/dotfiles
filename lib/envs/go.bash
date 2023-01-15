@@ -6,6 +6,11 @@ if [ -d /usr/local/go ]; then
   add_to_path "$(go env GOPATH)/bin"
 fi
 
+if command -v golangci-lint 1>/dev/null 2>&1; then
+  source <(golangci-lint completion bash)
+fi
+
+
 go-install() {
   echo -e "> Installing \e[0;90m$@\e[0m"
   (
