@@ -3,6 +3,8 @@
 ## Gnome Terminal
 To apply Gnome Terminal color palette and settings you need to run the `gnome-terminal.bash` script.
 
+(Gnome Terminal global and per-profile settings scheme can be found [here](https://gitlab.gnome.org/GNOME/gnome-terminal/-/blob/master/src/org.gnome.Terminal.gschema.xml) )
+
 ```
 Usage:
        get [profile name (optional)]
