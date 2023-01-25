@@ -85,7 +85,8 @@
   "gitlens.codeLens.enabled": false,
   "cSpell.language": "en,el",
   "cSpell.enableFiletypes": [
-    "*"
+    "*",
+    "!go.mod",
   ],
   "cSpell.userWords": [
     "Cascadia",
@@ -118,6 +119,7 @@
     "editor.insertSpaces": false,
     "editor.formatOnSave": true
   },
+  "go.disableConcurrentTests": true,
   "go.editorContextMenuCommands": {
     "toggleTestFile": true,
     "addTags": true,
@@ -125,7 +127,7 @@
     "fillStruct": true,
     "testAtCursor": true,
     "testFile": false,
-    "testPackage": false,
+    "testPackage": true,
     "generateTestForFunction": false,
     "generateTestForFile": false,
     "generateTestForPackage": false,

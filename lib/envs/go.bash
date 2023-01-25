@@ -83,7 +83,10 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/structslop
 
   # https://github.com/jesseduffield/lazydocker/releases
-  go-install github.com/jesseduffield/lazydocker@latest
+  go-install github.com/jesseduffield/lazydocker@v0.20.0
+
+  # https://github.com/jesseduffield/lazygit/releases
+  go-install github.com/jesseduffield/lazygit@v0.36.0
 
   # # https://github.com/gohugoio/hugo/releases
   # go-install -tags extended github.com/gohugoio/hugo@latest
