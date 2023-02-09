@@ -40,4 +40,5 @@ install-from-github  \
   --fn-get-download-link "__get_dl_url" \
   --download-to-file     "downloaded.tar.gz" \
   --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin"
+  --destination          "/usr/local/bin" \
+  "${@}"

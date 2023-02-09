@@ -1,5 +1,31 @@
 #!/usr/bin/env bash
 
+__log_start() {
+  local fmt="$1"
+  shift
+  printf "╭ ${fmt}\n" "${@}"
+}
+
+__log() {
+  local fmt="$1"
+  shift
+  printf "│ ${fmt}\n" "${@}"
+}
+
+__log_end() {
+  local fmt="$1"
+  shift
+  printf "╰ ${fmt}\n" "${@}"
+}
+
+
+__exit_on_fail() {
+  if [ $? -ne 0 ]; then
+    __log_end "\e[1;31msomething went wrong \e[0m"
+    exit 1
+  fi
+}
+
 __get_remote_filename() {
   # split string of argument $1 by / and get last part
   f=${1##*/}
@@ -28,6 +54,8 @@ FN_GET_DL_LINK=""
 DL_FILE=""
 FN_INSTALL=""
 BIN_DIR="/usr/local/bin"
+
+CURL_SHOW_ERROR=""
 
 UNKNOWN_ARGS=()
 while (($#)); do
@@ -64,6 +92,10 @@ while (($#)); do
       BIN_DIR="${2}"
       shift 2
       ;;
+    -v|--verbose)
+      CURL_SHOW_ERROR="--show-error"
+      shift 1
+      ;;
     *)
       UNKNOWN_ARGS+=("${1}")
       shift
@@ -76,35 +108,39 @@ done
 
 TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
 
-GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
-printf "Getting repo \e[1;34m%s\e[0m latest release info \e[0;90m(%s)\e[0m\n" "${REPO}" "${GH_API_LATEST_RELEASE}"
-JS_BODY=$(curl --silent --show-error --fail --location "${GH_API_LATEST_RELEASE}")
+__log_start "\e[1;34m%s\e[0m" "${REPO}"
 
-REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}")
-LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}")
+GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
+__log "getting latest release info \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m"
+JS_BODY=$(curl ${CURL_SHOW_ERROR} --silent --fail --location "${GH_API_LATEST_RELEASE}")
+
+REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
+LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}" || echo -n "")
 
 if [[ "${REMOTE_VER}" == "${LOCAL_VER}" ]]; then
-  printf "Local \e[1;34m%s\e[0m is updated to \e[1;34m%s\e[0m.\n" "${NAME}" "${LOCAL_VER}"
+  __log_end "it is already \e[1;32mupdated\e[0m to \e[1;34m%s\e[0m" "${LOCAL_VER}"
   exit 0
 fi
 
-printf "Updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m\n" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
+__log "updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
 
 DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
 if [[ "${DL_FILE}" == "" ]]; then
   DL_FILE=$(__get_remote_filename "${DL_URL}")
+  __exit_on_fail
 fi
-printf "Downloading \e[1;34m%s\e[0m version \e[1;34m%s\e[0m from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m \n" "${NAME}" "${REMOTE_VER}" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
-curl \
+__log  "downloading from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
+curl ${CURL_SHOW_ERROR} \
   --silent \
-  --show-error \
   --fail \
   --location \
   "${DL_URL}" \
   -o "${TMP_DIR}/${DL_FILE}"
+__exit_on_fail
 
-printf "Installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m\n" "${NAME}" "${BIN_DIR}"
+__log "installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m" "${NAME}" "${BIN_DIR}"
 "${FN_INSTALL}" "${BIN_DIR}" "${TMP_DIR}/${DL_FILE}"
+__exit_on_fail
 
 sudo rm -rf "${TMP_DIR}"
-printf "\e[1;32mDone\e[0m\n"
+__log_end "\e[1;32mdone\e[0m"
