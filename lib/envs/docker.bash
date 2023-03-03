@@ -36,9 +36,9 @@ if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-com
   source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
 fi
 
-if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]]; then
-  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
-fi
+#if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion ]]; then
+#  source /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
+#fi
 
 if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]]; then
   source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
