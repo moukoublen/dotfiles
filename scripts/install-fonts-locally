@@ -27,6 +27,9 @@ __decomp_omit_1(){ unzip -q "${1}" -d "${2}"; }
 __install_font_localy() {
   ( set -e
   local FONTS_DIR="/usr/local/share/fonts"
+  if [[ $(uname) = "Darwin" ]]; then
+    FONTS_DIR="${HOME}/Library/Fonts"
+  fi
 
   local URL="${1}"
   local DWN_FILE="${2}"
@@ -40,7 +43,14 @@ __install_font_localy() {
     return
   fi
 
-  local TMP_DIRECTORY=$(mktemp --directory --tmpdir finst_XXXXXXX)
+  local TMP_DIRECTORY=''
+  if [[ $(uname) = "Darwin" ]]; then
+    TMP_DIRECTORY="$(mktemp -d -t finst_XXXXXXX)"
+  fi
+  if [[ $(uname) = "Linux" ]]; then
+    TMP_DIRECTORY="$(mktemp --directory --tmpdir finst_XXXXXXX)"
+  fi
+
   local INSTALL_FULL_PATH="${FONTS_DIR}/${INSTALL_FOLDER}"
 
   echo -e "    Downloading   \e[34m${URL}\e[0m"
@@ -52,21 +62,21 @@ __install_font_localy() {
   printf "    Installing to \e[34m%s\e[0m" "${INSTALL_FULL_PATH}"
   if [[ -d "${INSTALL_FULL_PATH}" ]]; then
     echo -e "  \e[37m(Deleting previous installation)\e[0m"
-    sudo rm -rf "${INSTALL_FULL_PATH}"
+    rm -rf "${INSTALL_FULL_PATH}"
   else
     echo ""
   fi
-  sudo mkdir -p "${INSTALL_FULL_PATH}"
+  mkdir -p "${INSTALL_FULL_PATH}"
 
 
-  # parse the function inside sudo sub-shell
+  # parse the function inside sub-shell
   local FN_BODY
   FN_BODY=$(declare -f "${INSTALL_FUNC}")
-  sudo bash -c "${FN_BODY}; ${INSTALL_FUNC} \"${TMP_DIRECTORY}\" \"${INSTALL_FULL_PATH}\""
+  bash -c "${FN_BODY}; ${INSTALL_FUNC} \"${TMP_DIRECTORY}\" \"${INSTALL_FULL_PATH}\""
 
   rm -rf "${TMP_DIRECTORY}"
 
-  sudo touch "${FONTS_DIR}/${INSTALL_FOLDER}/.${REMOTE_VERSION}"
+  touch "${FONTS_DIR}/${INSTALL_FOLDER}/.${REMOTE_VERSION}"
 
   printf "    Installation  \e[1;32mdone.\e[0m\n\n"
   )
