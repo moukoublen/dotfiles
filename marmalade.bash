@@ -9,11 +9,22 @@ path-abs() {
   echo $(cd -P $drnm && pwd)
 }
 
+path-read-link() {
+  case "$(uname)" in
+    "Darwin")
+      readlink -n $1
+      ;;
+    "Linux")
+      readlink --canonicalize-existing --no-newline $1
+      ;;
+  esac
+}
+
 path-real() {
   local SOURCE="$1"
   while [[ -L $SOURCE ]]; do
     local DIR="$(path-abs $SOURCE)"
-    SOURCE="$(readlink --canonicalize-existing --no-newline $SOURCE)"
+    SOURCE="$(path-read-link $SOURCE)"
     [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
   done
   echo "$(path-abs $SOURCE)"
@@ -64,3 +75,5 @@ done
 
 
 add_to_path $DOTFILES_PATH/bin
+
+bind 'set mark-symlinked-directories on'

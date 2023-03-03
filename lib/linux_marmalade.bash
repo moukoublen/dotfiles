@@ -69,8 +69,6 @@ alias dnf-display-local-package-contents='dnf repoquery --installed -l'
 
 [[ -e $HOME/.dir_colors ]] && eval $(dircolors ~/.dir_colors)
 
-bind 'set mark-symlinked-directories on'
-
 ################################################################################
 ######### Marmalade Envs #######################################################
 export DOTFILES_ENVS=$HOME/.marmalade.envs

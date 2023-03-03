@@ -8,17 +8,12 @@ M_HAS_BREW_INSTALLED=false
 M_BREW_PREFIX=""
 if command -v brew 1>/dev/null 2>&1; then
   M_HAS_BREW_INSTALLED=true
-  M_BREW_PREFIX=$(brew --prefix)
+  M_BREW_PREFIX=$(brew --prefix) # /usr/local
 fi
 
-if [[ ($M_HAS_BREW_INSTALLED = true) && ($BASH_VERSION == 3.*) && (-r $M_BREW_PREFIX/etc/profile.d/bash_completion.sh) ]]; then
-  source $M_BREW_PREFIX/etc/profile.d/bash_completion.sh
-fi
-
-# if bash is 4+ (brew) then use bash-completion@2
-if [[ ($M_HAS_BREW_INSTALLED = true) && (($BASH_VERSION == 4.*) || ($BASH_VERSION == 5.*)) && (-r $M_BREW_PREFIX/etc/profile.d/bash_completion.sh) ]]; then
-  export BASH_COMPLETION_COMPAT_DIR=$M_BREW_PREFIX/etc/bash_completion.d
-  source $M_BREW_PREFIX/etc/profile.d/bash_completion.sh
+if [[ -r "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+  export BASH_COMPLETION_COMPAT_DIR="${M_BREW_PREFIX}/etc/bash_completion.d"
+  source "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh"
 fi
 
 # brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
@@ -31,21 +26,20 @@ if [[ $M_BREW_FINDUTILS_USED = true ]]; then
   add_to_path /usr/local/opt/findutils/libexec/gnubin
 fi
 
-if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f $M_BREW_PREFIX/opt/nvm/nvm.sh ]]; then
+if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -f "${M_BREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
   export NVM_DIR=~/.nvm
-  source $M_BREW_PREFIX/opt/nvm/nvm.sh
-  [[ -s "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ]] && source "$M_BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+  source "${M_BREW_PREFIX}/opt/nvm/nvm.sh"
+  [[ -s "${M_BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ]] && source "${M_BREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
 fi
 ################################################################################
 ################################################################################
 
 
-export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+#export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 
 #alias atom='/Applications/Atom.app/Contents/Resources/app/atom.sh'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
-alias meld='/Applications/Meld.app/Contents/MacOS/Meld'
+#alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias grep='command grep --color=auto'
@@ -65,9 +59,9 @@ add_to_path $HOME/bin
 
 #source $DOTFILES_PATH/lib/envs/pyenv_env.sh
 #source $DOTFILES_PATH/lib/envs/rbenv_env.sh
-source $DOTFILES_PATH/lib/envs/go_env.sh
-source $DOTFILES_PATH/lib/envs/docker_env.sh
-source $DOTFILES_PATH/lib/envs/php_env.sh
+source $DOTFILES_PATH/lib/envs/go.bash
+source $DOTFILES_PATH/lib/envs/docker.bash
+#source $DOTFILES_PATH/lib/envs/php.sh
 
 install_nano_nanorc() {
   touch ~/.nanorc
