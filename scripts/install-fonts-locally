@@ -6,7 +6,7 @@ if ! [ -x "$(command -v jq)" ]; then
   exit 1
 fi
 
-mkdir -p "${HOME}/.fonts"
+#mkdir -p "${HOME}/.fonts"
 
 __installing() {
   echo -e "Installing \e[96m${1}\e[0m"
@@ -45,7 +45,7 @@ __install_font_localy() {
 
   local TMP_DIRECTORY=''
   if [[ $(uname) = "Darwin" ]]; then
-    TMP_DIRECTORY="$(mktemp -d -t finst_XXXXXXX)"
+    TMP_DIRECTORY="$(mktemp -d /tmp/finst_XXXXXXX)"
   fi
   if [[ $(uname) = "Linux" ]]; then
     TMP_DIRECTORY="$(mktemp --directory --tmpdir finst_XXXXXXX)"
@@ -345,5 +345,10 @@ for f in "${__LP[@]}"; do
   "__fnt_${f}"
 done
 
-(cd /tmp/; fc-cache -f)
-
+case "$(uname)" in
+  "Darwin")
+    ;;
+  "Linux")
+    (cd /tmp/; fc-cache -f)
+    ;;
+esac
