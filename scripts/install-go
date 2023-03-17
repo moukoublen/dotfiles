@@ -2,24 +2,38 @@
 (
 set -e
 # $1: version e.g. 1.17.11
-# https://storage.googleapis.com/golang/go1.17.11.linux-amd64.tar.gz
-[[ -z $1  ]] && echo "Error: No go version specified" && exit 1
 
-command -v go &> /dev/null && [[ ! -d /usr/local/go ]] && echo -e "\e[32mGo has been installed in a different whay and not in path /usr/local/go.\e[0m Aborting..." && exit 1
+get_remote_latest_version() {
+  local VER=$(curl --silent --fail --location "https://go.dev/VERSION?m=text")
+  echo "${VER}" | sed 's/^go//g'
+}
 
+get_local_version() {
+  [[ -d /usr/local/go ]] && /usr/local/go/bin/go version | sed 's/^go version go//g' | sed 's/ .*$//g'
+}
+
+VER="${1}"
+
+[[ "${VER}" == "" ]] && VER=$(get_remote_latest_version)
+
+[[ -z $VER ]] && echo "Error: No go version specified" && exit 1
+
+[[ "${VER}" == "$(get_local_version)" ]] && echo "Version ${VER} is already installed" && exit 0
+
+command -v go &> /dev/null && [[ ! -d /usr/local/go ]] && echo -e "\e[32mGo has been installed in a different way and not in path /usr/local/go.\e[0m Aborting..." && exit 1
 
 DR=$(mktemp --directory --tmpdir golang_XXXXXXX)
 cd $DR
 
-## https://dl.google.com/go/go1.19.3.linux-amd64.tar.gz
-DL_URL="https://dl.google.com/go/go$1.linux-amd64.tar.gz"
+## https://go.dev/dl/go1.20.2.linux-amd64.tar.gz
+DL_URL="https://go.dev/dl/go${VER}.linux-amd64.tar.gz"
 
 echo -e "Downloading \e[34m${DL_URL}\e[0m in \e[34m${PWD}\e[0m"
 curl --fail --silent --show-error --location "${DL_URL}" > go.linux-amd64.tar.gz
 
-[[ -d /usr/local/go ]] && echo -e "\e[37mDelete previous go installation (\e[0m$(go version)\e[37m)\e[0m" && sudo rm -rf /usr/local/go
+[[ -d /usr/local/go ]] && echo -e "\e[37mDelete previous go installation (\e[0m$(/usr/local/go/bin/go version)\e[37m)\e[0m" && sudo rm -rf /usr/local/go
 
-echo -e "Installing go \e[34m$1\e[0m"
+echo -e "Installing go \e[34m${VER}\e[0m"
 sudo tar -C /usr/local -xzf go.linux-amd64.tar.gz
 
 cd /
