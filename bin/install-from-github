@@ -105,8 +105,15 @@ done
 
 ## TODO: validation
 
-
-TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
+TMP_DIR="/tmp/dln"
+case "$(uname)" in
+  "Darwin")
+    TMP_DIR=$(mktemp -d -t ${NAME})
+    ;;
+  "Linux")
+    TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
+    ;;
+esac
 
 __log_start "\e[1;34m%s\e[0m" "${REPO}"
 
@@ -142,5 +149,5 @@ __log "installing \e[1;34m%s\e[0m in \e[1;34m%s\e[0m" "${NAME}" "${BIN_DIR}"
 "${FN_INSTALL}" "${BIN_DIR}" "${TMP_DIR}/${DL_FILE}"
 __exit_on_fail
 
-sudo rm -rf "${TMP_DIR}"
+rm -rf "${TMP_DIR}"
 __log_end "\e[1;32mdone\e[0m"

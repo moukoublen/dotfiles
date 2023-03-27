@@ -63,6 +63,8 @@ if [[ $(uname) = "Linux" ]]; then
   source $DOTFILES_PATH/lib/linux_marmalade.bash
 fi
 
+source "${DOTFILES_PATH}/lib/wcat.bash"
+
 for e in $( ls $HOME/.dotfiles-extras/* 2>/dev/null ); do
   source $e
 done

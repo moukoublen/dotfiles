@@ -20,7 +20,11 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^docker-compose-linux-x86_64$")) | .browser_download_url'
+  local BINARY="docker-compose-linux-x86_64"
+  if [[ $(uname) = "Darwin" ]]; then
+    BINARY="docker-compose-darwin-x86_64"
+  fi
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${BINARY}$\")) | .browser_download_url"
 }
 export -f __get_dl_url
 

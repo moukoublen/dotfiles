@@ -40,5 +40,6 @@ source-docker-bash-completion() {
     source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
   fi
 }
+export -f source-docker-bash-completion
 ################################################################################
 ################################################################################
