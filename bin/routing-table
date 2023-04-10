@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+
+case "$(uname)" in
+  "Darwin")
+    netstat -rn 
+    #  -r show routes
+    #  -n not resolve IPs to hostnames
+    ;;
+  "Linux")
+    ip route list
+    # netstat -rn
+    # sudo route -n
+    ;;
+esac
