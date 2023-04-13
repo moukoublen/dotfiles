@@ -15,7 +15,7 @@ go-install() {
   echo -e "> Installing \e[0;90m$@\e[0m"
   (
     set -x
-    go install -a -ldflags '-s -w -extldflags "-static"' "$@"
+    go install -a -trimpath -ldflags '-s -w' "$@"
   )
 }
 
@@ -31,7 +31,7 @@ install-go-tools() {(
   #}
 
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
-  GO_X_TOOLS_VER=v0.6.0
+  GO_X_TOOLS_VER=v0.8.0
   go-install "golang.org/x/tools/cmd/callgraph@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/cover@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/digraph@${GO_X_TOOLS_VER}"
@@ -48,7 +48,7 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
 
   # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
-  HONNEF_VER=v0.4.2
+  HONNEF_VER=2023.1.3
   go-install "honnef.co/go/tools/cmd/staticcheck@${HONNEF_VER}"
   go-install "honnef.co/go/tools/cmd/structlayout@${HONNEF_VER}"
   go-install "honnef.co/go/tools/cmd/structlayout-pretty@${HONNEF_VER}"
@@ -56,7 +56,7 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
   # https://github.com/golangci/golangci-lint/releases
-  go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.51.2'
+  go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2'
   #__install_binary "${GOPATH}"/bin/golangci-lint
 
   # https://github.com/securego/gosec/releases
@@ -64,11 +64,11 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/gosec
 
   # https://github.com/mvdan/gofumpt/releases
-  go-install 'mvdan.cc/gofumpt@v0.4.0'
+  go-install 'mvdan.cc/gofumpt@v0.5.0'
   #__install_binary "${GOPATH}"/bin/gofumpt
 
   # https://github.com/mgechev/revive/releases
-  go-install 'github.com/mgechev/revive@v1.2.5'
+  go-install 'github.com/mgechev/revive@v1.3.1'
   #__install_binary "${GOPATH}"/bin/revive
 
   ################################################################
