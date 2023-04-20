@@ -15,6 +15,7 @@ __wcat() {
   cat "${fl}"
   echo -e "\e[0;90m============================================================\e[0m"
 }
+export -f __wcat
 
 wcat() {
   local cat_cmd
@@ -37,4 +38,5 @@ wcat() {
 
   ${cat_cmd} "$(which $1)"
 }
+export -f wcat
 complete -c wcat

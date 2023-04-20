@@ -33,11 +33,12 @@ install-docker-compose-completion() {
 ################################################################################
 ################# macos docker #################################################
 source-docker-bash-completion() {
-  if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion ]]; then
-    source /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+  etc=/Applications/Docker.app/Contents/Resources/etc
+  if [[ -f ${etc}/docker-compose.bash-completion ]]; then
+    source ${etc}/docker-compose.bash-completion
   fi
-  if [[ -f /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion ]]; then
-    source /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+  if [[ -f ${etc}/docker.bash-completion ]]; then
+    source ${etc}/docker.bash-completion
   fi
 }
 export -f source-docker-bash-completion
