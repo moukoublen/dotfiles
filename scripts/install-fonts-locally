@@ -289,7 +289,7 @@ __fnt_nerdjetbrainsmono() {
 
 __install_nerdcascadia() {
   rm "${1}"/*"Windows Compatible"*
-  cp "${1}"/*.otf "${2}"/
+  cp "${1}"/*.ttf "${2}"/
 }
 __fnt_nerdcascadia() {
   __installing "Nerd Cascadia Code"
@@ -316,6 +316,20 @@ __fnt_nerdvictormono() {
   __install_font_localy "${URL}" "VictorMono.zip" "nerd-victor-mono" __decomp __install_nerdvictormono "${REMOTE_VERSION}"
 }
 
+__install_nerdoverpass() {
+  cp "${1}"/*.otf "${2}"/
+}
+__fnt_nerdoverpass() {
+  __installing "Nerd Overpass"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("Overpass.zip")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "Overpass.zip " "nerd-overpass" __decomp __install_nerdoverpass "${REMOTE_VERSION}"
+}
+
+
 
 ## disabled
 # input
@@ -335,6 +349,7 @@ __FNT_ALL=( \
   nerdjetbrainsmono \
   nerdcascadia \
   nerdvictormono \
+  nerdoverpass \
   hubotsans \
   monasans
 )

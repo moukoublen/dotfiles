@@ -1,11 +1,6 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   {
-    "key": "shift+meta+k",
-    "command": "workbench.action.terminal.clear",
-    "when": "terminalFocus && !terminalFindVisible"
-  },
-  {
     "key": "ctrl+alt+l",
     "command": "workbench.files.action.showActiveFileInExplorer"
   },

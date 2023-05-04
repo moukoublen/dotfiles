@@ -4,7 +4,7 @@
 # Inserts a blank line between shell prompts
 add_newline = false
 
-
+# # https://www.nerdfonts.com/cheat-sheet
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
@@ -18,7 +18,7 @@ error_symbol="[\ue285](bold red)"
 
 [directory]
 truncation_length = 2
-truncation_symbol = "\uf6d7/" # nf-mdi-dots_horizontal
+truncation_symbol = "\U000f01d8/" # nf-md-dots_horizontal
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 read_only = "\uebe7" # nerd font nf-cod-lock_small
@@ -48,11 +48,11 @@ diverged = "\ueaa0${ahead_count} \uea9d${behind_count} " # nerd font nf-cod-arro
 conflicted = "\uf292${count} "  # nerd font nf-fa-hashtag
 ahead = "\ueaa0${count} "       # nerd font nf-cod-arrow_small_up
 behind = "\uea9d${count} "      # nerd font nf-cod-arrow_small_down
-up_to_date = "\uf62b "          # nerd font nf-mdi-check
-untracked = "\uf8ef${count} "   # nerd font nf-mdi-percent
+up_to_date = "\U000f012c "          # nerd font nf-md-check
+untracked = "\U000f03f0${count} "   # nerd font nf-md-percent
 stashed = "\ueb09${count} "     # nerd font nf-cod-inbox
-modified = "\uf881${count} "    # nerd font nf-mdi-multiplication
-renamed = "\uf942${count} "     # nerd font nf-mdi-ray_start_arrow
+modified = "\U000f0382${count} "    # nerd font nf-md-multiplication
+renamed = "\U000f0443${count} "     # nerd font nf-md-ray_start_arrow
 deleted = "\uea81${count} "     # nerd font nf-cod-trash
 staged = '[++\($count\)](green) '
 
