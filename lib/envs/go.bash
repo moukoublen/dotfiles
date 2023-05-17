@@ -79,7 +79,7 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/sops
 
   # https://github.com/orijtech/structslop/tags
-  go-install 'github.com/orijtech/structslop/cmd/structslop@v0.0.7'
+  go-install 'github.com/orijtech/structslop/cmd/structslop@v0.0.8'
   #__install_binary "${GOPATH}"/bin/structslop
 
   # https://github.com/jesseduffield/lazydocker/releases
@@ -91,3 +91,8 @@ install-go-tools() {(
   # # https://github.com/gohugoio/hugo/releases
   # go-install -tags extended github.com/gohugoio/hugo@latest
 )}
+
+# Where is the go ENV file?
+# Linux you'll get $HOME/. config/go/env
+# macOS you'll get $HOME/Library/Application Support/go/env
+#
