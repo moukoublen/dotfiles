@@ -330,11 +330,25 @@ __fnt_nerdoverpass() {
 }
 
 
+__install_intelonemono() {
+  cp "${1}"/otf/*.otf "${2}"/
+}
+__fnt_intelonemono() {
+  __installing "Intel One Mono"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/intel/intel-one-mono/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("otf.zip")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "otf.zip" "intel-one-mono" __decomp __install_intelonemono "${REMOTE_VERSION}"
+}
+
 
 ## disabled
 # input
 # manrope
 # advent
+# iosevka
 
 __FNT_ALL=( \
   victormono \
@@ -343,7 +357,6 @@ __FNT_ALL=( \
   sourcesanspro \
   ibmplex \
   inter \
-  iosevka \
   jetbrainsmono \
   cascadiacode \
   nerdjetbrainsmono \
@@ -351,7 +364,8 @@ __FNT_ALL=( \
   nerdvictormono \
   nerdoverpass \
   hubotsans \
-  monasans
+  monasans \
+  intelonemono
 )
 
 __LP=()
