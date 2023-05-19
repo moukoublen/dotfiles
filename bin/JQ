@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Add IFS= so that read won't trim leading and trailing whitespace from each line.
+# while IFS= read -r cmd; do
+
+# Add -r to read to prevent backslashes from being interpreted as escape sequences.
+
+while read -r x ; do
+  echo ""
+  if [[ "${x}" == \{* ]]; then
+    (echo "${x}" | jq -e 2>/dev/null .) || echo "${x}"
+  else
+    echo "${x}"
+  fi
+done
