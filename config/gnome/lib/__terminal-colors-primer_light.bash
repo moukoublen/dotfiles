@@ -4,13 +4,13 @@
 source __colors-primer.bash
 
 export C_FG=${primer_light['gray-9']}
-export C_BG=${primer_light['gray-2']}
+export C_BG=${primer_light['gray-1']}
 export C_HFG=${primer_light['gray-0']}
 export C_HBG=${primer_light['pink-5']}
 export C_CFG=${primer_light['purple-0']}
 export C_CBG=${primer_light['pink-6']}
 
-export C_00=${primer_light['black']}   # Black
+export C_00=${primer_light['black']}    # Black
 export C_08=${primer_light['gray-7']}   # Light Black
 export C_07=${primer_light['gray-5']}   # Grey
 export C_15=${primer_light['gray-4']}   # Light Grey
