@@ -7,6 +7,7 @@ PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
 mkdir -p "${PLUGINS_DIR}"
 
 __remote_version() {
+  
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.name'
 }
@@ -14,7 +15,7 @@ export -f __remote_version
 
 __local_version() {
   local BIN_DIR="${1:-/usr/local/bin}"
-  [[ -f "${BIN_DIR}/docker-compose" ]] && "${BIN_DIR}/docker-compose" version | awk '{ print $4 }'
+  docker compose version | awk '{ print $4 }'
 }
 export -f __local_version
 

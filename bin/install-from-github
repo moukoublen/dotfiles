@@ -94,6 +94,7 @@ while (($#)); do
       ;;
     -v|--verbose)
       CURL_SHOW_ERROR="--show-error"
+      set -x
       shift 1
       ;;
     *)
