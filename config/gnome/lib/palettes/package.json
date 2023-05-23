@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@mui/material": "^5.11.3",
-    "@primer/primitives": "^7.10.0"
+    "@mui/material": "^5.13.2",
+    "@primer/primitives": "^7.11.10"
   }
 }

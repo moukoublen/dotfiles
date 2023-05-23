@@ -7,7 +7,7 @@ declare -A primer_dark_dimmed
 declare -A primer_dark
 declare -A primer_light
 
-primer_light['black']='#1b1f24'
+primer_light['black']='#1F2328'
 primer_light['white']='#ffffff'
 primer_light['gray-0']='#f6f8fa'
 primer_light['gray-1']='#eaeef2'
