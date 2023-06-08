@@ -31,9 +31,8 @@ install-go-tools() {(
   #}
 
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
-  GO_X_TOOLS_VER=v0.8.0
+  GO_X_TOOLS_VER=v0.9.3
   go-install "golang.org/x/tools/cmd/callgraph@${GO_X_TOOLS_VER}"
-  go-install "golang.org/x/tools/cmd/cover@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/digraph@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/fiximports@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/goimports@${GO_X_TOOLS_VER}"
@@ -56,11 +55,11 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
   # https://github.com/golangci/golangci-lint/releases
-  go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.52.2'
+  go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@v1.53.1'
   #__install_binary "${GOPATH}"/bin/golangci-lint
 
   # https://github.com/securego/gosec/releases
-  go-install 'github.com/securego/gosec/v2/cmd/gosec@v2.15.0'
+  go-install 'github.com/securego/gosec/v2/cmd/gosec@v2.16.0'
   #__install_binary "${GOPATH}"/bin/gosec
 
   # https://github.com/mvdan/gofumpt/releases
@@ -68,7 +67,7 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/gofumpt
 
   # https://github.com/mgechev/revive/releases
-  go-install 'github.com/mgechev/revive@v1.3.1'
+  go-install 'github.com/mgechev/revive@v1.3.2'
   #__install_binary "${GOPATH}"/bin/revive
 
   ################################################################

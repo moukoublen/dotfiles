@@ -19,3 +19,5 @@
 
 # https://github.com/dandavison/delta
 # https://dandavison.github.io/delta/
+[init]
+	defaultBranch = main
