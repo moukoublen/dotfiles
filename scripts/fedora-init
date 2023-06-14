@@ -55,7 +55,7 @@ sudo dnf install \
 
 #sudo dnf grouperase "Container Management"
 
-sudo dnf install atop iftop iotop nmon nvtop procps-ng bat duf
+sudo dnf install atop iftop iotop nmon nvtop procps-ng bat duf fd-find fzf
 
 sudo dnf -y groupinstall virtualization
 
