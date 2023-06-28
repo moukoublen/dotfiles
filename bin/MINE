@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-sudo chown -R $(whoami):$(whoami) *
+
+_USER_ID=$(id -u)
+_PRIMARY_GROUP_ID=$(id -g)
+sudo chown -R "${_USER_ID}":"${_PRIMARY_GROUP_ID}" .

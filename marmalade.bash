@@ -78,3 +78,7 @@ done
 add_to_path $DOTFILES_PATH/bin
 
 bind 'set mark-symlinked-directories on'
+
+HISTSIZE=11000
+HISTFILESIZE=11000
+
