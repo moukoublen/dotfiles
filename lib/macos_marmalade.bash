@@ -8,7 +8,7 @@ if command -v brew 1>/dev/null 2>&1; then
   add_to_path /usr/local/sbin
 fi
 
-if [[ $M_HAS_BREW_INSTALLED = true ]] && [[ -r "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+if [[ ${M_HAS_BREW_INSTALLED} = true ]] && [[ -r "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
   export BASH_COMPLETION_COMPAT_DIR="${M_BREW_PREFIX}/etc/bash_completion.d"
   source "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh"
 fi
@@ -47,15 +47,15 @@ fi
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-add_to_path $HOME/bin
+add_to_path ${HOME}/bin
 
-source $DOTFILES_PATH/lib/envs/go.bash
-source $DOTFILES_PATH/lib/envs/docker.bash
-source $DOTFILES_PATH/lib/envs/kube.bash
+source ${DOTFILES_PATH}/lib/envs/go.bash
+source ${DOTFILES_PATH}/lib/envs/docker.bash
+source ${DOTFILES_PATH}/lib/envs/kube.bash
 
 install-nano-nanorc() {
   touch ~/.nanorc
   for rcfile in $(brew --prefix nano)/share/nano/*.nanorc; do
-    echo "include $rcfile" >> ~/.nanorc
+    echo "include ${rcfile}" >> ~/.nanorc
   done
 }

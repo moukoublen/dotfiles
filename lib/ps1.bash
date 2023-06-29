@@ -138,7 +138,7 @@ __ps1_git() {
   fi
 
   local gitp="$(__git_ps1 '%s')"
-  if [[ -n "$gitp" ]]; then
+  if [[ -n "${gitp}" ]]; then
     printf "%s%s%s%s%s%s" \
       "${__PS1_COLORS[gitwrap]}" \
       $'\uE0A0 ' \
