@@ -7,7 +7,6 @@ PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
 mkdir -p "${PLUGINS_DIR}"
 
 __remote_version() {
-  
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.name'
 }
@@ -21,10 +20,7 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  local BINARY="docker-compose-linux-x86_64"
-  if [[ $(uname) = "Darwin" ]]; then
-    BINARY="docker-compose-darwin-x86_64"
-  fi
+  local BINARY=$(echo "docker-compose-$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${BINARY}$\")) | .browser_download_url"
 }
 export -f __get_dl_url
@@ -45,7 +41,7 @@ install-from-github \
   --fn-remote-version    "__remote_version" \
   --fn-local-version     "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "docker-compose-linux-x86_64" \
+  --download-to-file     "docker-compose" \
   --fn-install           "__install_exec" \
   --destination          "${PLUGINS_DIR}" \
   "${@}"
