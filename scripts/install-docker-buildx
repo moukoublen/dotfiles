@@ -19,7 +19,19 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | endswith(".linux-amd64")) | .browser_download_url'
+  local ENDSWITH=$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
+  case "${ENDSWITH}" in
+    linux-x86_64)
+      ENDSWITH="linux-amd64"
+      ;;
+    linux-aarch64)
+      ENDSWITH="linux-arm64"
+      ;;
+    darwin-x86_64)
+      ENDSWITH="darwin-amd64"
+      ;;
+  esac
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | endswith(\"${ENDSWITH}\")) | .browser_download_url"
 }
 export -f __get_dl_url
 
