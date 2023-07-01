@@ -31,6 +31,9 @@ install-go-tools() {(
   #  rm -rf "$@"
   #}
 
+  # https://github.com/go-delve/delve/releases
+  go-install github.com/go-delve/delve/cmd/dlv@latest
+
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
   GO_X_TOOLS_VER=latest
   go-install "golang.org/x/tools/cmd/callgraph@${GO_X_TOOLS_VER}"

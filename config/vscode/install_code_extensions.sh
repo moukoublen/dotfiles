@@ -6,13 +6,13 @@ anweber.vscode-httpyac
 attilathedud.data-converter
 eamodio.gitlens
 GitHub.github-vscode-theme
+github.vscode-github-actions
 golang.go
 GraphQL.vscode-graphql
 GraphQL.vscode-graphql-execution
 GraphQL.vscode-graphql-syntax
 hashicorp.hcl
 hashicorp.terraform
-hashicorp.terraform-preview
 inferrinizzard.prettier-sql-vscode
 mitchdenny.ecdc
 ms-azuretools.vscode-docker
@@ -25,6 +25,7 @@ streetsidesoftware.code-spell-checker
 streetsidesoftware.code-spell-checker-greek
 tamasfe.even-better-toml
 vscode-icons-team.vscode-icons
+zhuangtongfa.material-theme
 )
 
 for ext in "${extensions[@]}"
