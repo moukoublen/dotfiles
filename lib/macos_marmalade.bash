@@ -59,3 +59,4 @@ install-nano-nanorc() {
     echo "include ${rcfile}" >> ~/.nanorc
   done
 }
+
