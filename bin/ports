@@ -1,0 +1,2 @@
+sudo ss --tcp --udp --all --processes --numeric
+#sudo ss --tcp --udp --listening --processes --numeric

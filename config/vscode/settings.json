@@ -1,7 +1,6 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
   "files.trimTrailingWhitespace": true,
-  "files.autoSave": "afterDelay",
   "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": false, //todo: revisit
   "editor.minimap.enabled": false,
@@ -95,9 +94,12 @@
     "!go.mod"
   ],
   "cSpell.userWords": [
+    "buildx",
     "Cascadia",
     "codelenses",
+    "containerd",
     "fieldalignment",
+    "gamerhound",
     "goboilerplate",
     "gofumpt",
     "Gopath",
@@ -106,12 +108,16 @@
     "govulncheck",
     "ihttp",
     "ilog",
+    "keyrings",
+    "kutavi",
+    "middlewares",
     "moukoublen",
     "Msgf",
     "nilness",
     "runtest",
     "scrollback",
     "staticcheck",
+    "traefik",
     "unusedparams",
     "unusedvariable",
     "unusedwrite",

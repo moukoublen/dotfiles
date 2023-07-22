@@ -3,19 +3,19 @@
 __log_start() {
   local fmt="$1"
   shift
-  printf "╭ ${fmt}\n" "${@}"
+  printf "${fmt}\n" "${@}"
 }
 
 __log() {
   local fmt="$1"
   shift
-  printf "│ ${fmt}\n" "${@}"
+  printf "  ${fmt}\n" "${@}"
 }
 
 __log_end() {
   local fmt="$1"
   shift
-  printf "╰ ${fmt}\n" "${@}"
+  printf "  ${fmt}\n\n" "${@}"
 }
 
 
@@ -116,10 +116,12 @@ case "$(uname)" in
     ;;
 esac
 
-__log_start "\e[1;34m%s\e[0m" "${REPO}"
-
 GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
-__log "getting latest release info \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m"
+
+__log_start "\e[1;34m%s\e[0m \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO}"
+
+
+#__log "getting latest release info \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m"
 JS_BODY=$(curl ${CURL_SHOW_ERROR} --silent --fail --location "${GH_API_LATEST_RELEASE}")
 
 REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
