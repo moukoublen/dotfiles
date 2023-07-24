@@ -41,6 +41,7 @@ install-go-tools() {(
   go-install "golang.org/x/tools/cmd/fiximports@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/goimports@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/gorename@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/defers/cmd/defers@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/findcall/cmd/findcall@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/ifaceassert/cmd/ifaceassert@${GO_X_TOOLS_VER}"
@@ -48,7 +49,11 @@ install-go-tools() {(
   go-install "golang.org/x/tools/go/analysis/passes/nilness/cmd/nilness@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/ifaceassert/cmd/ifaceassert@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/stringintconv/cmd/stringintconv@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/unmarshal/cmd/unmarshal@${GO_X_TOOLS_VER}"
+  go-install "golang.org/x/tools/go/analysis/passes/unusedresult/cmd/unusedresult@${GO_X_TOOLS_VER}"
   #__install_binary "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
+  # go vet -vettool=$(which shadow) ./...
 
   # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
   HONNEF_VER=latest
