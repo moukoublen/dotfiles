@@ -36,6 +36,7 @@ install-go-tools() {(
 
   # https://pkg.go.dev/golang.org/x/tools?tab=versions
   GO_X_TOOLS_VER=latest
+  go-install "golang.org/x/tools/cmd/gonew@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/callgraph@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/digraph@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/cmd/fiximports@${GO_X_TOOLS_VER}"
