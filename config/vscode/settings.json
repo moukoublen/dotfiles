@@ -1,6 +1,7 @@
 {
   "diffEditor.ignoreTrimWhitespace": false,
   "files.trimTrailingWhitespace": true,
+  "files.autoSave": "onFocusChange",
   "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": false, //todo: revisit
   "editor.minimap.enabled": false,
@@ -24,7 +25,6 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "One Dark Pro",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${dirty}${rootPath}",
   "terminal.integrated.gpuAcceleration": "on",

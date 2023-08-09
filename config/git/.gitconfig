@@ -5,7 +5,7 @@
   s = status --short --branch
   mini = log --no-merges     --pretty=format:\"%C(yellow)%h%C(reset) %C(dim)%as%C(reset) %C(blue)%<(22)%an%C(reset) %C(brightwhite)%s%C(reset) %C(cyan)%C(dim)%d%C(reset)\"
   hist = log --relative-date --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(22)%an%C(reset) %C(green)%<(15)%cd%C(reset) %s%C(bold red)%d%C(reset)\"
-  f = fetch --prune --prune-tags
+  f = fetch --all  --prune --prune-tags
 [core]
   editor = vim
 [tag]
