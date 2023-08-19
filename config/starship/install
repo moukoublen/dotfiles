@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-mkdir -p ~/.config
-
-[[ -f ~/.config/starship.toml ]] && [[ -L ~/.config/starship.toml ]] && echo "already installed" && exit 0
-
-[[ -f ~/.config/starship.toml ]] && [[ ! -L ~/.config/starship.toml ]] && mv ~/.config/starship.toml ~/.config/starship.toml.backup
-
-ln -s $DOTFILES_PATH/config/starship/starship.toml ~/.config/starship.toml
