@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-#gsettings set org.gnome.software download-updates false
-
 sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
@@ -12,38 +10,18 @@ sudo dnf install \
 
 sudo dnf install \
   meld gitg gitk \
-  gnome-tweak-tool gnome-extensions-app gnome-shell-extension-user-theme chrome-gnome-shell gnome-usage \
-  gtk-murrine-engine gtk-unico-engine gtk2-engines pavucontrol
+  gnome-tweak-tool gnome-extensions-app gnome-usage \
+  gtk-murrine-engine gtk-unico-engine gtk2-engines pavucontrol \
+  atop iftop iotop nmon nvtop procps-ng bat duf fd-find fzf
+
+sudo dnf install \
+  pavucontrol gnome-shell-extension-user-theme chrome-gnome-shell
 
 sudo dnf groupinstall "Development Tools"
 sudo dnf install @development-tools
 #sudo dnf install @development-libs
 #sudo dnf install gnome-builder
 #sudo dnf install @gnome-software-development
-
-sudo dnf install \
-  java-1.8.0-openjdk \
-  java-1.8.0-openjdk-devel \
-  java-1.8.0-openjdk-headless \
-  java-1.8.0-openjdk-javadoc \
-  java-1.8.0-openjdk-javadoc-zip \
-  java-1.8.0-openjdk-src \
-  java-11-openjdk \
-  java-11-openjdk-devel \
-  java-11-openjdk-headless \
-  java-11-openjdk-javadoc \
-  java-11-openjdk-javadoc-zip \
-  java-11-openjdk-jmods \
-  java-11-openjdk-src \
-  java-11-openjdk-static-libs \
-  java-latest-openjdk \
-  java-latest-openjdk-devel \
-  java-latest-openjdk-headless \
-  java-latest-openjdk-javadoc \
-  java-latest-openjdk-javadoc-zip \
-  java-latest-openjdk-jmods \
-  java-latest-openjdk-src \
-  java-latest-openjdk-static-libs
 
 sudo dnf install \
   kernel-devel \
@@ -55,8 +33,6 @@ sudo dnf install \
 
 #sudo dnf grouperase "Container Management"
 
-sudo dnf install atop iftop iotop nmon nvtop procps-ng bat duf fd-find fzf
+#sudo dnf -y groupinstall virtualization
 
-sudo dnf -y groupinstall virtualization
-
-#sudo dnf -y install cabextract lzip p7zip p7zip-plugins unrar
+sudo dnf -y install cabextract lzip p7zip p7zip-plugins unrar

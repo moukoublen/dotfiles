@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+sudo dnf install \
+  java-1.8.0-openjdk \
+  java-1.8.0-openjdk-devel \
+  java-1.8.0-openjdk-headless \
+  java-1.8.0-openjdk-javadoc \
+  java-1.8.0-openjdk-javadoc-zip \
+  java-1.8.0-openjdk-src \
+  java-11-openjdk \
+  java-11-openjdk-devel \
+  java-11-openjdk-headless \
+  java-11-openjdk-javadoc \
+  java-11-openjdk-javadoc-zip \
+  java-11-openjdk-jmods \
+  java-11-openjdk-src \
+  java-11-openjdk-static-libs \
+  java-latest-openjdk \
+  java-latest-openjdk-devel \
+  java-latest-openjdk-headless \
+  java-latest-openjdk-javadoc \
+  java-latest-openjdk-javadoc-zip \
+  java-latest-openjdk-jmods \
+  java-latest-openjdk-src \
+  java-latest-openjdk-static-libs

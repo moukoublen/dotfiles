@@ -20,3 +20,7 @@ fi
 if command -v kind 1>/dev/null 2>&1; then
   source <(kind completion bash)
 fi
+
+if command -v k9s 1>/dev/null 2>&1; then
+  source <(k9s completion bash)
+fi
