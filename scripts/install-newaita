@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-mkdir -p ~/gitrepos/themes/
-(cd ~/gitrepos/themes/; git clone https://github.com/cbrnix/Newaita.git)
-mkdir -p ~/.icons
-ln -s ~/gitrepos/themes/Newaita/Newaita ~/.icons
-ln -s ~/gitrepos/themes/Newaita/Newaita-dark ~/.icons
-GS-set-icon-theme Newaita
