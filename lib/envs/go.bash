@@ -2,7 +2,14 @@ if [ -d /usr/local/go ]; then
   # No need of GOROOT in case of default path (/usr/local/go)
   #export GOROOT=/path/to/special/go
   add_to_path /usr/local/go/bin
-  export GOPATH="${HOME}/goworkspace"
+
+  # set gopath away from home
+  if [ -d /goose/goworkspace ]; then
+    export GOPATH="/goose/goworkspace"
+  else
+    export GOPATH="${HOME}/goworkspace"
+  fi
+
   add_to_path "$(go env GOPATH)/bin"
 fi
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+### https://www.hashicorp.com/official-packaging-guide?product_intent=terraform
+
 whatos() {
   if [[ -f /etc/os-release ]]; then
     (
@@ -25,8 +27,9 @@ case "$(whatos)" in
     sudo dnf -y install terraform
     ;;
   "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
-    curl -fsSL https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg > /dev/null
-    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+    sudo install -m 0755 -d /etc/apt/keyrings
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/hashicorp.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/hashicorp.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
     sudo apt-get update && sudo apt-get install terraform
     ;;
   *)

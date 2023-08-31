@@ -169,6 +169,19 @@ __fnt_sourcesanspro() {
   __install_font_localy "${URL}" "sourcesanspro.zip" "sourcesanspro" __decomp __install_sourcesanspro "${REMOTE_VERSION}"
 }
 
+__install_sourcecodepro() {
+  cp -r "${1}"/OTF/*.otf "${2}"/
+}
+__fnt_sourcecodepro() {
+  __installing "Source Code Pro"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-code-pro/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/\//_/g' )
+  URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | startswith("OTF-")) | .browser_download_url' --raw-output \
+  )
+  __install_font_localy "${URL}" "sourcecodepro.zip" "sourcecodepro" __decomp __install_sourcecodepro "${REMOTE_VERSION}"
+}
+
 
 __install_ibmplex() {
   cp -r "${1}"/OpenType/{IBM-Plex-Mono,IBM-Plex-Sans,IBM-Plex-Serif} "${2}"/
@@ -355,6 +368,7 @@ __FNT_ALL=( \
   hack \
   firacode \
   sourcesanspro \
+  sourcecodepro \
   ibmplex \
   inter \
   jetbrainsmono \
