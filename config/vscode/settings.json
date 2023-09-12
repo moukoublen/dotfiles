@@ -32,7 +32,7 @@
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
   "terminal.integrated.tabs.separator": " • ",
-  "terminal.integrated.defaultLocation": "editor",
+  "terminal.integrated.defaultLocation": "bottom",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Cascadia Mono PL'",
