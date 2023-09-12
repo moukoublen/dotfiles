@@ -22,9 +22,9 @@ __decomp_omit_1(){ unzip -q "${1}" -d "${2}"; }
 #  2 download file name (full path)
 #  3 installation folder (full path)
 #  4 decompression function name
-#  5 installtion function name
+#  5 installation function name
 #  6 remote font version
-__install_font_localy() {
+__install_font_locally() {
   ( set -e
   local FONTS_DIR="/usr/local/share/fonts"
   if [[ $(uname) = "Darwin" ]]; then
@@ -98,7 +98,7 @@ __fnt_monasans() {
   URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "Mona.Sans.zip" "monasans" __decomp __install_monasans "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "Mona.Sans.zip" "monasans" __decomp __install_monasans "${REMOTE_VERSION}"
 }
 
 
@@ -112,7 +112,7 @@ __fnt_hubotsans() {
   URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "Hubot.Sans.zip" "hubotsans" __decomp __install_hubotsans "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "Hubot.Sans.zip" "hubotsans" __decomp __install_hubotsans "${REMOTE_VERSION}"
 }
 
 
@@ -124,7 +124,7 @@ __fnt_victormono() {
   local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/rubjo/victor-mono/releases/latest )
   local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
   local URL="https://rubjo.github.io/victor-mono/VictorMonoAll.zip"
-  __install_font_localy "${URL}" "VictorMonoAll.zip" "victormono" __decomp __install_victormono "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "VictorMonoAll.zip" "victormono" __decomp __install_victormono "${REMOTE_VERSION}"
 }
 
 
@@ -138,7 +138,7 @@ __fnt_hack() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "hack.zip" "hack" __decomp __install_hack "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "hack.zip" "hack" __decomp __install_hack "${REMOTE_VERSION}"
 }
 
 
@@ -152,7 +152,7 @@ __fnt_firacode() {
   local URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "firacode.zip" "firacode" __decomp __install_firacode "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "firacode.zip" "firacode" __decomp __install_firacode "${REMOTE_VERSION}"
 }
 
 
@@ -166,7 +166,7 @@ __fnt_sourcesanspro() {
   URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "sourcesanspro.zip" "sourcesanspro" __decomp __install_sourcesanspro "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "sourcesanspro.zip" "sourcesanspro" __decomp __install_sourcesanspro "${REMOTE_VERSION}"
 }
 
 __install_sourcecodepro() {
@@ -179,7 +179,7 @@ __fnt_sourcecodepro() {
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | startswith("OTF-")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "sourcecodepro.zip" "sourcecodepro" __decomp __install_sourcecodepro "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "sourcecodepro.zip" "sourcecodepro" __decomp __install_sourcecodepro "${REMOTE_VERSION}"
 }
 
 
@@ -193,7 +193,7 @@ __fnt_ibmplex() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "opentype.zip" "ibm_plex" __decomp __install_ibmplex "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "opentype.zip" "ibm_plex" __decomp __install_ibmplex "${REMOTE_VERSION}"
 }
 
 
@@ -207,7 +207,7 @@ __fnt_inter() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "inter.zip" "inter" __decomp __install_inter "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "inter.zip" "inter" __decomp __install_inter "${REMOTE_VERSION}"
 }
 
 
@@ -223,38 +223,38 @@ __fnt_iosevka() {
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka.zip" "iosevka" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka.zip" "iosevka" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Term"
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka-term.zip" "iosevka-term" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka-term.zip" "iosevka-term" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Curly"
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka.zip" "iosevka-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka.zip" "iosevka-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Term Curly"
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka.zip" "iosevka-term-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka.zip" "iosevka-term-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Aile"
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-aile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka-aile.zip" "iosevka-aile" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka-aile.zip" "iosevka-aile" __decomp __install_iosevka "${REMOTE_VERSION}"
 
 
   __installing "Iosevka Etoile"
   URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-etoile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "iosevka-etoile.zip" "iosevka-etoile" __decomp __install_iosevka "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "iosevka-etoile.zip" "iosevka-etoile" __decomp __install_iosevka "${REMOTE_VERSION}"
 }
 
 
@@ -268,7 +268,7 @@ __fnt_cascadiacode() {
   local URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "cascadia-code.zip" "cascadia-code" __decomp __install_cascadiacode "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "cascadia-code.zip" "cascadia-code" __decomp __install_cascadiacode "${REMOTE_VERSION}"
 }
 
 
@@ -282,7 +282,7 @@ __fnt_jetbrainsmono() {
   local URL=$( echo $BODY | \
     jq '.assets[0].browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "JetBrainsMono.zip" "jetbrains-mono" __decomp __install_jetbrainsmono "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "JetBrainsMono.zip" "jetbrains-mono" __decomp __install_jetbrainsmono "${REMOTE_VERSION}"
 }
 
 
@@ -297,7 +297,7 @@ __fnt_nerdjetbrainsmono() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("JetBrainsMono.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
 }
 
 __install_nerdcascadia() {
@@ -311,7 +311,7 @@ __fnt_nerdcascadia() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("CascadiaCode.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "CascadiaCode.zip" "nerd-cascadia" __decomp __install_nerdcascadia "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "CascadiaCode.zip" "nerd-cascadia" __decomp __install_nerdcascadia "${REMOTE_VERSION}"
 }
 
 
@@ -326,7 +326,7 @@ __fnt_nerdvictormono() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("VictorMono.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "VictorMono.zip" "nerd-victor-mono" __decomp __install_nerdvictormono "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "VictorMono.zip" "nerd-victor-mono" __decomp __install_nerdvictormono "${REMOTE_VERSION}"
 }
 
 __install_nerdoverpass() {
@@ -339,7 +339,7 @@ __fnt_nerdoverpass() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("Overpass.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "Overpass.zip " "nerd-overpass" __decomp __install_nerdoverpass "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "Overpass.zip " "nerd-overpass" __decomp __install_nerdoverpass "${REMOTE_VERSION}"
 }
 
 
@@ -353,7 +353,7 @@ __fnt_intelonemono() {
   local URL=$( echo $BODY | \
     jq '.assets[] | select(.name | test("otf.zip")) | .browser_download_url' --raw-output \
   )
-  __install_font_localy "${URL}" "otf.zip" "intel-one-mono" __decomp __install_intelonemono "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "otf.zip" "intel-one-mono" __decomp __install_intelonemono "${REMOTE_VERSION}"
 }
 
 

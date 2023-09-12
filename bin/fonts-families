@@ -20,3 +20,5 @@ for family in "${fams[@]}"; do
   fc-match ":family=${family}"
 done
 
+# fc-match -a 'sans-serif'
+# fc-match -s 'sans-serif'
