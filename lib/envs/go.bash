@@ -91,7 +91,7 @@ install-go-tools() {(
   ################################################################
 
   # https://github.com/mozilla/sops/releases
-  go-install 'go.mozilla.org/sops/v3/cmd/sops@latest'
+  go-install 'github.com/getsops/sops/v3/cmd/sops@latest'
   #__install_binary "${GOPATH}"/bin/sops
 
   # https://github.com/orijtech/structslop/tags

@@ -71,12 +71,19 @@ esac
 declare -A globalsettings
 globalsettings=( \
   ["org.gnome.Terminal.Legacy.Settings default-show-menubar"]="false" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy"]="<Super>c" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Super>v" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Super>t" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Super>w" \
-  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Super>k" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy"]="<Control><Shift>c" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Control><Shift>v" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Control><Shift>t" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Control><Shift>w" \
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Control><Shift>k" \
 )
+
+#  ["org.gnome.Terminal.Legacy.Settings default-show-menubar"]="false" \
+#  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy"]="<Super>c" \
+#  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Super>v" \
+#  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Super>t" \
+#  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Super>w" \
+#  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Super>k" \
 
 declare -A profilesettings
 profilesettings=( \
@@ -91,7 +98,6 @@ profilesettings=( \
   ["cursor-shape"]="block" \
   ["audible-bell"]="false" \
   ["use-theme-colors"]="false" \
-  ["use-theme-transparency"]="false" \
   ["use-transparent-background"]="false" \
   ["background-transparency-percent"]="0" \
   ["highlight-colors-set"]="true" \
