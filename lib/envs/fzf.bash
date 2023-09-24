@@ -1,6 +1,8 @@
 # https://github.com/junegunn/fzf
 # https://github.com/sharkdp/fd
 
-if command -v fzf 1>/dev/null 2>&1; then
+# sudo dnf install fzf fd-find
+
+if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
   source /usr/share/fzf/shell/key-bindings.bash
 fi

@@ -10,4 +10,4 @@ done | column -t
 
 
 
-for d in /sys/class/thermal/cooling_device*/ ; do cat "${d}"/*; done
+# for d in /sys/class/thermal/cooling_device*/ ; do cat "${d}"/*; done
