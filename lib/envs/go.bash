@@ -2,7 +2,9 @@ if [ -d /usr/local/go ]; then
   # No need of GOROOT in case of default path (/usr/local/go)
   #export GOROOT=/path/to/special/go
   add_to_path /usr/local/go/bin
+fi
 
+if command -v go 1>/dev/null 2>&1; then
   # set gopath away from home
   if [ -d /goose/goworkspace ]; then
     export GOPATH="/goose/goworkspace"
@@ -108,6 +110,8 @@ install-go-tools() {(
   # go-install -tags extended github.com/gohugoio/hugo@latest
 
   go-install github.com/google/gops@latest
+
+  go-install github.com/elastic/elastic-package@latest
 )}
 
 # Where is the go ENV file?
