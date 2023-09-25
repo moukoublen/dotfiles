@@ -44,39 +44,38 @@ S() {
 
 ################################################################################
 ######### Source libs ##########################################################
-source $DOTFILES_PATH/lib/pathmixer.bash
+source "${DOTFILES_PATH}/lib/pathmixer.bash"
 
-if command -v starship &> /dev/null
-then
+if command -v starship &> /dev/null; then
   export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
   eval "$(starship init bash)"
 else
-  source $DOTFILES_PATH/lib/ps1.bash
+  source "${DOTFILES_PATH}/lib/ps1.bash"
 fi
 
 
 if [[ $(uname) = "Darwin" ]]; then
-  source $DOTFILES_PATH/lib/macos_marmalade.bash
+  source "${DOTFILES_PATH}/lib/macos_marmalade.bash"
 fi
 
 if [[ $(uname) = "Linux" ]]; then
-  source $DOTFILES_PATH/lib/linux_marmalade.bash
+  source "${DOTFILES_PATH}/lib/linux_marmalade.bash"
 fi
 
-source "${DOTFILES_PATH}/lib/wcat.bash"
+source "${DOTFILES_PATH}/lib/ww.bash"
 
-for e in $( ls $HOME/.dotfiles-extras/* 2>/dev/null ); do
+for e in $( ls ${HOME}/.dotfiles-extras/* 2>/dev/null ); do
   source $e
 done
 
-for e in $( ls $DOTFILES_PATH/extras-* 2>/dev/null ); do
+for e in $( ls ${DOTFILES_PATH}/extras-* 2>/dev/null ); do
   source $e
 done
 ################################################################################
 ################################################################################
 
 
-add_to_path $DOTFILES_PATH/bin
+add_to_path ${DOTFILES_PATH}/bin
 
 bind 'set mark-symlinked-directories on'
 
