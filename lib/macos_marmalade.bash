@@ -64,3 +64,4 @@ install-nano-nanorc() {
   done
 }
 
+alias uu='brew update && brew upgrade && brew cleanup'
