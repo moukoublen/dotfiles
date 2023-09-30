@@ -28,12 +28,13 @@ ww() {
   fi
 
   if [[ "${file_of}" == *symbolic\ link* ]]; then
-    full_path="$(realpath --logical "${full_path}")"
-    file_of="$(file "${full_path}")"
-    if [[ "${file_of}" == *text* ]]; then
-      ${cat_cmd} "${full_path}"
-      return
-    fi
+    echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
+  fi
+
+  full_path="$(realpath --logical "${full_path}")"
+  file_of="$(file "${full_path}")"
+  if [[ "${file_of}" == *text* ]]; then
+    ${cat_cmd} "${full_path}"
     return
   fi
 
