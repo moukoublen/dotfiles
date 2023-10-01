@@ -32,6 +32,7 @@ path-real() {
 
 export DOTFILES_PATH="$(path-real ${BASH_SOURCE[0]})"
 
+alias gcl='git config --local --list'
 alias exa-tree='command exa --tree --icons --git-ignore'
 alias to-ack='ack --files-from=-' #pipe find results
 alias to-grep='xargs grep --color=auto' #pipe find results
