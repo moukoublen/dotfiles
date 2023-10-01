@@ -1,15 +1,34 @@
 #!/usr/bin/env bash
 
+__msg2() {
+  local reset='\e[0m'
+  local code='\e[0;'${1}'m'
+  printf "${code}    ${reset}"
+}
+
+__boxline() {
+  for v in "$@"; do
+    __msg2 "${v}"
+  done
+  echo ""
+}
+
+__box() {
+  __boxline  40  41  42  43  44  45  46  47
+  __boxline 100 101 102 103 104 105 106 107
+}
+
+
 __msg1() {
-  local rst='\e[0m'
+  local reset='\e[0m'
 
-  local nrm='\e[0;'${1}'m'
-  local brt='\e[1;'${1}'m'
-  local dmd='\e[3;'${1}'m'
-  local bck='\e[0;'${2}'m'
+  local normal='\e[0;'${1}'m'
+  local bright='\e[1;'${1}'m'
+  local dimmed='\e[3;'${1}'m'
+  local background='\e[0;'${2}'m'
 
-  printf "${nrm}%-15s${rst}:  %s ${nrm}normal${rst} | %s ${brt}bright${rst} | %s ${dmd}dimmed${rst} | %-9s ${bck}background${rst}  |\n" \
-    "${3}" "${nrm}" "${brt}" "${dmd}" "${bck}"
+  printf "${normal}%-15s${reset}:  %s ${normal}normal${reset} | %s ${bright}bright${reset} | %s ${dimmed}dimmed${reset} | %-9s ${background}background${reset}  |\n" \
+    "${3}" "${normal}" "${bright}" "${dimmed}" "${background}"
 }
 
 
@@ -35,7 +54,8 @@ __show() {
   __msg1 96 106 "Light Turquoise"
 }
 
-
+echo ""
 __show
-
-unset -f __show
+echo ""
+__box
+echo ""
