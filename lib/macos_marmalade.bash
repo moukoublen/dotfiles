@@ -31,11 +31,13 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias tree='command tree -C'
+
 if [[ -d ${M_BREW_PREFIX}/opt/grep/libexec/gnubin ]]; then
   alias grep='command ggrep --color=auto'
 else
   alias grep='command grep --color=auto'
 fi
+
 if [[ -d ${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin ]]; then
   alias ll='command gls -la --color=auto'
   alias ls='command gls --color=auto'
@@ -46,6 +48,12 @@ fi
 
 if [[ -d ${M_BREW_PREFIX}/opt/make/libexec/gnubin ]]; then
   alias make='command gmake'
+fi
+
+if [[ -d ${M_BREW_PREFIX}/opt/sed/libexec/gnubin ]]; then
+  alias sed='command sed'
+else
+  alias sed='command gsed'
 fi
 
 export LANG='en_US.UTF-8';
