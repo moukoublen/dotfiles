@@ -27,7 +27,7 @@
   "workbench.iconTheme": "vscode-icons",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${dirty}${rootPath}",
-  "terminal.integrated.gpuAcceleration": "on",
+  "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
