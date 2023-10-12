@@ -65,6 +65,9 @@ install-go-tools() {(
   #__install_binary "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
   # go vet -vettool=$(which shadow) ./...
 
+  go-install "golang.org/x/vuln/cmd/govulncheck@latest"
+
+
   # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
   HONNEF_VER=latest
   go-install "honnef.co/go/tools/cmd/staticcheck@${HONNEF_VER}"

@@ -50,10 +50,12 @@ if [[ -d ${M_BREW_PREFIX}/opt/make/libexec/gnubin ]]; then
   alias make='command gmake'
 fi
 
-if [[ -d ${M_BREW_PREFIX}/opt/sed/libexec/gnubin ]]; then
-  alias sed='command sed'
-else
+if [[ -d ${M_BREW_PREFIX}/opt/gnu-sed/libexec/gnubin ]]; then
   alias sed='command gsed'
+fi
+
+if [[ -d ${M_BREW_PREFIX}/opt/curl/bin ]]; then
+  alias curl="${M_BREW_PREFIX}/opt/curl/bin/curl"
 fi
 
 export LANG='en_US.UTF-8';

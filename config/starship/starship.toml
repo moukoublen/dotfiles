@@ -36,7 +36,7 @@ format="[$symbol $branch(:$remote_name)(:$remote_branch)]($style)"
 symbol = "\ue65d" # nerd font nf-dev-git_branch
 style = "purple"
 truncation_length = 9223372036854775807
-truncation_symbol = "…"
+truncation_symbol = "\U000f01d8/" # nf-md-dots_horizontal
 only_attached=true
 ignore_branches = [  ]
 
@@ -56,7 +56,7 @@ cherry_pick = "[CHERRY PICKING](bold red)"
 
 [git_status]
 style="purple"
-format = "([\\($all_status$ahead_behind\\)]($style))"
+format = "([\\($all_status$ahead_behind\\)]($style)) "
 conflicted = "[!${count}](red)"
 ahead = "[⇡${count}](green)"
 behind = "[⇣${count}](yellow)"
