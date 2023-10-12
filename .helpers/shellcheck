@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if ! command -v shellcheck &> /dev/null; then
+  echo 'shellcheck not found' >&2
+  exit 1
+fi
+
+shellcheck \
+   --shell=bash \
+  --exclude=SC1090 \
+  --external-sources \
+  --severity=warning \
+  --format=tty \
+  --norc \
+  marmalade.bash \
+  $(find . \( -not -path "./.git/*" \) -a \( -not -name 'marmalade.bash' \) -a \( -name '*.bash' -o \( -type f -a -executable \) \) -print)

@@ -5,32 +5,31 @@
 #
 ################################################################################
 path-abs() {
-  local drnm="$(dirname $1)"
-  echo $(cd -P $drnm && pwd)
+  cd -P "$(dirname "${1}")" && pwd
 }
 
 path-read-link() {
   case "$(uname)" in
     "Darwin")
-      readlink -n $1
+      readlink -n "${1}"
       ;;
     "Linux")
-      readlink --canonicalize-existing --no-newline $1
+      readlink --canonicalize-existing --no-newline "${1}"
       ;;
   esac
 }
 
 path-real() {
-  local SOURCE="$1"
-  while [[ -L $SOURCE ]]; do
-    local DIR="$(path-abs $SOURCE)"
-    SOURCE="$(path-read-link $SOURCE)"
-    [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
+  local SOURCE="${1}"
+  while [[ -L "${SOURCE}" ]]; do
+    SOURCE="$(path-read-link "${SOURCE}")"
+    [[ "${SOURCE}" != /* ]] && SOURCE="$(path-abs "${SOURCE}")/${SOURCE}"
   done
-  echo "$(path-abs $SOURCE)"
+  path-abs "${SOURCE}"
 }
 
-export DOTFILES_PATH="$(path-real ${BASH_SOURCE[0]})"
+DOTFILES_PATH="$(path-real "${BASH_SOURCE[0]}")"
+export DOTFILES_PATH
 
 alias gcl='git config --local --list'
 alias exa-tree='command exa --tree --icons --git-ignore'
@@ -39,7 +38,7 @@ alias to-grep='xargs grep --color=auto' #pipe find results
 alias path-to-lines='echo $PATH | tr ":" "\n"'
 alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 S() {
-  find . -name "*$@*"
+  find . -name "*${*}*"
 }
 
 
@@ -54,21 +53,23 @@ else
   source "${DOTFILES_PATH}/lib/ps1.bash"
 fi
 
+case "$(uname)" in
+  "Darwin")
+    source "${DOTFILES_PATH}/lib/macos_marmalade.bash"
+    ;;
+  "Linux")
+    source "${DOTFILES_PATH}/lib/linux_marmalade.bash"
+    ;;
+esac
 
-if [[ $(uname) = "Darwin" ]]; then
-  source "${DOTFILES_PATH}/lib/macos_marmalade.bash"
-fi
-
-if [[ $(uname) = "Linux" ]]; then
-  source "${DOTFILES_PATH}/lib/linux_marmalade.bash"
-fi
-
-for e in $( ls ${HOME}/.dotfiles-extras/* 2>/dev/null ); do
-  source $e
+for e in "${HOME}"/.dotfiles-extras/*
+do
+  source "${e}"
 done
 
-for e in $( ls ${DOTFILES_PATH}/extras-* 2>/dev/null ); do
-  source $e
+for e in "${DOTFILES_PATH}"/extras-*
+do
+  source "${e}"
 done
 ################################################################################
 ################################################################################
