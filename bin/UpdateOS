@@ -23,7 +23,7 @@ case "$(what-pm)" in
     update_apt
     ;;
   *)
-    prnt "this script does not have update command for this release $os_name"
+    prnt "this script does not have update command for this release"
     ;;
 esac
 

@@ -65,12 +65,12 @@ esac
 for e in "${HOME}"/.dotfiles-extras/*
 do
   source "${e}"
-done
+done 2>/dev/null
 
 for e in "${DOTFILES_PATH}"/extras-*
 do
   source "${e}"
-done
+done 2>/dev/null
 ################################################################################
 ################################################################################
 

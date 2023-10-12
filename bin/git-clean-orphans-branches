@@ -2,11 +2,11 @@
 
 ( set -e
 
-git fetch -p 
+git fetch --prune
 
-O_BRANCHES=($(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}')); 
+readarray -t O_BRANCHES < <(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}')
 
-for branch in "${O_BRANCHES[@]}"; do 
+for branch in "${O_BRANCHES[@]}"; do
   git branch -D "$branch"
 done
 
