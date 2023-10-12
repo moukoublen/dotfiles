@@ -63,8 +63,6 @@ if [[ $(uname) = "Linux" ]]; then
   source "${DOTFILES_PATH}/lib/linux_marmalade.bash"
 fi
 
-source "${DOTFILES_PATH}/lib/ww.bash"
-
 for e in $( ls ${HOME}/.dotfiles-extras/* 2>/dev/null ); do
   source $e
 done
@@ -83,3 +81,4 @@ bind 'set mark-symlinked-directories on'
 HISTSIZE=11000
 HISTFILESIZE=11000
 
+complete -c ww
