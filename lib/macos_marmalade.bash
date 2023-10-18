@@ -14,13 +14,11 @@ if [[ ${M_HAS_BREW_INSTALLED} = true ]] && [[ -r "${M_BREW_PREFIX}/etc/profile.d
 fi
 
 # brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
-#add_to_path /opt/homebrew/opt/coreutils/libexec/gnubin
+# [[ -d ${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin ]] && add_to_path "${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin"
 
 # brew install findutils (find, locate, updatedb, xargs)
-#add_to_path /opt/homebrew/opt/findutils/libexec/gnubin
+# [[ -d ${M_BREW_PREFIX}/opt/findutils/libexec/gnubin ]] && add_to_path "${M_BREW_PREFIX}/opt/findutils/libexec/gnubin"
 
-# brew install grep
-#add_to_path /opt/homebrew/opt/grep/libexec/gnubin
 ################################################################################
 ################################################################################
 
@@ -61,15 +59,15 @@ fi
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-add_to_path ${HOME}/bin
+add_to_path "${HOME}/bin"
 
-source ${DOTFILES_PATH}/lib/envs/go.bash
-source ${DOTFILES_PATH}/lib/envs/docker.bash
-source ${DOTFILES_PATH}/lib/envs/kube.bash
+source "${DOTFILES_PATH}/lib/envs/go.bash"
+source "${DOTFILES_PATH}/lib/envs/docker.bash"
+source "${DOTFILES_PATH}/lib/envs/kube.bash"
 
 install-nano-nanorc() {
   touch ~/.nanorc
-  for rcfile in $(brew --prefix nano)/share/nano/*.nanorc; do
+  for rcfile in "$(brew --prefix nano)"/share/nano/*.nanorc; do
     echo "include ${rcfile}" >> ~/.nanorc
   done
 }

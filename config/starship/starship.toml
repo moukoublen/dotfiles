@@ -31,8 +31,9 @@ disabled = true
 disabled = true
 
 [git_branch]
-always_show_remote=false
-format="[$symbol $branch(:$remote_name)(:$remote_branch)]($style)"
+always_show_remote=true
+#format="[$symbol $branch(:$remote_name)(:$remote_branch)]($style)"
+format="[$symbol ($remote_name:)$branch]($style)"
 symbol = "\ue65d" # nerd font nf-dev-git_branch
 style = "purple"
 truncation_length = 9223372036854775807
