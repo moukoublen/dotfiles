@@ -30,6 +30,12 @@ disabled = true
 [aws]
 disabled = true
 
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
+
 [git_branch]
 always_show_remote=true
 #format="[$symbol $branch(:$remote_name)(:$remote_branch)]($style)"
