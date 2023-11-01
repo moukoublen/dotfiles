@@ -1,51 +1,54 @@
 #!/usr/bin/env bash
 
 path-abs() {
-  local drnm="$(dirname $1)"
-  echo $(cd -P $drnm && pwd)
+  cd -P "$(dirname "${1}")" && pwd
+}
+
+path-read-link() {
+  case "$(uname)" in
+    "Darwin")
+      readlink -n "${1}"
+      ;;
+    "Linux")
+      readlink --canonicalize-existing --no-newline "${1}"
+      ;;
+  esac
 }
 
 path-real() {
-  local SOURCE="$1"
-  while [[ -L $SOURCE ]]; do
-    local DIR="$(path-abs $SOURCE)"
-    SOURCE="$(readlink --canonicalize-existing --no-newline $SOURCE)"
-    [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE
+  local SOURCE="${1}"
+  while [[ -L "${SOURCE}" ]]; do
+    SOURCE="$(path-read-link "${SOURCE}")"
+    [[ "${SOURCE}" != /* ]] && SOURCE="$(path-abs "${SOURCE}")/${SOURCE}"
   done
-  echo "$(path-abs $SOURCE)"
+  path-abs "${SOURCE}"
 }
 
 DIR="$(path-real ${BASH_SOURCE[0]})"
 
 echo "********************************************************"
-echo "**************** Marmalade Installation ****************"
-echo "  marmalade folder: $DIR"
+echo "**************** Dotfiles Installation ****************"
+echo "  dotfiles folder: $DIR"
 
-if [ ! -f ~/.marmalade.bash ]; then
-  echo "  create symlink of marmalade.bash at home folder"
-  ln -s $DIR/marmalade.bash ~/.marmalade.bash
+if [ ! -f ~/.dotfiles.bash ]; then
+  echo "  creating symlink at home folder"
+  ln -s $DIR/root.bash ~/.dotfiles.bash
 else
-  echo "  marmalade syslink exists"
+  echo "  syslink exists"
 fi
 
 BASH_FILE=~/.bashrc
 [[ ! -f $BASH_FILE ]] && BASH_FILE=~/.bash_profile
 [[ ! -f $BASH_FILE ]] && touch $BASH_FILE
-echo "  file to be used: $BASH_FILE"
+echo "  bash file to be used: $BASH_FILE"
 
-SOURCE_LINE='[[ -r ~/.marmalade.bash ]] && [[ -f ~/.marmalade.bash ]] && source ~/.marmalade.bash'
+SOURCE_LINE='[[ -r ~/.dotfiles.bash ]] && [[ -f ~/.dotfiles.bash ]] && source ~/.dotfiles.bash'
 if grep --fixed-strings --quiet "$SOURCE_LINE" $BASH_FILE; then
-  echo "  marmalade sourcing is already included in $BASH_FILE"
+  echo "  dotfiles sourcing is already included in $BASH_FILE"
 else
-  echo "  add marmalade sourcing in $BASH_FILE"
+  echo "  add dotfiles sourcing in $BASH_FILE"
   echo $SOURCE_LINE >> $BASH_FILE
 fi
 
 echo "********************************************************"
 echo "********************************************************"
-
-unset DIR
-unset BASH_FILE
-unset SOURCE_LINE
-unset -f path-real
-unset -f path-abs

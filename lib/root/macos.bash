@@ -60,12 +60,6 @@ fi
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
 
-add_to_path "${HOME}/bin"
-
-source "${DOTFILES_PATH}/lib/envs/go.bash"
-source "${DOTFILES_PATH}/lib/envs/docker.bash"
-source "${DOTFILES_PATH}/lib/envs/kube.bash"
-
 install-nano-nanorc() {
   touch ~/.nanorc
   for rcfile in "$(brew --prefix nano)"/share/nano/*.nanorc; do

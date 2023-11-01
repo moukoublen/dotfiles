@@ -1,9 +1,3 @@
-################################################################################
-# Put this in ~/.bashrc or ~/.bash_profile
-#
-# [[ -r ~/.marmalade.sh ]] && [[ -f ~/.marmalade.sh ]] && source ~/.marmalade.sh
-#
-################################################################################
 path-abs() {
   cd -P "$(dirname "${1}")" && pwd
 }
@@ -31,7 +25,6 @@ path-real() {
 DOTFILES_PATH="$(path-real "${BASH_SOURCE[0]}")"
 export DOTFILES_PATH
 
-alias gcl='git config --local --list'
 alias exa-tree='command exa --tree --icons --git-ignore'
 alias to-ack='ack --files-from=-' #pipe find results
 alias to-grep='xargs grep --color=auto' #pipe find results
@@ -41,26 +34,32 @@ S() {
   find . -name "*${*}*"
 }
 
-
 ################################################################################
 ######### Source libs ##########################################################
-source "${DOTFILES_PATH}/lib/pathmixer.bash"
+source "${DOTFILES_PATH}/lib/root/pathmixer.bash"
 
 if command -v starship &> /dev/null; then
   export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
   eval "$(starship init bash)"
 else
-  source "${DOTFILES_PATH}/lib/ps1.bash"
+  source "${DOTFILES_PATH}/lib/root/ps1.bash"
 fi
 
 case "$(uname)" in
   "Darwin")
-    source "${DOTFILES_PATH}/lib/macos_marmalade.bash"
+    source "${DOTFILES_PATH}/lib/root/macos.bash"
     ;;
   "Linux")
-    source "${DOTFILES_PATH}/lib/linux_marmalade.bash"
+    source "${DOTFILES_PATH}/lib/root/linux.bash"
     ;;
 esac
+
+for i in "${DOTFILES_PATH}"/lib/*.bash
+do
+  if [ -r "${i}" ]; then
+    source "${i}"
+  fi
+done
 
 for e in "${HOME}"/.dotfiles-extras/*
 do
@@ -75,7 +74,8 @@ done 2>/dev/null
 ################################################################################
 
 
-add_to_path ${DOTFILES_PATH}/bin
+add_to_path "${DOTFILES_PATH}/bin"
+add_to_path "${HOME}/bin"
 
 bind 'set mark-symlinked-directories on'
 

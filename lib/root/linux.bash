@@ -28,19 +28,6 @@ alias dnf-display-local-package-contents='dnf repoquery --installed -l'
 ################################################################################
 
 
-################################################################################
-######### Marmalade Envs #######################################################
-export DOTFILES_ENVS=${HOME}/.marmalade.envs
-
-for i in ${DOTFILES_PATH}/lib/envs/*.bash ; do
-  if [ -r "${i}" ]; then
-    source "${i}"
-  fi
-done
-################################################################################
-################################################################################
-
-
 export EDITOR=/usr/bin/vim
 
 [[ -e $HOME/.dir_colors ]] && eval $(dircolors ~/.dir_colors)
