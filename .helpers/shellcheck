@@ -12,5 +12,5 @@ shellcheck \
   --severity=warning \
   --format=tty \
   --norc \
-  marmalade.bash \
-  $(find . \( -not -path "./.git/*" \) -a \( -not -name 'marmalade.bash' \) -a \( -name '*.bash' -o \( -type f -a -executable \) \) -print)
+  root.bash \
+  $(find . \( -not -path "./.git/*" \) -a \( -not -name 'root.bash' \) -a \( -name '*.bash' -o \( -type f -a -executable \) \) -print)
