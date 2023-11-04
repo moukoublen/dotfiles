@@ -33,6 +33,11 @@ sizes-disks() {
   df --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs
 }
 export -f sizes-disks
+
+ports() {
+  sudo ss --tcp --udp --all --processes --numeric
+  # sudo ss --tcp --udp --listening --processes --numeric
+}
 ################################################################################
 ################################################################################
 
