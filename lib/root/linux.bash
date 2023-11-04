@@ -38,6 +38,11 @@ ports() {
   sudo ss --tcp --udp --all --processes --numeric
   # sudo ss --tcp --udp --listening --processes --numeric
 }
+
+apt-clean-uninstalled() {
+  dpkg --get-selections | awk '$2 == "deinstall" {print $1}' | xargs sudo apt-get purge -y
+}
+export -f apt-clean-uninstalled
 ################################################################################
 ################################################################################
 
