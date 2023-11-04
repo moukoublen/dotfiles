@@ -115,6 +115,7 @@ install-go-tools() {(
   go-install github.com/google/gops@latest
 
   #go-install github.com/elastic/elastic-package@latest
+  #go-install github.com/cashapp/hermit/cmd/hermit@latest
 )}
 
 # Where is the go ENV file?
