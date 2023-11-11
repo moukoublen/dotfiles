@@ -25,6 +25,7 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "GitHub Dark Default",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${dirty}${rootPath}",
   "terminal.integrated.gpuAcceleration": "off",
