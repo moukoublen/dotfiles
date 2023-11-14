@@ -2,9 +2,13 @@
 
 
 extensions=(
+amazonwebservices.aws-toolkit-vscode
 anweber.vscode-httpyac
 attilathedud.data-converter
+dracula-theme.theme-dracula
 eamodio.gitlens
+EditorConfig.EditorConfig
+GitHub.github-vscode-theme
 github.vscode-github-actions
 golang.go
 GraphQL.vscode-graphql
@@ -23,9 +27,12 @@ redhat.ansible
 redhat.vscode-xml
 redhat.vscode-yaml
 rust-lang.rust-analyzer
+sclu1034.justfile
 streetsidesoftware.code-spell-checker
 streetsidesoftware.code-spell-checker-greek
 tamasfe.even-better-toml
+tsandall.opa
+unifiedjs.vscode-mdx
 vscode-icons-team.vscode-icons
 zhuangtongfa.material-theme
 )
