@@ -68,3 +68,12 @@ install-nano-nanorc() {
 }
 
 alias uu='brew update && brew upgrade && brew cleanup'
+
+sizes-files() {
+  du -h -d 1 | sort --human-numeric-sort --reverse
+}
+export -f sizes-files
+sizes-disks() {
+  df -h -Y
+}
+export -f sizes-disks
