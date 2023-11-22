@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}"/elastic-package ]] && "${BIN_DIR}"/elastic-package version | awk '{ print $2 }'
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+
+  local ends_with=$(echo "$(uname -s)_$(uname -m).tar.gz" | tr '[:upper:]' '[:lower:]')
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+
+  #extract
+  tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
+
+  #install binary
+  sudo cp "${TMP_DIR}"/elastic-package "${BIN_DIR}"/elastic-package
+  sudo chmod +x "${BIN_DIR}"/elastic-package
+  if [[ $(uname) = "Darwin" ]]; then
+    sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/elastic-package
+  fi
+}
+export -f __install_exec
+
+
+install-from-github  \
+  --name                 "elastic-package" \
+  --repo                 "elastic/elastic-package" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "elastic-package.tar.gz" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin" \
+  "${@}"
