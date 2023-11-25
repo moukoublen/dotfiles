@@ -2,6 +2,8 @@
 
 set -e
 
+# JS_BODY=$(curl --show-error --silent --fail --location https://api.github.com/repos/elastic/elastic-package/releases/latest)
+
 __remote_version() {
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.tag_name'
@@ -17,7 +19,12 @@ export -f __local_version
 __get_dl_url() {
   local JS_BODY="${1}"
 
-  local ends_with=$(echo "$(uname -s)_$(uname -m).tar.gz" | tr '[:upper:]' '[:lower:]')
+  local arch="$(uname -m)"
+  if [[ "${arch}" == "x86_64" ]]; then
+    arch="amd64"
+  fi
+
+  local ends_with=$(echo "$(uname -s)_${arch}.tar.gz" | tr '[:upper:]' '[:lower:]')
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"
 }
 export -f __get_dl_url
