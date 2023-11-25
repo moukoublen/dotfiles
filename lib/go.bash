@@ -21,6 +21,12 @@ if command -v golangci-lint 1>/dev/null 2>&1; then
   source <(golangci-lint completion bash)
 fi
 
+go-test() {
+  # -p=1
+  (set -ex
+  go test -timeout=60s -count=1 -v -race ./...
+  )
+}
 
 go-install() {
   echo -e "> Installing \e[0;90m$@\e[0m"
