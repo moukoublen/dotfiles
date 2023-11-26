@@ -36,7 +36,7 @@
   "terminal.integrated.defaultLocation": "bottom",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontSize": 16,
-  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'JetBrains Mono', 'Cascadia Mono PL'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono NF', 'JetBrains Mono', 'Cascadia Mono PL'",
   "terminal.integrated.fontWeight": "400",
   "terminal.integrated.fontWeightBold": "450",
   "terminal.integrated.letterSpacing": 0,

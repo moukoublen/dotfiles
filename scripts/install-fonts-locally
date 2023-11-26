@@ -198,7 +198,7 @@ __fnt_ibmplex() {
 
 
 __install_inter() {
-  cp -r "${1}"/Inter\ Desktop/*.otf "${2}"/
+  cp -r "${1}"/Inter.ttc "${2}"/
 }
 __fnt_inter() {
   __installing "Inter"
