@@ -16,6 +16,8 @@ __decomp(){ unzip -q "${1}" -d "${2}"; }
 
 __decomp_omit_1(){ unzip -q "${1}" -d "${2}"; }
 
+__decomp_tar_xz(){ tar --extract --xz --file="${1}" --directory="${2}"; }
+
 
 # Arguments
 #  1 download url
@@ -287,7 +289,6 @@ __fnt_jetbrainsmono() {
 
 
 __install_nerdjetbrainsmono() {
-  rm "${1}"/*"Windows Compatible"*
   cp "${1}"/*.ttf "${2}"/
 }
 __fnt_nerdjetbrainsmono() {
@@ -300,48 +301,18 @@ __fnt_nerdjetbrainsmono() {
   __install_font_locally "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
 }
 
-__install_nerdcascadia() {
-  rm "${1}"/*"Windows Compatible"*
+__install_nerdnoto() {
   cp "${1}"/*.ttf "${2}"/
 }
-__fnt_nerdcascadia() {
-  __installing "Nerd Cascadia Code"
+__fnt_nerdnoto() {
+  __installing "Noto Mono"
   local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
   local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
   local URL=$( echo $BODY | \
-    jq '.assets[] | select(.name | test("CascadiaCode.zip")) | .browser_download_url' --raw-output \
+    jq '.assets[] | select(.name | test("Noto.tar.xz")) | .browser_download_url' --raw-output \
   )
-  __install_font_locally "${URL}" "CascadiaCode.zip" "nerd-cascadia" __decomp __install_nerdcascadia "${REMOTE_VERSION}"
+  __install_font_locally "${URL}" "Noto.tar.xz" "nerd-noto" __decomp_tar_xz __install_nerdnoto "${REMOTE_VERSION}"
 }
-
-
-__install_nerdvictormono() {
-  rm "${1}"/*"Windows Compatible"*
-  cp "${1}"/*.ttf "${2}"/
-}
-__fnt_nerdvictormono() {
-  __installing "Nerd Victor Mono"
-  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
-  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
-  local URL=$( echo $BODY | \
-    jq '.assets[] | select(.name | test("VictorMono.zip")) | .browser_download_url' --raw-output \
-  )
-  __install_font_locally "${URL}" "VictorMono.zip" "nerd-victor-mono" __decomp __install_nerdvictormono "${REMOTE_VERSION}"
-}
-
-__install_nerdoverpass() {
-  cp "${1}"/*.otf "${2}"/
-}
-__fnt_nerdoverpass() {
-  __installing "Nerd Overpass"
-  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )
-  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
-  local URL=$( echo $BODY | \
-    jq '.assets[] | select(.name | test("Overpass.zip")) | .browser_download_url' --raw-output \
-  )
-  __install_font_locally "${URL}" "Overpass.zip " "nerd-overpass" __decomp __install_nerdoverpass "${REMOTE_VERSION}"
-}
-
 
 __install_intelonemono() {
   cp "${1}"/otf/*.otf "${2}"/
@@ -374,9 +345,7 @@ __FNT_ALL=( \
   jetbrainsmono \
   cascadiacode \
   nerdjetbrainsmono \
-  nerdcascadia \
-  nerdvictormono \
-  nerdoverpass \
+  nerdnoto \
   hubotsans \
   monasans \
   intelonemono
