@@ -16,7 +16,7 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("k9s_Linux_amd64.tar.gz")) | .browser_download_url'
+  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^k9s_Linux_amd64.tar.gz$")) | .browser_download_url'
 }
 export -f __get_dl_url
 
