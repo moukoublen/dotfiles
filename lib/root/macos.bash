@@ -79,3 +79,5 @@ sizes-disks() {
   df -h -Y
 }
 export -f sizes-disks
+
+export EDITOR="${M_BREW_PREFIX}/bin/vim"
