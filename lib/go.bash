@@ -22,9 +22,9 @@ if command -v golangci-lint 1>/dev/null 2>&1; then
 fi
 
 go-test() {
-  # -p=1
+  # -p=1 -v
   (set -ex
-  go test -timeout=60s -count=1 -v -race ./...
+  go test -timeout=60s -count=1 -race $@ ./...
   )
 }
 

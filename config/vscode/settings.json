@@ -21,13 +21,24 @@
   "explorer.autoReveal": true,
   "explorer.decorations.badges": false,
   "explorer.decorations.colors": true,
+  "workbench.editor.mouseBackForwardToNavigate": true,
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
   "workbench.colorTheme": "GitHub Dark Default",
+  "window.titleBarStyle": "custom",
   "window.titleSeparator": " • ",
-  "window.title": "${rootName}${separator}${dirty}${rootPath}",
+  "window.title": "${rootName}${separator}${rootPath} ${dirty}",
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": [
+        "--login"
+      ],
+      "icon": "terminal-bash"
+    },
+  },
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
