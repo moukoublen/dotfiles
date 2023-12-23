@@ -10,7 +10,7 @@
   "editor.renderControlCharacters": true,
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
-  "editor.lineHeight": 1.50,
+  "editor.lineHeight": 27,
   "editor.fontSize": 17,
   "editor.fontFamily": "'JetBrains Mono', 'IntelOne Mono'",
   "editor.fontWeight": "normal",
@@ -26,7 +26,6 @@
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.iconTheme": "vscode-icons",
-  "workbench.colorTheme": "GitHub Dark Default",
   "window.titleBarStyle": "custom",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${rootPath} ${dirty}",
@@ -37,7 +36,7 @@
         "--login"
       ],
       "icon": "terminal-bash"
-    },
+    }
   },
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.cursorBlinking": true,
@@ -138,8 +137,7 @@
     "useany",
     "zerolog"
   ],
-  // _______________
-  // >>> Go lang <<<
+  // <golang>
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
@@ -245,7 +243,7 @@
       "unusedresult": true,
       "unusedvariable": true,
       "unusedwrite": true,
-      "useany": true,
+      "useany": true
     },
     "ui.diagnostic.staticcheck": true,
     "ui.diagnostic.annotations": {
@@ -254,5 +252,33 @@
       "inline": true,
       "nil": true
     }
+  },
+  // </golang>
+  // <themes and colors mods>
+  "workbench.colorTheme": "GitHub Dark Default",
+  "editor.semanticTokenColorCustomizations": {},
+  "editor.tokenColorCustomizations": {},
+  "workbench.colorCustomizations": {
+    "[GitHub Dark Default]": {
+      // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales
+      "list.errorForeground": "#cf222e", // scale-red-5
+      "list.warningForeground": "#eac54f", // scale-yellow-2
+      "gitDecoration.modifiedResourceForeground": "#a475f9", // scale-purple-4
+      "gitDecoration.untrackedResourceForeground": "#2da44e", // scale-green-4
+      "gitDecoration.ignoredResourceForeground": "#8c959f", // scale-gray-4
+      "tab.activeForeground": "#f6f8fa", // scale-gray-0
+      "tab.activeBackground": "#4d0336", // scale-pink-9
+      "tab.activeModifiedBorder": "#a475f9", // scale-purple-4
+      "tab.activeBorderTop": "#32383f", // scale-gray-8
+      "tab.activeBorder": "#32383f", // scale-gray-8
+      "tab.hoverBackground": "#24292f", // scale-gray-9
+      "tab.hoverForeground": "#f6f8fa", // scale-gray-0
+      "tab.hoverBorder": "#ffd3eb", // scale-pink-1
+      "editor.selectionBackground": "#99286e50", //scale-pink-6 with opacity
+      //"editor.lineHighlightBackground": "#bf398938", //scale-pink-6 with opacity
+      "editorGutter.modifiedBackground": "#a475f9", // scale-purple-4
+      "editorOverviewRuler.modifiedForeground": "#8250df", // scale-purple-5
+    }
   }
+  // </themes and colors mods>
 }
