@@ -260,24 +260,24 @@
   "editor.tokenColorCustomizations": {},
   "workbench.colorCustomizations": {
     "[GitHub Dark Default]": {
-      // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales
-      "list.errorForeground": "#cf222e", // scale-red-5
-      "list.warningForeground": "#eac54f", // scale-yellow-2
-      "gitDecoration.modifiedResourceForeground": "#a475f9", // scale-purple-4
-      "gitDecoration.untrackedResourceForeground": "#2da44e", // scale-green-4
-      "gitDecoration.ignoredResourceForeground": "#8c959f", // scale-gray-4
-      "tab.activeForeground": "#f6f8fa", // scale-gray-0
-      "tab.activeBackground": "#4d0336", // scale-pink-9
-      "tab.activeModifiedBorder": "#a475f9", // scale-purple-4
-      "tab.activeBorderTop": "#32383f", // scale-gray-8
-      "tab.activeBorder": "#32383f", // scale-gray-8
-      "tab.hoverBackground": "#24292f", // scale-gray-9
-      "tab.hoverForeground": "#f6f8fa", // scale-gray-0
-      "tab.hoverBorder": "#ffd3eb", // scale-pink-1
-      "editor.selectionBackground": "#99286e50", //scale-pink-6 with opacity
-      //"editor.lineHighlightBackground": "#bf398938", //scale-pink-6 with opacity
-      "editorGutter.modifiedBackground": "#a475f9", // scale-purple-4
-      "editorOverviewRuler.modifiedForeground": "#8250df", // scale-purple-5
+      // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales&globals=theme:dark
+      "list.errorForeground": "#ff7b72", // scale-red-3
+      "list.warningForeground": "#e3b341", // scale-yellow-2
+      "gitDecoration.modifiedResourceForeground": "#bc8cff", // scale-purple-3
+      "gitDecoration.untrackedResourceForeground": "#3fb950", // scale-green-3
+      "gitDecoration.ignoredResourceForeground": "#8b949e", // scale-gray-3
+      "tab.activeForeground": "#f0f6fc", // scale-gray-0
+      "tab.activeBackground": "#42062a", // scale-pink-9
+      "tab.activeModifiedBorder": "#bc8cff", // scale-purple-3
+      "tab.activeBorderTop": "#42062a", // scale-pink-9
+      "tab.activeBorder": "#161b22", // scale-gray-8
+      "tab.hoverBackground": "#010409", // scale-black
+      "tab.hoverForeground": "#f778ba", // scale-pink-3
+      "tab.hoverBorder": "#f778ba", // scale-pink-3
+      "editor.selectionBackground": "#7d245750", //scale-pink-7 with opacity
+      "editor.lineHighlightBackground": "#79c0ff20", // scale-blue-2 with opacity
+      "editorGutter.modifiedBackground": "#bc8cff", // scale-purple-3
+      "editorOverviewRuler.modifiedForeground": "#bc8cff", // scale-purple-3
     }
   }
   // </themes and colors mods>
