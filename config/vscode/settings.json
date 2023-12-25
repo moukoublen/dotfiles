@@ -274,7 +274,7 @@
       "tab.hoverBackground": "#010409", // scale-black
       "tab.hoverForeground": "#f778ba", // scale-pink-3
       "tab.hoverBorder": "#f778ba", // scale-pink-3
-      "editor.selectionBackground": "#7d245750", //scale-pink-7 with opacity
+      "editor.selectionBackground": "#7d245780", //scale-pink-7 with opacity
       "editor.lineHighlightBackground": "#79c0ff20", // scale-blue-2 with opacity
       "editorGutter.modifiedBackground": "#bc8cff", // scale-purple-3
       "editorOverviewRuler.modifiedForeground": "#bc8cff", // scale-purple-3
