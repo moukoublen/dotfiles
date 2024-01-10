@@ -14,8 +14,6 @@ __installing() {
 
 __decomp(){ unzip -q "${1}" -d "${2}"; }
 
-__decomp_omit_1(){ unzip -q "${1}" -d "${2}"; }
-
 __decomp_tar_xz(){ tar --extract --xz --file="${1}" --directory="${2}"; }
 
 
@@ -327,6 +325,20 @@ __fnt_intelonemono() {
   __install_font_locally "${URL}" "otf.zip" "intel-one-mono" __decomp __install_intelonemono "${REMOTE_VERSION}"
 }
 
+__install_monaspace() {(
+  cd $(ls -d "${1}"/monaspace-*/ | head -n 1)
+  cp ./fonts/otf/*.otf "${2}"/
+  cp ./fonts/variable/*.ttf "${2}"/
+)}
+__fnt_monaspace() {
+  __installing "GithubNext monaspace"
+  local BODY=$( curl --fail --silent --show-error --location https://api.github.com/repos/githubnext/monaspace/releases/latest )
+  local REMOTE_VERSION=$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )
+  local URL=$( echo $BODY | \
+    jq '.assets[] | select(.name | test("^monaspace.*.zip$")) | .browser_download_url' --raw-output \
+  )
+  __install_font_locally "${URL}" "monaspace.zip" "monaspace" __decomp __install_monaspace "${REMOTE_VERSION}"
+}
 
 ## disabled
 # input
@@ -348,7 +360,8 @@ __FNT_ALL=( \
   nerdnoto \
   hubotsans \
   monasans \
-  intelonemono
+  intelonemono \
+  monaspace
 )
 
 __LP=()
