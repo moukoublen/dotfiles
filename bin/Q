@@ -32,22 +32,26 @@ done
 __update-repo() {(
   [[ "${1}" = "" ]] && return
   printf "%-${MAX_NAME_LEN}.${MAX_NAME_LEN}s " "$(basename "${1}")"
+
+  # if not exists
   [ ! -d "${1}" ] && printf "%-${MAX_BRANCH_NAME_LEN}.${MAX_BRANCH_NAME_LEN}s \e[31m%s\e[0m \n" " " "Not exist" && return
   cd "${1}" || { echo "cd to ${1} failed" && return 1; }
+
   printf "\e[34m%-${MAX_BRANCH_NAME_LEN}.${MAX_BRANCH_NAME_LEN}s\e[0m " "$(git rev-parse --abbrev-ref HEAD)"
+
   git fetch --quiet
   LOCAL=$(git rev-parse '@' 2> /dev/null)
   REMOTE=$(git rev-parse '@{u}' 2> /dev/null)
   BASE=$(git merge-base '@' '@{u}' 2> /dev/null)
 
-  if [[ $LOCAL = "${REMOTE}" ]]; then
+  if [[ "${LOCAL}" = "${REMOTE}" ]]; then
     printf "\e[32mUp to date\e[0m\n"
     return
   fi
 
   if [[ $LOCAL = "${BASE}" ]]; then
     printf "\e[33mPulling updates...\e[0m "
-    git pull --quiet --ff-only &> /dev/null
+    git pull --quiet --ff-only &> /dev/null || { printf "\e[31mfailed\e[0m to pull\n" && return 1; }
     printf "\e[32mok! \e[0m\n"
     return
   fi
