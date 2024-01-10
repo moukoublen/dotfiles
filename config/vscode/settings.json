@@ -43,7 +43,7 @@
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
   "terminal.integrated.tabs.separator": " • ",
-  "terminal.integrated.defaultLocation": "bottom",
+  "terminal.integrated.defaultLocation": "view",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font', 'IntelOne Mono'",
   "terminal.integrated.fontSize": 16,
@@ -277,7 +277,7 @@
       "editor.selectionBackground": "#7d245780", //scale-pink-7 with opacity
       "editor.lineHighlightBackground": "#79c0ff20", // scale-blue-2 with opacity
       "editorGutter.modifiedBackground": "#bc8cff", // scale-purple-3
-      "editorOverviewRuler.modifiedForeground": "#bc8cff", // scale-purple-3
+      "editorOverviewRuler.modifiedForeground": "#bc8cff" // scale-purple-3
     }
   }
   // </themes and colors mods>
