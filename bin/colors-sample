@@ -1,5 +1,84 @@
 #!/usr/bin/env bash
 
+FG_DEFAULT=39
+BG_DEFAULT=49
+FG_BLACK=30
+BG_BLACK=40
+FG_BLACK=30
+BG_BLACK=40
+FG_LIGHT_BLACK=90
+BG_LIGHT_BLACK=100
+FG_GREY=37
+BG_GREY=47
+FG_LIGHT_GREY=97
+BG_LIGHT_GREY=107
+FG_RED=31
+BG_RED=41
+FG_LIGHT_RED=91
+BG_LIGHT_RED=101
+FG_GREEN=32
+BG_GREEN=42
+FG_LIGHT_GREEN=92
+BG_LIGHT_GREEN=102
+FG_YELLOW=33
+BG_YELLOW=43
+FG_LIGHT_YELLOW=93
+BG_LIGHT_YELLOW=103
+FG_BLUE=34
+BG_BLUE=44
+FG_LIGHT_BLUE=94
+BG_LIGHT_BLUE=104
+FG_PURPLE=35
+BG_PURPLE=45
+FG_LIGHT_PURPLE=95
+BG_LIGHT_PURPLE=105
+FG_TURQUOISE=36
+BG_TURQUOISE=46
+FG_LIGHT_TURQUOISE=96
+BG_LIGHT_TURQUOISE=106
+
+BACKGROUNDS=( \
+  $BG_DEFAULT \
+  $BG_BLACK \
+  $BG_BLACK \
+  $BG_LIGHT_BLACK \
+  $BG_GREY \
+  $BG_LIGHT_GREY \
+  $BG_RED \
+  $BG_LIGHT_RED \
+  $BG_GREEN \
+  $BG_LIGHT_GREEN \
+  $BG_YELLOW \
+  $BG_LIGHT_YELLOW \
+  $BG_BLUE \
+  $BG_LIGHT_BLUE \
+  $BG_PURPLE \
+  $BG_LIGHT_PURPLE \
+  $BG_TURQUOISE \
+  $BG_LIGHT_TURQUOISE \
+)
+
+FOREGROUNDS=( \
+  $FG_DEFAULT \
+  $FG_BLACK \
+  $FG_BLACK \
+  $FG_LIGHT_BLACK \
+  $FG_GREY \
+  $FG_LIGHT_GREY \
+  $FG_RED \
+  $FG_LIGHT_RED \
+  $FG_GREEN \
+  $FG_LIGHT_GREEN \
+  $FG_YELLOW \
+  $FG_LIGHT_YELLOW \
+  $FG_BLUE \
+  $FG_LIGHT_BLUE \
+  $FG_PURPLE \
+  $FG_LIGHT_PURPLE \
+  $FG_TURQUOISE \
+  $FG_LIGHT_TURQUOISE \
+)
+
 __msg2() {
   local reset='\e[0m'
   local code='\e[0;'${1}'m'
@@ -31,6 +110,12 @@ __msg1() {
     "${3}" "${normal}" "${bright}" "${dimmed}" "${background}"
 }
 
+__msg3() {
+  local txt='sample text'
+  local cl='\e[0;'${1}';'${2}'m'
+  local reset='\e[0m'
+  printf "${cl}%s${reset}" "${txt}"
+}
 
 __show() {
   __msg1 39 49 "Default"
@@ -59,3 +144,16 @@ __show
 echo ""
 __box
 echo ""
+
+if [[ "${1}" = "-v" ]]; then
+
+  for bg in ${BACKGROUNDS[@]}; do
+    i=0
+    for fg in ${FOREGROUNDS[@]}; do
+      __msg3 "${fg}" "${bg}"
+      i=$((i+1))
+      [[ $((i % 3)) -eq 0 ]] && echo "" || printf "  "
+    done
+    echo ""
+  done
+fi

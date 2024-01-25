@@ -6,7 +6,8 @@
 	"theme": "Adaptive.sublime-theme",
 	// editor settings
 	"draw_white_space": ["all_tabs", "selection_all", "trailing"],
-	"font_face": "Monaspace Radon",
+	//"font_face": "Monaspace Radon",
+	"font_face": "JetBrains Mono",
 	"font_size": 20,
 	"mini_diff": "auto",
 	"show_encoding": true,

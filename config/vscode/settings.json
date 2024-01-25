@@ -31,15 +31,6 @@
   "window.titleBarStyle": "custom",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${rootPath} ${dirty}",
-  "terminal.integrated.profiles.osx": {
-    "bash": {
-      "path": "bash",
-      "args": [
-        "--login"
-      ],
-      "icon": "terminal-bash"
-    }
-  },
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
@@ -105,39 +96,6 @@
   "cSpell.enableFiletypes": [
     "*",
     "!go.mod"
-  ],
-  "cSpell.userWords": [
-    "buildx",
-    "Cascadia",
-    "codelenses",
-    "containerd",
-    "fieldalignment",
-    "gamerhound",
-    "goboilerplate",
-    "gofumpt",
-    "Gopath",
-    "gopls",
-    "gotools",
-    "govulncheck",
-    "httpx",
-    "ihttp",
-    "ilog",
-    "keyrings",
-    "kutavi",
-    "middlewares",
-    "moukoublen",
-    "Msgf",
-    "nilness",
-    "runtest",
-    "scrollback",
-    "staticcheck",
-    "struct",
-    "traefik",
-    "unusedparams",
-    "unusedvariable",
-    "unusedwrite",
-    "useany",
-    "zerolog"
   ],
   // <golang>
   "[go]": {
