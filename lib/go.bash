@@ -96,6 +96,10 @@ install-go-tools() {(
   go-install 'mvdan.cc/gofumpt@latest'
   #__install_binary "${GOPATH}"/bin/gofumpt
 
+  # https://github.com/daixiang0/gci/releases
+  go-install 'github.com/daixiang0/gci@latest'
+  #__install_binary "${GOPATH}"/bin/gci
+
   # https://github.com/mgechev/revive/releases
   go-install 'github.com/mgechev/revive@latest'
   #__install_binary "${GOPATH}"/bin/revive

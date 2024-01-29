@@ -25,25 +25,9 @@ path-real() {
 DOTFILES_PATH="$(path-real "${BASH_SOURCE[0]}")"
 export DOTFILES_PATH
 
-alias exa-tree='command exa --tree --icons --git-ignore'
-alias to-ack='ack --files-from=-' #pipe find results
-alias to-grep='xargs grep --color=auto' #pipe find results
-alias path-to-lines='echo $PATH | tr ":" "\n"'
-alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
-S() {
-  find . -name "*${*}*"
-}
-
 ################################################################################
 ######### Source libs ##########################################################
 source "${DOTFILES_PATH}/lib/root/pathmixer.bash"
-
-if command -v starship &> /dev/null; then
-  export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
-  eval "$(starship init bash)"
-else
-  source "${DOTFILES_PATH}/lib/root/ps1.bash"
-fi
 
 case "$(uname)" in
   "Darwin")
@@ -53,6 +37,13 @@ case "$(uname)" in
     source "${DOTFILES_PATH}/lib/root/linux.bash"
     ;;
 esac
+
+if command -v starship &> /dev/null; then
+  export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
+  eval "$(starship init bash)"
+else
+  source "${DOTFILES_PATH}/lib/root/ps1.bash"
+fi
 
 for i in "${DOTFILES_PATH}"/lib/*.bash
 do
@@ -82,3 +73,12 @@ HISTSIZE=11000
 HISTFILESIZE=11000
 
 complete -c ww
+
+alias exa-tree='command exa --tree --icons --git-ignore'
+alias to-ack='ack --files-from=-' #pipe find results
+alias to-grep='xargs grep --color=auto' #pipe find results
+alias path-to-lines='echo $PATH | tr ":" "\n"'
+alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
+S() {
+  find . -name "*${*}*"
+}

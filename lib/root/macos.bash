@@ -1,25 +1,23 @@
 add_to_path /usr/local/bin/
+#add_to_path /usr/local/sbin
 
 ################################################################################
 ##################### Homebrew #################################################
-M_HAS_BREW_INSTALLED=false
-M_BREW_PREFIX=""
-if command -v brew 1>/dev/null 2>&1; then
-  M_HAS_BREW_INSTALLED=true
-  M_BREW_PREFIX=$(brew --prefix) # /opt/homebrew
-  #add_to_path /usr/local/sbin
+#if command -v brew 1>/dev/null 2>&1; then
+if [[ -d /opt/homebrew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  #export HOMEBREW_PREFIX="/opt/homebrew"
+  #export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+  #export HOMEBREW_REPOSITORY="/opt/homebrew"
+  #export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
+  #export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
+  #export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
+
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    export BASH_COMPLETION_COMPAT_DIR="${HOMEBREW_PREFIX}/etc/bash_completion.d"
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  fi
 fi
-
-if [[ ${M_HAS_BREW_INSTALLED} = true ]] && [[ -r "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-  export BASH_COMPLETION_COMPAT_DIR="${M_BREW_PREFIX}/etc/bash_completion.d"
-  source "${M_BREW_PREFIX}/etc/profile.d/bash_completion.sh"
-fi
-
-# brew install coreutils (e.g.: cat, chmod, chroot, cp, dd, dir, du, echo, ls)
-# [[ -d ${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin ]] && add_to_path "${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-
-# brew install findutils (find, locate, updatedb, xargs)
-# [[ -d ${M_BREW_PREFIX}/opt/findutils/libexec/gnubin ]] && add_to_path "${M_BREW_PREFIX}/opt/findutils/libexec/gnubin"
 
 ################################################################################
 ################################################################################
@@ -33,30 +31,36 @@ alias ldd='otool -L'
 alias tree='command tree -C'
 alias allow='xattr -r -d com.apple.quarantine'
 
-if [[ -d ${M_BREW_PREFIX}/opt/grep/libexec/gnubin ]]; then
+if [[ -d ${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin ]]; then
   alias grep='command ggrep --color=auto'
 else
   alias grep='command grep --color=auto'
 fi
 
-if [[ -d ${M_BREW_PREFIX}/opt/coreutils/libexec/gnubin ]]; then
+# PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
+if [[ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ]]; then
   alias ll='command gls -la --color=auto'
   alias ls='command gls --color=auto'
+  alias cat='command gcat'
+  [[ -e $HOME/.dir_colors ]] && eval $(gdircolors ~/.dir_colors)
 else
   alias ll='command ls -laG'
   alias ls='command ls -G'
 fi
 
-if [[ -d ${M_BREW_PREFIX}/opt/make/libexec/gnubin ]]; then
+# brew install findutils (find, locate, updatedb, xargs)
+# [[ -d ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin ]] && add_to_path "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+
+if [[ -d ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin ]]; then
   alias make='command gmake'
 fi
 
-if [[ -d ${M_BREW_PREFIX}/opt/gnu-sed/libexec/gnubin ]]; then
+if [[ -d ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin ]]; then
   alias sed='command gsed'
 fi
 
-if [[ -d ${M_BREW_PREFIX}/opt/curl/bin ]]; then
-  alias curl="${M_BREW_PREFIX}/opt/curl/bin/curl"
+if [[ -d ${HOMEBREW_PREFIX}/opt/curl/bin ]]; then
+  alias curl="${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 fi
 
 export LANG='en_US.UTF-8';
@@ -80,4 +84,7 @@ sizes-disks() {
 }
 export -f sizes-disks
 
-export EDITOR="${M_BREW_PREFIX}/bin/vim"
+export EDITOR="${HOMEBREW_PREFIX}/bin/vim"
+
+# brew list installed package content
+# brew ls --verbose <name/s>
