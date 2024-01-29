@@ -2,18 +2,13 @@
 
 
 extensions=(
-amazonwebservices.aws-toolkit-vscode
 anweber.vscode-httpyac
 attilathedud.data-converter
-dracula-theme.theme-dracula
 eamodio.gitlens
 EditorConfig.EditorConfig
 GitHub.github-vscode-theme
 github.vscode-github-actions
 golang.go
-GraphQL.vscode-graphql
-GraphQL.vscode-graphql-execution
-GraphQL.vscode-graphql-syntax
 hashicorp.hcl
 hashicorp.terraform
 inferrinizzard.prettier-sql-vscode
