@@ -1,5 +1,5 @@
-add_to_path /usr/local/bin/
-#add_to_path /usr/local/sbin
+path-add /usr/local/bin/
+#path-add /usr/local/sbin
 
 ################################################################################
 ##################### Homebrew #################################################
@@ -49,7 +49,7 @@ else
 fi
 
 # brew install findutils (find, locate, updatedb, xargs)
-# [[ -d ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin ]] && add_to_path "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+# [[ -d ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin ]] && path-add "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
 
 if [[ -d ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin ]]; then
   alias make='command gmake'

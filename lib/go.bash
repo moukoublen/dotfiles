@@ -3,7 +3,7 @@
 if [ -d /usr/local/go ]; then
   # No need of GOROOT in case of default path (/usr/local/go)
   #export GOROOT=/path/to/special/go
-  add_to_path /usr/local/go/bin
+  path-add /usr/local/go/bin
 fi
 
 if command -v go 1>/dev/null 2>&1; then
@@ -14,7 +14,7 @@ if command -v go 1>/dev/null 2>&1; then
     export GOPATH="${HOME}/goworkspace"
   fi
 
-  add_to_path "$(go env GOPATH)/bin"
+  path-add "$(go env GOPATH)/bin"
 fi
 
 if command -v golangci-lint 1>/dev/null 2>&1; then

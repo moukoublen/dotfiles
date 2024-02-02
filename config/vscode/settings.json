@@ -239,6 +239,7 @@
       "editorGutter.modifiedBackground": "#bc8cff", // scale-purple-3
       "editorOverviewRuler.modifiedForeground": "#bc8cff" // scale-purple-3
     }
-  }
+  },
+  "editor.accessibilitySupport": "off"
   // </themes and colors mods>
 }

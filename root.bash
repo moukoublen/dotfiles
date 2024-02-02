@@ -52,6 +52,8 @@ do
   fi
 done
 
+complete -c ww
+
 for e in "${HOME}"/.dotfiles-extras/*
 do
   source "${e}"
@@ -64,15 +66,13 @@ done 2>/dev/null
 ################################################################################
 ################################################################################
 
-add_to_path "${DOTFILES_PATH}/bin"
-add_to_path "${HOME}/bin"
+path-add "${DOTFILES_PATH}/bin"
+path-add "${HOME}/bin"
 
 bind 'set mark-symlinked-directories on'
 
 HISTSIZE=11000
 HISTFILESIZE=11000
-
-complete -c ww
 
 alias exa-tree='command exa --tree --icons --git-ignore'
 alias to-ack='ack --files-from=-' #pipe find results

@@ -1,4 +1,4 @@
-add_to_path() {
+path-add() {
   if [[ "${1}" == "" ]]; then
     return
   fi
@@ -14,12 +14,12 @@ add_to_path() {
   export PATH;
 }
 
-load_path_file_to_path() {
+load-path-file() {
   if [ -f ~/.path ]; then
     while read p; do
       [[ ${p} = "" ]] && continue
       p=$(eval echo \"${p}\")
-      add_to_path ${p}
+      path-add ${p}
     done < ~/.path
     unset p
   fi
