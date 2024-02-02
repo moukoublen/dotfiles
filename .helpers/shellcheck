@@ -5,12 +5,21 @@ if ! command -v shellcheck &> /dev/null; then
   exit 1
 fi
 
+mapfile -t FILES < <(find . \
+  \( -not -name 'root.bash' \) \
+  -a \( -not -path './.git/*' \) \
+  -a \( -not -path './config/gnome/lib/palettes/*' \) \
+  -a \( -name '*.bash' -o \( -type f -a -executable \) \) \
+  -print)
+
+set -ex
+
 shellcheck \
-   --shell=bash \
+  --shell=bash \
   --exclude=SC1090 \
   --external-sources \
   --severity=warning \
   --format=tty \
   --norc \
   root.bash \
-  $(find . \( -not -path "./.git/*" \) -a \( -not -name 'root.bash' \) -a \( -name '*.bash' -o \( -type f -a -executable \) \) -print)
+  "${FILES[@]}"
