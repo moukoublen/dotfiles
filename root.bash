@@ -74,9 +74,6 @@ bind 'set mark-symlinked-directories on'
 HISTSIZE=11000
 HISTFILESIZE=11000
 
-alias exa-tree='command exa --tree --icons --git-ignore'
-alias to-ack='ack --files-from=-' #pipe find results
-alias to-grep='xargs grep --color=auto' #pipe find results
 alias path-to-lines='echo $PATH | tr ":" "\n"'
 alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 S() {
