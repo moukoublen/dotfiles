@@ -1,0 +1,22 @@
+name: shellcheck
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+
+    # https://github.com/actions/checkout
+    - uses: actions/checkout@v4
+
+    - name: install shellcheck and bash
+      run: sudo apt-get install -y shellcheck bash
+
+    - name: run shellcheck
+      run: ./.helpers/shellcheck
