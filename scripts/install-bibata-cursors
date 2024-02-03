@@ -24,7 +24,8 @@ __install_bibata_cursors_() {
   local EXT=$4
   local UNCOMPRESS=$5
 
-  local URL=$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)
+  local URL
+  URL="$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)"
   echo ""
   echo -e "Installing \e[1;33m${NAME}\e[0m"
   (

@@ -19,20 +19,25 @@ export -f __local_version
 __get_dl_url() {
   local JS_BODY="${1}"
 
-  local arch="$(uname -m)"
+  local arch
+  arch="$(uname -m)"
   if [[ "${arch}" == "x86_64" ]]; then
     arch="amd64"
   fi
 
-  local ends_with=$(echo "$(uname -s)_${arch}.tar.gz" | tr '[:upper:]' '[:lower:]')
+  local ends_with
+  ends_with=$(echo "$(uname -s)_${arch}.tar.gz" | tr '[:upper:]' '[:lower:]')
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"
 }
 export -f __get_dl_url
 
 __install_exec() {
-  local BIN_DIR="${1}"
-  local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  local BIN_DIR
+  local DOWNLOADED_FULL_PATH
+  local TMP_DIR
+  BIN_DIR="${1}"
+  DOWNLOADED_FULL_PATH="${2}"
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
 
   #extract
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"

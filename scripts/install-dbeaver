@@ -7,7 +7,7 @@ __remote_version() {
 export -f __remote_version
 
 __local_version() {(
-  local BIN_DIR="${1:-/usr/local/bin}" # not used in this case
+  #local BIN_DIR="${1:-/usr/local/bin}" # not used in this case
   [[ ! -e /usr/share/dbeaver-ce/.eclipseproduct ]] && echo "" && return
   cat /usr/share/dbeaver-ce/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
 )}
@@ -31,9 +31,10 @@ __get_dl_url() {
 export -f __get_dl_url
 
 __install_exec() {
-  local BIN_DIR="${1}" # not used in this case
+  #local BIN_DIR="${1}" # not used in this case
   local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
 
   case "$(what-pm)" in
     "dnf")
@@ -44,7 +45,7 @@ __install_exec() {
       sudo apt -y install "${DOWNLOADED_FULL_PATH}"
       ;;
     *)
-      return -1
+      return 1
       ;;
   esac
 }

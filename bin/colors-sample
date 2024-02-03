@@ -38,45 +38,45 @@ FG_LIGHT_TURQUOISE=96
 BG_LIGHT_TURQUOISE=106
 
 BACKGROUNDS=( \
-  $BG_DEFAULT \
-  $BG_BLACK \
-  $BG_BLACK \
-  $BG_LIGHT_BLACK \
-  $BG_GREY \
-  $BG_LIGHT_GREY \
-  $BG_RED \
-  $BG_LIGHT_RED \
-  $BG_GREEN \
-  $BG_LIGHT_GREEN \
-  $BG_YELLOW \
-  $BG_LIGHT_YELLOW \
-  $BG_BLUE \
-  $BG_LIGHT_BLUE \
-  $BG_PURPLE \
-  $BG_LIGHT_PURPLE \
-  $BG_TURQUOISE \
-  $BG_LIGHT_TURQUOISE \
+  "${BG_DEFAULT}" \
+  "${BG_BLACK}" \
+  "${BG_BLACK}" \
+  "${BG_LIGHT_BLACK}" \
+  "${BG_GREY}" \
+  "${BG_LIGHT_GREY}" \
+  "${BG_RED}" \
+  "${BG_LIGHT_RED}" \
+  "${BG_GREEN}" \
+  "${BG_LIGHT_GREEN}" \
+  "${BG_YELLOW}" \
+  "${BG_LIGHT_YELLOW}" \
+  "${BG_BLUE}" \
+  "${BG_LIGHT_BLUE}" \
+  "${BG_PURPLE}" \
+  "${BG_LIGHT_PURPLE}" \
+  "${BG_TURQUOISE}" \
+  "${BG_LIGHT_TURQUOISE}" \
 )
 
 FOREGROUNDS=( \
-  $FG_DEFAULT \
-  $FG_BLACK \
-  $FG_BLACK \
-  $FG_LIGHT_BLACK \
-  $FG_GREY \
-  $FG_LIGHT_GREY \
-  $FG_RED \
-  $FG_LIGHT_RED \
-  $FG_GREEN \
-  $FG_LIGHT_GREEN \
-  $FG_YELLOW \
-  $FG_LIGHT_YELLOW \
-  $FG_BLUE \
-  $FG_LIGHT_BLUE \
-  $FG_PURPLE \
-  $FG_LIGHT_PURPLE \
-  $FG_TURQUOISE \
-  $FG_LIGHT_TURQUOISE \
+  "${FG_DEFAULT}" \
+  "${FG_BLACK}" \
+  "${FG_BLACK}" \
+  "${FG_LIGHT_BLACK}" \
+  "${FG_GREY}" \
+  "${FG_LIGHT_GREY}" \
+  "${FG_RED}" \
+  "${FG_LIGHT_RED}" \
+  "${FG_GREEN}" \
+  "${FG_LIGHT_GREEN}" \
+  "${FG_YELLOW}" \
+  "${FG_LIGHT_YELLOW}" \
+  "${FG_BLUE}" \
+  "${FG_LIGHT_BLUE}" \
+  "${FG_PURPLE}" \
+  "${FG_LIGHT_PURPLE}" \
+  "${FG_TURQUOISE}" \
+  "${FG_LIGHT_TURQUOISE}" \
 )
 
 __msg2() {
@@ -147,9 +147,9 @@ echo ""
 
 if [[ "${1}" = "-v" ]]; then
 
-  for bg in ${BACKGROUNDS[@]}; do
+  for bg in "${BACKGROUNDS[@]}"; do
     i=0
-    for fg in ${FOREGROUNDS[@]}; do
+    for fg in "${FOREGROUNDS[@]}"; do
       __msg3 "${fg}" "${bg}"
       i=$((i+1))
       [[ $((i % 3)) -eq 0 ]] && echo "" || printf "  "

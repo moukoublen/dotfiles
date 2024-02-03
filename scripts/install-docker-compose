@@ -20,7 +20,8 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  local BINARY=$(echo "docker-compose-$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
+  local BINARY
+  BINARY=$(echo "docker-compose-$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${BINARY}$\")) | .browser_download_url"
 }
 export -f __get_dl_url
@@ -28,7 +29,7 @@ export -f __get_dl_url
 __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+
   cp "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}"/docker-compose
   chmod +x "${BIN_DIR}"/docker-compose
 }

@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
 mkdir -p ~/gitrepos/themes-icons
-(cd ~/gitrepos/themes-icons; git clone https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git)
+(
+  cd ~/gitrepos/themes-icons || exit 1
+  git clone https://github.com/PapirusDevelopmentTeam/papirus-icon-theme.git
+)

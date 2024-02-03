@@ -24,12 +24,12 @@ fi
 go-test() {
   # -p=1 -v
   (set -ex
-  go test -timeout=60s -count=1 -race $@ ./...
+  go test -timeout=60s -count=1 -race "${*}" ./...
   )
 }
 
 go-install() {
-  echo -e "> Installing \e[0;90m$@\e[0m"
+  echo -e "> Installing \e[0;90m${*}\e[0m"
   (
     set -x
     #go install -a -trimpath -ldflags '-s -w' "$@"

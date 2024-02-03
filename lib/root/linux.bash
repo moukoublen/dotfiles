@@ -48,4 +48,4 @@ export -f apt-clean-uninstalled
 
 export EDITOR=/usr/bin/vim
 
-[[ -e $HOME/.dir_colors ]] && eval $(dircolors ~/.dir_colors)
+[[ -e $HOME/.dir_colors ]] && eval "$(dircolors ~/.dir_colors)"

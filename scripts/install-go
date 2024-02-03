@@ -4,7 +4,8 @@ set -e
 # $1: version e.g. 1.17.11
 
 get_remote_latest_version() {
-  local VER=$(curl --silent --fail --location "https://go.dev/VERSION?m=text")
+  local VER
+  VER="$(curl --silent --fail --location "https://go.dev/VERSION?m=text")"
   echo "${VER}" | head -n 1 | sed 's/^go//g'
 }
 

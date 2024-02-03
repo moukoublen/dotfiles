@@ -137,7 +137,8 @@ __ps1_git() {
     fi
   fi
 
-  local gitp="$(__git_ps1 '%s')"
+  local gitp
+  gitp="$(__git_ps1 '%s')"
   if [[ -n "${gitp}" ]]; then
     printf "%s%s%s%s%s%s" \
       "${__PS1_COLORS[gitwrap]}" \
@@ -158,11 +159,12 @@ __ps1_kube() {
   local C_CTXD="${__PS1_COLORS[kube_context]}"
   local C_NSP="${__PS1_COLORS[kube_nsp]}"
   local C_RST="${__PS1_COLORS[reset]}"
-  printf "%s" $(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")
+  printf "%s" "$(kubectl config view --minify --output "jsonpath=${C_CTXD}{.current-context}(${C_NSP}{..namespace}${C_CTXD})${C_RST}")"
 }
 
 __ps1_join() {
-  local sep="$(__ps1_seperator)"
+  local sep
+  sep="$(__ps1_seperator)"
   local BUF=""
 
   if [[ "$#" -eq 0 ]]; then
@@ -182,7 +184,8 @@ __ps1_join() {
 }
 
 __ps1() {
-  local dl=$(__ps1_join "$(__ps1_user)" "$(__ps1_host)" "$(__ps1_pwd)" "$(__ps1_git)" "$(__ps1_kube)")
+  local dl
+  dl="$(__ps1_join "$(__ps1_user)" "$(__ps1_host)" "$(__ps1_pwd)" "$(__ps1_git)" "$(__ps1_kube)")"
 
   #local prompt=$'\u2771' # ❱
   local prompt=$'\u276D' # ❭

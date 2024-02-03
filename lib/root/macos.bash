@@ -42,25 +42,25 @@ if [[ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ]]; then
   alias ll='command gls -la --color=auto'
   alias ls='command gls --color=auto'
   alias cat='command gcat'
-  [[ -e $HOME/.dir_colors ]] && eval $(gdircolors ~/.dir_colors)
+  [[ -e "${HOME}/.dir_colors" ]] && eval "$(gdircolors ~/.dir_colors)"
 else
   alias ll='command ls -laG'
   alias ls='command ls -G'
 fi
 
 # brew install findutils (find, locate, updatedb, xargs)
-# [[ -d ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin ]] && path-add "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+# [[ -d "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin" ]] && path-add "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
 
-if [[ -d ${HOMEBREW_PREFIX}/opt/make/libexec/gnubin ]]; then
+if [[ -d "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin" ]]; then
   alias make='command gmake'
 fi
 
-if [[ -d ${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin ]]; then
+if [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]]; then
   alias sed='command gsed'
 fi
 
-if [[ -d ${HOMEBREW_PREFIX}/opt/curl/bin ]]; then
-  alias curl="${HOMEBREW_PREFIX}/opt/curl/bin/curl"
+if [[ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]]; then
+  alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 fi
 
 export LANG='en_US.UTF-8';

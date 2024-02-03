@@ -19,7 +19,8 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  local ENDSWITH=$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
+  local ENDSWITH
+  ENDSWITH=$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
   case "${ENDSWITH}" in
     linux-x86_64)
       ENDSWITH="linux-amd64"
@@ -38,7 +39,8 @@ export -f __get_dl_url
 __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  #local TMP_DIR
+  #TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
   cp "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}"/docker-buildx
   chmod +x "${BIN_DIR}"/docker-buildx
 }

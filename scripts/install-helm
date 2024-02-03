@@ -16,7 +16,8 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  local VERSION=$(echo "${JS_BODY}" | jq -r '.tag_name')
+  local VERSION
+  VERSION=$(echo "${JS_BODY}" | jq -r '.tag_name')
   echo "https://get.helm.sh/helm-${VERSION}-linux-amd64.tar.gz"
 }
 export -f __get_dl_url
@@ -24,7 +25,8 @@ export -f __get_dl_url
 __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}" --strip-components=1
 
   #install binary

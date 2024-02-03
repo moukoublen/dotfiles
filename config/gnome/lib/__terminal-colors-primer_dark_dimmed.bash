@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 ## Primer Dark_dimmed Mode
-source __colors-primer.bash
+SRC_PATH=
+SRC_PATH="$(realpath "${0}")"
+source ${SRC_PATH}/__colors-primer.bash
 
 export C_FG=${primer_dark_dimmed['white']}
 export C_BG=${primer_dark_dimmed['black']}

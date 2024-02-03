@@ -5,9 +5,9 @@ docker-stop-all() {
     printf "Stoping %s ... " "${i}"
     docker stop ${i} > /dev/null
     if [ $? -eq 0 ]; then
-      printf "\e[1;32mDone!\e[m\n" "${i}"
+      printf "\e[1;32mDone!\e[m\n"
     else
-      printf "\e[1;31mFailed!\e[m\n" "${i}"
+      printf "\e[1;31mFailed!\e[m\n"
     fi
   done
 }

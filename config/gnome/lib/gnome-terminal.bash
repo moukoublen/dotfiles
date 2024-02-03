@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-# it prints  "[name] [uuid]"
+# __gnome_terminal_profile_name_and_uuid prints  "[name] [uuid]"
 __gnome_terminal_profile_name_and_uuid() {
   local REQ_NAME="${1}"
   if [[ -z "${REQ_NAME}" ]]; then
-    echo "Default $(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
+    echo -n "Default $(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
     return
   fi
 
-  local PROFILES_ARRAY=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
+  local PROFILES_ARRAY=()
+  readarray -d ' ' -t PROFILES_ARRAY < <(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',\n")
   for PRF in "${PROFILES_ARRAY[@]}"; do
-    local name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
+    local name
+    name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
     if [[ $name == "'${REQ_NAME}'" ]]; then
-      echo "$REQ_NAME $PRF"
+      echo -n "$REQ_NAME $PRF"
       return 0
     fi
   done
@@ -23,18 +25,22 @@ __gnome_terminal_profile_name_and_uuid() {
 # prints (name, uuid, profile_path)
 __gnome_terminal_profile() {
   local GT_OUTPUT=()
-  if ! GT_OUTPUT=($(__gnome_terminal_profile_name_and_uuid "${1}")); then
+  readarray -d ' ' -t GT_OUTPUT < <(__gnome_terminal_profile_name_and_uuid "${1}")
+  if [ $? -ne 0 ]; then
     return 1
   fi
 
-  echo "${GT_OUTPUT[0]} ${GT_OUTPUT[1]} org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${GT_OUTPUT[1]}/"
+  echo -n "${GT_OUTPUT[0]} ${GT_OUTPUT[1]} org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${GT_OUTPUT[1]}/"
 }
 
+# __gnome_terminal_profile_list prints all available gnome terminal profiles. It is used only for UI message.
 __gnome_terminal_profile_list() {
   echo -e "\e[0;37mAvailable profiles:\e[0m"
-  local PROFILES_ARRAY=($(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',"))
+  local PROFILES_ARRAY=()
+  readarray -d ' ' -t PROFILES_ARRAY < <(gsettings get org.gnome.Terminal.ProfilesList list | tr -d "[]\',")
   for PRF in "${PROFILES_ARRAY[@]}"; do
-    local NAME=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
+    local NAME
+    NAME=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
     echo -e "  \e[0;36m${NAME}\e[0m" | tr -d \'
   done
 }
@@ -120,7 +126,8 @@ profilesettings=( \
 
 __set-settings() {
   local PROFILE=()
-  if ! PROFILE=($(__gnome_terminal_profile ${1})); then
+  readarray -d ' ' -t PROFILE < <(__gnome_terminal_profile "${1}")
+  if [ $? -ne 0 ]; then
     echo -e "\e[0;31mWrong profile name \e[1;31m${1}\e[0m"
     __gnome_terminal_profile_list
     return 1
@@ -136,8 +143,9 @@ __set-settings() {
 }
 
 __get-settings() {
-  local PROFILE=()
-  if ! PROFILE=($(__gnome_terminal_profile ${1})); then
+  local PROFILE
+  readarray -d ' ' -t PROFILE < <(__gnome_terminal_profile "${1}")
+  if [ $? -ne 0 ]; then
     echo -e "\e[0;31mWrong profile name \e[1;31m${1}\e[0m"
     __gnome_terminal_profile_list
     return 1

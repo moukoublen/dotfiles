@@ -23,7 +23,9 @@ export -f __get_dl_url
 __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
-  local TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
   sudo cp "${TMP_DIR}"/k9s "${BIN_DIR}"/k9s
 }
