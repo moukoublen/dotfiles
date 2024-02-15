@@ -56,3 +56,4 @@ fi
 "${DOTFILES_PATH}"/scripts/install-kind
 "${DOTFILES_PATH}"/scripts/install-minikube
 "${DOTFILES_PATH}"/scripts/install-starship
+"${DOTFILES_PATH}"/scripts/install-elastic-package

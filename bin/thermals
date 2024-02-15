@@ -1,13 +1,38 @@
 #!/usr/bin/env bash
 
+echo -e "\e[1;36mThermals\e[0m"
 for d in /sys/class/thermal/thermal_zone*/ ; do
-  cat "${d}/type" | tr -d '\n' | tr ' ' '_'
-  echo -n -e "\t"
+  cat "${d}/type" | tr -d '\n'
+
+  echo -n -e "|"
+  temp=
   temp=$(cat "${d}/temp" | tr -d '\n')
-  echo "scale=2; ${temp} / 1000" | bc -l
+  temp=$(echo "scale=2; ${temp} / 1000" | bc -l)
+  echo -n "${temp}"
+
+  echo -n -e "|"
+  cat "${d}/mode" | tr -d '\n'
+
   echo ""
-done | column -t
+done | column -t --separator '|'
 
+#echo ""
+#echo ""
 
+#echo -e "\e[1;36mCooling\e[0m"
+#for d in /sys/class/thermal/cooling_device*// ; do
+#  cat "${d}/type" | tr -d '\n'
 
-# for d in /sys/class/thermal/cooling_device*/ ; do cat "${d}"/*; done
+#  echo -n -e "|"
+#  cat "${d}/cur_state" | tr -d '\n'
+#  echo -n "/"
+#  cat "${d}/max_state" | tr -d '\n'
+
+#  echo -n -e "|"
+#  realpath "${d}/device" | tr -d '\n'
+
+#  echo ""
+#done | column -t --separator '|'
+
+# for d in /sys/class/thermal/cooling_device*/ ; do ls -la "${d}"; done
+# for d in /sys/class/thermal/thermal_zone*/; do ls -la "${d}"; done

@@ -70,11 +70,9 @@ install-go-tools() {(
   go-install "golang.org/x/tools/go/analysis/passes/stringintconv/cmd/stringintconv@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/unmarshal/cmd/unmarshal@${GO_X_TOOLS_VER}"
   go-install "golang.org/x/tools/go/analysis/passes/unusedresult/cmd/unusedresult@${GO_X_TOOLS_VER}"
-  #__install_binary "${GOPATH}"/bin/{goimports,fieldalignment,shadow}
   # go vet -vettool=$(which shadow) ./...
 
   go-install "golang.org/x/vuln/cmd/govulncheck@latest"
-
 
   # https://github.com/dominikh/go-tools/releases (https://staticcheck.io/)
   HONNEF_VER=latest
@@ -82,55 +80,40 @@ install-go-tools() {(
   go-install "honnef.co/go/tools/cmd/structlayout@${HONNEF_VER}"
   go-install "honnef.co/go/tools/cmd/structlayout-pretty@${HONNEF_VER}"
   go-install "honnef.co/go/tools/cmd/structlayout-optimize@${HONNEF_VER}"
-  #__install_binary "${GOPATH}"/bin/{staticcheck,structlayout,structlayout-pretty,structlayout-optimize}
 
   # https://github.com/golangci/golangci-lint/releases
   go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@latest'
-  #__install_binary "${GOPATH}"/bin/golangci-lint
 
   # https://github.com/securego/gosec/releases
   go-install 'github.com/securego/gosec/v2/cmd/gosec@latest'
-  #__install_binary "${GOPATH}"/bin/gosec
 
   # https://github.com/mvdan/gofumpt/releases
   go-install 'mvdan.cc/gofumpt@latest'
-  #__install_binary "${GOPATH}"/bin/gofumpt
 
   # https://github.com/daixiang0/gci/releases
   go-install 'github.com/daixiang0/gci@latest'
-  #__install_binary "${GOPATH}"/bin/gci
 
   # https://github.com/mgechev/revive/releases
   go-install 'github.com/mgechev/revive@latest'
-  #__install_binary "${GOPATH}"/bin/revive
 
   ################################################################
   ################################################################
 
   # https://github.com/mozilla/sops/releases
   go-install 'github.com/getsops/sops/v3/cmd/sops@latest'
-  #__install_binary "${GOPATH}"/bin/sops
 
   # https://github.com/orijtech/structslop/tags
   go-install 'github.com/orijtech/structslop/cmd/structslop@latest'
-  #__install_binary "${GOPATH}"/bin/structslop
 
   # https://github.com/jesseduffield/lazydocker/releases
   #go-install github.com/jesseduffield/lazydocker@latest
 
-  # https://github.com/jesseduffield/lazygit/releases
-  #go-install github.com/jesseduffield/lazygit@latest
-
-  # # https://github.com/gohugoio/hugo/releases
-  # go-install -tags extended github.com/gohugoio/hugo@latest
-
   go-install github.com/google/gops@latest
 
   #go-install github.com/elastic/elastic-package@latest
-  go-install github.com/cashapp/hermit/cmd/hermit@latest
+  #go-install github.com/cashapp/hermit/cmd/hermit@latest
 )}
 
 # Where is the go ENV file?
 # Linux you'll get $HOME/. config/go/env
 # macOS you'll get $HOME/Library/Application Support/go/env
-#
