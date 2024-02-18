@@ -28,6 +28,12 @@ go-test() {
   )
 }
 
+go-build() {
+  (set -ex
+  go build -trimpath -ldflags '-s -w' "${*}"
+  )
+}
+
 go-install() {
   echo -e "> Installing \e[0;90m${*}\e[0m"
   (
