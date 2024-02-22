@@ -71,8 +71,8 @@ path-add "${HOME}/bin"
 
 bind 'set mark-symlinked-directories on'
 
-HISTSIZE=11000
-HISTFILESIZE=11000
+HISTSIZE=30000
+HISTFILESIZE=30000
 
 alias path-to-lines='echo $PATH | tr ":" "\n"'
 alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
