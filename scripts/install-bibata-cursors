@@ -40,7 +40,7 @@ __install_bibata_cursors_() {
   echo -e "    Exctracting \e[1;34m${NAME}.${EXT}\e[0m"
   ${UNCOMPRESS} "${NAME}"
   rm "${NAME}.${EXT}"
-  [[ -d "${DST}/${NAME}" ]] && echo -e "    Delete old  \e[1;34m${DST}/${NAME}\e[0m" && rm -rf "${DST}/${NAME}"
+  [[ -d "${DST}/${NAME}" ]] && echo -e "    Delete old  \e[1;34m${DST}/${NAME}\e[0m" && rm -rf "${DST:?}/${NAME}"
   echo -e "    Move to     \e[1;34m${DST}/${NAME}\e[0m"
   mv "${TMP_DIR}/${NAME}" "${DST}"
   )
