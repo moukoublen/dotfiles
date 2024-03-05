@@ -4,8 +4,6 @@ FG_DEFAULT=39
 BG_DEFAULT=49
 FG_BLACK=30
 BG_BLACK=40
-FG_BLACK=30
-BG_BLACK=40
 FG_LIGHT_BLACK=90
 BG_LIGHT_BLACK=100
 FG_GREY=37
@@ -106,18 +104,19 @@ __msg1() {
   local dimmed='\e[3;'${1}'m'
   local background='\e[0;'${2}'m'
 
-  printf "${normal}%-15s${reset}:  %s ${normal}normal${reset} | %s ${bright}bright${reset} | %s ${dimmed}dimmed${reset} | %-9s ${background}background${reset}  |\n" \
+  printf "│ ${normal}%-15s${reset} │ %s ${normal}normal${reset} │ %s ${bright}bright${reset} │ %s ${dimmed}dimmed${reset} │ %-9s ${background}background${reset} │\n" \
     "${3}" "${normal}" "${bright}" "${dimmed}" "${background}"
 }
 
 __msg3() {
-  local txt='sample text'
+  local txt="sample text"
   local cl='\e[0;'${1}';'${2}'m'
   local reset='\e[0m'
-  printf "${cl}%s${reset}" "${txt}"
+  printf "│${cl}%s %-6s${reset}│" "${txt}" "${1}:${2}"
 }
 
 __show() {
+  echo '╭─────────────────┬─────────────────┬─────────────────┬─────────────────┬──────────────────────╮'
   __msg1 39 49 "Default"
 
   __msg1 30 40 "Black"
@@ -137,6 +136,7 @@ __show() {
   __msg1 95 105 "Light Purple"
   __msg1 36 46 "Turquoise"
   __msg1 96 106 "Light Turquoise"
+  echo '╰─────────────────┴─────────────────┴─────────────────┴─────────────────┴──────────────────────╯'
 }
 
 echo ""
@@ -147,13 +147,15 @@ echo ""
 
 if [[ "${1}" = "-v" ]]; then
 
+  i=0
   for bg in "${BACKGROUNDS[@]}"; do
-    i=0
+    j=0
     for fg in "${FOREGROUNDS[@]}"; do
       __msg3 "${fg}" "${bg}"
-      i=$((i+1))
-      [[ $((i % 3)) -eq 0 ]] && echo "" || printf "  "
+      j=$((j+1))
+      [[ $((j % 3)) -eq 0 ]] && echo "" #|| printf "  "
     done
-    echo ""
+    i=$((i+1))
+    #[[ $((i % 3)) -eq 0 ]] && echo ""
   done
 fi
