@@ -42,7 +42,7 @@ if [[ -d ${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin ]]; then
   alias ll='command gls -la --color=auto'
   alias ls='command gls --color=auto'
   alias cat='command gcat'
-  [[ -e "${HOME}/.dir_colors" ]] && eval "$(gdircolors ~/.dir_colors)"
+  [[ -e "${HOME}/.dir_colors" ]] && eval "$(gdircolors --bourne-shell ~/.dir_colors)"
 else
   alias ll='command ls -laG'
   alias ls='command ls -G'
