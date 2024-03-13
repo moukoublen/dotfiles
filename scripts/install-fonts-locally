@@ -354,7 +354,7 @@ __install_nerdnoto() {
   cp "${1}"/*.ttf "${2}"/
 }
 __fnt_nerdnoto() {
-  __installing "Noto Mono"
+  __installing "Nerd Noto Mono"
   local BODY
   local REMOTE_VERSION
   local URL
@@ -366,6 +366,41 @@ __fnt_nerdnoto() {
   )"
   __install_font_locally "${URL}" "Noto.tar.xz" "nerd-noto" __decomp_tar_xz __install_nerdnoto "${REMOTE_VERSION}"
 }
+
+__install_nerdsourcecodepro() {
+  cp "${1}"/*.ttf "${2}"/
+}
+__fnt_nerdsourcecodepro() {
+  __installing "Nerd SourceCodePro"
+  local BODY
+  local REMOTE_VERSION
+  local URL
+
+  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
+  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
+  URL="$( echo $BODY | \
+    jq '.assets[] | select(.name | test("SourceCodePro.tar.xz")) | .browser_download_url' --raw-output \
+  )"
+  __install_font_locally "${URL}" "SourceCodePro.tar.xz" "nerd-sourcecodepro" __decomp_tar_xz __install_nerdsourcecodepro "${REMOTE_VERSION}"
+}
+
+__install_nerddroid() {
+  cp "${1}"/*.otf "${2}"/
+}
+__fnt_nerddroid() {
+  __installing "Nerd Droid Sans Mono"
+  local BODY
+  local REMOTE_VERSION
+  local URL
+
+  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
+  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
+  URL="$( echo $BODY | \
+    jq '.assets[] | select(.name | test("DroidSansMono.tar.xz")) | .browser_download_url' --raw-output \
+  )"
+  __install_font_locally "${URL}" "DroidSansMono.tar.xz" "nerd-droid" __decomp_tar_xz __install_nerddroid "${REMOTE_VERSION}"
+}
+
 
 __install_intelonemono() {
   cp "${1}"/otf/*.otf "${2}"/
@@ -421,6 +456,8 @@ __FNT_ALL=( \
   cascadiacode \
   nerdjetbrainsmono \
   nerdnoto \
+  nerdsourcecodepro \
+  nerddroid \
   hubotsans \
   monasans \
   intelonemono \
