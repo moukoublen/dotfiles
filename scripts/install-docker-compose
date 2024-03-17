@@ -2,9 +2,18 @@
 
 set -e
 
-# global path: /usr/local/lib/docker/cli-plugins
-PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
-mkdir -p "${PLUGINS_DIR}"
+# $HOME/.docker/cli-plugins
+
+# /usr/local/lib/docker/cli-plugins
+# /usr/local/libexec/docker/cli-plugins
+
+# /usr/lib/docker/cli-plugins
+# /usr/libexec/docker/cli-plugins
+
+# PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
+# mkdir -p "${PLUGINS_DIR}"
+PLUGINS_DIR="/usr/local/lib/docker/cli-plugins"
+sudo mkdir -p "${PLUGINS_DIR}"
 
 __remote_version() {
   local JS_BODY="${1}"
@@ -20,9 +29,23 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  local BINARY
-  BINARY=$(echo "docker-compose-$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
-  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${BINARY}$\")) | .browser_download_url"
+  local ENDSWITH
+  ENDSWITH=$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
+  case "${ENDSWITH}" in
+    "linux-x86_64")
+      ENDSWITH="linux-x86_64"
+      ;;
+    "linux-aarch64")
+      ENDSWITH="linux-aarch64"
+      ;;
+    "darwin-x86_64")
+      ENDSWITH="darwin-x86_64"
+      ;;
+    "darwin-arm64")
+      ENDSWITH="darwin-aarch64"
+      ;;
+  esac
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | endswith(\"${ENDSWITH}\")) | .browser_download_url"
 }
 export -f __get_dl_url
 
@@ -30,8 +53,10 @@ __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
 
-  cp "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}"/docker-compose
-  chmod +x "${BIN_DIR}"/docker-compose
+  # cp "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}"/docker-compose
+  # chmod +x "${BIN_DIR}"/docker-compose
+
+  sudo install -D --owner=root --group=root --mode=0755 "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}/docker-compose"
 }
 export -f __install_exec
 
