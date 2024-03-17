@@ -7,8 +7,6 @@
 	mini = log --no-merges     --pretty=format:\"%C(yellow)%h%C(reset) %C(dim)%as%C(reset) %C(blue)%<(22)%an%C(reset) %C(brightwhite)%s%C(reset) %C(cyan)%C(dim)%d%C(reset)\"
 	hist = log --relative-date --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(22)%an%C(reset) %C(green)%<(15)%cd%C(reset) %s%C(bold red)%d%C(reset)\"
 	f = fetch --all --prune --prune-tags
-[core]
-	editor = vim
 [tag]
 	sort = -version:refname
 [url "git@github.com:"]
@@ -24,3 +22,16 @@
 	defaultBranch = main
 [commit]
 	gpgsign = true
+
+[core]
+	editor = vim
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+# https://dandavison.github.io/delta/configuration.html

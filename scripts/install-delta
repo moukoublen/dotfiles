@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+set -e
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}"/delta ]] && "${BIN_DIR}"/delta --version | sed 's/delta *//'
+}
+export -f __local_version
+
+__get_dl_url() {
+  local OS_ARCH
+  OS_ARCH="$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')"
+
+  local JQ_SELECT
+  case "${OS_ARCH}" in
+    "darwin-arm64")
+      ## TODO
+      ;;
+    "linux-x86_64")
+      JQ_SELECT='select(.name | endswith("-x86_64-unknown-linux-gnu.tar.gz"))'
+      ;;
+    "linux-aarch64")
+      ## TODO
+      ;;
+  esac
+
+
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r ".assets[] | ${JQ_SELECT} | .browser_download_url"
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+
+  tar --strip-components=1 --extract --gzip --file="${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
+  sudo cp "${TMP_DIR}"/delta "${BIN_DIR}"/delta
+}
+export -f __install_exec
+
+
+install-from-github  \
+  --name                 "delta" \
+  --repo                 "dandavison/delta" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "downloaded.tar.gz" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin" \
+  "${@}"
+
+# https://github.com/dandavison/delta/releases
