@@ -24,3 +24,5 @@ echo "Purple          05: ${C_05}"
 echo "Light Purple    13: ${C_13}"
 echo "Turquoise       06: ${C_06}"
 echo "Light Turquoise 14: ${C_14}"
+
+echo "Gnome terminal profile palette: ${C_PAL}"

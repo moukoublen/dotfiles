@@ -367,6 +367,24 @@ __fnt_nerdnoto() {
   __install_font_locally "${URL}" "Noto.tar.xz" "nerd-noto" __decomp_tar_xz __install_nerdnoto "${REMOTE_VERSION}"
 }
 
+#IBMPlexMono.tar.xz
+__install_nerdibm() {
+  cp "${1}"/*.ttf "${2}"/
+}
+__fnt_nerdibm() {
+  __installing "Nerd IBM Plex Mono"
+  local BODY
+  local REMOTE_VERSION
+  local URL
+
+  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
+  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
+  URL="$( echo $BODY | \
+    jq '.assets[] | select(.name | test("IBMPlexMono.tar.xz")) | .browser_download_url' --raw-output \
+  )"
+  __install_font_locally "${URL}" "IBMPlexMono.tar.xz" "nerd-ibmplexmono" __decomp_tar_xz __install_nerdibm "${REMOTE_VERSION}"
+}
+
 __install_nerdsourcecodepro() {
   cp "${1}"/*.ttf "${2}"/
 }
@@ -458,6 +476,7 @@ __FNT_ALL=( \
   nerdnoto \
   nerdsourcecodepro \
   nerddroid \
+  nerdibm \
   hubotsans \
   monasans \
   intelonemono \
