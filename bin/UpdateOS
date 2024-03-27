@@ -48,6 +48,7 @@ then
 fi
 
 "${DOTFILES_PATH}"/scripts/install-bat
+"${DOTFILES_PATH}"/scripts/install-delta
 #"${DOTFILES_PATH}"/scripts/install-dbeaver
 "${DOTFILES_PATH}"/scripts/install-docker-buildx
 "${DOTFILES_PATH}"/scripts/install-docker-compose
