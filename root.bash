@@ -27,8 +27,6 @@ export DOTFILES_PATH
 
 ################################################################################
 ######### Source libs ##########################################################
-source "${DOTFILES_PATH}/lib/root/pathmixer.bash"
-
 for i in "${DOTFILES_PATH}"/lib/*.bash
 do
   if [ -r "${i}" ]; then
@@ -38,14 +36,7 @@ done
 
 complete -c ww
 
-case "$(uname)" in
-  "Darwin")
-    source "${DOTFILES_PATH}/lib/root/macos.bash"
-    ;;
-  "Linux")
-    source "${DOTFILES_PATH}/lib/root/linux.bash"
-    ;;
-esac
+
 
 if command -v starship &> /dev/null; then
   export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"

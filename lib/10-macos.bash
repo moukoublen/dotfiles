@@ -1,26 +1,9 @@
-path-add /usr/local/bin/
-#path-add /usr/local/sbin
-
-################################################################################
-##################### Homebrew #################################################
-#if command -v brew 1>/dev/null 2>&1; then
-if [[ -d /opt/homebrew ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  #export HOMEBREW_PREFIX="/opt/homebrew"
-  #export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-  #export HOMEBREW_REPOSITORY="/opt/homebrew"
-  #export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}"
-  #export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:"
-  #export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}"
-
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    export BASH_COMPLETION_COMPAT_DIR="${HOMEBREW_PREFIX}/etc/bash_completion.d"
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  fi
+if [[ $(uname) != "Darwin" ]]; then
+  return 0
 fi
 
-################################################################################
-################################################################################
+path-add /usr/local/bin/
+#path-add /usr/local/sbin
 
 #export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 
