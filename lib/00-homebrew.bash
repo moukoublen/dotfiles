@@ -12,9 +12,10 @@ if [[ "$(uname)" == "Linux" ]]; then
       fi
     done
   fi
+  unset rc
 fi
 
-if [[ "$(uname)" == "Linux" ]]; then
+if [[ "$(uname)" == "Darwin" ]]; then
   #if command -v brew 1>/dev/null 2>&1; then
   if [[ -d /opt/homebrew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"

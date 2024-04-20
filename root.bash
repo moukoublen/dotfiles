@@ -34,19 +34,6 @@ do
   fi
 done
 
-complete -c ww
-
-
-
-if command -v starship &> /dev/null; then
-  export STARSHIP_CONFIG="${DOTFILES_PATH}/config/starship/starship.toml"
-  eval "$(starship init bash)"
-else
-  source "${DOTFILES_PATH}/lib/root/ps1.bash"
-fi
-
-
-
 for e in "${HOME}"/.dotfiles-extras/*
 do
   source "${e}"
