@@ -1,10 +1,3 @@
-if command -v "${HOME}/.local/bin/pip3" 1>/dev/null 2>&1; then
-  source <(${HOME}/.local/bin/pip3 completion --bash)
-elif command -v /usr/bin/pip3 1>/dev/null 2>&1; then
-  source <(/usr/bin/pip3 completion --bash)
-fi
-
-
 if [[ -d "${HOME}/.pyenv/bin" ]]; then
   export PYENV_ROOT="${HOME}/.pyenv"
   path-add "${PYENV_ROOT}/bin"
@@ -23,3 +16,11 @@ alias pip3-list='pip3 list --user'
 # or
 # pip3 install --user ansible
 # python3 -m pip install --upgrade --user ansible
+
+load-pip3-autocompletion() {
+  if command -v "${HOME}/.local/bin/pip3" 1>/dev/null 2>&1; then
+    source <(${HOME}/.local/bin/pip3 completion --bash)
+  elif command -v /usr/bin/pip3 1>/dev/null 2>&1; then
+    source <(/usr/bin/pip3 completion --bash)
+  fi
+}

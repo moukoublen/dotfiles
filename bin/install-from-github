@@ -118,7 +118,7 @@ esac
 
 GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
 
-__log_start "\e[1;34m%s\e[0m \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO}"
+__log_start "\e[1;34m%s\e[0m\n  \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO}"
 
 
 #__log "getting latest release info \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m"
