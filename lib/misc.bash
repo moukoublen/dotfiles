@@ -1,9 +1,7 @@
 ##################################################
 ## zoxide                   ##
-if [[ $(uname) = "Linux" ]]; then
-  if command -v zoxide 1>/dev/null 2>&1; then
-    source <(zoxide init bash)
-  fi
+if [[ -x /usr/bin/zoxide ]]; then
+  source <(zoxide init bash)
 fi
 ##                                              ##
 ##################################################
@@ -16,10 +14,16 @@ fi
 # https://github.com/sharkdp/fd
 # sudo dnf install fzf fd-find
 
-if [[ $(uname) = "Linux" ]]; then
+if [[ -x /usr/bin/fzf ]]; then
   if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
     source /usr/share/fzf/shell/key-bindings.bash
   fi
+elif [[ -x "${HOMEBREW_PREFIX}/bin/fzf" ]]; then
+  # fzf --bash > ~/.fzf.bash
+  if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+  fi
+  #eval "$(fzf --bash)"
 fi
 ##                                              ##
 ##################################################
@@ -38,7 +42,7 @@ fi
 
 ##################################################
 ## delta                                        ##
-if command -v delta 1>/dev/null 2>&1; then
+if [[ -x /usr/local/bin/delta ]]; then
   source <(delta --generate-completion bash)
 fi
 ##                                              ##
@@ -48,7 +52,7 @@ fi
 
 ##################################################
 ## aws                                          ##
-if command -v aws_completer 1>/dev/null 2>&1; then
+if [[ -x /usr/local/bin/aws_completer ]]; then
   complete -C "$(which aws_completer)" aws
 fi
 
@@ -63,7 +67,7 @@ install-awscli2() {(
 
 ##################################################
 ## git                                          ##
-if command -v gh 1>/dev/null 2>&1; then
+if [[ -x /usr/local/bin/gh ]]; then
   source <(gh completion --shell bash)
 fi
 

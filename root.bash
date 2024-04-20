@@ -29,6 +29,15 @@ export DOTFILES_PATH
 ######### Source libs ##########################################################
 source "${DOTFILES_PATH}/lib/root/pathmixer.bash"
 
+for i in "${DOTFILES_PATH}"/lib/*.bash
+do
+  if [ -r "${i}" ]; then
+    source "${i}"
+  fi
+done
+
+complete -c ww
+
 case "$(uname)" in
   "Darwin")
     source "${DOTFILES_PATH}/lib/root/macos.bash"
@@ -45,14 +54,7 @@ else
   source "${DOTFILES_PATH}/lib/root/ps1.bash"
 fi
 
-for i in "${DOTFILES_PATH}"/lib/*.bash
-do
-  if [ -r "${i}" ]; then
-    source "${i}"
-  fi
-done
 
-complete -c ww
 
 for e in "${HOME}"/.dotfiles-extras/*
 do
