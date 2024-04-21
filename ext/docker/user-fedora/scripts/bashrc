@@ -1,2 +1,0 @@
-alias ll='command ls -la --color=auto'
-alias tree='command tree -C'
