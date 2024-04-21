@@ -1,9 +1,21 @@
+init-linuxbrew() {
+  [[ ! -d '/home/linuxbrew/.linuxbrew' ]] && return 0
+
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+  if [ -d "${HOMEBREW_PREFIX}/etc/bash_completion.d" ]; then
+    for rc in "${HOMEBREW_PREFIX}/etc/bash_completion.d"/*; do
+      if [ -f "${rc}" ]; then
+        source "${rc}"
+      fi
+    done
+  fi
+  unset rc
+}
+
 case "$(uname)" in
 
   "Darwin")
-    if [[ ! -d '/opt/homebrew' ]]; then
-    return 0
-    fi
+    [[ ! -d '/opt/homebrew' ]] && return 0
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
@@ -13,19 +25,8 @@ case "$(uname)" in
     ;;
 
   "Linux")
-    if [ ! -d '/home/linuxbrew/.linuxbrew' ]; then
-      return 0
-    fi
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-    if [ -d "${HOMEBREW_PREFIX}/etc/bash_completion.d" ]; then
-      for rc in "${HOMEBREW_PREFIX}/etc/bash_completion.d"/*; do
-        if [ -f "${rc}" ]; then
-          source "${rc}"
-        fi
-      done
-    fi
-    unset rc
+    [[ "${__DISABLE_LINUXBREW}" == 'true' ]] && return 0
+    init-linuxbrew
     ;;
 
 esac

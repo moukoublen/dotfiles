@@ -47,6 +47,15 @@ then
   )
 fi
 
+if command -v brew &> /dev/null
+then
+  (set -ex
+  brew update
+  brew upgrade
+  brew cleanup
+  )
+fi
+
 # "${DOTFILES_PATH}"/scripts/install-bat
 # "${DOTFILES_PATH}"/scripts/install-delta
 #"${DOTFILES_PATH}"/scripts/install-dbeaver
