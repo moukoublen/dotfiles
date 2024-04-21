@@ -56,14 +56,14 @@ then
   )
 fi
 
-# "${DOTFILES_PATH}"/scripts/install-bat
-# "${DOTFILES_PATH}"/scripts/install-delta
-#"${DOTFILES_PATH}"/scripts/install-dbeaver
 "${DOTFILES_PATH}"/scripts/install-docker-buildx
 "${DOTFILES_PATH}"/scripts/install-docker-compose
+"${DOTFILES_PATH}"/scripts/install-starship
+"${DOTFILES_PATH}"/scripts/install-bat
+"${DOTFILES_PATH}"/scripts/install-delta
+"${DOTFILES_PATH}"/scripts/install-elastic-package
 # "${DOTFILES_PATH}"/scripts/install-helm
 # "${DOTFILES_PATH}"/scripts/install-k9s
 # "${DOTFILES_PATH}"/scripts/install-kind
 # "${DOTFILES_PATH}"/scripts/install-minikube
-# "${DOTFILES_PATH}"/scripts/install-starship
-"${DOTFILES_PATH}"/scripts/install-elastic-package
+# "${DOTFILES_PATH}"/scripts/install-dbeaver

@@ -123,3 +123,7 @@ install-go-tools() {(
 # Where is the go ENV file?
 # Linux you'll get $HOME/. config/go/env
 # macOS you'll get $HOME/Library/Application Support/go/env
+
+install-hugo() {
+  CGO_ENABLED=1 go install -tags extended -trimpath -ldflags '-s -w' github.com/gohugoio/hugo@latest
+}
