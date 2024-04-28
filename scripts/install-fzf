@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -e
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}"/fzf ]] && "${BIN_DIR}"/fzf --version | cut --delimiter=' ' --fields=1
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | endswith("-linux_amd64.tar.gz")) | .browser_download_url'
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
+
+  #install binary
+  sudo cp "${TMP_DIR}"/fzf "${BIN_DIR}"/fzf
+
+  # install bash integration / completion
+  "${BIN_DIR}"/fzf --bash > ~/.fzf.bash
+}
+export -f __install_exec
+
+
+install-from-github  \
+  --name                 "fzf" \
+  --repo                 "junegunn/fzf" \
+  --fn-remote-version    "__remote_version" \
+  --fn-local-version     "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file     "downloaded.tar.gz" \
+  --fn-install           "__install_exec" \
+  --destination          "/usr/local/bin" \
+  "${@}"
+
+# https://github.com/junegunn/fzf/releases
+# fzf-0.50.0-linux_amd64.tar.gz

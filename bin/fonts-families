@@ -6,6 +6,8 @@ fams=(                \
   sans-serif          \
   monospace           \
   ui-monospace        \
+  -apple-system       \
+  system-ui           \
   Arial               \
   "Verdana"           \
   Helvetica           \

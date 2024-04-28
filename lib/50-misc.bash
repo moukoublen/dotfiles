@@ -18,12 +18,14 @@ if [[ -x /usr/bin/fzf ]]; then
   if [ -f /usr/share/fzf/shell/key-bindings.bash ]; then
     source /usr/share/fzf/shell/key-bindings.bash
   fi
-elif [[ -x "${HOMEBREW_PREFIX}/bin/fzf" ]]; then
-  # fzf --bash > ~/.fzf.bash
-  if [ -f ~/.fzf.bash ]; then
-    source ~/.fzf.bash
+else
+  if command -v fzf 1>/dev/null 2>&1; then
+    # fzf --bash > ~/.fzf.bash
+    if [ -f ~/.fzf.bash ]; then
+      source ~/.fzf.bash
+    fi
+    #eval "$(fzf --bash)"
   fi
-  #eval "$(fzf --bash)"
 fi
 ##                                              ##
 ##################################################
