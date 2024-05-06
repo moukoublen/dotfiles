@@ -25,16 +25,6 @@ fi
 
 
 ##################################################
-## delta                                        ##
-if [[ -x /usr/local/bin/delta ]]; then
-  source <(delta --generate-completion bash)
-fi
-##                                              ##
-##################################################
-
-
-
-##################################################
 ## aws                                          ##
 if [[ -x /usr/local/bin/aws_completer ]]; then
   complete -C "$(which aws_completer)" aws

@@ -45,6 +45,11 @@ __install_exec() {
 
   tar --strip-components=1 --extract --gzip --file="${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
   sudo cp "${TMP_DIR}"/delta "${BIN_DIR}"/delta
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/delta --generate-completion bash > ~/.bashrc.d/delta-completion.bash
+  fi
 }
 export -f __install_exec
 
@@ -61,3 +66,7 @@ install-from-github  \
   "${@}"
 
 # https://github.com/dandavison/delta/releases
+
+# if [[ -x /usr/local/bin/delta ]]; then
+#   source <(delta --generate-completion bash)
+# fi
