@@ -24,12 +24,6 @@ if command -v drh 1>/dev/null 2>&1; then
   source <(drh --completion)
 fi
 
-install-docker-compose-completion() {
-  local DVER=${1:-master}
-  mkdir -p ~/.dotfiles-extras
-  curl -L "https://raw.githubusercontent.com/docker/compose/${DVER}/contrib/completion/bash/docker-compose" > "${HOME}/.dotfiles-extras/docker-compose.bash-completion"
-}
-
 ################################################################################
 ################# macos docker #################################################
 source-docker-bash-completion() {

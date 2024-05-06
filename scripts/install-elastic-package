@@ -39,14 +39,19 @@ __install_exec() {
   DOWNLOADED_FULL_PATH="${2}"
   TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
 
-  #extract
+  # extract
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
 
-  #install binary
+  # install binary
   sudo cp "${TMP_DIR}"/elastic-package "${BIN_DIR}"/elastic-package
   sudo chmod +x "${BIN_DIR}"/elastic-package
   if [[ $(uname) = "Darwin" ]]; then
     sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/elastic-package
+  fi
+
+  # install bash autocompletion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/elastic-package completion bash > ~/.bashrc.d/elastic-package-completion.bash
   fi
 }
 export -f __install_exec
@@ -62,3 +67,8 @@ install-from-github  \
   --fn-install           "__install_exec" \
   --destination          "/usr/local/bin" \
   "${@}"
+
+
+# if command -v elastic-package 1>/dev/null 2>&1; then
+#   source <(elastic-package completion bash)
+# fi

@@ -27,22 +27,26 @@ export DOTFILES_PATH
 
 ################################################################################
 ######### Source libs ##########################################################
-for i in "${DOTFILES_PATH}"/lib/*.bash
-do
-  if [ -r "${i}" ]; then
-    source "${i}"
+for src in "${DOTFILES_PATH}"/lib/*.bash; do
+  if [[ -r "${src}" ]]; then
+    source "${src}"
   fi
 done
+unset src
 
-for e in "${HOME}"/.dotfiles-extras/*
-do
-  source "${e}"
+for src in "${DOTFILES_PATH}"/extras-*; do
+  source "${src}"
 done 2>/dev/null
+unset src
 
-for e in "${DOTFILES_PATH}"/extras-*
-do
-  source "${e}"
-done 2>/dev/null
+if [[ -d "${HOME}"/.bashrc.d ]]; then
+  for src in "${HOME}"/.bashrc.d/*; do
+    if [[ -f "${src}" ]]; then
+      source "${src}"
+    fi
+  done
+fi
+unset src
 ################################################################################
 ################################################################################
 
