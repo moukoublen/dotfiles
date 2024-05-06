@@ -31,7 +31,9 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/fzf "${BIN_DIR}"/fzf
 
   # install bash integration / completion
-  "${BIN_DIR}"/fzf --bash > ~/.fzf.bash
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/fzf --bash > ~/.bashrc.d/fzf-completion.bash
+  fi
 }
 export -f __install_exec
 
