@@ -29,9 +29,18 @@ __install_exec() {
 
   #install binary
   sudo cp "${TMP_DIR}"/minikube-linux-amd64 "${BIN_DIR}"/minikube
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/minikube completion bash > "${HOME}"/.bashrc.d/minikube-completion.bash
+  fi
 }
 export -f __install_exec
 
+# #if command -v minikube 1>/dev/null 2>&1; then
+# if [[ -x /usr/local/bin/minikube ]]; then
+#   source <(minikube completion bash)
+# fi
 
 install-from-github  \
   --name                 "minikube" \

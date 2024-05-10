@@ -51,7 +51,7 @@ __install_exec() {
 
   # install bash autocompletion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/elastic-package completion bash > ~/.bashrc.d/elastic-package-completion.bash
+    "${BIN_DIR}"/elastic-package completion bash > "${HOME}"/.bashrc.d/elastic-package-completion.bash
   fi
 }
 export -f __install_exec

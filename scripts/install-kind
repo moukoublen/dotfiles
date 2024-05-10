@@ -29,9 +29,17 @@ __install_exec() {
   #install binary
   sudo cp "${TMP_DIR}"/kind-linux-amd64 "${BIN_DIR}"/kind
   sudo chmod +x "${BIN_DIR}"/kind
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/kind completion bash > "${HOME}"/.bashrc.d/kind-completion.bash
+  fi
 }
 export -f __install_exec
 
+# if [[ -x /usr/local/bin/kind ]]; then
+#   source <(kind completion bash)
+# fi
 
 install-from-github  \
   --name                 "kind" \

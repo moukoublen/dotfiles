@@ -30,9 +30,10 @@ __install_exec() {
   #install binary
   sudo cp "${TMP_DIR}"/bat "${BIN_DIR}"/bat
 
-  # install autocomplete
-  sudo mkdir -p /usr/local/share/bash-completion/completions
-  sudo cp "${TMP_DIR}"/autocomplete/bat.bash /usr/local/share/bash-completion/completions/bat.bash
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    cat "${TMP_DIR}"/autocomplete/bat.bash > "${HOME}"/.bashrc.d/bat-completion.bash
+  fi
 }
 export -f __install_exec
 

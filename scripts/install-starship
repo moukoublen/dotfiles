@@ -27,6 +27,11 @@ __install_exec() {
   TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
   sudo cp "${TMP_DIR}"/starship "${BIN_DIR}"/starship
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/starship completions bash > "${HOME}"/.bashrc.d/starship-completion.bash
+  fi
 }
 export -f __install_exec
 

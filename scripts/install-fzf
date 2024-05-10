@@ -32,7 +32,7 @@ __install_exec() {
 
   # install bash integration / completion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/fzf --bash > ~/.bashrc.d/fzf-completion.bash
+    "${BIN_DIR}"/fzf --bash > "${HOME}"/.bashrc.d/fzf-completion.bash
   fi
 }
 export -f __install_exec

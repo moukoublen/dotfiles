@@ -31,9 +31,17 @@ __install_exec() {
 
   #install binary
   sudo cp "${TMP_DIR}"/helm "${BIN_DIR}"/helm
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/helm completion bash > "${HOME}"/.bashrc.d/helm-completion.bash
+  fi
 }
 export -f __install_exec
 
+# if [[ -x /usr/local/bin/helm ]]; then
+#   source <(helm completion bash)
+# fi
 
 install-from-github  \
   --name                 "helm" \

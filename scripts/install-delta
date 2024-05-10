@@ -48,7 +48,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/delta --generate-completion bash > ~/.bashrc.d/delta-completion.bash
+    "${BIN_DIR}"/delta --generate-completion bash > "${HOME}"/.bashrc.d/delta-completion.bash
   fi
 }
 export -f __install_exec

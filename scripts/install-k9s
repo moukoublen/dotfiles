@@ -28,9 +28,17 @@ __install_exec() {
 
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
   sudo cp "${TMP_DIR}"/k9s "${BIN_DIR}"/k9s
+
+  # install bash completion
+  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+    "${BIN_DIR}"/k9s completion bash > "${HOME}"/.bashrc.d/k9s-completion.bash
+  fi
 }
 export -f __install_exec
 
+# if [[ -x /usr/local/bin/k9s ]]; then
+#   source <(k9s completion bash)
+# fi
 
 install-from-github  \
   --name                 "k9s" \

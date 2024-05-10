@@ -63,8 +63,8 @@ fi
 "${DOTFILES_PATH}"/scripts/install-fzf
 "${DOTFILES_PATH}"/scripts/install-delta
 "${DOTFILES_PATH}"/scripts/install-elastic-package
-# "${DOTFILES_PATH}"/scripts/install-helm
-# "${DOTFILES_PATH}"/scripts/install-k9s
-# "${DOTFILES_PATH}"/scripts/install-kind
-# "${DOTFILES_PATH}"/scripts/install-minikube
+"${DOTFILES_PATH}"/scripts/install-helm
+"${DOTFILES_PATH}"/scripts/install-k9s
+"${DOTFILES_PATH}"/scripts/install-kind
+"${DOTFILES_PATH}"/scripts/install-minikube
 # "${DOTFILES_PATH}"/scripts/install-dbeaver
