@@ -4,7 +4,8 @@
   "files.autoSave": "onFocusChange",
   "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": false, //todo: revisit
-  "editor.minimap.enabled": false,
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
@@ -105,7 +106,10 @@
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+    }
   },
   "[go.mod]": {
     "editor.tabSize": 2,
@@ -143,7 +147,7 @@
   "gopls": {
     "formatting.gofumpt": true,
     "ui.completion.usePlaceholders": true,
-    //"ui.completion.experimentalPostfixCompletions": true,
+    "ui.completion.experimentalPostfixCompletions": false,
     "ui.codelenses": {
       "gc_details": true,
       "generate": true,
@@ -244,6 +248,19 @@
       "editorOverviewRuler.modifiedForeground": "#bc8cff" // scale-purple-3
     }
   },
-  "editor.accessibilitySupport": "off"
+  "editor.accessibilitySupport": "off",
+  "cSpell.userWords": [
+    "calt",
+    "codelenses",
+    "dlig",
+    "gofumpt",
+    "Gopath",
+    "gopls",
+    "gotools",
+    "govulncheck",
+    "Monaspace",
+    "runtest",
+    "scrollback"
+  ]
   // </themes and colors mods>
 }
