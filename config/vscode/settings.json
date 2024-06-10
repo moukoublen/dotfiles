@@ -4,7 +4,7 @@
   "files.autoSave": "onFocusChange",
   "editor.smoothScrolling": true,
   "editor.bracketPairColorization.enabled": false, //todo: revisit
-  "editor.minimap.enabled": true,
+  "editor.minimap.enabled": false,
   "editor.minimap.renderCharacters": false,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "boundary",
@@ -108,7 +108,7 @@
     "editor.insertSpaces": false,
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
+      "source.organizeImports": "explicit"
     }
   },
   "[go.mod]": {
@@ -251,6 +251,7 @@
   "editor.accessibilitySupport": "off",
   "cSpell.userWords": [
     "calt",
+    "cloudspecific",
     "codelenses",
     "dlig",
     "gofumpt",
