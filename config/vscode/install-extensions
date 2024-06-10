@@ -37,8 +37,8 @@ vscode-icons-team.vscode-icons
 
 for ext in "${extensions[@]}"
 do
-  echo "Installing $ext"
-  code --install-extension $ext
+  echo "Installing ${ext}"
+  code --install-extension "${ext}"
 done
 
 unset extensions
