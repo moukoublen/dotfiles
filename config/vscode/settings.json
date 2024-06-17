@@ -223,7 +223,7 @@
   },
   // </golang>
   // <themes and colors mods>
-  "workbench.colorTheme": "GitHub Dark Default",
+  "workbench.colorTheme": "GitHub Dark Dimmed",
   "editor.semanticTokenColorCustomizations": {},
   "editor.tokenColorCustomizations": {},
   "workbench.colorCustomizations": {
@@ -259,6 +259,7 @@
     "gopls",
     "gotools",
     "govulncheck",
+    "healthcheck",
     "Monaspace",
     "runtest",
     "scrollback"
