@@ -44,6 +44,7 @@ if command -v flatpak &> /dev/null
 then
   (set -ex
   sudo flatpak update
+  flatpak update
   )
 fi
 
