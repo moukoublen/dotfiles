@@ -43,6 +43,14 @@ go-install() {
   )
 }
 
+go-update-all-mods() {
+  # https://go.dev/ref/mod#go-get
+  # -u flag tells go get to upgrade modules
+  # -t flag tells go get to consider modules needed to build tests of packages named on the command line.
+  # When -t and -u are used together, go get will update test dependencies as well.
+  go get -u -t ./...
+  go mod tidy
+}
 
 install-go-tools() {(
   export CGO_ENABLED=0
