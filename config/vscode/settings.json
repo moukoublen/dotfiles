@@ -246,6 +246,10 @@
       "editor.lineHighlightBackground": "#79c0ff20", // scale-blue-2 with opacity
       "editorGutter.modifiedBackground": "#bc8cff", // scale-purple-3
       "editorOverviewRuler.modifiedForeground": "#bc8cff" // scale-purple-3
+    },
+    "[GitHub Dark Dimmed]":{
+      // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales&globals=theme:dark_dimmed
+      "editor.selectionBackground": "#7e325a90", //scale-pink-7 with opacity
     }
   },
   "editor.accessibilitySupport": "off",
