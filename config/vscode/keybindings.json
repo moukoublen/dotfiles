@@ -1,24 +1,18 @@
-// Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaults
 [
   {
-    "key": "ctrl+alt+l",
-    "command": "workbench.files.action.showActiveFileInExplorer"
+    "key": "meta+k",
+    "command": "workbench.action.terminal.clear"
   },
   {
-    "key": "ctrl+meta+t",
-    "command": "go.add.tags"
+    "key": "meta+c",
+    "command": "workbench.action.terminal.copySelection",
+    "when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"
   },
   {
-    "key": "ctrl+meta+g",
-    "command": "go.toggle.gc_details"
-  },
-  {
-    "key": "ctrl+meta+d",
-    "command": "go.debug.cursor"
-  },
-  {
-    "key": "ctrl+meta+r",
-    "command": "go.test.cursorOrPrevious"
+    "key": "ctrl+shift+c",
+    "command": "-workbench.action.terminal.copySelection",
+    "when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"
   },
   {
     "key": "meta+v",
@@ -29,15 +23,5 @@
     "key": "ctrl+shift+v",
     "command": "-workbench.action.terminal.paste",
     "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
-  },
-  {
-    "key": "meta+c",
-    "command": "workbench.action.terminal.copySelection",
-    "when": "terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected"
-  },
-  {
-    "key": "ctrl+shift+c",
-    "command": "-workbench.action.terminal.copySelection",
-    "when": "terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected"
   }
 ]

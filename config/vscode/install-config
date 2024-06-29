@@ -27,4 +27,6 @@ __install_settings_file() {
 }
 
 __install_settings_file settings.json
-#__install_settings_file keybindings.json
+if [[ $(uname) = "Linux" ]]; then
+  __install_settings_file keybindings.json
+fi
