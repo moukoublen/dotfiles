@@ -28,7 +28,6 @@
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
-  "workbench.iconTheme": "vscode-icons",
   "window.titleBarStyle": "custom",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${rootPath} ${dirty}",
@@ -87,21 +86,11 @@
     "editor.tabSize": 2,
     "editor.formatOnPaste": false
   },
-  "[scala]": {
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-    "editor.formatOnPaste": false
-  },
   "[makefile]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false
   },
   "gitlens.codeLens.enabled": false,
-  "cSpell.language": "en,el",
-  "cSpell.enableFiletypes": [
-    "*",
-    "!go.mod"
-  ],
   // <golang>
   "[go]": {
     "editor.tabSize": 2,
@@ -223,7 +212,8 @@
   },
   // </golang>
   // <themes and colors mods>
-  "workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.iconTheme": "eq-material-theme-icons",
+  //"workbench.colorTheme": "GitHub Dark Dimmed",
   "editor.semanticTokenColorCustomizations": {},
   "editor.tokenColorCustomizations": {},
   "workbench.colorCustomizations": {
@@ -252,7 +242,13 @@
       "editor.selectionBackground": "#7e325a90", //scale-pink-7 with opacity
     }
   },
+  // </themes and colors mods>
   "editor.accessibilitySupport": "off",
+  "cSpell.language": "en,el",
+  "cSpell.enableFiletypes": [
+    "*",
+    "!go.mod"
+  ],
   "cSpell.userWords": [
     "calt",
     "cloudspecific",
@@ -267,6 +263,5 @@
     "Monaspace",
     "runtest",
     "scrollback"
-  ]
-  // </themes and colors mods>
+  ],
 }
