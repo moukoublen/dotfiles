@@ -212,11 +212,16 @@
   },
   // </golang>
   // <themes and colors mods>
-  "workbench.iconTheme": "eq-material-theme-icons",
+  //"workbench.iconTheme": "vscode-icons",
   //"workbench.colorTheme": "GitHub Dark Dimmed",
   "editor.semanticTokenColorCustomizations": {},
   "editor.tokenColorCustomizations": {},
   "workbench.colorCustomizations": {
+    "[Default Dark Modern]": {
+      //"editor.selectionBackground": "#bb0d8a8c",
+      "tab.activeBorderTop":"#0078d4",
+      "tab.hoverBorder": "#0078d4",
+    },
     "[GitHub Dark Default]": {
       // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales&globals=theme:dark
       "list.errorForeground": "#ff7b72", // scale-red-3
