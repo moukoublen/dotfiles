@@ -12,7 +12,7 @@ alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias cleanup_finder_shit="find . -type f -name '*.DS_Store' -ls -delete"
 alias ldd='otool -L'
 alias tree='command tree -C'
-alias allow='xattr -r -d com.apple.quarantine'
+alias mac-no-quarantine='xattr -r -d com.apple.quarantine'
 
 if [[ -d ${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin ]]; then
   alias grep='command ggrep --color=auto'
