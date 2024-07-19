@@ -4,17 +4,17 @@ ww() {
     return
   fi
 
-  local bat_cmd
-  bat_cmd="bat --paging=never --wrap=never --theme=Nord"
+  local cat_cmd
+  cat_cmd="source-highlight --line-number=0 --no-doc --out-format=esc --tab=2"
 
   local type_of
   type_of="$(type -t "${1}")"
   if [[ "${type_of}" == 'function' ]]; then
-    declare -f "${1}" | ${bat_cmd} --style=plain --language=bash
+    declare -f "${1}" | ${cat_cmd} --src-lang=shell
     return
   fi
   if [[ "${type_of}" == 'alias' ]]; then
-    alias "${1}" | ${bat_cmd} --style=plain --language=bash
+    alias "${1}" | ${cat_cmd}
     return
   fi
 
@@ -23,7 +23,7 @@ ww() {
   local file_of
   file_of="$(file "${full_path}")"
   if [[ "${file_of}" == *text* ]]; then
-    ${bat_cmd} --style=plain,header "${full_path}"
+    ${cat_cmd} --infer-lang --input="${full_path}"
     return
   fi
 
@@ -42,7 +42,7 @@ ww() {
 
   file_of="$(file "${full_path}")"
   if [[ "${file_of}" == *text* ]]; then
-    ${bat_cmd} --style=plain,header "${full_path}"
+    ${cat_cmd} --infer-lang --input="${full_path}"
     return
   fi
 
