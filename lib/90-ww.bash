@@ -5,7 +5,7 @@ ww() {
   fi
 
   local cat_cmd
-  cat_cmd="source-highlight --line-number=0 --no-doc --out-format=esc --tab=2"
+  cat_cmd="source-highlight --no-doc --out-format=esc --tab=2"
 
   local type_of
   type_of="$(type -t "${1}")"
@@ -14,7 +14,7 @@ ww() {
     return
   fi
   if [[ "${type_of}" == 'alias' ]]; then
-    alias "${1}" | ${cat_cmd}
+    alias "${1}" | ${cat_cmd} --src-lang=shell
     return
   fi
 
