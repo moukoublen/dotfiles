@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -u -o pipefail
+#set -e -u -o pipefail
+
 __log_start() {
   local fmt="$1"
   shift
@@ -27,23 +30,24 @@ __exit_on_fail() {
 }
 
 __get_remote_filename() {
+  local f
   # split string of argument $1 by / and get last part
   f=${1##*/}
 
-  if [ -n "$f" ]; then
-    echo $f
+  if [ -n "${f}" ]; then
+    echo "${f}"
     return
   fi
 
   # try to parse filename from content-disposition header
-  f=$(curl --head --silent --fail --location "$1" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
-  if [ -n "$f" ]; then
-    echo $f
+  f=$(curl --head --silent --fail --location "${1}" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
+  if [[ -n "${f}" ]]; then
+    echo "${f}"
     return
   fi
 
   # if none found, return random string
-  cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1
+  cat /dev/urandom | tr --delete --complement 'a-zA-Z0-9' | fold --width=16 | head --lines=1
 }
 
 NAME=""
@@ -55,7 +59,7 @@ DL_FILE=""
 FN_INSTALL=""
 BIN_DIR="/usr/local/bin"
 
-CURL_SHOW_ERROR=""
+CURL_VERBOSE=()
 
 UNKNOWN_ARGS=()
 while (($#)); do
@@ -93,7 +97,7 @@ while (($#)); do
       shift 2
       ;;
     -v|--verbose)
-      CURL_SHOW_ERROR="--show-error"
+      CURL_VERBOSE=('--show-error' '--verbose')
       set -x
       shift 1
       ;;
@@ -109,10 +113,10 @@ done
 TMP_DIR="/tmp/dln"
 case "$(uname)" in
   "Darwin")
-    TMP_DIR=$(mktemp -d -t ${NAME})
+    TMP_DIR=$(mktemp -d -t "${NAME}")
     ;;
   "Linux")
-    TMP_DIR=$(mktemp --directory --tmpdir ${NAME}_XXXXXXX)
+    TMP_DIR=$(mktemp --directory --tmpdir "${NAME}_XXXXXXX")
     ;;
 esac
 
@@ -120,9 +124,7 @@ GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
 
 __log_start "\e[1;34m%s\e[0m\n  \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO}"
 
-
-#__log "getting latest release info \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m"
-JS_BODY=$(curl ${CURL_SHOW_ERROR} --silent --fail --location "${GH_API_LATEST_RELEASE}")
+JS_BODY=$(curl "${CURL_VERBOSE[@]}" --silent --fail --location "${GH_API_LATEST_RELEASE}")
 
 REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
 LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}" || echo -n "")
@@ -140,7 +142,7 @@ if [[ "${DL_FILE}" == "" ]]; then
   __exit_on_fail
 fi
 __log  "downloading from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
-curl ${CURL_SHOW_ERROR} \
+curl "${CURL_VERBOSE[@]}" \
   --silent \
   --fail \
   --location \

@@ -57,6 +57,7 @@ __install_exec() {
   # chmod +x "${BIN_DIR}"/docker-compose
 
   sudo install -D --owner=root --group=root --mode=0755 "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}/docker-compose"
+  #  -D     create all leading components of DEST except the last, or all components  of  --target-directory,  then copy SOURCE to DEST
 }
 export -f __install_exec
 

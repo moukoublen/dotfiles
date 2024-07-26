@@ -212,7 +212,17 @@ __fnt_sourcecodepro() {
 
 
 __install_ibmplex() {
-  cp -r "${1}"/OpenType/{IBM-Plex-Mono,IBM-Plex-Sans,IBM-Plex-Serif} "${2}"/
+  local FLD
+  FLD="$(ls -d "${1}"/*/ | head -n 1)"
+
+  mkdir -p "${2}/ibm_plex_mono"
+  cp -r "${FLD}/IBM-Plex-Mono/fonts/complete/otf" "${2}/ibm_plex_mono"
+
+  mkdir -p "${2}/ibm_plex_sans"
+  cp -r "${FLD}/IBM-Plex-Sans/fonts/complete/otf" "${2}/ibm_plex_sans"
+
+  mkdir -p "${2}/ibm_plex_serif"
+  cp -r "${FLD}/IBM-Plex-Serif/fonts/complete/otf" "${2}/ibm_plex_serif"
 }
 __fnt_ibmplex() {
   __installing "IBM Plex"
@@ -222,10 +232,8 @@ __fnt_ibmplex() {
 
   BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/IBM/plex/releases/latest )"
   REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name == "OpenType.zip") | .browser_download_url' --raw-output \
-  )"
-  __install_font_locally "${URL}" "opentype.zip" "ibm_plex" __decomp __install_ibmplex "${REMOTE_VERSION}"
+  URL="$( echo $BODY | jq '.zipball_url' --raw-output )"
+  __install_font_locally "${URL}" "ibmplex.zip" "ibm_plex" __decomp __install_ibmplex "${REMOTE_VERSION}"
 }
 
 
