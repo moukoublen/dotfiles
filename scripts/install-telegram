@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 DOWNLOAD_DEST_FILE='/tmp/telegram.tar.xz'
 rm -rf $DOWNLOAD_DEST_FILE
 DESKTOP_FILE="$HOME/.local/share/applications/telegramdesktop.desktop"

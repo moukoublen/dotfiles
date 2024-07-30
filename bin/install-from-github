@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -u -o pipefail
 #set -e -u -o pipefail
 
 __log_start() {

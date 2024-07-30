@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# JS_BODY=$(curl --show-error --silent --fail --location https://api.github.com/repos/elastic/elastic-package/releases/latest)
+
+# JS_BODY=$(curl --show-error --silent --fail --location https://api.github.com/repos/Wilfred/difftastic/releases/latest)
 
 __remote_version() {
   local JS_BODY="${1}"
@@ -10,7 +11,7 @@ export -f __remote_version
 
 __local_version() {
   local BIN_DIR="${1:-/usr/local/bin}"
-  [[ -f "${BIN_DIR}"/elastic-package ]] && "${BIN_DIR}"/elastic-package version | awk '{ print $2 }'
+  [[ -f "${BIN_DIR}"/difft ]] && "${BIN_DIR}"/difft version | awk '{ print $2 }'
 }
 export -f __local_version
 
@@ -19,13 +20,17 @@ __get_dl_url() {
 
   local arch
   arch="$(uname -m)"
-  if [[ "${arch}" == "x86_64" ]]; then
-    arch="amd64"
+  # if [[ "${arch}" == "x86_64" ]]; then
+  #   arch="amd64"
+  # fi
+  local os
+  os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+  if [[ "${os}" == "linux" ]]; then
+    os="unknown-linux"
   fi
 
-  local ends_with
-  ends_with=$(echo "$(uname -s)_${arch}.tar.gz" | tr '[:upper:]' '[:lower:]')
-  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"
+  local starts_with="difft-${arch}-${os}"
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${starts_with}\")) | .browser_download_url"
 }
 export -f __get_dl_url
 
@@ -41,27 +46,27 @@ __install_exec() {
   tar -xzf "${DOWNLOADED_FULL_PATH}" --directory "${TMP_DIR}"
 
   # install binary
-  sudo cp "${TMP_DIR}"/elastic-package "${BIN_DIR}"/elastic-package
-  sudo chmod +x "${BIN_DIR}"/elastic-package
+  sudo cp "${TMP_DIR}"/difft "${BIN_DIR}"/difft
+  sudo chmod +x "${BIN_DIR}"/difft
   if [[ $(uname) = "Darwin" ]]; then
-    sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/elastic-package
+    sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/difft
   fi
 
   # install bash autocompletion
-  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/elastic-package completion bash > "${HOME}"/.bashrc.d/elastic-package-completion.bash
-  fi
+  # if [[ -d "${HOME}"/.bashrc.d/ ]]; then
+  #   "${BIN_DIR}"/elastic-package completion bash > "${HOME}"/.bashrc.d/elastic-package-completion.bash
+  # fi
 }
 export -f __install_exec
 
 
 install-from-github  \
-  --name                 "elastic-package" \
-  --repo                 "elastic/elastic-package" \
+  --name                 "difftastic" \
+  --repo                 "Wilfred/difftastic" \
   --fn-remote-version    "__remote_version" \
   --fn-local-version     "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "elastic-package.tar.gz" \
+  --download-to-file     "difftastic.tar.gz" \
   --fn-install           "__install_exec" \
   --destination          "/usr/local/bin" \
   "${@}"

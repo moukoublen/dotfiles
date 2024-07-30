@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 __remote_version() {
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.name' | cut --characters='2-' # cut -c 2-    # v0.22.1 -> 0.22.1

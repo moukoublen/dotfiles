@@ -12,7 +12,7 @@ mapfile -t FILES < <(find . \
   -a \( -name '*.bash' -o \( -type f -a -executable \) \) \
   -print)
 
-set -ex
+set -x
 
 shellcheck \
   --shell=bash \

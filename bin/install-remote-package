@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 __get_remote_filename() {
   # split string of argument $1 by / and get last part

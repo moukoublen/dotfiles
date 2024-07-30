@@ -23,13 +23,13 @@ fi
 
 go-test() {
   # -p=1 -v
-  (set -ex
+  (set -x
   go test -timeout=60s -count=1 -race "${*}" ./...
   )
 }
 
 go-build() {
-  (set -ex
+  (set -x
   go build -trimpath -ldflags '-s -w' "${*}"
   )
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ex
+set -x
 
 [[ -d /root/.cache/fontconfig ]] && sudo rm -rf /root/.cache/fontconfig
 [[ -d /root/.fontconfig ]] && sudo rm -rf /root/.fontconfig

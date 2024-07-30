@@ -25,7 +25,6 @@ __decomp_tar_xz(){ tar --extract --xz --file="${1}" --directory="${2}"; }
 #  5 installation function name
 #  6 remote font version
 __install_font_locally() {
-  ( set -e
   local FONTS_DIR="/usr/local/share/fonts"
   if [[ $(uname) = "Darwin" ]]; then
     FONTS_DIR="${HOME}/Library/Fonts"
@@ -84,7 +83,6 @@ __install_font_locally() {
   ${SUDO} touch "${FONTS_DIR}/${INSTALL_FOLDER}/.${REMOTE_VERSION}"
 
   printf "    Installation  \e[1;32mdone.\e[0m\n\n"
-  )
 }
 
 
@@ -446,7 +444,7 @@ __fnt_intelonemono() {
 }
 
 __install_monaspace() {(
-  cd "$(ls -d "${1}"/monaspace-*/ | head -n 1)"
+  cd "$(ls -d "${1}"/monaspace-*/ | head -n 1)" || return
   cp ./fonts/otf/*.otf "${2}"/
   cp ./fonts/variable/*.ttf "${2}"/
 )}
@@ -506,6 +504,6 @@ case "$(uname)" in
   "Darwin")
     ;;
   "Linux")
-    (cd /tmp/; fc-cache -f)
+    (cd /tmp/ || exit 1; fc-cache -f)
     ;;
 esac

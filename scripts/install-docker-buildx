@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 # $HOME/.docker/cli-plugins
 
 # /usr/local/lib/docker/cli-plugins

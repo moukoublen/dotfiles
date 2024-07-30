@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 __remote_version() {
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r '.tag_name'

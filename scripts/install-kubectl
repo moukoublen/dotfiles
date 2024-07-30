@@ -21,7 +21,6 @@ fi
 
 printf "Installing kubectl \e[1;34m%s\e[0m \n" $VER
 
-set -e
 
 rm -rf /tmp/kubectl_install || true
 mkdir -p /tmp/kubectl_install

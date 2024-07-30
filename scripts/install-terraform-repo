@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 ### https://www.hashicorp.com/official-packaging-guide?product_intent=terraform
 

@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-( set -e
-
 git fetch --prune
 
 readarray -t O_BRANCHES < <(git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}')
@@ -9,5 +7,3 @@ readarray -t O_BRANCHES < <(git for-each-ref --format '%(refname) %(upstream:tra
 for branch in "${O_BRANCHES[@]}"; do
   git branch -D "$branch"
 done
-
-)
