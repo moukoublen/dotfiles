@@ -1,3 +1,5 @@
+[init]
+	defaultBranch = mainW
 [user]
 	name = Kostas Stamatakis
 	email = moukoublen@gmail.com
@@ -13,13 +15,6 @@
 	insteadOf = https://github.com/
 [pull]
 	ff = only
-[color "diff"]
-	whitespace = red reverse
-
-# https://github.com/dandavison/delta
-# https://dandavison.github.io/delta/
-[init]
-	defaultBranch = main
 [commit]
 	gpgsign = true
 
@@ -27,11 +22,15 @@
 	editor = vim
 	pager = delta
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only --features=interactive
 [delta]
 	navigate = true
 [merge]
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
+[color "diff"]
+	whitespace = red reverse
 # https://dandavison.github.io/delta/configuration.html
+# https://github.com/dandavison/delta
+# https://dandavison.github.io/delta/

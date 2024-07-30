@@ -58,9 +58,8 @@ FN_GET_DL_LINK=""
 DL_FILE=""
 FN_INSTALL=""
 BIN_DIR="/usr/local/bin"
-
-CURL_VERBOSE=()
-
+CURL_ARGS=('--header' 'X-GitHub-Api-Version: 2022-11-28')
+GH_TOKEN=""
 UNKNOWN_ARGS=()
 while (($#)); do
   case "${1}" in
@@ -97,9 +96,15 @@ while (($#)); do
       shift 2
       ;;
     -v|--verbose)
-      CURL_VERBOSE=('--show-error' '--verbose')
+      CURL_ARGS=("${CURL_ARGS[@]}" '--show-error' '--verbose')
       set -x
       shift 1
+      ;;
+    -t|--token)
+      # https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28
+      GH_TOKEN="${2}"
+      CURL_ARGS=("${CURL_ARGS[@]}" '--header' "Authorization: token ${GH_TOKEN}")
+      shift 2
       ;;
     *)
       UNKNOWN_ARGS+=("${1}")
@@ -124,7 +129,7 @@ GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
 
 __log_start "\e[1;34m%s\e[0m\n  \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO}"
 
-JS_BODY=$(curl "${CURL_VERBOSE[@]}" --silent --fail --location "${GH_API_LATEST_RELEASE}")
+JS_BODY=$(curl "${CURL_ARGS[@]}" --silent --fail --location "${GH_API_LATEST_RELEASE}")
 
 REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
 LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}" || echo -n "")
@@ -142,7 +147,7 @@ if [[ "${DL_FILE}" == "" ]]; then
   __exit_on_fail
 fi
 __log  "downloading from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
-curl "${CURL_VERBOSE[@]}" \
+curl "${CURL_ARGS[@]}" \
   --silent \
   --fail \
   --location \
