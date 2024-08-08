@@ -23,7 +23,7 @@ ww() {
   local file_of
   file_of="$(file "${full_path}")"
   if [[ "${file_of}" == *text* ]]; then
-    ${cat_cmd} --infer-lang --input="${full_path}"
+    ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
     return
   fi
 
@@ -42,7 +42,7 @@ ww() {
 
   file_of="$(file "${full_path}")"
   if [[ "${file_of}" == *text* ]]; then
-    ${cat_cmd} --infer-lang --input="${full_path}"
+    ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
     return
   fi
 
