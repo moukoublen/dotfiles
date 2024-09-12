@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+ff() {
+  if command -v "${1}" &> /dev/null; then
+    echo "${@} > ${HOME}/.bashrc.d/${1}-completion.bash"
+    "${@}" > "${HOME}"/.bashrc.d/"${1}"-completion.bash
+  fi
+}
+
+
+ff fzf --bash
+ff elastic-package completion bash
+ff devenv completion bash
+
+case "$(uname)" in
+  "Linux")
+    ff delta --generate-completion bash
+    ff helm completion bash
+    ff k9s completion bash
+    ff kind completion bash
+    ff minikube completion bash
+    ff starship completions bash
+    ;;
+esac

@@ -1,0 +1,20 @@
+services:
+  # https://hub.docker.com/r/dpage/pgadmin4/tags
+  node_exporter:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: unless-stopped
+    #pid: host
+    network_mode: host
+  # ports:
+    #   - "32400:32400/tcp"
+    #   - "1900:1900/udp"
+    #   - "1901:1901/udp"
+    #   #- "5353:5353/udp"
+    #   - "8324:8324/tcp"
+    #   - "32410:32410/udp"
+    #   - "32412:32412/udp"
+    #   - "32413:32413/udp"
+    #   - "32414:32414/udp"
+    #   - "32469:32469/tcp"
+    #   - "3005:3005"

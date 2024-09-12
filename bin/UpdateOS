@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-update_dnf() {
+update-dnf() {
     echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
     sudo dnf update --refresh
     sudo dnf needs-restarting --reboothint
+    # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
 }
 
-update_apt() {
+update-apt() {
     echo -e "\e[0;96m->\e[0m \e[0;90msudo apt update\e[0m"
     sudo apt update
     echo -e "\e[0;96m->\e[0m \e[0;90msudo apt upgrade\e[0m"
@@ -17,18 +18,18 @@ update_apt() {
 echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
 case "$(what-pm)" in
   "dnf")
-    update_dnf
+    update-dnf
     ;;
   "apt")
-    update_apt
+    update-apt
     ;;
   *)
-    prnt "this script does not have update command for this release"
+    echo "this script does not have update command for this release"
     ;;
 esac
 
-unset -f update_dnf
-unset -f update_apt
+unset -f update-dnf
+unset -f update-apt
 
 
 

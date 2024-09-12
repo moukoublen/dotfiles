@@ -92,6 +92,7 @@
   },
   "gitlens.codeLens.enabled": false,
   // <golang>
+  // https://github.com/golang/vscode-go/wiki/settings
   "[go]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": false,
@@ -221,6 +222,7 @@
       //"editor.selectionBackground": "#bb0d8a8c",
       "tab.activeBorderTop":"#0078d4",
       "tab.hoverBorder": "#0078d4",
+      "editorGutter.deletedBackground":"#37373d",
     },
     "[GitHub Dark Default]": {
       // https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales&globals=theme:dark
