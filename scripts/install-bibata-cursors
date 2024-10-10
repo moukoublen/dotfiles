@@ -27,23 +27,22 @@ __install_bibata_cursors_() {
   local DST="${HOME}/.local/share/icons"
 
   local URL
-  URL="$(echo $JSON_TEXT | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)"
+  URL="$(echo "${JSON_TEXT}" | jq ".assets[] | select(.name == \"${NAME}.${EXT}\") | .browser_download_url" --raw-output)"
   echo ""
   echo -e "Installing \e[1;33m${NAME}\e[0m"
   (
-  mkdir -p "${TMP_DIR}/${NAME}"
-  cd "${TMP_DIR}/${NAME}" || exit 1
-  echo -e "    Downloading \e[1;34m${URL}\e[0m"
-  curl --fail --silent --show-error --location $URL --output "${NAME}.${EXT}"
-  echo -e "    Exctracting \e[1;34m${NAME}.${EXT}\e[0m"
-  ${UNCOMPRESS} "${NAME}"
-  rm "${NAME}.${EXT}"
-  [[ -d "${DST}/${NAME}" ]] && echo -e "    Delete old  \e[1;34m${DST}/${NAME}\e[0m" && rm -rf "${DST:?}/${NAME}"
-  echo -e "    Move to     \e[1;34m${DST}/${NAME}\e[0m"
-  mv "${TMP_DIR}/${NAME}" "${DST}"
+    mkdir -p "${TMP_DIR}/${NAME}"
+    cd "${TMP_DIR}/${NAME}" || exit 1
+    echo -e "    Downloading \e[1;34m${URL}\e[0m"
+    curl --fail --silent --show-error --location "${URL}" --output "${NAME}.${EXT}"
+    echo -e "    Exctracting \e[1;34m${NAME}.${EXT}\e[0m"
+    ${UNCOMPRESS} "${NAME}"
+    rm "${NAME}.${EXT}"
+    [[ -d "${DST}/${NAME}" ]] && echo -e "    Delete old  \e[1;34m${DST}/${NAME}\e[0m" && rm -rf "${DST:?}/${NAME}"
+    echo -e "    Move to     \e[1;34m${DST}/${NAME}\e[0m"
+    mv "${TMP_DIR}/${NAME}" "${DST}"
   )
 }
-
 
 # $1 = Github release json
 # $2 = Font name
@@ -59,10 +58,8 @@ rm -rf $TMP_DIR
 mkdir -p $TMP_DIR
 
 JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Cursor/releases/latest)
-for NAME in 'Bibata-Modern-Amber' 'Bibata-Modern-Classic' 'Bibata-Modern-Ice' 'Bibata-Original-Amber' 'Bibata-Original-Classic' 'Bibata-Original-Ice'
-do
+for NAME in 'Bibata-Modern-Amber' 'Bibata-Modern-Classic' 'Bibata-Modern-Ice' 'Bibata-Original-Amber' 'Bibata-Original-Classic' 'Bibata-Original-Ice'; do
   __install_bibata_cursors_targzs "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
 done
-
 
 rm -rf $TMP_DIR

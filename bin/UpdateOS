@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 update-dnf() {
-    echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
-    sudo dnf update --refresh
-    sudo dnf needs-restarting --reboothint
-    # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
+  echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
+  sudo dnf update --refresh
+  sudo dnf needs-restarting --reboothint
+  # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
 }
 
 update-apt() {
-    echo -e "\e[0;96m->\e[0m \e[0;90msudo apt update\e[0m"
-    sudo apt update
-    echo -e "\e[0;96m->\e[0m \e[0;90msudo apt upgrade\e[0m"
-    sudo apt upgrade
-    [[ -e /var/run/reboot-required ]] && echo -e "\e[0;96m->\e[0m \e[0;97mreboot is required\e[0m"
+  echo -e "\e[0;96m->\e[0m \e[0;90msudo apt update\e[0m"
+  sudo apt update
+  echo -e "\e[0;96m->\e[0m \e[0;90msudo apt upgrade\e[0m"
+  sudo apt upgrade
+  [[ -e /var/run/reboot-required ]] && echo -e "\e[0;96m->\e[0m \e[0;97mreboot is required\e[0m"
 }
 
 echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
@@ -31,22 +31,17 @@ esac
 unset -f update-dnf
 unset -f update-apt
 
-
-
-if command -v snap &> /dev/null
-then
+if command -v snap &>/dev/null; then
   sudo snap refresh
   snap-clean-disabled
 fi
 
-if command -v flatpak &> /dev/null
-then
+if command -v flatpak &>/dev/null; then
   sudo flatpak update
   flatpak update
 fi
 
-if command -v brew &> /dev/null
-then
+if command -v brew &>/dev/null; then
   brew update
   brew upgrade
   brew cleanup

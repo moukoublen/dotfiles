@@ -12,10 +12,9 @@ __installing() {
   echo -e "Installing \e[96m${1}\e[0m"
 }
 
-__decomp(){ unzip -q "${1}" -d "${2}"; }
+__decomp() { unzip -q "${1}" -d "${2}"; }
 
-__decomp_tar_xz(){ tar --extract --xz --file="${1}" --directory="${2}"; }
-
+__decomp_tar_xz() { tar --extract --xz --file="${1}" --directory="${2}"; }
 
 # Arguments
 #  1 download url
@@ -26,12 +25,12 @@ __decomp_tar_xz(){ tar --extract --xz --file="${1}" --directory="${2}"; }
 #  6 remote font version
 __install_font_locally() {
   local FONTS_DIR="/usr/local/share/fonts"
-  if [[ $(uname) = "Darwin" ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
     FONTS_DIR="${HOME}/Library/Fonts"
   fi
 
   SUDO="sudo "
-  if [[ $(uname) = "Darwin" ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
     SUDO=""
   fi
 
@@ -48,10 +47,10 @@ __install_font_locally() {
   fi
 
   local TMP_DIRECTORY=''
-  if [[ $(uname) = "Darwin" ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
     TMP_DIRECTORY="$(mktemp -d /tmp/finst_XXXXXXX)"
   fi
-  if [[ $(uname) = "Linux" ]]; then
+  if [[ $(uname) == "Linux" ]]; then
     TMP_DIRECTORY="$(mktemp --directory --tmpdir finst_XXXXXXX)"
   fi
 
@@ -64,14 +63,13 @@ __install_font_locally() {
   "${DECOMP_FUNC}" "${TMP_DIRECTORY}/${DWN_FILE}" "${TMP_DIRECTORY}"
 
   printf "    Installing to \e[34m%s\e[0m" "${INSTALL_FULL_PATH}"
-  if [[ -d "${INSTALL_FULL_PATH}" ]]; then
+  if [[ -d ${INSTALL_FULL_PATH} ]]; then
     echo -e "  \e[37m(Deleting previous installation)\e[0m"
     ${SUDO} rm -rf "${INSTALL_FULL_PATH}"
   else
     echo ""
   fi
   ${SUDO} mkdir -p "${INSTALL_FULL_PATH}"
-
 
   # parse the function inside sub-shell
   local FN_BODY
@@ -85,7 +83,6 @@ __install_font_locally() {
   printf "    Installation  \e[1;32mdone.\e[0m\n\n"
 }
 
-
 __install_monasans() {
   cp -r "${1}"/Mona\ Sans/OTF/*otf "${2}"/
 }
@@ -95,14 +92,14 @@ __fnt_monasans() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/github/mona-sans/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/github/mona-sans/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output)"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "Mona.Sans.zip" "monasans" __decomp __install_monasans "${REMOTE_VERSION}"
 }
-
 
 __install_hubotsans() {
   cp -r "${1}"/Hubot\ Sans/OTF/*otf "${2}"/
@@ -113,14 +110,14 @@ __fnt_hubotsans() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/github/hubot-sans/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/github/hubot-sans/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output)"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "Hubot.Sans.zip" "hubotsans" __decomp __install_hubotsans "${REMOTE_VERSION}"
 }
-
 
 __install_victormono() {
   cp -r "${1}"/OTF/*otf "${2}"/
@@ -131,12 +128,11 @@ __fnt_victormono() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/rubjo/victor-mono/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/rubjo/victor-mono/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
   URL="https://rubjo.github.io/victor-mono/VictorMonoAll.zip"
   __install_font_locally "${URL}" "VictorMonoAll.zip" "victormono" __decomp __install_victormono "${REMOTE_VERSION}"
 }
-
 
 __install_hack() {
   cp -r "${1}"/ttf/*ttf "${2}"/
@@ -147,14 +143,14 @@ __fnt_hack() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/source-foundry/Hack/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/source-foundry/Hack/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.content_type == "application/zip") | select(.name | contains("ttf")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "hack.zip" "hack" __decomp __install_hack "${REMOTE_VERSION}"
 }
-
 
 __install_firacode() {
   cp -r "${1}"/ttf/*.ttf "${2}"/
@@ -165,14 +161,14 @@ __fnt_firacode() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/tonsky/FiraCode/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/tonsky/FiraCode/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "firacode.zip" "firacode" __decomp __install_firacode "${REMOTE_VERSION}"
 }
-
 
 __install_sourcesanspro() {
   cp -r "${1}"/OTF/*.otf "${2}"/
@@ -183,10 +179,11 @@ __fnt_sourcesanspro() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-sans-pro/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "sourcesanspro.zip" "sourcesanspro" __decomp __install_sourcesanspro "${REMOTE_VERSION}"
 }
@@ -200,14 +197,14 @@ __fnt_sourcecodepro() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-code-pro/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/\//_/g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | startswith("OTF-")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/adobe-fonts/source-code-pro/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/\//_/g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | startswith("OTF-")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "sourcecodepro.zip" "sourcecodepro" __decomp __install_sourcecodepro "${REMOTE_VERSION}"
 }
-
 
 __install_ibmplex() {
   find "${1}/packages" -type d -path '*/fonts/complete/otf' 2>/dev/null | while read -r dir; do
@@ -220,13 +217,12 @@ __fnt_ibmplex() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/IBM/plex/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' | sed 's/[@\/]/_/g' )"
-  #URL="$( echo $BODY | jq '.zipball_url' --raw-output )"
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/IBM/plex/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g' | sed 's/[@\/]/_/g')"
+  #URL="$( echo "${BODY}" | jq '.zipball_url' --raw-output )"
   URL="https://github.com/IBM/plex/archive/refs/heads/master.zip"
   __install_font_locally "${URL}" "ibmplex.zip" "ibmplex" __decomp __install_ibmplex "${REMOTE_VERSION}"
 }
-
 
 __install_inter() {
   cp -r "${1}"/Inter.ttc "${2}"/
@@ -237,14 +233,14 @@ __fnt_inter() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/rsms/inter/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/rsms/inter/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | endswith(".zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "inter.zip" "inter" __decomp __install_inter "${REMOTE_VERSION}"
 }
-
 
 __install_iosevka() {
   cp -r "${1}"/*.ttf "${2}"/
@@ -254,47 +250,51 @@ __fnt_iosevka() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/be5invis/Iosevka/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
 
   __installing "Iosevka"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka.zip" "iosevka" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Term"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka-term.zip" "iosevka-term" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Curly"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka.zip" "iosevka-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Term Curly"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-term-curly-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka.zip" "iosevka-term-curly" __decomp __install_iosevka "${REMOTE_VERSION}"
 
   __installing "Iosevka Aile"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-aile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-aile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka-aile.zip" "iosevka-aile" __decomp __install_iosevka "${REMOTE_VERSION}"
 
-
   __installing "Iosevka Etoile"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-etoile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output \
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("ttf-unhinted-iosevka-etoile-\\d*\\.\\d*.\\d*\\.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "iosevka-etoile.zip" "iosevka-etoile" __decomp __install_iosevka "${REMOTE_VERSION}"
 }
-
 
 __install_cascadiacode() {
   cp -r "${1}"/ttf/*.ttf "${2}"/
@@ -305,14 +305,14 @@ __fnt_cascadiacode() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/microsoft/cascadia-code/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/microsoft/cascadia-code/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "cascadia-code.zip" "cascadia-code" __decomp __install_cascadiacode "${REMOTE_VERSION}"
 }
-
 
 __install_jetbrainsmono() {
   cp -r "${1}"/fonts/variable/*.ttf "${2}"/
@@ -323,14 +323,14 @@ __fnt_jetbrainsmono() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[0].browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/JetBrains/JetBrainsMono/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[0].browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "JetBrainsMono.zip" "jetbrains-mono" __decomp __install_jetbrainsmono "${REMOTE_VERSION}"
 }
-
 
 __install_nerdjetbrainsmono() {
   cp "${1}"/*.ttf "${2}"/
@@ -341,10 +341,11 @@ __fnt_nerdjetbrainsmono() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("JetBrainsMono.zip")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("JetBrainsMono.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "JetBrainsMono.zip" "nerd-jetbrains-mono" __decomp __install_nerdjetbrainsmono "${REMOTE_VERSION}"
 }
@@ -358,10 +359,11 @@ __fnt_nerdnoto() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("Noto.tar.xz")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("Noto.tar.xz")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "Noto.tar.xz" "nerd-noto" __decomp_tar_xz __install_nerdnoto "${REMOTE_VERSION}"
 }
@@ -376,10 +378,11 @@ __fnt_nerdibm() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("IBMPlexMono.tar.xz")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("IBMPlexMono.tar.xz")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "IBMPlexMono.tar.xz" "nerd-ibmplexmono" __decomp_tar_xz __install_nerdibm "${REMOTE_VERSION}"
 }
@@ -393,10 +396,11 @@ __fnt_nerdsourcecodepro() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("SourceCodePro.tar.xz")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("SourceCodePro.tar.xz")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "SourceCodePro.tar.xz" "nerd-sourcecodepro" __decomp_tar_xz __install_nerdsourcecodepro "${REMOTE_VERSION}"
 }
@@ -410,14 +414,14 @@ __fnt_nerddroid() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("DroidSansMono.tar.xz")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("DroidSansMono.tar.xz")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "DroidSansMono.tar.xz" "nerd-droid" __decomp_tar_xz __install_nerddroid "${REMOTE_VERSION}"
 }
-
 
 __install_intelonemono() {
   cp "${1}"/otf/*.otf "${2}"/
@@ -428,29 +432,31 @@ __fnt_intelonemono() {
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/intel/intel-one-mono/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("otf.zip")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/intel/intel-one-mono/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("otf.zip")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "otf.zip" "intel-one-mono" __decomp __install_intelonemono "${REMOTE_VERSION}"
 }
 
-__install_monaspace() {(
+__install_monaspace() { (
   cd "$(ls -d "${1}"/monaspace-*/ | head -n 1)" || return
   cp ./fonts/otf/*.otf "${2}"/
   cp ./fonts/variable/*.ttf "${2}"/
-)}
+); }
 __fnt_monaspace() {
   __installing "GithubNext monaspace"
   local BODY
   local REMOTE_VERSION
   local URL
 
-  BODY="$( curl --fail --silent --show-error --location https://api.github.com/repos/githubnext/monaspace/releases/latest )"
-  REMOTE_VERSION="$( echo $BODY | jq '.tag_name' --raw-output | sed 's/^v//g' )"
-  URL="$( echo $BODY | \
-    jq '.assets[] | select(.name | test("^monaspace.*.zip$")) | .browser_download_url' --raw-output \
+  BODY="$(curl --fail --silent --show-error --location https://api.github.com/repos/githubnext/monaspace/releases/latest)"
+  REMOTE_VERSION="$(echo "${BODY}" | jq '.tag_name' --raw-output | sed 's/^v//g')"
+  URL="$(
+    echo "${BODY}" |
+      jq '.assets[] | select(.name | test("^monaspace.*.zip$")) | .browser_download_url' --raw-output
   )"
   __install_font_locally "${URL}" "monaspace.zip" "monaspace" __decomp __install_monaspace "${REMOTE_VERSION}"
 }
@@ -461,29 +467,29 @@ __fnt_monaspace() {
 # advent
 # iosevka
 
-__FNT_ALL=( \
-  victormono \
-  hack \
-  firacode \
-  sourcesanspro \
-  sourcecodepro \
-  ibmplex \
-  inter \
-  jetbrainsmono \
-  cascadiacode \
-  nerdjetbrainsmono \
-  nerdnoto \
-  nerdsourcecodepro \
-  nerddroid \
-  nerdibm \
-  hubotsans \
-  monasans \
-  intelonemono \
+__FNT_ALL=(
+  victormono
+  hack
+  firacode
+  sourcesanspro
+  sourcecodepro
+  ibmplex
+  inter
+  jetbrainsmono
+  cascadiacode
+  nerdjetbrainsmono
+  nerdnoto
+  nerdsourcecodepro
+  nerddroid
+  nerdibm
+  hubotsans
+  monasans
+  intelonemono
   monaspace
 )
 
 __LP=()
-if [[ "$#" -gt 0 ]]; then
+if [[ $# -gt 0 ]]; then
   __LP=("$@")
 else
   __LP=("${__FNT_ALL[@]}")
@@ -494,9 +500,11 @@ for f in "${__LP[@]}"; do
 done
 
 case "$(uname)" in
-  "Darwin")
-    ;;
+  "Darwin") ;;
   "Linux")
-    (cd /tmp/ || exit 1; fc-cache -f)
+    (
+      cd /tmp/ || exit 1
+      fc-cache -f
+    )
     ;;
 esac

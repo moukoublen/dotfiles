@@ -1,26 +1,24 @@
 #!/usr/bin/env bash
 
 (
+  # shellcheck disable=SC1091
+  source ./lib/__tools.bash
 
-cd ./lib || exit 1
-
-source __tools.bash
-
-echo "============================= Gome Shell ==========================="
-./gnome-shell-settings.bash set
-echo "===================================================================="
-
-echo "============================= Nautilus ============================="
-./nautilus-settings.bash set
-echo "===================================================================="
-
-echo "============================= Gnome Terminal ======================="
-./gnome-terminal.bash set __terminal-colors-primer_dark_dimmed.bash
-echo "===================================================================="
-
-if [[ -x "$(command -v tilix)" ]]; then
-  echo "============================= Tilix ================================"
-  ./tilix-settings.bash set __terminal-colors-primer_dark_dimmed.bash
+  echo "============================= Gome Shell ==========================="
+  ./gnome-shell-settings.bash set
   echo "===================================================================="
-fi
+
+  echo "============================= Nautilus ============================="
+  ./nautilus-settings.bash set
+  echo "===================================================================="
+
+  echo "============================= Gnome Terminal ======================="
+  ./gnome-terminal.bash set __terminal-colors-primer_dark_dimmed.bash
+  echo "===================================================================="
+
+  if [[ -x "$(command -v tilix)" ]]; then
+    echo "============================= Tilix ================================"
+    ./tilix-settings.bash set __terminal-colors-primer_dark_dimmed.bash
+    echo "===================================================================="
+  fi
 )

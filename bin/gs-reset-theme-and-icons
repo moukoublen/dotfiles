@@ -6,4 +6,3 @@ gsettings reset org.gnome.shell.extensions.user-theme name
 
 gsettings reset org.gnome.desktop.interface icon-theme
 gsettings reset org.gnome.desktop.interface cursor-theme
-

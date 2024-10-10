@@ -59,15 +59,13 @@ __install_exec() {
 }
 export -f __install_exec
 
-
 install-from-github \
-  --name                 "docker-compose" \
-  --repo                 "docker/compose" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+  --name "docker-compose" \
+  --repo "docker/compose" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "docker-compose" \
-  --fn-install           "__install_exec" \
-  --destination          "${PLUGINS_DIR}" \
+  --download-to-file "docker-compose" \
+  --fn-install "__install_exec" \
+  --destination "${PLUGINS_DIR}" \
   "${@}"
-

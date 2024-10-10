@@ -19,8 +19,8 @@ case $1 in
 esac
 
 declare -A settings
-settings=( \
-  ["org.gnome.mutter experimental-features"]="['scale-monitor-framebuffer']" \
+settings=(
+  ["org.gnome.mutter experimental-features"]="['scale-monitor-framebuffer']"
 )
 
 # Enable

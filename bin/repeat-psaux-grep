@@ -2,4 +2,4 @@
 
 togrep=$1
 sleep_time=${2:-1}
-repeat "ps aux | grep -v repeat | grep -v grep | grep --color=auto \"$togrep\"" $sleep_time
+repeat "ps aux | grep -v repeat | grep -v grep | grep --color=auto \"${togrep}\"" "${sleep_time}"

@@ -3,8 +3,8 @@
 whatos() {
   if [[ -f /etc/os-release ]]; then
     (
-    source /etc/os-release
-    echo "${NAME}"
+      source /etc/os-release
+      echo "${NAME}"
     )
     return
   fi
@@ -18,7 +18,7 @@ whatos() {
 }
 
 case "$(whatos)" in
-  "Fedora"|"Fedora Linux")
+  "Fedora" | "Fedora Linux")
     #sudo dnf remove docker \
     #                docker-client \
     #                docker-client-latest \
@@ -34,7 +34,7 @@ case "$(whatos)" in
     sudo dnf check-update
     sudo dnf -y install docker-ce docker-ce-cli containerd.io
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop")
+  "Ubuntu" | "Debian" | "LinuxMint" | "Pop")
     # sudo apt-get --purge --yes remove docker docker-engine docker.io containerd runc
     sudo apt-get install --assume-yes ca-certificates curl gnupg
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -45,8 +45,8 @@ case "$(whatos)" in
     ARCH="$(dpkg --print-architecture)"
     _CODE_NAME=
     _CODE_NAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
-    echo "deb [arch=${ARCH} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu ${_CODE_NAME} stable" | \
-      sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    echo "deb [arch=${ARCH} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu ${_CODE_NAME} stable" |
+      sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     ;;
@@ -58,7 +58,7 @@ esac
 
 echo "Installing group docker and adding the current user to it"
 sudo groupadd docker || true
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "${USER}"
 #newgrp docker
 
 sudo systemctl enable docker.service

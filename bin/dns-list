@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 
-( nmcli dev list || nmcli dev show ) 2>/dev/null | grep DNS
-
+(nmcli dev list || nmcli dev show) 2>/dev/null | grep DNS

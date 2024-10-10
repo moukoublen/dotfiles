@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
-fams=(                \
-  emoji               \
-  serif               \
-  sans-serif          \
-  monospace           \
-  ui-monospace        \
-  -apple-system       \
-  system-ui           \
-  Arial               \
-  "Verdana"           \
-  Helvetica           \
-  "Times New Roman"   \
-  "Courier New"       \
+fams=(
+  emoji
+  serif
+  sans-serif
+  monospace
+  ui-monospace
+  -apple-system
+  system-ui
+  Arial
+  "Verdana"
+  Helvetica
+  "Times New Roman"
+  "Courier New"
 )
-
-
 
 for family in "${fams[@]}"; do
   printf "%-17s: " "$family"

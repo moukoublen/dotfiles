@@ -20,5 +20,4 @@ print-all() {
   gsget org.gnome.desktop.wm.preferences titlebar-font
 }
 
-
 print-all | column --table --separator ':'

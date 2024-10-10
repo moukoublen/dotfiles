@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 # JS_BODY=$(curl --show-error --silent --fail --location https://api.github.com/repos/Wilfred/difftastic/releases/latest)
 
 __remote_version() {
@@ -25,7 +24,7 @@ __get_dl_url() {
   # fi
   local os
   os="$(uname -s | tr '[:upper:]' '[:lower:]')"
-  if [[ "${os}" == "linux" ]]; then
+  if [[ ${os} == "linux" ]]; then
     os="unknown-linux"
   fi
 
@@ -48,7 +47,7 @@ __install_exec() {
   # install binary
   sudo cp "${TMP_DIR}"/difft "${BIN_DIR}"/difft
   sudo chmod +x "${BIN_DIR}"/difft
-  if [[ $(uname) = "Darwin" ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
     sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/difft
   fi
 
@@ -59,18 +58,16 @@ __install_exec() {
 }
 export -f __install_exec
 
-
-install-from-github  \
-  --name                 "difftastic" \
-  --repo                 "Wilfred/difftastic" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "difftastic" \
+  --repo "Wilfred/difftastic" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "difftastic.tar.gz" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "difftastic.tar.gz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"
-
 
 # if command -v elastic-package 1>/dev/null 2>&1; then
 #   source <(elastic-package completion bash)

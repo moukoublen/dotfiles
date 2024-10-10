@@ -12,8 +12,8 @@
 #
 
 __drh_bash_completion() {
-  [[ "$(type -t _docker_container_run)" != "function" ]] && \
-    [[ -f /usr/share/bash-completion/completions/docker ]] && \
+  [[ "$(type -t _docker_container_run)" != "function" ]] &&
+    [[ -f /usr/share/bash-completion/completions/docker ]] &&
     source /usr/share/bash-completion/completions/docker
 
   local cur prev words cword
@@ -26,7 +26,7 @@ USR=""
 args=()
 while (($#)); do
   case "${1}" in
-    -R|--RO)
+    -R | --RO)
       READ_ONLY=":ro"
       shift
       ;;
@@ -51,4 +51,4 @@ FOLDER="/v/$(basename "${PWD}")"
 
 set -x
 
-exec docker run --rm --interactive --tty ${USR} --volume "${PWD}:${FOLDER}${READ_ONLY}" --workdir "${FOLDER}" "${args[@]}"
+exec docker run --rm --interactive --tty "${USR}" --volume "${PWD}:${FOLDER}${READ_ONLY}" --workdir "${FOLDER}" "${args[@]}"

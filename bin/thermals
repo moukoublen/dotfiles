@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "\e[1;36mThermals\e[0m"
-for d in /sys/class/thermal/thermal_zone*/ ; do
+for d in /sys/class/thermal/thermal_zone*/; do
   cat "${d}/type" | tr -d '\n'
 
   echo -n -e "|"

@@ -20,4 +20,3 @@ sudo dnf -y install \
   oxygen-mono-fonts \
   oxygen-sans-fonts \
   levien-inconsolata-fonts
-

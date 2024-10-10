@@ -17,37 +17,37 @@ path-read-link() {
 
 path-real() {
   local SOURCE="${1}"
-  while [[ -L "${SOURCE}" ]]; do
+  while [[ -L ${SOURCE} ]]; do
     SOURCE="$(path-read-link "${SOURCE}")"
-    [[ "${SOURCE}" != /* ]] && SOURCE="$(path-abs "${SOURCE}")/${SOURCE}"
+    [[ ${SOURCE} != /* ]] && SOURCE="$(path-abs "${SOURCE}")/${SOURCE}"
   done
   path-abs "${SOURCE}"
 }
 
-DIR="$(path-real ${BASH_SOURCE[0]})"
+DIR="$(path-real "${BASH_SOURCE[0]}")"
 
 echo "********************************************************"
 echo "**************** Dotfiles Installation ****************"
-echo "  dotfiles folder: $DIR"
+echo "  dotfiles folder: ${DIR}"
 
 if [ ! -f ~/.dotfiles.bash ]; then
   echo "  creating symlink at home folder"
-  ln -s $DIR/root.bash ~/.dotfiles.bash
+  ln -s "${DIR}/root.bash" ~/.dotfiles.bash
 else
   echo "  syslink exists"
 fi
 
 BASH_FILE=~/.bashrc
-[[ ! -f $BASH_FILE ]] && BASH_FILE=~/.bash_profile
-[[ ! -f $BASH_FILE ]] && touch $BASH_FILE
-echo "  bash file to be used: $BASH_FILE"
+[[ ! -f ${BASH_FILE} ]] && BASH_FILE=~/.bash_profile
+[[ ! -f ${BASH_FILE} ]] && touch "${BASH_FILE}"
+echo "  bash file to be used: ${BASH_FILE}"
 
 SOURCE_LINE='[[ -r ~/.dotfiles.bash ]] && [[ -f ~/.dotfiles.bash ]] && source ~/.dotfiles.bash'
-if grep --fixed-strings --quiet "$SOURCE_LINE" $BASH_FILE; then
-  echo "  dotfiles sourcing is already included in $BASH_FILE"
+if grep --fixed-strings --quiet "${SOURCE_LINE}" "{$BASH_FILE}"; then
+  echo "  dotfiles sourcing is already included in ${BASH_FILE}"
 else
-  echo "  add dotfiles sourcing in $BASH_FILE"
-  echo $SOURCE_LINE >> $BASH_FILE
+  echo "  add dotfiles sourcing in ${BASH_FILE}"
+  echo "${SOURCE_LINE}" >>$BASH_FILE
 fi
 
 echo "********************************************************"

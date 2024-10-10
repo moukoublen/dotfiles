@@ -19,7 +19,7 @@ __get_dl_url() {
 
   local arch
   arch="$(uname -m)"
-  if [[ "${arch}" == "x86_64" ]]; then
+  if [[ ${arch} == "x86_64" ]]; then
     arch="amd64"
   fi
 
@@ -43,29 +43,27 @@ __install_exec() {
   # install binary
   sudo cp "${TMP_DIR}"/elastic-package "${BIN_DIR}"/elastic-package
   sudo chmod +x "${BIN_DIR}"/elastic-package
-  if [[ $(uname) = "Darwin" ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
     sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/elastic-package
   fi
 
   # install bash autocompletion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/elastic-package completion bash > "${HOME}"/.bashrc.d/elastic-package-completion.bash
+    "${BIN_DIR}"/elastic-package completion bash >"${HOME}"/.bashrc.d/elastic-package-completion.bash
   fi
 }
 export -f __install_exec
 
-
-install-from-github  \
-  --name                 "elastic-package" \
-  --repo                 "elastic/elastic-package" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "elastic-package" \
+  --repo "elastic/elastic-package" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "elastic-package.tar.gz" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "elastic-package.tar.gz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"
-
 
 # if command -v elastic-package 1>/dev/null 2>&1; then
 #   source <(elastic-package completion bash)

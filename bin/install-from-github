@@ -15,11 +15,10 @@ __log() {
 }
 
 __log_end() {
-  local fmt="$1"
+  local fmt="${1}"
   shift
   printf "  ${fmt}\n\n" "${@}"
 }
-
 
 __exit_on_fail() {
   if [ $? -ne 0 ]; then
@@ -40,7 +39,7 @@ __get_remote_filename() {
 
   # try to parse filename from content-disposition header
   f=$(curl --head --silent --fail --location "${1}" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
-  if [[ -n "${f}" ]]; then
+  if [[ -n ${f} ]]; then
     echo "${f}"
     return
   fi
@@ -62,44 +61,44 @@ GH_TOKEN=""
 UNKNOWN_ARGS=()
 while (($#)); do
   case "${1}" in
-    -n|--name)
+    -n | --name)
       NAME="${2}"
       shift 2
       ;;
-    -r|--repo)
+    -r | --repo)
       REPO="${2}"
       shift 2
       ;;
-    -rv|--fn-remote-version)
+    -rv | --fn-remote-version)
       FN_REMOTE_VER="${2}"
       shift 2
       ;;
-    -lv|--fn-local-version)
+    -lv | --fn-local-version)
       FN_LOCAL_VER="${2}"
       shift 2
       ;;
-    -dl|--fn-get-download-link)
+    -dl | --fn-get-download-link)
       FN_GET_DL_LINK="${2}"
       shift 2
       ;;
-    -f|--download-to-file)
+    -f | --download-to-file)
       DL_FILE="${2}"
       shift 2
       ;;
-    -i|--fn-install)
+    -i | --fn-install)
       FN_INSTALL="${2}"
       shift 2
       ;;
-    -d|--destination)
+    -d | --destination)
       BIN_DIR="${2}"
       shift 2
       ;;
-    -v|--verbose)
+    -v | --verbose)
       CURL_ARGS=("${CURL_ARGS[@]}" '--show-error' '--verbose')
       set -x
       shift 1
       ;;
-    -t|--token)
+    -t | --token)
       # https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28
       GH_TOKEN="${2}"
       CURL_ARGS=("${CURL_ARGS[@]}" '--header' "Authorization: token ${GH_TOKEN}")
@@ -133,7 +132,7 @@ JS_BODY=$(curl "${CURL_ARGS[@]}" --silent --fail --location "${GH_API_LATEST_REL
 REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
 LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}" || echo -n "")
 
-if [[ "${REMOTE_VER}" == "${LOCAL_VER}" ]]; then
+if [[ ${REMOTE_VER} == "${LOCAL_VER}" ]]; then
   __log_end "it is already \e[1;32mupdated\e[0m to \e[1;34m%s\e[0m" "${LOCAL_VER}"
   exit 0
 fi
@@ -141,11 +140,11 @@ fi
 __log "updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
 
 DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
-if [[ "${DL_FILE}" == "" ]]; then
+if [[ ${DL_FILE} == "" ]]; then
   DL_FILE=$(__get_remote_filename "${DL_URL}")
   __exit_on_fail
 fi
-__log  "downloading from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
+__log "downloading from \e[1;34m%s\e[0m at \e[1;34m%s/%s\e[0m" "${DL_URL}" "${TMP_DIR}" "${DL_FILE}"
 curl "${CURL_ARGS[@]}" \
   --silent \
   --fail \

@@ -4,15 +4,15 @@ __get_remote_filename() {
   # split string of argument $1 by / and get last part
   f=${1##*/}
 
-  if [ -n "$f" ]; then
-    echo $f
+  if [ -n "${f}" ]; then
+    echo "${f}"
     return
   fi
 
   # try to parse filename from content-disposition header
-  f=$(curl --head --silent --fail --location "$1" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
-  if [ -n "$f" ]; then
-    echo $f
+  f=$(curl --head --silent --fail --location "${1}" | grep 'content-disposition' | grep 'filename=' | tail -n 1 | sed -r 's/^.*filename=(.*)$/\1/')
+  if [ -n "${f}" ]; then
+    echo "${f}"
     return
   fi
 
@@ -21,27 +21,27 @@ __get_remote_filename() {
 }
 
 TMP_DIR=$(mktemp --directory --tmpdir package_XXXXXXX)
-FILENAME=$(__get_remote_filename $1)
-rm -rf $TMP_DIR
-mkdir -p $TMP_DIR
+FILENAME=$(__get_remote_filename "${1}")
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}"
 
-printf "Downloading    \e[1;34m%s\e[0m \n" $1
-printf "Downloading in \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
-curl --fail --location "$1" --output "$TMP_DIR/$FILENAME"
+printf "Downloading    \e[1;34m%s\e[0m \n" "${1}"
+printf "Downloading in \e[1;34m%s/%s\e[0m \n" "${TMP_DIR}" "${FILENAME}"
+curl --fail --location "$1" --output "${TMP_DIR}/${FILENAME}"
 
-printf "Installing \e[1;34m%s/%s\e[0m \n" $TMP_DIR $FILENAME
+printf "Installing \e[1;34m%s/%s\e[0m \n" "${TMP_DIR}" "${FILENAME}"
 case "$(what-pm)" in
   "dnf")
-    sudo dnf -y install $TMP_DIR/$FILENAME
+    sudo dnf -y install "${TMP_DIR}/${FILENAME}"
     ;;
   "apt")
-    sudo apt -y install $TMP_DIR/$FILENAME
+    sudo apt -y install "${TMP_DIR}/${FILENAME}"
     ;;
   *)
     echo "this script does not have packages for this release"
     ;;
 esac
-rm -rf $TMP_DIR
+rm -rf "${TMP_DIR}"
 
 unset TMP_DIR
 unset FILENAME

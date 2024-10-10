@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cat << EOL | sudo tee /etc/apt/apt.conf.d/99user-agent
+cat <<EOL | sudo tee /etc/apt/apt.conf.d/99user-agent
 Acquire
 {
   http::User-Agent "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0";

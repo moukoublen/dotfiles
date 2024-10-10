@@ -6,11 +6,11 @@ __remote_version() {
 }
 export -f __remote_version
 
-__local_version() {(
+__local_version() {
   #local BIN_DIR="${1:-/usr/local/bin}" # not used in this case
   [[ ! -e /usr/share/dbeaver-ce/.eclipseproduct ]] && echo "" && return
   cat /usr/share/dbeaver-ce/.eclipseproduct | grep --extended-regexp "^version" | sed "s/version=//"
-)}
+}
 export -f __local_version
 
 __get_dl_url() {
@@ -51,14 +51,13 @@ __install_exec() {
 }
 export -f __install_exec
 
-
-install-from-github  \
-  --name                 "dbeaver" \
-  --repo                 "dbeaver/dbeaver" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "dbeaver" \
+  --repo "dbeaver/dbeaver" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"

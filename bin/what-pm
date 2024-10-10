@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 case "$(what-os)" in
-  "Fedora"|"Fedora Linux")
+  "Fedora" | "Fedora Linux")
     echo "dnf"
     ;;
-  "Ubuntu"|"Debian"|"LinuxMint"|"Pop"|"Pop!_OS")
+  "Ubuntu" | "Debian" | "LinuxMint" | "Pop" | "Pop!_OS")
     echo "apt"
     ;;
   *)

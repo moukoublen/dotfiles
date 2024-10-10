@@ -29,7 +29,6 @@ __get_dl_url() {
       ;;
   esac
 
-
   local JS_BODY="${1}"
   echo "${JS_BODY}" | jq -r ".assets[] | ${JQ_SELECT} | .browser_download_url"
 }
@@ -46,21 +45,20 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/delta --generate-completion bash > "${HOME}"/.bashrc.d/delta-completion.bash
+    "${BIN_DIR}"/delta --generate-completion bash >"${HOME}"/.bashrc.d/delta-completion.bash
   fi
 }
 export -f __install_exec
 
-
-install-from-github  \
-  --name                 "delta" \
-  --repo                 "dandavison/delta" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "delta" \
+  --repo "dandavison/delta" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "downloaded.tar.gz" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "downloaded.tar.gz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"
 
 # https://github.com/dandavison/delta/releases

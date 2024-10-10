@@ -1,4 +1,4 @@
-name: shellcheck
+name: shell-ci
 
 on:
   push:
@@ -18,5 +18,11 @@ jobs:
     - name: install shellcheck and bash
       run: sudo apt-get install -y shellcheck bash
 
-    - name: run shellcheck
-      run: ./.helpers/shellcheck
+    - uses: mfinelli/setup-shfmt@v3
+
+    - name: run shellcheck anf shfmt
+      shell: bash
+      run: |
+        set -e
+        ./.helpers/sh-checks
+        ./.helpers/git-check-dirty

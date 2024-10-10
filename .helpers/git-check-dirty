@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+set -e
+
+# https://git-scm.com/docs/git-status
+
+if [ -n "$(git status --porcelain)" ]; then
+  echo "new or modified files"
+  echo ""
+
+  git status --short --branch --untracked-files=all --ahead-behind
+  exit 1
+fi

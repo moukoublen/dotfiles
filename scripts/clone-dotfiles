@@ -6,4 +6,3 @@ mkdir -p ~/gitrepos/moukoublen
   git clone https://github.com/moukoublen/dotfiles.git
 )
 ~/gitrepos/moukoublen/dotfiles/install
-. ~/.dotfiles.bash

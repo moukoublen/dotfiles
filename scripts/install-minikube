@@ -30,7 +30,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/minikube completion bash > "${HOME}"/.bashrc.d/minikube-completion.bash
+    "${BIN_DIR}"/minikube completion bash >"${HOME}"/.bashrc.d/minikube-completion.bash
   fi
 }
 export -f __install_exec
@@ -40,13 +40,13 @@ export -f __install_exec
 #   source <(minikube completion bash)
 # fi
 
-install-from-github  \
-  --name                 "minikube" \
-  --repo                 "kubernetes/minikube" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "minikube" \
+  --repo "kubernetes/minikube" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "downloaded.tar.gz" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "downloaded.tar.gz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"

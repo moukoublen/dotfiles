@@ -3,7 +3,7 @@
 # __gnome_terminal_profile_name_and_uuid prints  "[name] [uuid]"
 __gnome_terminal_profile_name_and_uuid() {
   local REQ_NAME="${1}"
-  if [[ -z "${REQ_NAME}" ]]; then
+  if [[ -z ${REQ_NAME} ]]; then
     echo -n "Default $(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')"
     return
   fi
@@ -60,8 +60,9 @@ case $1 in
     shift 1
     ;;
   set)
-    [ -z "$2" ] && __help && exit 1
-    source $2
+    [[ -z ${2} ]] && __help && exit 1
+    # shellcheck disable=SC1090
+    source "${2}"
     func="__set-settings"
     shift 2
     ;;
@@ -71,17 +72,16 @@ case $1 in
     ;;
 esac
 
-
 #########################################################
 
 declare -A globalsettings
-globalsettings=( \
- ["org.gnome.Terminal.Legacy.Settings default-show-menubar"]="false" \
- ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy"]="<Super>c" \
- ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Super>v" \
- ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Super>t" \
- ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Super>w" \
- ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Super>k" \
+globalsettings=(
+  ["org.gnome.Terminal.Legacy.Settings default-show-menubar"]="false"
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ copy"]="<Super>c"
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ paste"]="<Super>v"
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ new-tab"]="<Super>t"
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ close-tab"]="<Super>w"
+  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Super>k"
 )
 
 #  ["org.gnome.Terminal.Legacy.Settings default-show-menubar"]="false" \
@@ -99,29 +99,29 @@ globalsettings=( \
 #  ["org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ reset-and-clear"]="<Control><Shift>k" \
 
 declare -A profilesettings
-profilesettings=( \
-  ["scrollbar-policy"]="always" \
-  ["scrollback-unlimited"]="true" \
-  ["rewrap-on-resize"]="true" \
-  ["text-blink-mode"]="never" \
-  ["default-size-columns"]="120" \
-  ["default-size-rows"]="30" \
-  ["use-system-font"]="false" \
-  ["font"]="JetBrainsMono Nerd Font 13" \
-  ["cursor-shape"]="block" \
-  ["audible-bell"]="false" \
-  ["use-theme-colors"]="false" \
-  ["use-transparent-background"]="false" \
-  ["background-transparency-percent"]="0" \
-  ["highlight-colors-set"]="true" \
-  ["highlight-foreground-color"]="$C_HFG" \
-  ["highlight-background-color"]="$C_HBG" \
-  ["cursor-colors-set"]="true" \
-  ["cursor-background-color"]="${C_CBG:-C_HBG}" \
-  ["cursor-foreground-color"]="${C_CFG:-C_HFG}" \
-  ["foreground-color"]="$C_FG" \
-  ["background-color"]="$C_BG" \
-  ["palette"]="$C_PAL" \
+profilesettings=(
+  ["scrollbar-policy"]="always"
+  ["scrollback-unlimited"]="true"
+  ["rewrap-on-resize"]="true"
+  ["text-blink-mode"]="never"
+  ["default-size-columns"]="120"
+  ["default-size-rows"]="30"
+  ["use-system-font"]="false"
+  ["font"]="JetBrainsMono Nerd Font 13"
+  ["cursor-shape"]="block"
+  ["audible-bell"]="false"
+  ["use-theme-colors"]="false"
+  ["use-transparent-background"]="false"
+  ["background-transparency-percent"]="0"
+  ["highlight-colors-set"]="true"
+  ["highlight-foreground-color"]="$C_HFG"
+  ["highlight-background-color"]="$C_HBG"
+  ["cursor-colors-set"]="true"
+  ["cursor-background-color"]="${C_CBG:-C_HBG}"
+  ["cursor-foreground-color"]="${C_CFG:-C_HFG}"
+  ["foreground-color"]="$C_FG"
+  ["background-color"]="$C_BG"
+  ["palette"]="$C_PAL"
 )
 
 __set-settings() {

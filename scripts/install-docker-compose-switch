@@ -2,7 +2,7 @@
 
 __REMOTE_VER=$(curl --silent --show-error --fail --location https://api.github.com/repos/docker/compose-switch/releases/latest | jq -r '.name')
 
-printf "Downloading \e[1;34mcompose-switch\e[0m version \e[1;34m%s\e[0m ... " $__REMOTE_VER
+printf "Downloading \e[1;34mcompose-switch\e[0m version \e[1;34m%s\e[0m ... " "${__REMOTE_VER}"
 [[ -f "/usr/local/bin/compose-switch.new" ]] && sudo rm -f "/usr/local/bin/compose-switch.new"
 
 sudo curl \

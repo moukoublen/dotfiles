@@ -2,16 +2,15 @@
 
 URL='https://dl.pstmn.io/download/latest/linux64'
 DOWNLOADED_FILE='/tmp/postman.tar.gz'
-INSTALLATION_DIR="$HOME/Applications/Postman"
-DESKTOP_FILE="$HOME/.local/share/applications/postman.desktop"
-EXECUTABLE_FULL_PATH="$INSTALLATION_DIR/Postman"
+INSTALLATION_DIR="${HOME}/Applications/Postman"
+DESKTOP_FILE="${HOME}/.local/share/applications/postman.desktop"
+EXECUTABLE_FULL_PATH="${INSTALLATION_DIR}/Postman"
 
-
-wget $URL -O $DOWNLOADED_FILE
-mkdir -p $INSTALLATION_DIR
-tar zxf $DOWNLOADED_FILE --strip-components=1 -C $INSTALLATION_DIR
-rm $DOWNLOADED_FILE
-cat > $DESKTOP_FILE <<EOL
+wget $URL -O "${DOWNLOADED_FILE}"
+mkdir -p "${INSTALLATION_DIR}"
+tar zxf "${DOWNLOADED_FILE}" --strip-components=1 -C "${INSTALLATION_DIR}"
+rm "${DOWNLOADED_FILE}"
+cat >"${DESKTOP_FILE}" <<EOL
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -22,7 +21,7 @@ Categories=Development;IDE;
 Terminal=false
 StartupWMClass=Postman
 EOL
-echo "Exec=\"$EXECUTABLE_FULL_PATH\"" >> $DESKTOP_FILE
+echo "Exec=\"${EXECUTABLE_FULL_PATH}\"" >>"${DESKTOP_FILE}"
 
 mkdir -p ~/.icons
-cp $INSTALLATION_DIR/app/resources/app/assets/icon.png ~/.icons/postman.png
+cp "${INSTALLATION_DIR}/app/resources/app/assets/icon.png" ~/.icons/postman.png

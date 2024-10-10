@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 CONF_PATH="${HOME}/.config/Code/User"
-if [[ $(uname) = "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
   CONF_PATH="${HOME}/Library/Application Support/Code/User/"
 fi
 mkdir -p "${CONF_PATH}"
@@ -16,10 +16,10 @@ __install_settings_file() {
   local TARGET="${CONF_PATH}/${trg_file}"
 
   # if file exists, backup.
-  [[ -f "${TARGET}" ]] && [[ ! -h "${TARGET}" ]] && mv "${TARGET}"{,.backup}
+  [[ -f ${TARGET} ]] && [[ ! -L ${TARGET} ]] && mv "${TARGET}"{,.backup}
 
   # if link already exists, return.
-  [[ -h "${TARGET}" ]] && echo "Link for ${cnf_file} already exists" && return
+  [[ -L ${TARGET} ]] && echo "Link for ${cnf_file} already exists" && return
 
   # install sym link
   echo -e "Linking \e[0;35m${ORIGIN}\e[0m -> \e[0;36m${TARGET}\e[0m"
@@ -27,6 +27,6 @@ __install_settings_file() {
 }
 
 __install_settings_file settings.json
-if [[ $(uname) = "Linux" ]]; then
+if [[ $(uname) == "Linux" ]]; then
   __install_settings_file keybindings.json
 fi

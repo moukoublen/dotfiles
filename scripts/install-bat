@@ -30,19 +30,18 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    cat "${TMP_DIR}"/autocomplete/bat.bash > "${HOME}"/.bashrc.d/bat-completion.bash
+    cat "${TMP_DIR}"/autocomplete/bat.bash >"${HOME}"/.bashrc.d/bat-completion.bash
   fi
 }
 export -f __install_exec
 
-
-install-from-github  \
-  --name                 "bat" \
-  --repo                 "sharkdp/bat" \
-  --fn-remote-version    "__remote_version" \
-  --fn-local-version     "__local_version" \
+install-from-github \
+  --name "bat" \
+  --repo "sharkdp/bat" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
   --fn-get-download-link "__get_dl_url" \
-  --download-to-file     "downloaded.tar.gz" \
-  --fn-install           "__install_exec" \
-  --destination          "/usr/local/bin" \
+  --download-to-file "downloaded.tar.gz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
   "${@}"

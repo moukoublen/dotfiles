@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 ff() {
-  if command -v "${1}" &> /dev/null; then
-    echo "${@} > ${HOME}/.bashrc.d/${1}-completion.bash"
-    "${@}" > "${HOME}"/.bashrc.d/"${1}"-completion.bash
+  if command -v "${1}" &>/dev/null; then
+    echo "${*} > ${HOME}/.bashrc.d/${1}-completion.bash"
+    "${@}" >"${HOME}"/.bashrc.d/"${1}"-completion.bash
   fi
 }
-
 
 ff fzf --bash
 ff elastic-package completion bash

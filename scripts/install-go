@@ -14,21 +14,21 @@ get_local_version() {
 
 VER="${1}"
 
-if [[ "${VER}" == "" ]]; then
+if [[ ${VER} == "" ]]; then
   VER="$(get_remote_latest_version)"
 fi
 
-if [[ -z "${VER}" ]]; then
+if [[ -z ${VER} ]]; then
   echo "Error: No go version specified"
   exit 1
 fi
 
-if [[ "${VER}" == "$(get_local_version)" ]]; then
+if [[ ${VER} == "$(get_local_version)" ]]; then
   echo "Version ${VER} is already installed"
   exit 0
 fi
 
-if command -v go &> /dev/null && [[ ! -d /usr/local/go ]]; then
+if command -v go &>/dev/null && [[ ! -d /usr/local/go ]]; then
   echo -e "\e[32mGo has been installed in a different way and not in path /usr/local/go.\e[0m Aborting..."
   exit 1
 fi

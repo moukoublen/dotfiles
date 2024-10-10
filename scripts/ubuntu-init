@@ -27,10 +27,9 @@ sudo systemctl stop ufw.service
 sudo systemctl disable ufw.service
 
 sudo apt install --assume-yes \
-  dstat   \
-  atop    \
-  iotop   \
-  ioping  \
+  dstat \
+  atop \
+  iotop \
+  ioping \
   sysstat \
   nmon
-

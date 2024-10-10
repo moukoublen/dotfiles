@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$(what-pm)" in
-  "dnf"|"yum")
+  "dnf" | "yum")
     install-remote-package 'https://download.cdn.viber.com/desktop/Linux/viber.rpm'
     ;;
   "apt")

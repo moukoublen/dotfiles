@@ -2,10 +2,9 @@
 
 command=$1
 sleep_time=${2:-1}
-while true
-do
+while true; do
   echo "---"
-  eval $command
+  eval "${command}"
   echo "---"
-  sleep $sleep_time
+  sleep "${sleep_time}"
 done

@@ -2,8 +2,7 @@
 
 sudo dnf -y install snapd
 
-if [[ -L "/snap" && -d "/snap" ]]
-then
+if [[ -L "/snap" && -d "/snap" ]]; then
   echo "Symlink /snap exists"
 else
   echo "Creating symlink /snap -> /var/lib/snapd/snap"

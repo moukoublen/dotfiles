@@ -9,28 +9,29 @@ __max() {
 FULL_PATHS=()
 if [ -f ~/.q ]; then
   while read -r r; do
-    [[ $r = "" ]] && continue
+    [[ $r == "" ]] && continue
     r=$(eval echo "$r")
     r="${r/#~/$HOME}"
     FULL_PATHS[${#FULL_PATHS[@]}]="${r}"
-  done < ~/.q
+  done <~/.q
   unset r
 fi
-
 
 MAX_NAME_LEN=2
 MAX_BRANCH_NAME_LEN=2
 for p in "${FULL_PATHS[@]}"; do
   bn=$(basename "${p}")
-  MAX_NAME_LEN=$(__max ${#bn} $MAX_NAME_LEN)
+  MAX_NAME_LEN=$(__max ${#bn} "${MAX_NAME_LEN}")
   [ ! -d "${p}" ] && continue
-  b=$(cd "${p}" || exit; git rev-parse --abbrev-ref HEAD)
-  MAX_BRANCH_NAME_LEN=$(__max ${#b} $MAX_BRANCH_NAME_LEN)
+  b=$(
+    cd "${p}" || exit
+    git rev-parse --abbrev-ref HEAD
+  )
+  MAX_BRANCH_NAME_LEN=$(__max ${#b} "${MAX_BRANCH_NAME_LEN}")
 done
 
-
-__update-repo() {(
-  [[ "${1}" = "" ]] && return
+__update-repo() { (
+  [[ ${1} == "" ]] && return
   printf "%-${MAX_NAME_LEN}.${MAX_NAME_LEN}s " "$(basename "${1}")"
 
   # if not exists
@@ -40,30 +41,29 @@ __update-repo() {(
   printf "\e[34m%-${MAX_BRANCH_NAME_LEN}.${MAX_BRANCH_NAME_LEN}s\e[0m " "$(git rev-parse --abbrev-ref HEAD)"
 
   git fetch --quiet
-  LOCAL=$(git rev-parse '@' 2> /dev/null)
-  REMOTE=$(git rev-parse '@{u}' 2> /dev/null)
-  BASE=$(git merge-base '@' '@{u}' 2> /dev/null)
+  LOCAL=$(git rev-parse '@' 2>/dev/null)
+  REMOTE=$(git rev-parse '@{u}' 2>/dev/null)
+  BASE=$(git merge-base '@' '@{u}' 2>/dev/null)
 
-  if [[ "${LOCAL}" = "${REMOTE}" ]]; then
+  if [[ ${LOCAL} == "${REMOTE}" ]]; then
     printf "\e[32mUp to date\e[0m\n"
     return
   fi
 
-  if [[ $LOCAL = "${BASE}" ]]; then
+  if [[ $LOCAL == "${BASE}" ]]; then
     printf "\e[33mPulling updates...\e[0m "
-    git pull --quiet --ff-only &> /dev/null || { printf "\e[31mfailed\e[0m to pull\n" && return 1; }
+    git pull --quiet --ff-only &>/dev/null || { printf "\e[31mfailed\e[0m to pull\n" && return 1; }
     printf "\e[32mok! \e[0m\n"
     return
   fi
 
-  if [[ $REMOTE = "${BASE}" ]]; then
+  if [[ $REMOTE == "${BASE}" ]]; then
     printf "\e[31mNeed to push\e[0m\n"
     return
   fi
 
   printf "\e[31mDiverged\e[0m\n"
-)}
-
+); }
 
 for p in "${FULL_PATHS[@]}"; do
   __update-repo "${p}"

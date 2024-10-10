@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-gsettings set org.gnome.desktop.interface icon-theme $1
+gsettings set org.gnome.desktop.interface icon-theme "${1}"
