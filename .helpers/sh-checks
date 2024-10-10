@@ -9,8 +9,8 @@ set -o pipefail
 _for_each_script() {
   find ./ \
     -type f \
-    -not -path './.git' \
-    -not -path './config/gnome/lib/palettes' \
+    -not -path './.git/*' \
+    -not -path './config/gnome/lib/palettes/*' \
     -executable \
     -print0 | while IFS= read -r -d '' file; do
     if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
