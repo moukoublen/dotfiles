@@ -11,7 +11,7 @@ _for_each_script() {
     -type f \
     -not -path './.git/*' \
     -not -path './config/gnome/lib/palettes/*' \
-    -executable \
+    \( -name '*.bash' -o -name '*.sh' -o -executable \) \
     -print0 | while IFS= read -r -d '' file; do
     if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
       echo "${*} ${file}"
