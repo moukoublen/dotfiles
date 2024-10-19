@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: shell-ci
 
 on:
@@ -18,6 +19,7 @@ jobs:
     - name: install shellcheck and bash
       run: sudo apt-get install -y shellcheck bash
 
+    # https://github.com/mfinelli/setup-shfmt
     - uses: mfinelli/setup-shfmt@v3
 
     - name: run shellcheck anf shfmt

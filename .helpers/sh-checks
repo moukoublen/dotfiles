@@ -6,22 +6,16 @@ set -o pipefail
 
 # should be called from root dir.
 
-_for_each_script() {
-  find ./ \
-    -type f \
-    -not -path './.git/*' \
-    -not -path './config/gnome/lib/palettes/*' \
-    \( -name '*.bash' -o -name '*.sh' -o -executable \) \
-    -print0 | while IFS= read -r -d '' file; do
-    if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
-      echo "${*} ${file}"
-      "${@}" "${file}"
-    fi
-  done
-}
-
-_for_each_script shfmt --simplify --language-dialect auto --case-indent --indent 2 --write
-_for_each_script shellcheck --external-sources --format=tty --exclude=SC2012 --exclude=SC2002 --exclude=SC2059 --exclude=SC2181
+./.helpers/foreach-script shfmt --simplify --language-dialect auto --case-indent --indent 2 --write
+./.helpers/foreach-script shellcheck \
+  --norc \
+  --external-sources \
+  --format=tty \
+  --enable=require-variable-braces,add-default-case \
+  --exclude=SC2012 \
+  --exclude=SC2002 \
+  --exclude=SC2059 \
+  --exclude=SC2181
 
 # SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames. https://www.shellcheck.net/wiki/SC2012
 # SC2059 (info): Don't use variables in the printf format string. https://www.shellcheck.net/wiki/SC2059

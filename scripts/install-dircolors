@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-curl --silent --location https://raw.githubusercontent.com/arcticicestudio/nord-dircolors/develop/src/dir_colors >~/.dir_colors

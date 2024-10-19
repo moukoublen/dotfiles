@@ -43,7 +43,7 @@ BASH_FILE=~/.bashrc
 echo "  bash file to be used: ${BASH_FILE}"
 
 SOURCE_LINE='[[ -r ~/.dotfiles.bash ]] && [[ -f ~/.dotfiles.bash ]] && source ~/.dotfiles.bash'
-if grep --fixed-strings --quiet "${SOURCE_LINE}" "{$BASH_FILE}"; then
+if grep --fixed-strings --quiet "${SOURCE_LINE}" "${BASH_FILE}"; then
   echo "  dotfiles sourcing is already included in ${BASH_FILE}"
 else
   echo "  add dotfiles sourcing in ${BASH_FILE}"
