@@ -12,6 +12,8 @@ path-read-link() {
     "Linux")
       readlink --canonicalize-existing --no-newline "${1}"
       ;;
+    *)
+      readlink -n "${1}"
   esac
 }
 
