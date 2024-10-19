@@ -10,19 +10,24 @@
 
 # -perm +111
 
+VERBOSE=${VERBOSE:="0"}
+
+mapfile -d '' -t files < <(
+  find ./ \
+    -type f \
+    -and \( -not -path './.git/*' \) \
+    -and \( -not -path './vendor/*' \) \
+    -and \( -name '*.bash' -or -name '*.sh' -or -executable \) \
+    -print0
+)
+
 status=0
-find ./ \
-  -type f \
-  -and \( -not -path './.git/*' \) \
-  -and \( -not -path './vendor/*' \) \
-  -and \( -name '*.bash' -or -name '*.sh' -or -executable \) \
-  -print0 | while IFS= read -r -d '' file; do
+
+for file in "${files[@]}"; do
   if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
-    echo "${*} ${file}"
-    if ! "${@}" "${file}"; then
-      status=1
-    fi
+    [[ ${VERBOSE} == "1" ]] || echo "${*} ${file}"
+    "${@}" "${file}" || status=1
   fi
 done
 
-exit $status
+exit ${status}

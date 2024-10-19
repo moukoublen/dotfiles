@@ -5,22 +5,18 @@ if ! command -v shellcheck &>/dev/null; then
   exit 1
 fi
 
-mapfile -t FILES < <(find . \
-  \( -not -name 'root.bash' \) \
-  -a \( -not -path './.git/*' \) \
-  -a \( -not -path './config/gnome/lib/palettes/*' \) \
-  -a \( -name '*.bash' -o \( -type f -a -executable \) \) \
-  -print)
-
-set -x
-
-shellcheck \
-  --shell=bash \
-  --exclude=SC1090 \
-  --external-sources \
-  --severity=warning \
-  --format=tty \
-  --source-path=./config/gnome/lib \
+./.helpers/foreach-script shellcheck \
   --norc \
-  root.bash \
-  "${FILES[@]}"
+  --external-sources \
+  --format=tty \
+  --enable=require-variable-braces,add-default-case \
+  --exclude=SC2012 \
+  --exclude=SC2002 \
+  --exclude=SC2059 \
+  --exclude=SC2181
+
+# SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames. https://www.shellcheck.net/wiki/SC2012
+# SC2059 (info): Don't use variables in the printf format string. https://www.shellcheck.net/wiki/SC2059
+# SC2002 (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead. https://www.shellcheck.net/wiki/SC2002
+# SC2181 (style): Check exit code directly with e.g. 'if ! mycmd;', not indirectly with $?. https://www.shellcheck.net/wiki/SC2181
+

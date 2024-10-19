@@ -14,6 +14,7 @@ path-read-link() {
       ;;
     *)
       readlink -n "${1}"
+      ;;
   esac
 }
 

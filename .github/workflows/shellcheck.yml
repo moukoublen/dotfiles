@@ -22,9 +22,15 @@ jobs:
     # https://github.com/mfinelli/setup-shfmt
     - uses: mfinelli/setup-shfmt@v3
 
-    - name: run shellcheck anf shfmt
+    - name: shellcheck
       shell: bash
       run: |
-        set -e
-        ./.helpers/sh-checks
-        ./.helpers/git-check-dirty
+        ./.helpers/shellcheck
+
+    - name: shfmt
+      shell: bash
+      run: |
+        status=0
+        ./.helpers/shfmt || status=1
+        ./.helpers/git-check-dirty || status=1
+        exit "${status}"
