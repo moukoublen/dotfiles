@@ -16,11 +16,11 @@ jobs:
     # https://github.com/actions/checkout
     - uses: actions/checkout@v4
 
-    - name: install shellcheck and bash
-      run: sudo apt-get install -y shellcheck bash
-
-    # https://github.com/mfinelli/setup-shfmt
-    - uses: mfinelli/setup-shfmt@v3
+    - name: install shellcheck and shfmt
+      run: |
+        PATH="${PWD}/bin:${PATH}"
+        ./scripts/install-shellcheck
+        ./scripts/install-shfmt
 
     - name: shellcheck
       shell: bash

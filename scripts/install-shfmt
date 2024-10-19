@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+__package_os() {
+  case "$(uname)" in
+    "Darwin")
+      echo "darwin"
+      ;;
+    "Linux")
+      echo "linux"
+      ;;
+    *)
+      echo "$(uname)"
+      ;;
+  esac
+}
+export -f __package_os
+
+__package_arch() {
+  local arch
+  arch="$(uname -m | tr '[:upper:]' '[:lower:]')"
+  case "${arch}" in
+    "x86_64")
+      echo "amd64"
+      ;;
+    "aarch64")
+      echo "aarch64"
+      ;;
+    "arm64")
+      echo "aarch64"
+      ;;
+    *)
+      echo "${arch}"
+      ;;
+  esac
+}
+export -f __package_arch
+
+# https://api.github.com/repos/mvdan/sh/releases/latest
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}/shfmt" ]] && "${BIN_DIR}/shfmt" --version
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+  # shfmt_v3.9.0_linux_amd64
+  local filename=""
+  filename="shfmt_$(echo "${JS_BODY}" | jq -r '.tag_name')_$(__package_os)_$(__package_arch)"
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${filename}\$\")) | .browser_download_url"
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  sudo install -D --owner=root --group=root --mode=0755 "${TMP_DIR}"/shfmt "${BIN_DIR}"/shfmt
+}
+export -f __install_exec
+
+install-from-github \
+  --name "shfmt" \
+  --repo "mvdan/sh" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file "shfmt" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
+  "${@}"
