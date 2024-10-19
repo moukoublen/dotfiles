@@ -47,7 +47,7 @@ if grep --fixed-strings --quiet "${SOURCE_LINE}" "${BASH_FILE}"; then
   echo "  dotfiles sourcing is already included in ${BASH_FILE}"
 else
   echo "  add dotfiles sourcing in ${BASH_FILE}"
-  echo "${SOURCE_LINE}" >>$BASH_FILE
+  echo "${SOURCE_LINE}" >>"${BASH_FILE}"
 fi
 
 echo "********************************************************"
