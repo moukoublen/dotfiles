@@ -10,6 +10,7 @@
 
 # -perm +111
 
+status=0
 find ./ \
   -type f \
   -and \( -not -path './.git/*' \) \
@@ -18,6 +19,10 @@ find ./ \
   -print0 | while IFS= read -r -d '' file; do
   if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
     echo "${*} ${file}"
-    "${@}" "${file}"
+    if ! "${@}" "${file}"; then
+      status=1
+    fi
   fi
 done
+
+exit $status
