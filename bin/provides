@@ -8,6 +8,7 @@ case "$(what-pm)" in
     dpkg -S "$@"
     ;;
   *)
-    echo "this script does not have packages for this release"
+    echo "this script does not supports this distro"
+    exit 1
     ;;
 esac

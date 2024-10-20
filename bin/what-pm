@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
-case "$(what-os)" in
-  "Fedora" | "Fedora Linux")
-    echo "dnf"
-    ;;
-  "Ubuntu" | "Debian" | "LinuxMint" | "Pop" | "Pop!_OS")
-    echo "apt"
-    ;;
-  *)
-    echo "this script does not have packages for this release"
-    exit 1
-    ;;
-esac
+if command -v dnf >/dev/null 2>&1; then
+  echo "dnf"
+  exit 0
+fi
+
+if command -v apt >/dev/null 2>&1; then
+  echo "apt"
+  exit 0
+fi
+
+if command -v pkg >/dev/null 2>&1; then
+  echo "pkg"
+  exit 0
+fi
+
+echo ""
+exit 1

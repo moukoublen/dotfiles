@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# drh is a shortcut to execute `docker run` command with the current directory binded in the container.
-#   eg: drh golang:1.18beta1
+# dr is a shortcut to execute `docker run` command with --rm --interactive --tty arguments prefilled.
+#   eg: dr golang:1.23
 # All arguments are passed to docker run except:
 #   -R, --RO    which is translated to read-only `:ro` volume bind of the current directory
 #   --ME        which is translated to `--user=$(id -u):$(id -g)`
 #
 # To enable `docker run` run (or put in ~/.bashrc or ~/.profile e.t.c.):
 #
-# source <(drh --completion)
+# source <(dr --completion)
 #
 
-__drh_bash_completion() {
+__dr_bash_completion() {
   [[ "$(type -t _docker_container_run)" != "function" ]] &&
     [[ -f /usr/share/bash-completion/completions/docker ]] &&
     source /usr/share/bash-completion/completions/docker
@@ -22,22 +22,36 @@ __drh_bash_completion() {
 }
 
 READ_ONLY=""
+MOUNT_PWD=""
 USR=""
 args=()
+
+args+=('--rm')
+args+=('--interactive')
+args+=('--tty')
+
 while (($#)); do
   case "${1}" in
     -R | --RO)
       READ_ONLY=":ro"
       shift
       ;;
+    -H | --HERE)
+      MOUNT_PWD="1"
+      shift
+      ;;
     --ME)
       USR="--user=$(id -u):$(id -g)"
       shift
       ;;
+    --ROOT)
+      USR='--user=0:0'
+      shift
+      ;;
     --completion)
-      declare -f __drh_bash_completion
+      declare -f __dr_bash_completion
       echo ''
-      echo 'complete -F __drh_bash_completion drh'
+      echo 'complete -F __dr_bash_completion dr'
       exit 0
       ;;
     *)
@@ -47,8 +61,16 @@ while (($#)); do
   esac
 done
 
-FOLDER="/v/$(basename "${PWD}")"
+if [[ ${MOUNT_PWD} == "1" ]]; then
+  FOLDER="/v/$(basename "${PWD}")"
+  # prepend
+  args=("--volume" "${PWD}:${FOLDER}${READ_ONLY}" --workdir "${FOLDER}" "${args[@]}")
+fi
+
+if [[ -n ${USR} ]]; then
+  # prepend
+  args=("${USR}" "${args[@]}")
+fi
 
 set -x
-
-exec docker run --rm --interactive --tty "${USR}" --volume "${PWD}:${FOLDER}${READ_ONLY}" --workdir "${FOLDER}" "${args[@]}"
+exec docker run "${args[@]}"

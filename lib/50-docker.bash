@@ -20,8 +20,8 @@ docker-clean-all() {( set -x
   docker volume prune --force
 )}
 
-if command -v drh 1>/dev/null 2>&1; then
-  source <(drh --completion)
+if command -v dr 1>/dev/null 2>&1; then
+  source <(dr --completion)
 fi
 
 ################################################################################
