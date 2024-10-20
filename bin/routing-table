@@ -11,4 +11,5 @@ case "$(uname)" in
     # netstat -rn
     # sudo route -n
     ;;
+  *) ;;
 esac

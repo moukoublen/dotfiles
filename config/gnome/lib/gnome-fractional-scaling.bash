@@ -33,7 +33,7 @@ settings=(
 
 __set-settings() {
   for key in "${!settings[@]}"; do
-    gsettings-set "${key}" "${settings[$key]}"
+    gsettings-set "${key}" "${settings[${key}]}"
   done
 }
 

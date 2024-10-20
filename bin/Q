@@ -9,9 +9,9 @@ __max() {
 FULL_PATHS=()
 if [ -f ~/.q ]; then
   while read -r r; do
-    [[ $r == "" ]] && continue
-    r=$(eval echo "$r")
-    r="${r/#~/$HOME}"
+    [[ ${r} == "" ]] && continue
+    r=$(eval echo "${r}")
+    r="${r/#~/${HOME}}"
     FULL_PATHS[${#FULL_PATHS[@]}]="${r}"
   done <~/.q
   unset r
@@ -50,14 +50,14 @@ __update-repo() { (
     return
   fi
 
-  if [[ $LOCAL == "${BASE}" ]]; then
+  if [[ ${LOCAL} == "${BASE}" ]]; then
     printf "\e[33mPulling updates...\e[0m "
     git pull --quiet --ff-only &>/dev/null || { printf "\e[31mfailed\e[0m to pull\n" && return 1; }
     printf "\e[32mok! \e[0m\n"
     return
   fi
 
-  if [[ $REMOTE == "${BASE}" ]]; then
+  if [[ ${REMOTE} == "${BASE}" ]]; then
     printf "\e[31mNeed to push\e[0m\n"
     return
   fi

@@ -10,7 +10,7 @@ SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 __install_settings_file() {
   local cnf_file=$1
-  local trg_file=${2:-$cnf_file}
+  local trg_file=${2:-${cnf_file}}
 
   local ORIGIN="${SELF_PATH}/${cnf_file}"
   local TARGET="${CONF_PATH}/${trg_file}"

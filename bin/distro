@@ -11,7 +11,7 @@ __prnt() {
     __prnt "Name" "${NAME}"
     __prnt "Version" "${VERSION}"
     __prnt "Codename" "${VERSION_CODENAME}"
-    [ -n "$PRETTY_NAME" ] && __prnt "Full Name" "${PRETTY_NAME}"
+    [ -n "${PRETTY_NAME}" ] && __prnt "Full Name" "${PRETTY_NAME}"
     exit 0
   fi
 
