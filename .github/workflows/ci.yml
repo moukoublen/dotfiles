@@ -20,11 +20,11 @@ jobs:
       run: |
         PATH="${PWD}/bin:${PATH}"
         ./scripts/install-shellcheck
-        which shellcheck
-        shellcheck --version
+        echo "shellcheck path   : $(which shellcheck)"
+        echo "shellcheck version: $(shellcheck --version)"
         ./scripts/install-shfmt
-        which shfmt
-        shfmt --version
+        echo "shfmt path   : $(which shfmt)"
+        echo "shfmt version: $(shfmt --version)"
 
     - name: shellcheck
       shell: bash
