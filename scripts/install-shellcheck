@@ -9,7 +9,7 @@ __package_os() {
       echo "linux"
       ;;
     *)
-      echo "$(uname)"
+      uname
       ;;
   esac
 }
@@ -51,7 +51,6 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  # shellcheck-v0.10.0.darwin.aarch64.tar.xz
   local ends_with=""
   ends_with="$(__package_os).$(__package_arch).tar.xz"
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"

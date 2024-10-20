@@ -507,4 +507,5 @@ case "$(uname)" in
       fc-cache -f
     )
     ;;
+  *) ;;
 esac

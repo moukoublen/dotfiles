@@ -41,6 +41,7 @@ __get_dl_url() {
     "darwin-arm64")
       ENDSWITH="darwin-arm64"
       ;;
+    *) ;;
   esac
   echo "${JS_BODY}" | jq -r ".assets[] | select(.name | endswith(\"${ENDSWITH}\")) | .browser_download_url"
 }

@@ -5,6 +5,8 @@ if ! command -v shellcheck &>/dev/null; then
   exit 1
 fi
 
+[[ "${1}" == "-v" ]] && export VERBOSE="1"
+
 ./.helpers/foreach-script shellcheck \
   --norc \
   --external-sources \

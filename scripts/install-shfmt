@@ -9,7 +9,7 @@ __package_os() {
       echo "linux"
       ;;
     *)
-      echo "$(uname)"
+      uname
       ;;
   esac
 }

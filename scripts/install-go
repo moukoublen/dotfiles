@@ -44,6 +44,7 @@ case "${ARCH}" in
   "aarch64")
     ARCH="arm64"
     ;;
+  *) ;;
 esac
 
 ## https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
