@@ -5,7 +5,7 @@ if ! command -v shellcheck &>/dev/null; then
   exit 1
 fi
 
-[[ "${1}" == "-v" ]] && export VERBOSE="1"
+[[ ${1} == "-v" ]] && export VERBOSE="1"
 
 ./.helpers/foreach-script shellcheck \
   --norc \
@@ -21,4 +21,3 @@ fi
 # SC2059 (info): Don't use variables in the printf format string. https://www.shellcheck.net/wiki/SC2059
 # SC2002 (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead. https://www.shellcheck.net/wiki/SC2002
 # SC2181 (style): Check exit code directly with e.g. 'if ! mycmd;', not indirectly with $?. https://www.shellcheck.net/wiki/SC2181
-

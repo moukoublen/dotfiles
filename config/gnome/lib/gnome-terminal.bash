@@ -13,7 +13,7 @@ __gnome_terminal_profile_name_and_uuid() {
   for PRF in "${PROFILES_ARRAY[@]}"; do
     local name
     name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
-    if [[ "${name}" == "'${REQ_NAME}'" ]]; then
+    if [[ ${name} == "'${REQ_NAME}'" ]]; then
       echo -n "${REQ_NAME} ${PRF}"
       return 0
     fi
