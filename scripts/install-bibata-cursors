@@ -18,11 +18,11 @@ __install_targxz() {
 # $4 = Compressed file extension without dot ("zip" or "tar.gz")
 # $5 = Uncompress function
 __install_bibata_cursors_() {
-  local JSON_TEXT=$1
-  local NAME=$2
-  local TMP_DIR=$3
-  local EXT=$4
-  local UNCOMPRESS=$5
+  local JSON_TEXT="${1}"
+  local NAME="${2}"
+  local TMP_DIR="${3}"
+  local EXT="${4}"
+  local UNCOMPRESS="${5}"
 
   local DST="${HOME}/.local/share/icons"
 
@@ -48,18 +48,18 @@ __install_bibata_cursors_() {
 # $2 = Font name
 # $3 = Temp dir to download
 __install_bibata_cursors_targzs() {
-  __install_bibata_cursors_ "$1" "$2" "$3" "tar.xz" "__install_targxz"
+  __install_bibata_cursors_ "${1}" "${2}" "${3}" "tar.xz" "__install_targxz"
 }
 
 mkdir -p "${HOME}/.local/share/icons/"
 rm -rf "${HOME}/.local/share/icons/"Bibata_*
 TMP_DIR='/tmp/bibata_install'
-rm -rf $TMP_DIR
-mkdir -p $TMP_DIR
+rm -rf "${TMP_DIR}"
+mkdir -p "${TMP_DIR}"
 
 JSON_TEXT_MAIN=$(curl -s https://api.github.com/repos/ful1e5/Bibata_Cursor/releases/latest)
 for NAME in 'Bibata-Modern-Amber' 'Bibata-Modern-Classic' 'Bibata-Modern-Ice' 'Bibata-Original-Amber' 'Bibata-Original-Classic' 'Bibata-Original-Ice'; do
-  __install_bibata_cursors_targzs "${JSON_TEXT_MAIN}" $NAME $TMP_DIR
+  __install_bibata_cursors_targzs "${JSON_TEXT_MAIN}" "${NAME}" "${TMP_DIR}"
 done
 
-rm -rf $TMP_DIR
+rm -rf "${TMP_DIR}"

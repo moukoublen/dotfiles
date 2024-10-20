@@ -20,4 +20,5 @@ case "$(uname)" in
     ff minikube completion bash
     ff starship completions bash
     ;;
+  *) ;;
 esac

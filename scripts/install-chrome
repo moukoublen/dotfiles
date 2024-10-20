@@ -14,4 +14,4 @@ case "$(what-pm)" in
     ;;
 esac
 
-install-remote-package $URL
+install-remote-package "${URL}"

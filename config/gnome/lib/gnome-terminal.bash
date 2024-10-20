@@ -13,8 +13,8 @@ __gnome_terminal_profile_name_and_uuid() {
   for PRF in "${PROFILES_ARRAY[@]}"; do
     local name
     name=$(gsettings get "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:${PRF}/" visible-name)
-    if [[ $name == "'${REQ_NAME}'" ]]; then
-      echo -n "$REQ_NAME $PRF"
+    if [[ ${name} == "'${REQ_NAME}'" ]]; then
+      echo -n "${REQ_NAME} ${PRF}"
       return 0
     fi
   done
@@ -114,14 +114,14 @@ profilesettings=(
   ["use-transparent-background"]="false"
   ["background-transparency-percent"]="0"
   ["highlight-colors-set"]="true"
-  ["highlight-foreground-color"]="$C_HFG"
-  ["highlight-background-color"]="$C_HBG"
+  ["highlight-foreground-color"]="${C_HFG}"
+  ["highlight-background-color"]="${C_HBG}"
   ["cursor-colors-set"]="true"
   ["cursor-background-color"]="${C_CBG:-C_HBG}"
   ["cursor-foreground-color"]="${C_CFG:-C_HFG}"
-  ["foreground-color"]="$C_FG"
-  ["background-color"]="$C_BG"
-  ["palette"]="$C_PAL"
+  ["foreground-color"]="${C_FG}"
+  ["background-color"]="${C_BG}"
+  ["palette"]="${C_PAL}"
 )
 
 __set-settings() {
@@ -134,11 +134,11 @@ __set-settings() {
   fi
 
   for KEY in "${!globalsettings[@]}"; do
-    gsettings-set "${KEY}" "${globalsettings[$KEY]}"
+    gsettings-set "${KEY}" "${globalsettings[${KEY}]}"
   done
 
   for KEY in "${!profilesettings[@]}"; do
-    gsettings-set "${PROFILE[2]} ${KEY}" "${profilesettings[$KEY]}"
+    gsettings-set "${PROFILE[2]} ${KEY}" "${profilesettings[${KEY}]}"
   done
 }
 

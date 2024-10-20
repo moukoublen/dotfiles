@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: shell-ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+
+    # https://github.com/actions/checkout
+    - uses: actions/checkout@v4
+
+    - name: install shellcheck and shfmt
+      run: |
+        PATH="${PWD}/bin:${PATH}"
+        ./scripts/install-shellcheck
+        echo "shellcheck path   : $(which shellcheck)"
+        echo "shellcheck version: $(shellcheck --version)"
+        ./scripts/install-shfmt
+        echo "shfmt path   : $(which shfmt)"
+        echo "shfmt version: $(shfmt --version)"
+
+    - name: shellcheck
+      shell: bash
+      run: |
+        ./.helpers/shellcheck
+
+    - name: shfmt
+      shell: bash
+      run: |
+        status=0
+        ./.helpers/shfmt || status=1
+        ./.helpers/git-check-dirty || status=1
+        exit "${status}"

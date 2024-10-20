@@ -3,7 +3,7 @@
 gsget() {
   local main="${1}"
   local sub="${2}"
-  printf "\e[0;32m%s\e[0m \e[0;93m%s\e[0m: \e[0;95m%s\e[0m\n" "$main" "${sub}" "$(gsettings get "$main" "${sub}")"
+  printf "\e[0;32m%s\e[0m \e[0;93m%s\e[0m: \e[0;95m%s\e[0m\n" "${main}" "${sub}" "$(gsettings get "${main}" "${sub}")"
 }
 
 print-all() {

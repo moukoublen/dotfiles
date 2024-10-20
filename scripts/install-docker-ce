@@ -44,7 +44,7 @@ case "$(whatos)" in
     _ARCH=
     ARCH="$(dpkg --print-architecture)"
     _CODE_NAME=
-    _CODE_NAME="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+    _CODE_NAME="$(. /etc/os-release && echo "${VERSION_CODENAME}")"
     echo "deb [arch=${ARCH} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu ${_CODE_NAME} stable" |
       sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update

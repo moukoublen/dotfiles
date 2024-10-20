@@ -6,7 +6,7 @@ INSTALLATION_DIR="${HOME}/Applications/Postman"
 DESKTOP_FILE="${HOME}/.local/share/applications/postman.desktop"
 EXECUTABLE_FULL_PATH="${INSTALLATION_DIR}/Postman"
 
-wget $URL -O "${DOWNLOADED_FILE}"
+wget "${URL}" -O "${DOWNLOADED_FILE}"
 mkdir -p "${INSTALLATION_DIR}"
 tar zxf "${DOWNLOADED_FILE}" --strip-components=1 -C "${INSTALLATION_DIR}"
 rm "${DOWNLOADED_FILE}"

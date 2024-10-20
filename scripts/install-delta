@@ -27,6 +27,7 @@ __get_dl_url() {
     "linux-aarch64")
       ## TODO
       ;;
+    *) ;;
   esac
 
   local JS_BODY="${1}"

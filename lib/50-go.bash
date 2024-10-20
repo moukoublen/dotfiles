@@ -35,12 +35,10 @@ go-build() {
 }
 
 go-install() {
-  echo -e "> Installing \e[0;90m${*}\e[0m"
-  (
-    set -x
-    #go install -a -trimpath -ldflags '-s -w' "$@"
-    go install -trimpath -ldflags '-s -w' "$@"
-  )
+  echo -e "> go install \e[0;35m${*}\e[0m"
+  #go install -a -trimpath -ldflags '-s -w' "$@"
+  #go install -trimpath -ldflags '-s -w' "${@}"
+  go install "${@}"
 }
 
 go-update-all-mods() {

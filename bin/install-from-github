@@ -121,6 +121,7 @@ case "$(uname)" in
   "Linux")
     TMP_DIR=$(mktemp --directory --tmpdir "${NAME}_XXXXXXX")
     ;;
+  *) ;;
 esac
 
 GH_API_LATEST_RELEASE="https://api.github.com/repos/${REPO}/releases/latest"
@@ -129,8 +130,8 @@ __log_start "\e[1;34m%s\e[0m\n  \e[0;90m(${GH_API_LATEST_RELEASE})\e[0m" "${REPO
 
 JS_BODY=$(curl "${CURL_ARGS[@]}" --silent --fail --location "${GH_API_LATEST_RELEASE}")
 
-REMOTE_VER=$($FN_REMOTE_VER "${JS_BODY}" || echo -n "")
-LOCAL_VER=$($FN_LOCAL_VER "${BIN_DIR}" || echo -n "")
+REMOTE_VER=$("${FN_REMOTE_VER}" "${JS_BODY}" || echo -n "")
+LOCAL_VER=$("${FN_LOCAL_VER}" "${BIN_DIR}" || echo -n "")
 
 if [[ ${REMOTE_VER} == "${LOCAL_VER}" ]]; then
   __log_end "it is already \e[1;32mupdated\e[0m to \e[1;34m%s\e[0m" "${LOCAL_VER}"
@@ -139,7 +140,7 @@ fi
 
 __log "updating \e[1;34m%s\e[0m from \e[1;34m%s\e[0m to \e[1;34m%s\e[0m" "${NAME}" "${LOCAL_VER}" "${REMOTE_VER}"
 
-DL_URL=$($FN_GET_DL_LINK "${JS_BODY}")
+DL_URL=$("${FN_GET_DL_LINK}" "${JS_BODY}")
 if [[ ${DL_FILE} == "" ]]; then
   DL_FILE=$(__get_remote_filename "${DL_URL}")
   __exit_on_fail

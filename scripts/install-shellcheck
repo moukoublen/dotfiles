@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+__package_os() {
+  case "$(uname)" in
+    "Darwin")
+      echo "darwin"
+      ;;
+    "Linux")
+      echo "linux"
+      ;;
+    *)
+      uname
+      ;;
+  esac
+}
+export -f __package_os
+
+__package_arch() {
+  local arch
+  arch="$(uname -m | tr '[:upper:]' '[:lower:]')"
+  case "${arch}" in
+    "x86_64")
+      echo "x86_64"
+      ;;
+    "aarch64")
+      echo "aarch64"
+      ;;
+    "arm64")
+      echo "aarch64"
+      ;;
+    *)
+      echo "${arch}"
+      ;;
+  esac
+}
+export -f __package_arch
+
+# https://api.github.com/repos/koalaman/shellcheck/releases/latest
+
+__remote_version() {
+  local JS_BODY="${1}"
+  echo "${JS_BODY}" | jq -r '.tag_name'
+}
+export -f __remote_version
+
+__local_version() {
+  local BIN_DIR="${1:-/usr/local/bin}"
+  [[ -f "${BIN_DIR}/shellcheck" ]] && echo "v$("${BIN_DIR}/shellcheck" --version | grep 'version: ' | awk '{ print $2 }')"
+}
+export -f __local_version
+
+__get_dl_url() {
+  local JS_BODY="${1}"
+  local ends_with=""
+  ends_with="$(__package_os).$(__package_arch).tar.xz"
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"${ends_with}\$\")) | .browser_download_url"
+}
+export -f __get_dl_url
+
+__install_exec() {
+  local BIN_DIR="${1}"
+  local DOWNLOADED_FULL_PATH="${2}"
+  local TMP_DIR
+  TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
+  tar --extract --xz --file="${DOWNLOADED_FULL_PATH}" --strip-components=1 --directory="${TMP_DIR}"
+  sudo cp "${TMP_DIR}"/shellcheck "${BIN_DIR}"/shellcheck
+}
+export -f __install_exec
+
+install-from-github \
+  --name "shellcheck" \
+  --repo "koalaman/shellcheck" \
+  --fn-remote-version "__remote_version" \
+  --fn-local-version "__local_version" \
+  --fn-get-download-link "__get_dl_url" \
+  --download-to-file "downloaded.tar.xz" \
+  --fn-install "__install_exec" \
+  --destination "/usr/local/bin" \
+  "${@}"

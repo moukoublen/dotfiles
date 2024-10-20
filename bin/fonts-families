@@ -16,7 +16,7 @@ fams=(
 )
 
 for family in "${fams[@]}"; do
-  printf "%-17s: " "$family"
+  printf "%-17s: " "${family}"
   fc-match ":family=${family}"
 done
 
