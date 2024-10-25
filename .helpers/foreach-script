@@ -12,7 +12,7 @@ VERBOSE=${VERBOSE:="0"}
 
 __is_file_bash_or_sh() {
   [[ ${1} == *.bash || ${1} == *.sh ]] ||
-    file "${1}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'
+    file "${1}" | grep -qE 'POSIX shell script|Bourne-Again shell script|bash script|sh script'
 }
 
 mapfile -d '' -t files < <(
