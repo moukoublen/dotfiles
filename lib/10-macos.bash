@@ -46,13 +46,13 @@ if [[ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]]; then
   alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 fi
 
-export LANG='en_US.UTF-8';
-export LC_ALL='en_US.UTF-8';
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
 
 install-nano-nanorc() {
   touch ~/.nanorc
   for rcfile in "$(brew --prefix nano)"/share/nano/*.nanorc; do
-    echo "include ${rcfile}" >> ~/.nanorc
+    echo "include ${rcfile}" >>~/.nanorc
   done
 }
 

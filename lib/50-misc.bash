@@ -1,12 +1,12 @@
 ##################################################
 ## zoxide                   ##
 if [[ -x /usr/bin/zoxide ]]; then
+  # https://www.shellcheck.net/wiki/SC1090
+  # shellcheck source=/dev/null
   source <(zoxide init bash)
 fi
 ##                                              ##
 ##################################################
-
-
 
 ##################################################
 ## fzf                                          ##
@@ -22,34 +22,30 @@ fi
 ##                                              ##
 ##################################################
 
-
-
 ##################################################
 ## aws                                          ##
 if [[ -x /usr/local/bin/aws_completer ]]; then
   complete -C "$(which aws_completer)" aws
 fi
 
-install-awscli2() {(
-  "${DOTFILES_PATH}/scripts/install-awscli2" "$@"
-)}
+install-awscli2() {
+  "${DOTFILES_PATH}/scripts/install-awscli2" "${@}"
+}
 # sudo snap install aws-cli --classic
 ##                                              ##
 ##################################################
 
-
-
 ##################################################
 ## git                                          ##
 if [[ -x /usr/local/bin/gh ]]; then
+  # https://www.shellcheck.net/wiki/SC1090
+  # shellcheck source=/dev/null
   source <(gh completion --shell bash)
 fi
 
 alias gcl='git config --local --list'
 ##                                              ##
 ##################################################
-
-
 
 ##################################################
 ## java                                         ##

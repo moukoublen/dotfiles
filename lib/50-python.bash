@@ -19,8 +19,12 @@ alias pip3-list='pip3 list --user'
 
 load-pip3-autocompletion() {
   if command -v "${HOME}/.local/bin/pip3" 1>/dev/null 2>&1; then
-    source <(${HOME}/.local/bin/pip3 completion --bash)
+    # https://www.shellcheck.net/wiki/SC1090
+    # shellcheck source=/dev/null
+    source <("${HOME}/.local/bin/pip3" completion --bash)
   elif command -v /usr/bin/pip3 1>/dev/null 2>&1; then
+    # https://www.shellcheck.net/wiki/SC1090
+    # shellcheck source=/dev/null
     source <(/usr/bin/pip3 completion --bash)
   fi
 }

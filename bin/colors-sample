@@ -84,7 +84,7 @@ __msg2() {
 }
 
 __boxline() {
-  for v in "$@"; do
+  for v in "${@}"; do
     __msg2 "${v}"
   done
   echo ""

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC1090
-source "$1"
+# https://www.shellcheck.net/wiki/SC1090
+# shellcheck source=/dev/null
+source "${1}"
 
 echo "FG                : ${C_FG}"
 echo "BG                : ${C_BG}"

@@ -4,11 +4,10 @@ fi
 
 ################################################################################
 ######### Paths ################################################################
-path-add ${HOME}/.local/bin
-path-add ${HOME}/bin
+path-add "${HOME}/.local/bin"
+path-add "${HOME}/bin"
 ################################################################################
 ################################################################################
-
 
 ################################################################################
 ######### Aliases and Functions ################################################
@@ -30,7 +29,7 @@ alias dnf-display-package-contents='dnf repoquery -l'
 alias dnf-display-local-package-contents='dnf repoquery --installed -l'
 
 sizes-files() {
-  du --human-readable --max-depth=1 --all  | sort --human-numeric-sort --reverse
+  du --human-readable --max-depth=1 --all | sort --human-numeric-sort --reverse
 }
 export -f sizes-files
 sizes-disks() {
@@ -52,5 +51,5 @@ export -f apt-clean-uninstalled
 
 export EDITOR=/usr/bin/vim
 
-[[ -e $HOME/.dir_colors ]] && eval "$(dircolors --bourne-shell ~/.dir_colors)"
+[[ -e "${HOME}/.dir_colors" ]] && eval "$(dircolors --bourne-shell "${HOME}/.dir_colors")"
 # dircolors --print-database > ~/.dir_colors

@@ -5,6 +5,8 @@ init-linuxbrew() {
   if [ -d "${HOMEBREW_PREFIX}/etc/bash_completion.d" ]; then
     for rc in "${HOMEBREW_PREFIX}/etc/bash_completion.d"/*; do
       if [ -f "${rc}" ]; then
+        # https://www.shellcheck.net/wiki/SC1090
+        # shellcheck source=/dev/null
         source "${rc}"
       fi
     done
@@ -20,13 +22,16 @@ case "$(uname)" in
 
     if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
       export BASH_COMPLETION_COMPAT_DIR="${HOMEBREW_PREFIX}/etc/bash_completion.d"
+      # https://www.shellcheck.net/wiki/SC1090
+      # shellcheck source=/dev/null
       source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
     fi
     ;;
 
   "Linux")
-    [[ "${__DISABLE_LINUXBREW}" == 'true' ]] && return 0
+    [[ ${__DISABLE_LINUXBREW} == 'true' ]] && return 0
     init-linuxbrew
     ;;
 
+  *) ;;
 esac

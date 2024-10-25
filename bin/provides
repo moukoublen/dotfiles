@@ -2,10 +2,10 @@
 
 case "$(what-pm)" in
   "dnf")
-    dnf provides "$@"
+    dnf provides "${@}"
     ;;
   "apt")
-    dpkg -S "$@"
+    dpkg -S "${@}"
     ;;
   *)
     echo "this script does not supports this distro"

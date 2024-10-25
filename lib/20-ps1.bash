@@ -58,72 +58,66 @@
 ################################################################################
 
 __ps1_color() {
-  if [[ "$#" = 0 ]]; then
+  if [[ $# == 0 ]]; then
     printf "\[\e[0m\]"
   else
     printf "\[\e[${1};${2};${3}m\]"
   fi
 }
 
-declare -A __PS1_COLORS=( \
-  ["reset"]="$(__ps1_color)" \
-  ["prefix"]="$(__ps1_color 1 49 35)" \
-  ["main"]="$(__ps1_color 0 49 90)" \
-  ["seperator"]="$(__ps1_color 0 49 37)" \
-  ["user"]="$(__ps1_color 0 49 32)" \
-  ["root"]="$(__ps1_color 0 49 31)" \
-  ["path"]="$(__ps1_color 0 49 36)" \
-  ["git"]="$(__ps1_color 0 49 93)" \
-  ["gitwrap"]="$(__ps1_color 0 49 33)" \
-  ["kube_context"]="$(__ps1_color 1 49 34)" \
-  ["kube_nsp"]="$(__ps1_color 0 49 37)" \
+declare -A __PS1_COLORS=(
+  ["reset"]="$(__ps1_color)"
+  ["prefix"]="$(__ps1_color 1 49 35)"
+  ["main"]="$(__ps1_color 0 49 90)"
+  ["seperator"]="$(__ps1_color 0 49 37)"
+  ["user"]="$(__ps1_color 0 49 32)"
+  ["root"]="$(__ps1_color 0 49 31)"
+  ["path"]="$(__ps1_color 0 49 36)"
+  ["git"]="$(__ps1_color 0 49 93)"
+  ["gitwrap"]="$(__ps1_color 0 49 33)"
+  ["kube_context"]="$(__ps1_color 1 49 34)"
+  ["kube_nsp"]="$(__ps1_color 0 49 37)"
 )
-
-
 
 __ps1_seperator() {
   #local DSEP=${__PS1_SEPERATOR:-$' \u2423 '}  # https://codepoints.net/U+2423
   #local DSEP=${__PS1_SEPERATOR:-$' \u203F '}  # https://codepoints.net/U+203F
   #local DSEP=${__PS1_SEPERATOR:-$' \u2219 '}  # https://codepoints.net/U+2219
-  local DSEP=${__PS1_SEPERATOR:-$' \u2022 '}  # https://codepoints.net/U+2022
+  local DSEP=${__PS1_SEPERATOR:-$' \u2022 '} # https://codepoints.net/U+2022
   #local DSEP=${__PS1_SEPERATOR:-$' '}
-  printf "%s%s%s" "${__PS1_COLORS[seperator]}" "$DSEP" "${__PS1_COLORS[reset]}"
+  printf "%s%s%s" "${__PS1_COLORS[seperator]}" "${DSEP}" "${__PS1_COLORS[reset]}"
 }
-
 
 __ps1_user() {
   local disp=${__PS1_DISPLAY_USER:-false}
-  if [[  "${disp}" == 'false' ]] && [[ ! "`id -u`" -eq 0 ]]; then
+  if [[ ${disp} == 'false' ]] && [[ ! "$(id -u)" -eq 0 ]]; then
     return
   fi
 
   local USR="${__PS1_COLORS[user]}${USER}${__PS1_COLORS[reset]}"
-  if [[ "`id -u`" -eq 0 ]]; then
+  if [[ "$(id -u)" -eq 0 ]]; then
     USR="${__PS1_COLORS[root]}root${__PS1_COLORS[reset]}"
   fi
 
   printf "%s" "${USR}"
 }
 
-
 __ps1_host() {
   local disp=${__PS1_DISPLAY_HOSTNAME:-false}
-  if [[ "${disp}" == 'false' ]]; then
+  if [[ ${disp} == 'false' ]]; then
     return
   fi
 
-  local TO_PRINT=${__PS1_HOSTNAME:-$HOSTNAME}
+  local TO_PRINT=${__PS1_HOSTNAME:-${HOSTNAME}}
 
   printf "%s%s%s" "${__PS1_COLORS[user]}" "${TO_PRINT}" "${__PS1_COLORS[reset]}"
 }
-
 
 __ps1_pwd() {
   printf "%s\w%s" \
     "${__PS1_COLORS[path]}" \
     "${__PS1_COLORS[reset]}"
 }
-
 
 export GIT_PS1_SHOWDIRTYSTATE=true
 export GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -139,7 +133,7 @@ __ps1_git() {
 
   local gitp
   gitp="$(__git_ps1 '%s')"
-  if [[ -n "${gitp}" ]]; then
+  if [[ -n ${gitp} ]]; then
     printf "%s%s%s%s%s%s" \
       "${__PS1_COLORS[gitwrap]}" \
       $'\uE0A0 ' \
@@ -150,9 +144,8 @@ __ps1_git() {
   fi
 }
 
-
 __ps1_kube() {
-  if [[ -z "${__PS1_DISPLAY_KUBE-}" ]] || [[ ! -x "$(command -v kubectl)" ]]; then
+  if [[ -z ${__PS1_DISPLAY_KUBE-} ]] || [[ ! -x "$(command -v kubectl)" ]]; then
     return
   fi
 
@@ -167,20 +160,20 @@ __ps1_join() {
   sep="$(__ps1_seperator)"
   local BUF=""
 
-  if [[ "$#" -eq 0 ]]; then
+  if [[ $# -eq 0 ]]; then
     return
   fi
 
   for fn in "${@}"; do
-    [[ -z "$fn" ]] && continue
-    if [[ "${BUF}" == "" ]]; then
+    [[ -z ${fn} ]] && continue
+    if [[ ${BUF} == "" ]]; then
       BUF="${fn}"
       continue
     fi
     BUF="${BUF}${sep}${fn}"
   done
 
-  printf "%s" "$BUF"
+  printf "%s" "${BUF}"
 }
 
 __ps1() {
@@ -201,9 +194,8 @@ __ps1() {
 
 export PROMPT_COMMAND=__ps1
 
-
 ps1-kube() {
-  if [[ -n "${__PS1_DISPLAY_KUBE-}" ]]; then
+  if [[ -n ${__PS1_DISPLAY_KUBE-} ]]; then
     unset __PS1_DISPLAY_KUBE
   else
     export __PS1_DISPLAY_KUBE=true

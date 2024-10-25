@@ -490,7 +490,7 @@ __FNT_ALL=(
 
 __LP=()
 if [[ $# -gt 0 ]]; then
-  __LP=("$@")
+  __LP=("${@}")
 else
   __LP=("${__FNT_ALL[@]}")
 fi

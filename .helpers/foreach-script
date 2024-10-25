@@ -10,6 +10,11 @@
 
 VERBOSE=${VERBOSE:="0"}
 
+__is_file_bash_or_sh() {
+  [[ ${1} == *.bash || ${1} == *.sh ]] ||
+    file "${1}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'
+}
+
 mapfile -d '' -t files < <(
   find ./ \
     -type f \
@@ -21,7 +26,7 @@ mapfile -d '' -t files < <(
 status=0
 
 for file in "${files[@]}"; do
-  if file "${file}" | grep -qE 'shell script|POSIX shell script|Bourne-Again shell script|bash script|a sh script'; then
+  if __is_file_bash_or_sh "${file}"; then
     [[ ${VERBOSE} == "1" ]] && echo "${*} ${file}"
     "${@}" "${file}" || status=1
   fi

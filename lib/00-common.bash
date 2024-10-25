@@ -15,4 +15,3 @@ bb() {
   local cmd='source-highlight --no-doc --out-format=esc --tab=2'
   ${cmd} --infer-lang --input "${@}" 2>/dev/null || ${cmd} --src-lang=shell --input "${@}"
 }
-

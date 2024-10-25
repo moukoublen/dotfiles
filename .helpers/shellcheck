@@ -15,9 +15,11 @@ fi
   --exclude=SC2012 \
   --exclude=SC2002 \
   --exclude=SC2059 \
-  --exclude=SC2181
+  --exclude=SC2181 \
+  --exclude=SC1091
 
 # SC2012 (info): Use find instead of ls to better handle non-alphanumeric filenames. https://www.shellcheck.net/wiki/SC2012
 # SC2059 (info): Don't use variables in the printf format string. https://www.shellcheck.net/wiki/SC2059
 # SC2002 (style): Useless cat. Consider 'cmd < file | ..' or 'cmd file | ..' instead. https://www.shellcheck.net/wiki/SC2002
 # SC2181 (style): Check exit code directly with e.g. 'if ! mycmd;', not indirectly with $?. https://www.shellcheck.net/wiki/SC2181
+# SC1091 (info): Not following: /usr/share/fzf/shell/key-bindings.bash: openBinaryFile: does not exist (No such file or directory). https://www.shellcheck.net/wiki/SC1091

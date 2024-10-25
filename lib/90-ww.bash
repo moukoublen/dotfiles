@@ -1,5 +1,5 @@
 ww() {
-  if ! type -t "${1}" &> /dev/null; then
+  if ! type -t "${1}" &>/dev/null; then
     echo -e "\e[0;31mNot found\e[0m"
     return
   fi
@@ -9,11 +9,11 @@ ww() {
 
   local type_of
   type_of="$(type -t "${1}")"
-  if [[ "${type_of}" == 'function' ]]; then
+  if [[ ${type_of} == 'function' ]]; then
     declare -f "${1}" | ${cat_cmd} --src-lang=shell
     return
   fi
-  if [[ "${type_of}" == 'alias' ]]; then
+  if [[ ${type_of} == 'alias' ]]; then
     alias "${1}" | ${cat_cmd} --src-lang=shell
     return
   fi
@@ -22,12 +22,12 @@ ww() {
   full_path="$(which "${1}")"
   local file_of
   file_of="$(file "${full_path}")"
-  if [[ "${file_of}" == *text* ]]; then
+  if [[ ${file_of} == *text* ]]; then
     ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
     return
   fi
 
-  if [[ "${file_of}" == *symbolic\ link* ]]; then
+  if [[ ${file_of} == *symbolic\ link* ]]; then
     echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
   fi
 
@@ -38,10 +38,13 @@ ww() {
     "Linux")
       full_path="$(realpath --logical "${full_path}")"
       ;;
+    *)
+      full_path="$(realpath "${full_path}")"
+      ;;
   esac
 
   file_of="$(file "${full_path}")"
-  if [[ "${file_of}" == *text* ]]; then
+  if [[ ${file_of} == *text* ]]; then
     ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
     return
   fi

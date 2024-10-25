@@ -18,25 +18,25 @@ if command -v go 1>/dev/null 2>&1; then
 fi
 
 if command -v golangci-lint 1>/dev/null 2>&1; then
+  # https://www.shellcheck.net/wiki/SC1090
+  # shellcheck source=/dev/null
   source <(golangci-lint completion bash)
 fi
 
-go-test() {
+go-test() { (
+  set -x
   # -p=1 -v
-  (set -x
-  go test -timeout=60s -count=1 -race "${*}" ./...
-  )
-}
+  go test -timeout=60s -count=1 -race "${@}" ./...
+); }
 
-go-build() {
-  (set -x
-  go build -trimpath -ldflags '-s -w' "${*}"
-  )
-}
+go-build() { (
+  set -x
+  go build -trimpath -ldflags '-s -w' "${@}"
+); }
 
 go-install() {
   echo -e "> go install \e[0;35m${*}\e[0m"
-  #go install -a -trimpath -ldflags '-s -w' "$@"
+  #go install -a -trimpath -ldflags '-s -w' "${@}"
   #go install -trimpath -ldflags '-s -w' "${@}"
   go install "${@}"
 }
@@ -50,15 +50,8 @@ go-update-all-mods() {
   go mod tidy
 }
 
-install-go-tools() {(
+install-go-tools() { (
   export CGO_ENABLED=0
-  #__install_binary() {
-  #  for v in "$@"; do
-  #    echo -e "    moving \e[0;90m${v}\e[0m -> \e[0;32m/usr/local/bin\e[0m"
-  #  done
-  #  sudo install --mode=755 --group=root --owner=root --target-directory=/usr/local/bin/ "$@"
-  #  rm -rf "$@"
-  #}
 
   # https://github.com/go-delve/delve/releases
   go-install github.com/go-delve/delve/cmd/dlv@latest
@@ -125,12 +118,13 @@ install-go-tools() {(
 
   #go-install github.com/elastic/elastic-package@latest
   #go-install github.com/cashapp/hermit/cmd/hermit@latest
-)}
+); }
 
 # Where is the go ENV file?
 # Linux you'll get $HOME/. config/go/env
 # macOS you'll get $HOME/Library/Application Support/go/env
 
 install-hugo() {
+  # https://github.com/gohugoio/hugo?tab=readme-ov-file#build-from-source
   CGO_ENABLED=1 go install -tags extended -trimpath -ldflags '-s -w' github.com/gohugoio/hugo@latest
 }
