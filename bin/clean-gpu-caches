@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [[ ${1} == "--dry" ]]; then
+  (
+    set -ex
+    find ~/ \( -name GPUCache -o -name ShaderCache -o -name GrShaderCache \) -type d
+  )
+else
+  (
+    set -ex
+    find ~/ \( -name GPUCache -o -name ShaderCache -o -name GrShaderCache \) -type d -exec rm -rfv {} +
+  )
+fi
+
+# rm -rf ~/.config/BraveSoftware/Brave-Browser/GrShaderCache
+# rm -rf ~/.config/BraveSoftware/Brave-Browser/ShaderCache
+# rm -rf ~/.config/BraveSoftware/Brave-Browser/Default/GPUCache
+# rm -rf ~/.config/google-chrome/GrShaderCache
+# rm -rf ~/.config/google-chrome/ShaderCache
+# rm -rf ~/.config/google-chrome/Default/GPUCache

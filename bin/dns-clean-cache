@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+echo "Before clean"
+echo ""
+sudo systemd-resolve --statistics
+echo ""
+echo "Cleaning..."
+echo ""
+sudo systemd-resolve --flush-caches
+echo "After clean"
+echo ""
+sudo systemd-resolve --statistics

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+#https://linux.die.net/man/8/mount
+#https://linux.die.net/man/5/nfs
+#https://www.freedesktop.org/software/systemd/man/systemd.mount.html
+
+sudo mount \
+  --options 'nfsvers=4,rw,nosuid,nodev,relatime,nofail,hard' \
+  --source 192.168.1.231:/disks/Media \
+  --target "/goose/Media"
