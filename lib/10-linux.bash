@@ -46,6 +46,10 @@ apt-clean-uninstalled() {
   dpkg --get-selections | awk '$2 == "deinstall" {print $1}' | xargs sudo apt-get purge -y
 }
 export -f apt-clean-uninstalled
+
+list-broken-links() {
+  sudo find . -xtype l
+}
 ################################################################################
 ################################################################################
 

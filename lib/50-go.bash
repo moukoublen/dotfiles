@@ -23,11 +23,13 @@ if command -v golangci-lint 1>/dev/null 2>&1; then
   source <(golangci-lint completion bash)
 fi
 
-go-test() { (
-  set -x
+go-test() {
+  rm -rf /tmp/golang.coverage.txt || true
   # -p=1 -v
-  go test -timeout=60s -count=1 -race "${@}" ./...
-); }
+  CGO_ENABLED=1 go test -timeout=60s -race -coverprofile=/tmp/golang.coverage.txt -covermode=atomic "${@}" ./...
+  go tool cover -func /tmp/golang.coverage.txt
+  rm -rf /tmp/golang.coverage.txt || true
+}
 
 go-build() { (
   set -x

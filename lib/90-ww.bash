@@ -23,33 +23,45 @@ ww() {
   local file_of
   file_of="$(file "${full_path}")"
   if [[ ${file_of} == *text* ]]; then
+    echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
+    echo ''
     ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
     return
   fi
 
-  if [[ ${file_of} == *symbolic\ link* ]]; then
-    echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
-  fi
+  while [[ -L ${full_path} ]]; do
+    local target
+    # resolve symlink's source
+    case "$(uname)" in
+      "Darwin")
+        target="$(realpath "${full_path}")"
+        ;;
+      "Linux")
+        target="$(realpath --logical "${full_path}")"
+        ;;
+      *)
+        target="$(realpath "${full_path}")"
+        ;;
+    esac
 
-  case "$(uname)" in
-    "Darwin")
-      full_path="$(realpath "${full_path}")"
-      ;;
-    "Linux")
-      full_path="$(realpath --logical "${full_path}")"
-      ;;
-    *)
-      full_path="$(realpath "${full_path}")"
-      ;;
-  esac
+    echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m -> \e[0;96m${target}\e[0m"
+
+    if [[ ${target} == /* ]]; then
+      # Absolute path
+      full_path="${target}"
+    else
+      # Relative path
+      dir=$(dirname "${target}")
+      full_path="${dir}/${target}"
+    fi
+  done
 
   file_of="$(file "${full_path}")"
+  echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
+
   if [[ ${file_of} == *text* ]]; then
     ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
-    return
   fi
-
-  echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
 }
 export -f ww
 complete -c ww
