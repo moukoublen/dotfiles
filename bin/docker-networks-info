@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+for network in $(docker network ls -q); do
+  echo "Network: $(docker network inspect "${network}" -f '{{.Name}}') - ${network}"
+  echo "  Addresses In Use"
+  docker network inspect --format '{{range $k, $v := .Containers}}    {{$v.Name}}: {{$v.IPv4Address}}{{println}}{{end}}' "${network}"
+
+  echo "  Address Pool"
+  docker network inspect --format '    {{.Name}}: {{range .IPAM.Config}}{{.Subnet}}{{end}}' "${network}"
+  echo "----------------------------------------------"
+done
