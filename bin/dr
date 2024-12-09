@@ -16,6 +16,7 @@ __dr_bash_completion() {
     [[ -f /usr/share/bash-completion/completions/docker ]] &&
     source /usr/share/bash-completion/completions/docker
 
+  # shellcheck disable=SC2034
   local cur prev words cword
   _get_comp_words_by_ref -n : cur prev words cword
   _docker_container_run

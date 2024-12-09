@@ -5,6 +5,10 @@ if ! command -v shfmt &>/dev/null; then
   exit 1
 fi
 
+echo "shfmt path   : $(which shfmt)"
+echo "shfmt version: $(shfmt --version)"
+echo ""
+
 ./.helpers/foreach-script shfmt \
   --simplify \
   --language-dialect auto \

@@ -5,6 +5,10 @@ if ! command -v shellcheck &>/dev/null; then
   exit 1
 fi
 
+echo "shellcheck path   : $(which shellcheck)"
+echo "shellcheck version: $(shellcheck --version)"
+echo ""
+
 [[ ${1} == "-v" ]] && export VERBOSE="1"
 
 ./.helpers/foreach-script shellcheck \
