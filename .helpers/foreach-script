@@ -15,12 +15,45 @@ __is_file_bash_or_sh() {
     file "${1}" | grep -qE 'POSIX shell script|Bourne-Again shell script|bash script|sh script'
 }
 
-mapfile -d '' -t files < <(
-  find ./ \
+__find_mac() {
+  # https://ss64.com/mac/find.html
+  # -perm: If the mode is preceded by a plus ('+'), this primary evaluates to true if any of the bits in the mode are set in the file’s mode bits.
+  find . \
+    -type f \
+    -and \( -not -path './.git/*' \) \
+    -and \( -name '*.bash' -or -name '*.sh' -or -perm +111 \) \
+    -print0
+}
+
+__find_linux() {
+  # https://www.gnu.org/software/findutils/manual/html_mono/find.html
+  # https://linux.die.net/man/1/find
+  # https://man7.org/linux/man-pages/man1/find.1.html
+  # -perm /mode    Any of the permission bits mode are set for the file. Symbolic modes are accepted in this form.
+  # -perm +mode    This is no longer supported (and has been deprecated since 2005).  Use -perm /mode instead.
+  find . \
     -type f \
     -and \( -not -path './.git/*' \) \
     -and \( -name '*.bash' -or -name '*.sh' -or -perm /111 \) \
     -print0
+}
+
+__find() {
+  case "$(uname)" in
+    "Darwin")
+      __find_mac
+      ;;
+    "Linux")
+      __find_linux
+      ;;
+    *)
+      __find_linux
+      ;;
+  esac
+}
+
+mapfile -d '' -t files < <(
+  __find
 )
 
 status=0
