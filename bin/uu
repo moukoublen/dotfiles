@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 update-dnf() {
-  echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf update --refresh\e[0m"
-  sudo dnf update --refresh
+  echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf upgrade --refresh\e[0m"
+  sudo dnf upgrade --refresh
   sudo dnf needs-restarting --reboothint
   # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
 }
