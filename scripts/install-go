@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # $1: version e.g. 1.17.11
 
 get_remote_latest_version() {
@@ -12,7 +14,7 @@ get_local_version() {
   [[ -d /usr/local/go ]] && /usr/local/go/bin/go version | sed 's/^go version go//g' | sed 's/ .*$//g'
 }
 
-VER="${1}"
+VER="${1:-}"
 
 if [[ ${VER} == "" ]]; then
   VER="$(get_remote_latest_version)"

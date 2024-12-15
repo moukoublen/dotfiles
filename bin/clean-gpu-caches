@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
+__find_caches() { (
+  set -ex
+  find ~/ \
+    \( -name GPUCache \) \
+    -o \( -name ShaderCache \) \
+    -o \( -name GrShaderCache \) \
+    -type d "${@}"
+); }
+
 if [[ ${1} == "--dry" ]]; then
-  (
-    set -ex
-    find ~/ \( -name GPUCache -o -name ShaderCache -o -name GrShaderCache \) -type d
-  )
+  __find_caches
 else
-  (
-    set -ex
-    find ~/ \( -name GPUCache -o -name ShaderCache -o -name GrShaderCache \) -type d -exec rm -rfv {} +
-  )
+  __find_caches -exec rm -rfv {} +
 fi
 
 # rm -rf ~/.config/BraveSoftware/Brave-Browser/GrShaderCache
