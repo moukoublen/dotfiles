@@ -28,3 +28,29 @@ echo "Turquoise       06: ${C_06}"
 echo "Light Turquoise 14: ${C_14}"
 
 echo "Gnome terminal profile palette: ${C_PAL}"
+
+echo "Ptyxi like palette:"
+# https://gitlab.gnome.org/chergert/ptyxis/-/tree/main/src/palettes?ref_type=heads
+
+echo "Hover FG          : ${C_HFG}"
+echo "Hover BG          : ${C_HBG}"
+echo "Cursor BG         : ${C_CBG}"
+echo "Background=${C_BG}"
+echo "Foreground=${C_FG}"
+echo "Cursor=${C_CFG}"
+echo "Color0=${C_00}"   # Black           00
+echo "Color1=${C_01}"   # Red             01
+echo "Color2=${C_02}"   # Green           02
+echo "Color3=${C_03}"   # Yellow          03
+echo "Color4=${C_04}"   # Blue            04
+echo "Color5=${C_05}"   # Purple          05
+echo "Color6=${C_06}"   # Turquoise       06
+echo "Color7=${C_07}"   # Grey            07
+echo "Color8=${C_08}"   # Light Black     08
+echo "Color9=${C_09}"   # Light Red       09
+echo "Color10=${C_10}"  # Light Green     10
+echo "Color11=${C_11}"  # Light Yellow    11
+echo "Color12=${C_12}"  # Light Blue      12
+echo "Color13=${C_13}"  # Light Purple    13
+echo "Color14=${C_14}"  # Light Turquoise 14
+echo "Color15=${C_15}"  # Light Grey      15
