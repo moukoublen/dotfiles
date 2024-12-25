@@ -1,12 +1,49 @@
+# yaml-language-server: $schema=https://starship.rs/config-schema.json
+
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
+
+# # https://www.nerdfonts.com/cheat-sheet
 
 command_timeout = 2000
 
 # Inserts a blank line between shell prompts
 add_newline = false
 
-# # https://www.nerdfonts.com/cheat-sheet
+# https://starship.rs/config/#default-prompt-format
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$docker_context\
+$python\
+$nix_shell\
+$memory_usage\
+$direnv\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$status\
+$os\
+$container\
+$shell\
+$character"""
+
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
@@ -24,19 +61,6 @@ truncation_symbol = "\U000f01d8/" # nf-md-dots_horizontal
 truncate_to_repo = true
 fish_style_pwd_dir_length = 1
 read_only = "\uebe7" # nerd font nf-cod-lock_small
-
-# Disable the package module, hiding it from the prompt completely
-[package]
-disabled = true
-
-[aws]
-disabled = true
-
-[azure]
-disabled = true
-
-[gcloud]
-disabled = true
 
 [git_branch]
 always_show_remote=true
@@ -78,7 +102,3 @@ staged = "[+$count](green)"
 renamed = "[@$count](blue)"
 deleted = "[x$count](red)"
 typechanged = "[~$count](yellow)"
-
-[golang]
-disabled = true
-#format = "via [🏎💨 $version](bold cyan) "

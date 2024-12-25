@@ -13,3 +13,9 @@ Inside directory `config/gnome/lib` run
 npm run primer --silent --prefix ./palettes > __colors-primer.bash
 ```
 
+
+
+```bash
+npm install "@mui/material"
+npm install "@primer/primitives"
+```
