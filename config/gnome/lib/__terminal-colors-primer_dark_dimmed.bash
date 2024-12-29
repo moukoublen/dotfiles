@@ -10,10 +10,10 @@ source "${SRC_PATH}/__colors-primer.bash"
 
 export C_FG=${primer_dark_dimmed['base-color-white']}
 export C_BG=${primer_dark_dimmed['base-color-black']}
-export C_HFG=${primer_dark_dimmed['base-color-neutral-11']}
-export C_HBG=${primer_dark_dimmed['base-color-pink-7']}
-export C_CFG=${primer_dark_dimmed['base-display-color-plum-2']}
-export C_CBG=${primer_light['base-display-color-pink-4']}
+export C_HFG=${primer_dark_dimmed['base-display-color-teal-8']}
+export C_HBG=${primer_dark_dimmed['base-display-color-pink-4']}
+export C_CFG=${primer_dark_dimmed['base-display-color-gray-9']}
+export C_CBG=${primer_dark_dimmed['base-display-color-plum-3']}
 
 export C_00=${primer_dark_dimmed['base-color-neutral-7']} # Black
 export C_08=${primer_dark_dimmed['base-color-neutral-8']} # Light Black
