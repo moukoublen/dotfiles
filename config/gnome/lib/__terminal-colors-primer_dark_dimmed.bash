@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+# https://primer.style/primitives/storybook/?path=/story/color-base-display-scales--all-scales&globals=theme:dark_dimmed
+# https://primer.style/primitives/storybook/?path=/story/color-base-scales--all-scales&globals=theme:dark_dimmed
 # shellcheck disable=SC1091,SC2154
 
 ## Primer Dark_dimmed Mode
@@ -11,13 +12,13 @@ export C_FG=${primer_dark_dimmed['base-color-white']}
 export C_BG=${primer_dark_dimmed['base-color-black']}
 export C_HFG=${primer_dark_dimmed['base-color-neutral-11']}
 export C_HBG=${primer_dark_dimmed['base-color-pink-7']}
-export C_CFG=${primer_dark_dimmed['base-color-purple-8']}
-export C_CBG=${primer_light['base-color-pink-3']}
+export C_CFG=${primer_dark_dimmed['base-display-color-plum-2']}
+export C_CBG=${primer_light['base-display-color-pink-4']}
 
-export C_00=${primer_dark_dimmed['base-color-neutral-1']} # Black
-export C_08=${primer_dark_dimmed['base-color-neutral-4']} # Light Black
-export C_07=${primer_dark_dimmed['base-color-neutral-8']} # Grey
-export C_15=${primer_dark_dimmed['base-color-neutral-9']} # Light Grey
+export C_00=${primer_dark_dimmed['base-color-neutral-7']} # Black
+export C_08=${primer_dark_dimmed['base-color-neutral-8']} # Light Black
+export C_07=${primer_dark_dimmed['base-color-neutral-9']} # Grey
+export C_15=${primer_dark_dimmed['base-color-neutral-10']} # Light Grey
 
 export C_01=${primer_dark_dimmed['base-color-red-5']}    # Red
 export C_09=${primer_dark_dimmed['base-color-red-3']}    # Light Red
