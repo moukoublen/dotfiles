@@ -1,0 +1,124 @@
+# https://ghostty.org/docs/config/reference
+# ghostty +show-config --default --docs
+
+
+window-decoration = true
+gtk-adwaita = true
+gtk-wide-tabs = true
+gtk-tabs-location = top
+gtk-titlebar = true
+
+window-theme = dark
+window-height = 22
+window-width = 110
+
+font-family = "SauceCodePro Nerd Font"
+font-family = "Noto Color Emoji"
+font-size = 16
+
+# Draw fonts with a thicker stroke, if supported. This is only supported currently on macOS.
+font-thicken = false
+
+theme = github_dimmed
+
+selection-invert-fg-bg = false
+minimum-contrast = 1
+
+cursor-invert-fg-bg = false
+cursor-opacity = 1
+cursor-style = block
+cursor-style-blink =
+cursor-text =
+cursor-click-to-move = true
+mouse-hide-while-typing = false
+mouse-shift-capture = false
+mouse-scroll-multiplier = 1
+background-opacity = 1
+background-blur-radius = 0
+unfocused-split-opacity = 0.7
+unfocused-split-fill =
+
+scrollback-limit = 10000000
+
+
+keybind = super+t=new_tab
+keybind = super+c=copy_to_clipboard
+keybind = super+k=reset
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+w=close_surface
+
+window-padding-x = 6
+window-padding-y = 6
+window-padding-balance = false
+window-padding-color = background
+window-vsync = true
+window-inherit-working-directory = true
+window-inherit-font-size = true
+window-decoration = true
+window-title-font-family =
+window-theme = auto
+window-colorspace = srgb
+window-height = 0
+window-width = 0
+window-save-state = default
+window-step-resize = false
+window-new-tab-position = current
+window-titlebar-background =
+window-titlebar-foreground =
+resize-overlay = after-first
+resize-overlay-position = center
+resize-overlay-duration = 750ms
+focus-follows-mouse = false
+clipboard-read = ask
+clipboard-write = allow
+clipboard-trim-trailing-spaces = true
+clipboard-paste-protection = true
+clipboard-paste-bracketed-safe = true
+title-report = false
+image-storage-limit = 320000000
+copy-on-select = true
+click-repeat-interval = 0
+config-file =
+config-default-files = true
+confirm-close-surface = true
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay =
+initial-window = true
+quick-terminal-position = top
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.2
+quick-terminal-autohide = true
+shell-integration = detect
+shell-integration-features = cursor,no-sudo,title
+osc-color-report-format = 16-bit
+vt-kam-allowed = false
+custom-shader =
+custom-shader-animation = true
+macos-non-native-fullscreen = false
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = visible
+macos-option-as-alt =
+macos-window-shadow = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+macos-icon = official
+macos-icon-frame = aluminum
+macos-icon-ghost-color =
+macos-icon-screen-color =
+linux-cgroup = single-instance
+linux-cgroup-memory-limit =
+linux-cgroup-processes-limit =
+linux-cgroup-hard-fail = false
+gtk-single-instance = desktop
+gtk-titlebar = true
+gtk-tabs-location = top
+adw-toolbar-style = raised
+gtk-wide-tabs = true
+gtk-adwaita = true
+desktop-notifications = true
+bold-is-bright = false
+term = xterm-ghostty
+enquiry-response =
+auto-update = check
+auto-update-channel =

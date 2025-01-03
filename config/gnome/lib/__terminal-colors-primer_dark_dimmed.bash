@@ -15,9 +15,9 @@ export C_HBG=${primer_dark_dimmed['base-display-color-pink-4']}
 export C_CFG=${primer_dark_dimmed['base-display-color-gray-9']}
 export C_CBG=${primer_dark_dimmed['base-display-color-plum-3']}
 
-export C_00=${primer_dark_dimmed['base-color-neutral-7']} # Black
-export C_08=${primer_dark_dimmed['base-color-neutral-8']} # Light Black
-export C_07=${primer_dark_dimmed['base-color-neutral-9']} # Grey
+export C_00=${primer_dark_dimmed['base-color-neutral-7']}  # Black
+export C_08=${primer_dark_dimmed['base-color-neutral-8']}  # Light Black
+export C_07=${primer_dark_dimmed['base-color-neutral-9']}  # Grey
 export C_15=${primer_dark_dimmed['base-color-neutral-10']} # Light Grey
 
 export C_01=${primer_dark_dimmed['base-color-red-5']}    # Red

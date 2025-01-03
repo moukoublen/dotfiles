@@ -16,8 +16,8 @@ export C_CBG=${primer_light['base-color-pink-3']}
 
 export C_00=${primer_light['base-color-neutral-10']} # Black
 export C_08=${primer_light['base-color-neutral-11']} # Light Black
-export C_07=${primer_light['base-color-neutral-8']} # Grey
-export C_15=${primer_light['base-color-neutral-9']} # Light Grey
+export C_07=${primer_light['base-color-neutral-8']}  # Grey
+export C_15=${primer_light['base-color-neutral-9']}  # Light Grey
 
 export C_01=${primer_light['base-color-red-5']}    # Red
 export C_09=${primer_light['base-color-red-3']}    # Light Red
