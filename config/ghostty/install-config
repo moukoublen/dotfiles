@@ -1,30 +1,22 @@
 #!/usr/bin/env bash
 
+# https://ghostty.org/docs/config
+# https://ghostty.org/docs/config/reference#theme
+
+SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# config path
 CONF_PATH="${HOME}/.config/ghostty"
 if [[ $(uname) == "Darwin" ]]; then
-  CONF_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty/confi"
+  CONF_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty"
 fi
 mkdir -p "${CONF_PATH}"
 
-SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# themes path
+# $XDG_CONFIG_DIR/ghostty/themes or ~/.config/ghostty/themes.
+THEMES_PATH="${HOME}/.config/ghostty/themes"
+mkdir -p "${THEMES_PATH}"
 
-__install_settings_file() {
-  local cnf_file=$1
-  local trg_file=${2:-${cnf_file}}
-
-  local ORIGIN="${SELF_PATH}/${cnf_file}"
-  local TARGET="${CONF_PATH}/${trg_file}"
-
-  # if file exists, backup.
-  [[ -f ${TARGET} ]] && [[ ! -L ${TARGET} ]] && mv "${TARGET}"{,.backup}
-
-  # if link already exists, return.
-  [[ -L ${TARGET} ]] && echo "Link for ${cnf_file} already exists" && return
-
-  # install sym link
-  echo -e "Linking \e[0;35m${ORIGIN}\e[0m -> \e[0;36m${TARGET}\e[0m"
-  ln -s "${ORIGIN}" "${TARGET}"
-}
-
-__install_settings_file 'config'
-__install_settings_file 'themes'
+# Install
+lnx "${SRC}/config" "${CONF_PATH}/config"
+lnx "${SRC}/github_dimmed" "${THEMES_PATH}/github_dimmed"

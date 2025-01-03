@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+set -e
+
+rp() {
+  local file_path=
+  case "$(uname)" in
+    "Darwin")
+      file_path="$(realpath "${1}")"
+      ;;
+    "Linux")
+      file_path="$(realpath --logical "${1}")"
+      ;;
+    *)
+      file_path="$(realpath "${1}")"
+      ;;
+  esac
+  echo "${file_path}"
+}
+
+# $1 the src file, either the file name based on the working dir or a full path
+src_file="$(rp "${1}")"
+
+# $2 the destination file, must be full path
+dst_file="${2}"
+
+# if file exists, backup.
+if [[ -f ${dst_file} ]] && [[ ! -L ${dst_file} ]]; then
+  echo "file already exists in destination, backing up..."
+  mv "${dst_file}"{,.backup}
+fi
+
+# if link already exists, return.
+if [[ -L ${dst_file} ]]; then
+  echo -e "Link already exists\n> \e[0;36m${dst_file}\e[0m -> \e[0;35m$(rp "${dst_file}")\e[0m"
+  exit 0
+fi
+
+# install sym link
+echo -e "Linking \e[0;35m${src_file}\e[0m -> \e[0;36m${dst_file}\e[0m"
+ln -s "${src_file}" "${dst_file}"
