@@ -1,0 +1,5 @@
+window-decoration = true
+macos-titlebar-style = transparent
+
+# Draw fonts with a thicker stroke, if supported. This is only supported currently on macOS.
+font-thicken = true

@@ -1,0 +1,13 @@
+window-decoration = true
+gtk-adwaita = true
+gtk-wide-tabs = true
+gtk-tabs-location = top
+gtk-titlebar = true
+
+
+keybind = super+t=new_tab
+keybind = super+c=copy_to_clipboard
+keybind = super+k=reset
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+keybind = super+w=close_surface

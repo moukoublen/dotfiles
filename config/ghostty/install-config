@@ -20,3 +20,14 @@ mkdir -p "${THEMES_PATH}"
 # Install
 lnx "${SRC}/config" "${CONF_PATH}/config"
 lnx "${SRC}/github_dimmed" "${THEMES_PATH}/github_dimmed"
+
+case "$(uname)" in
+  "Darwin")
+    lnx "${SRC}/config_macos" "${CONF_PATH}/config_macos"
+    ;;
+  "Linux")
+    lnx "${SRC}/config_macos" "${CONF_PATH}/config_linux"
+    ;;
+  *)
+    ;;
+esac
