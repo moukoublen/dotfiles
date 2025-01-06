@@ -32,10 +32,10 @@ fi
 
 # if link already exists, return.
 if [[ -L ${dst_file} ]]; then
-  echo -e "Link already exists\n> \e[0;36m${dst_file}\e[0m -> \e[0;35m$(rp "${dst_file}")\e[0m"
+  echo -e "Link already exists\n    \e[0;36m${dst_file}\e[0m -> \e[0;35m$(rp "${dst_file}")\e[0m"
   exit 0
 fi
 
 # install sym link
-echo -e "Linking \e[0;35m${src_file}\e[0m -> \e[0;36m${dst_file}\e[0m"
+echo -e "\e[0;92mLinking\e[0m\n    \e[0;35m${src_file}\e[0m -> \e[0;36m${dst_file}\e[0m"
 ln -s "${src_file}" "${dst_file}"

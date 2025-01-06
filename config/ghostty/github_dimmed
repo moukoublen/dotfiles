@@ -1,11 +1,20 @@
 # ghostty +list-themes
 
+cursor-invert-fg-bg = false
 cursor-color = #7517ab
+cursor-text = #c4cfde
 
 background = #1c2128
 foreground = #cdd9e5
+
+selection-invert-fg-bg = false
 selection-foreground = #24d6c4
 selection-background = #ac2f74
+
+unfocused-split-fill = #0d1117
+unfocused-split-opacity = 0.20
+
+window-padding-color = background
 
 palette = 0=#3d444d
 palette = 1=#c93c37

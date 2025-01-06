@@ -13,8 +13,6 @@ font-family = "JetBrainsMono Nerd Font Mono"
 font-family = "Noto Color Emoji"
 font-size = 16
 
-
-
 theme = github_dimmed
 
 selection-invert-fg-bg = false
@@ -23,8 +21,6 @@ minimum-contrast = 1
 cursor-invert-fg-bg = false
 cursor-opacity = 1
 cursor-style = block
-cursor-style-blink =
-cursor-text =
 cursor-click-to-move = true
 mouse-hide-while-typing = false
 mouse-shift-capture = false
@@ -38,3 +34,5 @@ scrollback-limit = 10000000
 
 window-padding-x = 6
 window-padding-y = 6
+
+bold-is-bright = false
