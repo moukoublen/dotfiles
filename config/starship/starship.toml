@@ -102,3 +102,10 @@ staged = "[+$count](green)"
 renamed = "[@$count](blue)"
 deleted = "[x$count](red)"
 typechanged = "[~$count](yellow)"
+
+[hostname]
+ssh_only = true
+ssh_symbol = "🌐 "
+trim_at = ""
+format = "[$ssh_symbol$hostname]($style) "
+style = "green"
