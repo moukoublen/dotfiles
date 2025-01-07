@@ -109,3 +109,10 @@ ssh_symbol = "🌐 "
 trim_at = ""
 format = "[$ssh_symbol$hostname]($style) "
 style = "green"
+
+[username]
+style_root = "red bold"
+style_user = "yellow bold"
+format ="[$user]($style) "
+show_always = false
+disabled = false
