@@ -28,6 +28,5 @@ case "$(uname)" in
   "Linux")
     lnx "${SRC}/config_linux" "${CONF_PATH}/config_linux"
     ;;
-  *)
-    ;;
+  *) ;;
 esac

@@ -8,6 +8,4 @@ CONF_PATH="${HOME}/.config/bat"
 # fi
 mkdir -p "${CONF_PATH}"
 
-SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
 lnx "${SRC}/config" "${CONF_PATH}/config"
