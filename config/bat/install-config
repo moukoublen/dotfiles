@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 CONF_PATH="${HOME}/.config/bat"
 # if [[ $(uname) = "Darwin" ]]; then
 #   CONF_PATH="${HOME}/.config/bat"
@@ -8,22 +10,4 @@ mkdir -p "${CONF_PATH}"
 
 SELF_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-__install_settings_file() {
-  local cnf_file=$1
-  local trg_file=${2:-${cnf_file}}
-
-  local ORIGIN="${SELF_PATH}/${cnf_file}"
-  local TARGET="${CONF_PATH}/${trg_file}"
-
-  # if file exists, backup.
-  [[ -f ${TARGET} ]] && [[ ! -L ${TARGET} ]] && mv "${TARGET}"{,.backup}
-
-  # if link already exists, return.
-  [[ -L ${TARGET} ]] && echo "Link for ${cnf_file} already exists" && return
-
-  # install sym link
-  echo -e "Linking \e[0;35m${ORIGIN}\e[0m -> \e[0;36m${TARGET}\e[0m"
-  ln -s "${ORIGIN}" "${TARGET}"
-}
-
-__install_settings_file 'config'
+lnx "${SRC}/config" "${CONF_PATH}/config"
