@@ -111,44 +111,15 @@
   "go.toolsManagement.autoUpdate": true,
   "go.toolsManagement.checkForUpdates": "proxy",
   "go.disableConcurrentTests": true,
-  "go.editorContextMenuCommands": {
-    "toggleTestFile": true,
-    "addTags": true,
-    "removeTags": true,
-    "fillStruct": true,
-    "testAtCursor": true,
-    "testFile": false,
-    "testPackage": true,
-    "generateTestForFunction": false,
-    "generateTestForFile": false,
-    "generateTestForPackage": false,
-    "addImport": true,
-    "testCoverage": true,
-    "playground": false,
-    "debugTestAtCursor": true,
-    "benchmarkAtCursor": false
-  },
-  "go.enableCodeLens": {
-    "runtest": true
-  },
-  "go.formatTool": "default",
+  "go.inlayHints.constantValues": true,
+  "go.inlayHints.rangeVariableTypes": true,
   // ~~Language Server~~ https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
   "gopls": {
     "formatting.gofumpt": true,
     "ui.completion.usePlaceholders": true,
-    "ui.completion.experimentalPostfixCompletions": false,
-    "ui.codelenses": {
-      "gc_details": true,
-      "generate": true,
-      "regenerate_cgo": false,
-      "tidy": true,
-      "upgrade_dependency": true,
-      "vendor": true,
-      "run_govulncheck": true,
-      "test": true
-    },
     "ui.diagnostic.analyses": {
+      // https://pkg.go.dev/golang.org/x/tools/go/analysis/passes
       // https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
       "appends": true,
       "asmdecl": true,
@@ -166,14 +137,15 @@
       "directive": true,
       "embed": true,
       "errorsas": true,
-      "fieldalignment": true,
       "fillreturns": true,
-      "fillstruct": true,
+      "framepointer": true,
+      "hostport": true,
       "httpresponse": true,
       "ifaceassert": true,
       "infertypeargs": true,
       "loopclosure": true,
       "lostcancel": true,
+      "modernize": true,
       "nilfunc": true,
       "nilness": true,
       "nonewvars": true,
@@ -181,35 +153,31 @@
       "printf": true,
       "shadow": true,
       "shift": true,
+      "sigchanyzer": true,
       "simplifycompositelit": true,
       "simplifyrange": true,
       "simplifyslice": true,
       "slog": true,
       "sortslice": true,
       "stdmethods": true,
+      "stdversion": true,
       "stringintconv": true,
       "structtag": true,
-      "stubmethods": true,
       "testinggoroutine": true,
       "tests": true,
       "timeformat": true,
-      "undeclaredname": true,
       "unmarshal": true,
       "unreachable": true,
       "unsafeptr": true,
+      "unusedfunc": true,
       "unusedparams": true,
       "unusedresult": true,
       "unusedvariable": true,
       "unusedwrite": true,
-      "useany": true
+      "waitgroup": true,
+      "yield": true
     },
-    "ui.diagnostic.staticcheck": true,
-    "ui.diagnostic.annotations": {
-      "bounds": true,
-      "escape": true,
-      "inline": true,
-      "nil": true
-    }
+    "ui.diagnostic.staticcheck": true
   },
   // </golang>
   // <themes and colors mods>
@@ -255,21 +223,5 @@
   "cSpell.enableFiletypes": [
     "*",
     "!go.mod"
-  ],
-  "cSpell.userWords": [
-    "calt",
-    "cloudspecific",
-    "codelenses",
-    "dlig",
-    "gofumpt",
-    "Gopath",
-    "gopls",
-    "gotools",
-    "govulncheck",
-    "healthcheck",
-    "Monaspace",
-    "runtest",
-    "scrollback",
-    "tmpfs"
   ],
 }
