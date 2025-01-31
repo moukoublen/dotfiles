@@ -8,8 +8,8 @@ fi
 
 if command -v go 1>/dev/null 2>&1; then
   # set gopath away from home
-  if [ -d /goose/goworkspace ]; then
-    export GOPATH="/goose/goworkspace"
+  if [[ -d /xyz/go ]]; then
+    export GOPATH="/xyz/go"
   else
     export GOPATH="${HOME}/goworkspace"
   fi
@@ -31,10 +31,7 @@ go-test() {
   rm -rf /tmp/golang.coverage.txt || true
 }
 
-go-build() { (
-  set -x
-  go build -trimpath -ldflags '-s -w' "${@}"
-); }
+## go build -trimpath -ldflags '-s -w' "${@}"
 
 go-install() {
   echo -e "> go install \e[0;35m${*}\e[0m"

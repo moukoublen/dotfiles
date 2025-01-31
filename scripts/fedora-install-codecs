@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-sudo dnf groupinstall multimedia --allowerasing
-sudo dnf groupinstall "Sound and Video" --allowerasing
-
 sudo dnf -y install \
   amrnb \
   amrwb \

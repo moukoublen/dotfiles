@@ -52,3 +52,6 @@ __get-settings() {
 }
 
 ${func}
+
+#  '<Ctrl><Alt>s'  gnome-control-center sound
+#  '<Ctrl><Alt>t'  ptyxis --new-window

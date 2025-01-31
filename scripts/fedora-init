@@ -4,18 +4,22 @@ sudo systemctl stop firewalld.service
 sudo systemctl disable firewalld.service
 
 sudo dnf install \
-  git git-delta sqlite gcc gcc-c++ strace gdb cmake automake make binutils-devel glibc-devel glibc-static \
+  git sqlite gcc gcc-c++ strace gdb cmake automake make binutils-devel glibc-devel glibc-static \
   jq curl wget redhat-lsb-core htop vim vim-common vim-enhanced nano \
   ack ripgrep
+
+# git-delta # separate script to install from github.
 
 sudo dnf install \
   meld gitg gitk \
   gnome-tweak-tool gnome-extensions-app gnome-usage \
-  gtk-murrine-engine gtk-unico-engine gtk2-engines pavucontrol \
-  atop iftop iotop nmon nvtop procps-ng bat duf fd-find fzf
+  atop iftop iotop nmon nvtop procps-ng duf fd-find
+
+# bat fzf
+# gtk-murrine-engine gtk-unico-engine gtk2-engines pavucontrol \
 
 sudo dnf install \
-  pavucontrol gnome-shell-extension-user-theme chrome-gnome-shell
+  gnome-shell-extension-user-theme chrome-gnome-shell
 
 sudo dnf groupinstall "Development Tools"
 sudo dnf install @development-tools

@@ -11,7 +11,7 @@ echo ""
 
 [[ ${1} == "-v" ]] && export VERBOSE="1"
 
-./.helpers/foreach-script shellcheck \
+./bin/foreach-script shellcheck \
   --norc \
   --external-sources \
   --format=tty \

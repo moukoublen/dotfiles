@@ -9,7 +9,7 @@ echo "shfmt path   : $(which shfmt)"
 echo "shfmt version: $(shfmt --version)"
 echo ""
 
-./.helpers/foreach-script shfmt \
+./bin/foreach-script shfmt \
   --simplify \
   --language-dialect auto \
   --case-indent \
