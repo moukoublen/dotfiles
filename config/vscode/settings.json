@@ -45,6 +45,19 @@
   "terminal.integrated.letterSpacing": 0,
   "terminal.integrated.lineHeight": 1,
   "terminal.integrated.scrollback": 99999999,
+  "terminal.integrated.profiles.osx": {
+    "bash-homebrew": {
+      "path": "/opt/homebrew/bin/bash",
+      "args": [
+        //"-i",
+        //"--login",
+        "--rcfile",
+        "${env:HOME}/.bash_profile",
+      ],
+      "icon": "terminal-bash"
+    },
+  },
+  "terminal.integrated.defaultProfile.osx": "bash-homebrew",
   "yaml.format.printWidth": 280,
   "[xml]": {
     "editor.autoClosingBrackets": "never",
