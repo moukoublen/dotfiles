@@ -3,4 +3,4 @@
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONF_PATH="${HOME}"
 
-lnx "${SRC}/.gitconfig" "${CONF_PATH}/.gitconfig"
+lnx "${SRC}/.dir_colors" "${CONF_PATH}/.dir_colors"

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-VER="${1}" # first argument is the version number e.g. 1.19
+set -euo pipefail
+
+VER="${1:-}" # first argument is the version number e.g. 1.19
+
 if [ -z "${VER}" ]; then
   VER=$(curl -L -s https://dl.k8s.io/release/stable.txt)
 fi
@@ -11,7 +14,7 @@ fi
 
 __LOCAL_VER=""
 if command -v kubectl &>/dev/null; then
-  __LOCAL_VER=$(kubectl version --client --short | sed 's/Client Version: //')
+  __LOCAL_VER=$(kubectl version --client | grep 'Client Version' | sed 's/Client Version: //')
 fi
 
 if [[ ${VER} == "${__LOCAL_VER}" ]]; then
@@ -24,7 +27,10 @@ printf "Installing kubectl \e[1;34m%s\e[0m \n" "${VER}"
 rm -rf /tmp/kubectl_install || true
 mkdir -p /tmp/kubectl_install
 
-curl --fail --show-error --location "https://dl.k8s.io/release/${VER}/bin/linux/amd64/kubectl" --output /tmp/kubectl_install/kubectl
+curl --fail --show-error --location \
+  "https://dl.k8s.io/release/${VER}/bin/linux/amd64/kubectl" \
+  --output /tmp/kubectl_install/kubectl
+
 sudo install -o root -g root -m 0755 /tmp/kubectl_install/kubectl /usr/local/bin/kubectl
 
 rm -rf /tmp/kubectl_install || true
