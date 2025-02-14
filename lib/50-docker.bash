@@ -21,16 +21,10 @@ docker-clean-all() { (
   docker volume prune --force
 ); }
 
-if command -v dr 1>/dev/null 2>&1; then
-  # https://www.shellcheck.net/wiki/SC1090
-  # shellcheck source=/dev/null
-  source <(dr --completion)
-fi
-
 ################################################################################
 ################# macos docker #################################################
 source-docker-bash-completion() {
-  local etc=/Applications/Docker.app/Contents/Resources/etc
+  local etc='/Applications/Docker.app/Contents/Resources/etc'
   if [[ -f "${etc}/docker.bash-completion" ]]; then
     # https://www.shellcheck.net/wiki/SC1090
     # shellcheck source=/dev/null
@@ -43,5 +37,12 @@ source-docker-bash-completion() {
   fi
 }
 export -f source-docker-bash-completion
+source-docker-bash-completion
 ################################################################################
 ################################################################################
+
+if command -v dr 1>/dev/null 2>&1; then
+  # https://www.shellcheck.net/wiki/SC1090
+  # shellcheck source=/dev/null
+  source <(dr --completion)
+fi
