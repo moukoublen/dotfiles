@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 "${DOTFILES_PATH}"/config/bat/install-config
-"${DOTFILES_PATH}"/config/dircolors/install-config
 "${DOTFILES_PATH}"/config/ghostty/install-config
 "${DOTFILES_PATH}"/config/git/install-config
 "${DOTFILES_PATH}"/config/starship/install-config
 "${DOTFILES_PATH}"/config/vim/install-config
-"${DOTFILES_PATH}"/config/vscode/install-config
-"${DOTFILES_PATH}"/config/sublime/install-config

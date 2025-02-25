@@ -443,8 +443,9 @@ __fnt_intelonemono() {
 
 __install_monaspace() { (
   cd "$(ls -d "${1}"/monaspace-*/ | head -n 1)" || return
-  cp ./fonts/otf/*.otf "${2}"/
-  cp ./fonts/variable/*.ttf "${2}"/
+  cp -r ./fonts/otf "${2}"/
+  cp -r ./fonts/variable "${2}"/
+  cp -r ./fonts/frozen "${2}"/
 ); }
 __fnt_monaspace() {
   __installing "GithubNext monaspace"

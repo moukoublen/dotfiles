@@ -41,12 +41,12 @@
   "terminal.integrated.tabs.separator": " • ",
   "terminal.integrated.defaultLocation": "view",
   "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontFamily": "'Monaspace Neon', 'JetBrainsMono Nerd Font', 'IntelOne Mono'",
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontFamily": "'Monaspace Krypton', 'JetBrainsMono Nerd Font', 'IntelOne Mono'",
+  "terminal.integrated.fontSize": 17,
   //"terminal.integrated.fontWeight": "400",
   //"terminal.integrated.fontWeightBold": "450",
   "terminal.integrated.letterSpacing": 0,
-  "terminal.integrated.lineHeight": 1,
+  "terminal.integrated.lineHeight": 1.3,
   "terminal.integrated.scrollback": 99999999,
   "terminal.integrated.profiles.osx": {
     "bash-homebrew": {
