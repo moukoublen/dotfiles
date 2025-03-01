@@ -22,6 +22,7 @@ jobs:
         ./scripts/install-shellcheck
         echo "shellcheck path   : $(which shellcheck)"
         echo "shellcheck version: $(shellcheck --version)"
+        echo ""
         ./scripts/install-shfmt
         echo "shfmt path   : $(which shfmt)"
         echo "shfmt version: $(shfmt --version)"
@@ -29,12 +30,9 @@ jobs:
     - name: shellcheck
       shell: bash
       run: |
-        ./.helpers/shellcheck
+        make shellcheck
 
     - name: shfmt
       shell: bash
       run: |
-        status=0
-        ./.helpers/shfmt || status=1
-        ./.helpers/git-check-dirty || status=1
-        exit "${status}"
+        make shfmt
