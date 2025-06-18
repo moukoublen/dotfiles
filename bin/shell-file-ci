@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# set -x
+
+echo "shfmt        : $(which shfmt) $(shfmt --version)"
+echo "shellcheck   : $(which shellcheck) $(shellcheck --version | grep 'version: ' | cut -d' ' -f2)"
+echo ""
+
+shfmt \
+  --simplify \
+  --language-dialect auto \
+  --case-indent \
+  --indent 2 \
+  --write \
+  "${@}"
+
+shellcheck \
+  --norc \
+  --external-sources \
+  --format=tty \
+  --enable=require-variable-braces,add-default-case \
+  --exclude=SC2012 \
+  --exclude=SC2002 \
+  --exclude=SC2059 \
+  --exclude=SC2181 \
+  --exclude=SC1091 \
+  "${@}"

@@ -37,7 +37,8 @@ source-docker-bash-completion() {
   fi
 }
 export -f source-docker-bash-completion
-source-docker-bash-completion
+# source-docker-bash-completion
+# docker completion bash > ~/.bashrc.d/docker
 ################################################################################
 ################################################################################
 

@@ -6,7 +6,7 @@ if ! command -v shellcheck &>/dev/null; then
 fi
 
 echo "shellcheck path   : $(which shellcheck)"
-echo "shellcheck version: $(shellcheck --version)"
+echo "shellcheck version: $(shellcheck --version | grep 'version: ' | cut -d' ' -f2)"
 echo ""
 
 [[ ${1} == "-v" ]] && export VERBOSE="1"
