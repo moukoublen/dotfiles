@@ -19,6 +19,11 @@ if [[ -x /usr/bin/fzf ]]; then
     source /usr/share/fzf/shell/key-bindings.bash
   fi
 fi
+
+if [ -d /opt/homebrew/opt/fzf/shell ]; then
+  source /opt/homebrew/opt/fzf/shell/key-bindings.bash
+  source /opt/homebrew/opt/fzf/shell/completion.bash
+fi
 ##                                              ##
 ##################################################
 
