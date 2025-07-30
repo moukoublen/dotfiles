@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
+# https://rpmfusion.org/Howto/Multimedia
+
+# sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+# sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+# sudo dnf install intel-media-driver
+
+## bluetooth aptx and ldac
 sudo dnf -y install \
-  amrnb \
-  amrwb \
-  clang-libs \
-  faac \
+  libldac \
+  pipewire-codec-aptx \
+  libfreeaptx \
+  libfreeaptx-tools
+
+# codecs
+sudo dnf -y install \
+  lame \
   faad2 \
   faad2-libs \
-  ffmpeg-libs \
   flac \
-  fribidi \
   gstreamer-ffmpeg \
   gstreamer-plugins-bad \
   gstreamer-plugins-bad-nonfree \
@@ -18,8 +27,13 @@ sudo dnf -y install \
   gstreamer1-libav \
   gstreamer1-plugins-bad-freeworld \
   gstreamer1-plugins-ugly \
-  hwloc-libs \
-  lame \
+  libavcodec-freeworld \
+  libavdevice \
+  libde265 \
+  librtmp \
+  libva-intel-driver \
+  mjpegtools-libs \
+  svt-hevc-libs \
   libass \
   libclc \
   libdca \
@@ -35,20 +49,9 @@ sudo dnf -y install \
   libofa \
   librtmp \
   libva \
-  mjpegtools-libs \
-  ocl-icd \
-  opencl-filesystem \
-  opencore-amr \
-  schroedinger \
-  vid.stab \
-  vo-amrwbenc \
   x264 \
   x264-libs \
   x265 \
-  x265-libs \
-  xvidcore \
-  libldac
+  x265-libs
 
-# sudo dnf install celluloid.x86_64
 # sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
-# sudo dnf install mesa-vdpau-drivers-freeworld

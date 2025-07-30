@@ -1,3 +1,7 @@
+# sudo dnf install highlight # https://gitlab.com/saalen/highlight
+# https://github.com/sharkdp/bat
+# https://github.com/alecthomas/chroma
+
 ww() {
   if ! type -t "${1}" &>/dev/null; then
     echo -e "\e[0;31mNot found\e[0m"
@@ -5,16 +9,16 @@ ww() {
   fi
 
   local cat_cmd
-  cat_cmd="source-highlight --no-doc --out-format=esc --tab=2"
+  cat_cmd='bat --theme=auto --unbuffered --paging=never --style=plain'
 
   local type_of
   type_of="$(type -t "${1}")"
   if [[ ${type_of} == 'function' ]]; then
-    declare -f "${1}" | ${cat_cmd} --src-lang=shell
+    declare -f "${1}" | ${cat_cmd} --language=sh
     return
   fi
   if [[ ${type_of} == 'alias' ]]; then
-    alias "${1}" | ${cat_cmd} --src-lang=shell
+    alias "${1}" | ${cat_cmd} --language=sh
     return
   fi
 
@@ -25,7 +29,7 @@ ww() {
   if [[ ${file_of} == *text* ]]; then
     echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
     echo ''
-    ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
+    ${cat_cmd} "${full_path}" 2>/dev/null || ${cat_cmd} --language=sh "${full_path}"
     return
   fi
 
@@ -60,8 +64,13 @@ ww() {
   echo -e "\e[0;37mFile:\e[0m \e[0;36m${full_path}\e[0m \e[0;90m${file_of}\e[0m "
 
   if [[ ${file_of} == *text* ]]; then
-    ${cat_cmd} --infer-lang --input="${full_path}" 2>/dev/null || ${cat_cmd} --src-lang=shell --input="${full_path}"
+    ${cat_cmd} "${full_path}" 2>/dev/null || ${cat_cmd} --language=sh "${full_path}"
   fi
 }
 export -f ww
 complete -c ww
+
+bb() {
+  local cat_cmd='bat --theme=auto --unbuffered --paging=never --style=plain'
+  ${cat_cmd} "${@}" 2>/dev/null || ${cat_cmd} --language=sh "${@}"
+}

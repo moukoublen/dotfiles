@@ -3,7 +3,7 @@ gtk-adwaita = true
 gtk-wide-tabs = true
 gtk-tabs-location = top
 gtk-titlebar = true
-
+adw-toolbar-style = raised-border
 
 keybind = super+t=new_tab
 keybind = super+c=copy_to_clipboard

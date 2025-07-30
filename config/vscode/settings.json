@@ -210,7 +210,6 @@
     },
   },
   // </themes and colors mods>
-  "editor.accessibilitySupport": "off",
   "cSpell.language": "en,el",
   "cSpell.enableFiletypes": [
     "*",
