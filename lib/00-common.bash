@@ -13,3 +13,9 @@ alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
 S() {
   find . -name "*${*}*"
 }
+
+gg() {
+  rg --json --context=2 "${@}" | delta
+}
+
+# -C NUM, --context=NUM    Show NUM lines before and after each match.

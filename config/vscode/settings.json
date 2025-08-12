@@ -215,4 +215,5 @@
     "*",
     "!go.mod"
   ],
+  "docker.extension.enableComposeLanguageServer": false,
 }
