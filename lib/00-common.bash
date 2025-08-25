@@ -1,7 +1,4 @@
-if [[ $- == *i* ]]; then # "Interactive mode"
-  bind 'set mark-symlinked-directories on'
-fi
-
+bind 'set mark-symlinked-directories on'
 HISTSIZE=30000
 HISTFILESIZE=30000
 

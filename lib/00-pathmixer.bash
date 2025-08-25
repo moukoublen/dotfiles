@@ -3,13 +3,20 @@ path-add() {
     return
   fi
 
-  if [[ ":${PATH}:" != *":${1}:"* ]]; then
-    if [[ ${2} == "after" ]]; then
-      PATH=${PATH}:${1}
-    else
-      PATH=${1}:${PATH}
-    fi
+  if [[ ":${PATH}:" == *":${1}:"* ]]; then
+    return
   fi
 
-  export PATH
+  if [[ ${2} == "after" ]]; then
+    export PATH="${PATH}:${1}"
+  else
+    export PATH="${1}:${PATH}"
+  fi
 }
+
+# Alternative:
+# case ":${PATH}:" in
+#   *":${1}:"*) ;;
+#   *) export PATH="${1}:${PATH}" ;;
+# esac
+

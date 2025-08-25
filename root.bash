@@ -1,3 +1,9 @@
+# Omit on non interactive.
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 path-abs() {
   cd -P "$(dirname "${1}")" && pwd
 }
