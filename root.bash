@@ -1,7 +1,7 @@
 # Omit on non interactive.
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+  *) return ;;
 esac
 
 path-abs() {

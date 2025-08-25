@@ -19,18 +19,18 @@ export NVM_DIR="${HOME}/.nvm"
 [ -s "${NVM_DIR}/nvm.sh" ] && source "${NVM_DIR}/nvm.sh"
 [ -s "${NVM_DIR}/bash_completion" ] && source "${NVM_DIR}/bash_completion"
 
-install-nvm() {(
+install-nvm() { (
   mkdir -p "${NVM_DIR}"
   git clone https://github.com/nvm-sh/nvm.git "${NVM_DIR}"
-  cd "${NVM_DIR}"
-  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-)}
+  cd "${NVM_DIR}" || return
+  git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
+); }
 
-update-nvm() {(
-  cd "${NVM_DIR}"
+update-nvm() { (
+  cd "${NVM_DIR}" || return
   git fetch --tags origin
-  git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
-)}
+  git checkout "$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")"
+); }
 
 # npm install --global corepack@latest
 # npm install -g @anthropic-ai/claude-code
