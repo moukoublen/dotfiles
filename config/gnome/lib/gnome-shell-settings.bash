@@ -41,13 +41,16 @@ settings=(
 
 __set-settings() {
   for key in "${!settings[@]}"; do
-    gsettings-set "${key}" "${settings[${key}]}"
+    read -ra args <<<"${key}"
+    args+=("${settings[${key}]}")
+    gsg set "${args[@]}"
   done
 }
 
 __get-settings() {
   for key in "${!settings[@]}"; do
-    gsettings-get "${key}"
+    read -ra args <<<"${key}"
+    gsg get "${args[@]}"
   done
 }
 
@@ -55,3 +58,7 @@ ${func}
 
 #  '<Ctrl><Alt>s'  gnome-control-center sound
 #  '<Ctrl><Alt>t'  ptyxis --new-window
+
+
+#   ["org.gnome.mutter experimental-features"]="['scale-monitor-framebuffer']"
+

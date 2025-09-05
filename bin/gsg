@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# a gsettings wrapper that displays before and after.
+
+# Current gsettings completion:
+# complete -p gsettings
+
+__get() {
+  local value
+  value="$(gsettings get "${@}")"
+  echo -e "\e[90m${*}\e[0m\e[94m:\e[0m"
+  echo -e "    value: \e[32m${value}\e[0m"
+}
+
+__set() {
+  local args=("${@}")
+  local num=${#args[@]}
+  local noval=("${args[@]:0:num-1}")
+
+  local old_value
+  old_value="$(gsettings get "${noval[@]}")"
+
+  gsettings set "${args[@]}"
+
+  local new_value
+  new_value="$(gsettings get "${noval[@]}")"
+
+  __get "${noval[@]}"
+
+  if [[ ${old_value} != "${new_value}" ]]; then
+    echo -e "    old:   \e[31m${old_value}\e[0m"
+  else
+    echo -e "    \e[90munchanged\e[0m"
+  fi
+
+  echo ""
+}
+
+# gsettings [--schemadir SCHEMADIR] set SCHEMA[:PATH] KEY VALUE
+# gsettings [--schemadir SCHEMADIR] get SCHEMA[:PATH] KEY
+
+# pre=()
+args=()
+case "${1}" in
+  # TODO:
+  # "--schemadir")
+  #   pre=('--schemadir' "${2}")
+  #   shift 2
+  #   ;;
+  "set")
+    shift 1
+    __set "${@}"
+    exit
+    ;;
+  "get")
+    shift 1
+    __get "${@}"
+    exit
+    ;;
+  *)
+    gsettings "${@}"
+    exit
+    ;;
+esac
