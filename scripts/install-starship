@@ -14,7 +14,25 @@ export -f __local_version
 
 __get_dl_url() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^starship-x86_64-unknown-linux-gnu.tar.gz$")) | .browser_download_url'
+  #echo "${JS_BODY}" | jq -r '.assets[] | select(.name | test("^starship-x86_64-unknown-linux-gnu.tar.gz$")) | .browser_download_url'
+  local FILENAME
+  FILENAME=$(echo "$(uname -s)-$(uname -m)" | tr '[:upper:]' '[:lower:]')
+  case "${FILENAME}" in
+    "linux-x86_64")
+      FILENAME="starship-x86_64-unknown-linux-gnu.tar.gz"
+      ;;
+    "linux-aarch64")
+      FILENAME="starship-aarch64-unknown-linux-musl.tar.gz"
+      ;;
+    "darwin-x86_64")
+      FILENAME=""
+      ;;
+    "darwin-arm64")
+      FILENAME=""
+      ;;
+    *) ;;
+  esac
+  echo "${JS_BODY}" | jq -r ".assets[] | select(.name | test(\"^${FILENAME}$\")) | .browser_download_url"
 }
 export -f __get_dl_url
 

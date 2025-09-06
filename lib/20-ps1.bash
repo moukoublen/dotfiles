@@ -186,8 +186,8 @@ __ps1() {
   #local prompt=$'\u21D2' # ⇒
   #local prompt=$'\u279C' # ➜
 
-  local ps1_line1="${__PS1_COLORS[prefix]}╮${__PS1_COLORS[reset]}${dl}"
-  local ps1_line2="${__PS1_COLORS[prefix]}╰${__PS1_COLORS[prefix]}${prompt}${__PS1_COLORS[reset]} "
+  local ps1_line1="${dl}"
+  local ps1_line2="${__PS1_COLORS[prefix]}${prompt}${__PS1_COLORS[reset]} "
 
   export PS1="${ps1_line1}\n${ps1_line2}"
 }
