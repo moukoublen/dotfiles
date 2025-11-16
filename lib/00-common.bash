@@ -1,6 +1,7 @@
 bind 'set mark-symlinked-directories on'
-HISTSIZE=30000
-HISTFILESIZE=30000
+
+export HISTSIZE=
+export HISTFILESIZE=
 
 alias path-to-lines='echo $PATH | tr ":" "\n"'
 alias xdg-data-to-lines='echo $XDG_DATA_DIRS | tr ":" "\n"'
