@@ -13,8 +13,8 @@
   //"editor.lineHeight": 29,
   "editor.fontFamily": "'Monaspace Argon', monospace", //'Monaspace Neon', 'JetBrains Mono', 'IntelOne Mono'
   "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
-  "editor.fontSize": 19,
-  //"editor.fontWeight": 400,
+  "editor.fontSize": 20,
+  "editor.fontWeight": 300,
   "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10'",
   //"editor.fontVariations": false,
   "editor.cursorStyle": "line",
@@ -78,7 +78,8 @@
   "[github-actions-workflow]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "[yaml]": {
     "editor.insertSpaces": true,
@@ -132,6 +133,13 @@
   "go.disableConcurrentTests": true,
   "go.inlayHints.constantValues": true,
   "go.inlayHints.rangeVariableTypes": true,
+  "go.inlayHints.ignoredError": true,
+  "go.testFlags": [
+    "-count=1",
+    "-parallel=1",
+    //"-v",
+    "-race"
+  ],
   // ~~Language Server~~
   // https://github.com/golang/tools/blob/master/gopls/doc/settings.md
   "go.useLanguageServer": true,
@@ -164,6 +172,5 @@
   "cSpell.enableFiletypes": [
     "*",
     "!go.mod"
-  ],
-  "docker.extension.enableComposeLanguageServer": false,
+  ]
 }
