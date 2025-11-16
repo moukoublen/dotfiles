@@ -59,6 +59,4 @@ ${func}
 #  '<Ctrl><Alt>s'  gnome-control-center sound
 #  '<Ctrl><Alt>t'  ptyxis --new-window
 
-
 #   ["org.gnome.mutter experimental-features"]="['scale-monitor-framebuffer']"
-
