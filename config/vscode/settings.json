@@ -110,6 +110,17 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": false
   },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
   "gitlens.codeLens.enabled": false,
   // <golang>
   // https://github.com/golang/vscode-go/wiki/settings
@@ -162,9 +173,9 @@
   "workbench.colorCustomizations": {
     "[Default Dark Modern]": {
       //"editor.selectionBackground": "#bb0d8a8c",
-      "tab.activeBorderTop":"#0078d4",
+      "tab.activeBorderTop": "#0078d4",
       "tab.hoverBorder": "#0078d4",
-      "editorGutter.deletedBackground":"#37373d",
+      "editorGutter.deletedBackground": "#37373d",
     },
   },
   // </themes and colors mods>
