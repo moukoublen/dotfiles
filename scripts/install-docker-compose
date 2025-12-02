@@ -15,7 +15,7 @@ sudo mkdir -p "${PLUGINS_DIR}"
 
 __remote_version() {
   local JS_BODY="${1}"
-  echo "${JS_BODY}" | jq -r '.name'
+  echo "${JS_BODY}" | jq -r '.tag_name'
 }
 export -f __remote_version
 
