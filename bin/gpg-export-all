@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+__backup_gpg_pub_and_private_by_key_id() {
+  local dst="${1}"
+  local keyid="${2}"
+
+  if [ -z "${keyid}" ]; then
+    echo "no key id given"
+    return
+  fi
+
+  if [ -z "${dst}" ]; then
+    echo "no destination path given"
+    return
+  fi
+
+  echo -e "exporting key with id \e[0;94m${keyid}\e[0m"
+  echo -e "  public key -> \e[0;36m${dst}/${keyid}_public.asc\e[0m"
+  ### Export Public Key (with subkeys)
+  gpg --armor --export "${keyid}" >"${dst}/${keyid}_public.asc"
+
+  echo -e "  private key -> \e[0;36m${dst}/${keyid}_private.asc\e[0m"
+  ### Export Private (Secret) Key (with subkeys)
+  # * This exports your entire private key, including the master key and all subkeys.
+  # * By default, GnuPG encrypts this private key file with the same passphrase you used when creating it. (You will still need that passphrase to use the key.)
+  gpg --armor --export-secret-keys "${keyid}" >"${dst}/${keyid}_private.asc"
+
+  echo ""
+}
+
+DST="${1:-${HOME}/GPG_KEYS_BACKUP}"
+mkdir -p "${DST}"
+
+# __backup_gpg_pub_and_private_by_key_id 'A0A88AF285F7E69B'
+# This command lists all keys in "colon" format, finds lines starting with 'pub:',
+# and extracts the 5th colon-separated field, which is the key ID.
+for keyid in $(gpg --list-keys --with-colons | awk -F: '/^pub:/ {print $5}'); do
+  __backup_gpg_pub_and_private_by_key_id "${DST}" "${keyid}"
+done

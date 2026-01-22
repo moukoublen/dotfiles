@@ -3,6 +3,7 @@
 update-dnf() {
   echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf upgrade --refresh\e[0m"
   sudo dnf upgrade --refresh
+  echo -e "    \e[0;90mneeds restarting:\e[0m"
   sudo dnf needs-restarting --reboothint
   # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
 }
@@ -14,22 +15,6 @@ update-apt() {
   sudo apt upgrade
   [[ -e /var/run/reboot-required ]] && echo -e "\e[0;96m->\e[0m \e[0;97mreboot is required\e[0m"
 }
-
-echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
-case "$(what-pm)" in
-  "dnf")
-    update-dnf
-    ;;
-  "apt")
-    update-apt
-    ;;
-  *)
-    echo "this script does not have update command for this release"
-    ;;
-esac
-
-unset -f update-dnf
-unset -f update-apt
 
 if command -v snap &>/dev/null; then
   sudo snap refresh
@@ -47,17 +32,32 @@ if command -v brew &>/dev/null; then
   brew cleanup
 fi
 
-"${DOTFILES_PATH}"/scripts/install-docker-buildx
-"${DOTFILES_PATH}"/scripts/install-docker-compose
-"${DOTFILES_PATH}"/scripts/install-starship
-"${DOTFILES_PATH}"/scripts/install-bat
-"${DOTFILES_PATH}"/scripts/install-fzf
-"${DOTFILES_PATH}"/scripts/install-delta
-"${DOTFILES_PATH}"/scripts/install-elastic-package
-"${DOTFILES_PATH}"/scripts/install-helm
-"${DOTFILES_PATH}"/scripts/install-k9s
-"${DOTFILES_PATH}"/scripts/install-kind
-"${DOTFILES_PATH}"/scripts/install-minikube
-"${DOTFILES_PATH}"/scripts/install-shellcheck
-"${DOTFILES_PATH}"/scripts/install-shfmt
-# "${DOTFILES_PATH}"/scripts/install-dbeaver
+if [[ $(uname) == "Linux" ]]; then
+  "${DOTFILES_PATH}"/scripts/install-docker-buildx
+  "${DOTFILES_PATH}"/scripts/install-docker-compose
+  "${DOTFILES_PATH}"/scripts/install-starship
+  "${DOTFILES_PATH}"/scripts/install-bat
+  "${DOTFILES_PATH}"/scripts/install-fzf
+  "${DOTFILES_PATH}"/scripts/install-delta
+  "${DOTFILES_PATH}"/scripts/install-elastic-package
+  "${DOTFILES_PATH}"/scripts/install-helm
+  "${DOTFILES_PATH}"/scripts/install-k9s
+  "${DOTFILES_PATH}"/scripts/install-kind
+  "${DOTFILES_PATH}"/scripts/install-minikube
+  "${DOTFILES_PATH}"/scripts/install-shellcheck
+  "${DOTFILES_PATH}"/scripts/install-shfmt
+  # "${DOTFILES_PATH}"/scripts/install-dbeaver
+
+  echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
+  case "$(what-pm)" in
+    "dnf")
+      update-dnf
+      ;;
+    "apt")
+      update-apt
+      ;;
+    *)
+      echo "this script does not have update command for this release"
+      ;;
+  esac
+fi
