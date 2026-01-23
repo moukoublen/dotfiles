@@ -56,8 +56,6 @@ install-nano-nanorc() {
   done
 }
 
-alias uu='brew update && brew upgrade && brew cleanup'
-
 sizes-files() {
   du -h -d 1 | sort --human-numeric-sort --reverse
 }

@@ -13,7 +13,7 @@
   //"editor.lineHeight": 29,
   "editor.fontFamily": "'Monaspace Argon', monospace", //'Monaspace Neon', 'JetBrains Mono', 'IntelOne Mono'
   "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
-  "editor.fontSize": 20,
+  "editor.fontSize": 17,
   "editor.fontWeight": 300,
   "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10'",
   //"editor.fontVariations": false,
@@ -43,7 +43,7 @@
   "terminal.integrated.defaultLocation": "view",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontFamily": "'Monaspace Xenon NF', 'JetBrainsMono Nerd Font', 'IntelOne Mono'",
-  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.fontSize": 11,
   "terminal.integrated.fontLigatures.enabled": false,
   "terminal.integrated.fontLigatures.featureSettings": "\"calt\" on",
   "terminal.integrated.fontWeight": "400",
@@ -183,5 +183,6 @@
   "cSpell.enableFiletypes": [
     "*",
     "!go.mod"
-  ]
+  ],
+  "docker.extension.enableComposeLanguageServer": false
 }
