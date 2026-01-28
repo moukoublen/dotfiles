@@ -3,7 +3,7 @@
 update-dnf() {
   echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf upgrade --refresh\e[0m"
   sudo dnf upgrade --refresh
-  echo -e "    \e[0;90mneeds restarting:\e[0m"
+  echo -e "\e[0;96m->\e[0m \e[0;90msudo dnf needs-restarting --reboothint\e[0m"
   sudo dnf needs-restarting --reboothint
   # https://dnf-plugins-core.readthedocs.io/en/latest/needs_restarting.html
 }

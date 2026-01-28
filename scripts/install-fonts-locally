@@ -467,6 +467,8 @@ __fnt_monaspace() {
 # manrope
 # advent
 # iosevka
+#
+# monaspace
 
 __FNT_ALL=(
   victormono
@@ -486,7 +488,6 @@ __FNT_ALL=(
   hubotsans
   monasans
   intelonemono
-  monaspace
 )
 
 __LP=()
