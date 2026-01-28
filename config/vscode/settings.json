@@ -35,7 +35,7 @@
   "window.title": "${rootName}${separator}${rootPath} ${dirty}",
   "window.newWindowProfile": "Default",
   "files.autoSave": "afterDelay",
-  "terminal.integrated.gpuAcceleration": "off",
+  "terminal.integrated.gpuAcceleration": "on",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "block",
   //"terminal.integrated.cursorWidth": 1,
@@ -43,7 +43,7 @@
   "terminal.integrated.defaultLocation": "view",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.fontFamily": "'Monaspace Xenon NF', 'JetBrainsMono Nerd Font', 'IntelOne Mono'",
-  "terminal.integrated.fontSize": 11,
+  "terminal.integrated.fontSize": 12,
   "terminal.integrated.fontLigatures.enabled": false,
   "terminal.integrated.fontLigatures.featureSettings": "\"calt\" on",
   "terminal.integrated.fontWeight": "400",
@@ -137,6 +137,7 @@
     "editor.insertSpaces": false,
     "editor.formatOnSave": true
   },
+  "go.diagnostic.vulncheck": "Off",
   "go.toolsEnvVars": {},
   "go.toolsGopath": "${env:HOME}/vscode-gotools",
   "go.toolsManagement.autoUpdate": true,
@@ -184,5 +185,5 @@
     "*",
     "!go.mod"
   ],
-  "docker.extension.enableComposeLanguageServer": false
+  "docker.extension.enableComposeLanguageServer": false,
 }
