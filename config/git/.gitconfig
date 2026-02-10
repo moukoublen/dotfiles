@@ -24,9 +24,11 @@
 [interactive]
 	diffFilter = delta --color-only --features=interactive
 [delta]
+	dark = true
 	navigate = true
+	line-numbers = true
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [diff]
 	colorMoved = default
 [color "diff"]
