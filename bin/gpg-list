@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+gpg --list-secret-keys --with-colons --fingerprint |
+  awk -F: '
+$1=="sec" || $1=="pub" {
+    if (current_key) print ""
+    current_key=$5
+    printf "Primary key: %s\n", $5
+}
+$1=="fpr" && !seen_fpr {
+    printf "  Fingerprint: %s\n", $10
+    seen_fpr=1
+}
+$1=="uid" {
+    printf "  UID: %s\n", $10
+}
+$1=="ssb" || $1=="sub" {
+    printf "  Subkey: %s (%s)\n", $5, $12
+}
+$1=="sec" || $1=="pub" { seen_fpr=0 }
+'
+
+# record types in `--with-colons`
+#
+# | Field | Meaning            |
+# | ----- | ------------------ |
+# | `pub` | public primary key |
+# | `sec` | secret primary key |
+# | `sub` | public subkey      |
+# | `ssb` | secret subkey      |
+# | `uid` | user identity      |
+# | `fpr` | fingerprint        |
