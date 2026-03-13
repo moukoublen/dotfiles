@@ -19,6 +19,7 @@ case "$(uname)" in
     ff kind completion bash
     ff minikube completion bash
     ff starship completions bash
+    ff golangci-lint completion bash
     ;;
   "Darwin")
     ff docker completion bash

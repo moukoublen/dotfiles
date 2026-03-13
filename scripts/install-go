@@ -30,8 +30,8 @@ if [[ ${VER} == "$(get_local_version)" ]]; then
   exit 0
 fi
 
-if command -v go &>/dev/null && [[ ! -d /usr/local/go ]]; then
-  echo -e "\e[32mGo has been installed in a different way and not in path /usr/local/go.\e[0m Aborting..."
+if command -v go &>/dev/null && [[ "$(go env GOROOT)" != /usr/local/go ]]; then
+  echo -e "Go is \e[0;91mnot\e[0m installed in path \e[0;92m/usr/local/go\e[0m. Aborting..."
   exit 1
 fi
 
@@ -49,6 +49,7 @@ case "${ARCH}" in
   *) ;;
 esac
 
+## https://go.dev/dl/
 ## https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
 DL_URL="https://go.dev/dl/go${VER}.${OS}-${ARCH}.tar.gz"
 
@@ -62,7 +63,7 @@ curl \
   -o "${DR}/go.tar.gz"
 
 if [[ -d /usr/local/go ]]; then
-  echo -e "\e[37mDelete previous go installation (\e[0m$(/usr/local/go/bin/go version)\e[37m)\e[0m"
+  echo -e "\e[37mDeleting previous go installation (\e[0m$(/usr/local/go/bin/go version)\e[37m)\e[0m"
   sudo rm -rf /usr/local/go
 fi
 
