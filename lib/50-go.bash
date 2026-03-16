@@ -69,7 +69,7 @@ install-go-tools() { (
   # https://github.com/golangci/golangci-lint/releases
   #go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@latest'
   curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin"
-  golangci-lint completion bash > "${HOME}/.bashrc.d/golangci-lint-completion.bash"
+  golangci-lint completion bash >"${HOME}/.bashrc.d/golangci-lint-completion.bash"
 
   # https://github.com/securego/gosec/releases
   go-install 'github.com/securego/gosec/v2/cmd/gosec@latest'

@@ -5,8 +5,7 @@ sudo systemctl disable firewalld.service
 
 sudo dnf install \
   git sqlite gcc gcc-c++ strace gdb cmake automake make binutils-devel glibc-devel glibc-static \
-  jq curl wget redhat-lsb-core htop vim vim-common vim-enhanced nano \
-  ack ripgrep
+  jq curl wget htop vim vim-common vim-enhanced nano ack ripgrep
 
 # git-delta # separate script to install from github.
 
