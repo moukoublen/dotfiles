@@ -186,4 +186,5 @@
     "!go.mod"
   ],
   "docker.extension.enableComposeLanguageServer": false,
+  "claudeCode.preferredLocation": "panel",
 }
