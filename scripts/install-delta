@@ -22,7 +22,7 @@ __get_dl_url() {
       ## TODO
       ;;
     "linux-x86_64")
-      JQ_SELECT='select(.name | endswith("-x86_64-unknown-linux-gnu.tar.gz"))'
+      JQ_SELECT='select(.name | endswith("-x86_64-unknown-linux-musl.tar.gz"))'
       ;;
     "linux-aarch64")
       ## TODO
