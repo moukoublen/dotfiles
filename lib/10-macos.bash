@@ -55,8 +55,9 @@ if [[ -d "${HOMEBREW_PREFIX}/opt/tree/bin" ]]; then
   alias tree="\${HOMEBREW_PREFIX}/opt/tree/bin/tree -C"
 fi
 
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
+# run `locale` to verify if needed
+# export LANG='en_US.UTF-8'
+# export LC_ALL='en_US.UTF-8'
 
 install-nano-nanorc() {
   touch ~/.nanorc
