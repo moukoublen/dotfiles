@@ -10,7 +10,7 @@ sudo dnf install \
 # git-delta # separate script to install from github.
 
 sudo dnf install \
-  meld gitg gitk \
+  meld gitg gitk gucharmap \
   gnome-tweak-tool gnome-extensions-app gnome-usage \
   atop iftop iotop nmon nvtop procps-ng duf fd-find
 

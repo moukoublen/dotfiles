@@ -2,31 +2,42 @@
 
 gpg --list-secret-keys --with-colons --fingerprint |
   awk -F: '
-$1=="sec" || $1=="pub" {
-    if (current_key) print ""
-    current_key=$5
-    printf "Primary key: %s\n", $5
+$1=="sec" {
+  printf "\n"
+  printf "%-18s: %s (%s)\n", "Secret Primary key", $5, $17
 }
-$1=="fpr" && !seen_fpr {
-    printf "  Fingerprint: %s\n", $10
-    seen_fpr=1
+$1=="pub" {
+  printf "\n"
+  printf "%-18s: %s\n", "Public Primary key", $5
 }
+$1=="ssb" {
+  printf "%-18s: %s (%s) (%s)\n", "Secret Subkey", $5, $12, $17
+}
+$1=="sub" {
+  printf "%-18s: %s (%s)\n", "Public Subkey", $5, $12
+}
+
+$1=="fpr" {
+  printf "%-18s: %s\n", "Fingerprint", $10
+}
+
+$1=="grp" {
+  printf "%-18s: %s\n", "Keygrip", $10
+}
+
 $1=="uid" {
-    printf "  UID: %s\n", $10
+  printf "%-18s: %s\n", "User Identity", $10
 }
-$1=="ssb" || $1=="sub" {
-    printf "  Subkey: %s (%s)\n", $5, $12
-}
-$1=="sec" || $1=="pub" { seen_fpr=0 }
 '
 
 # record types in `--with-colons`
 #
-# | Field | Meaning            |
-# | ----- | ------------------ |
-# | `pub` | public primary key |
-# | `sec` | secret primary key |
-# | `sub` | public subkey      |
-# | `ssb` | secret subkey      |
-# | `uid` | user identity      |
-# | `fpr` | fingerprint        |
+# | Field | Meaning                |
+# | ----- | ---------------------- |
+# | `pub` | public primary key     |
+# | `sec` | secret primary key     |
+# | `sub` | public subkey          |
+# | `ssb` | secret subkey          |
+# | `uid` | user identity          |
+# | `fpr` | fingerprint            |
+# | `grp` | keygrip (if requested) |
