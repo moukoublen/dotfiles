@@ -28,8 +28,8 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/k9s "${BIN_DIR}"/k9s
 
   # install bash completion
-  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/k9s completion bash >"${HOME}"/.bashrc.d/k9s-completion.bash
+  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+    "${BIN_DIR}"/k9s completion bash > "${HOME}/.local/share/bash-completion/completions/k9s"
   fi
 }
 export -f __install_exec

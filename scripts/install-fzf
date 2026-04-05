@@ -29,8 +29,8 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/fzf "${BIN_DIR}"/fzf
 
   # install bash integration / completion
-  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/fzf --bash >"${HOME}"/.bashrc.d/fzf-completion.bash
+  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+    "${BIN_DIR}"/fzf --bash > "${HOME}/.local/share/bash-completion/completions/fzf"
   fi
 }
 export -f __install_exec

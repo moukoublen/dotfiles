@@ -11,10 +11,10 @@
   "editor.tabSize": 4,
   "editor.insertSpaces": true,
   //"editor.lineHeight": 29,
-  "editor.fontFamily": "'JetBrains Mono', monospace", //'Monaspace Argon', 'Monaspace Neon', 'JetBrains Mono', 'IntelOne Mono'
+  "editor.fontFamily": "'Monaspace Argon', monospace", //'Monaspace Argon', 'Monaspace Neon', 'JetBrains Mono', 'IntelOne Mono'
   "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
   "editor.fontSize": 17,
-  //"editor.fontWeight": 300,
+  "editor.fontWeight": 400,
   "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10'",
   //"editor.fontVariations": false,
   "editor.cursorStyle": "line",

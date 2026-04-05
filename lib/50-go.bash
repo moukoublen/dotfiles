@@ -1,19 +1,19 @@
-if [ -d /usr/local/go ]; then
-  # No need of GOROOT in case of default path (/usr/local/go)
-  #export GOROOT=/path/to/special/go
-  path-add /usr/local/go/bin
-fi
+# if [ -d /usr/local/go ]; then
+#   # No need of GOROOT in case of default path (/usr/local/go)
+#   #export GOROOT=/path/to/special/go
+#   path-add /usr/local/go/bin
+# fi
 
-if command -v go 1>/dev/null 2>&1; then
-  # set gopath away from home
-  if [[ -d /xyz/go ]]; then
-    export GOPATH="/xyz/go"
-  else
-    export GOPATH="${HOME}/goworkspace"
-  fi
+# if command -v go 1>/dev/null 2>&1; then
+#   # set gopath away from home
+#   if [[ -d /xyz/go ]]; then
+#     export GOPATH="/xyz/go"
+#   else
+#     export GOPATH="${HOME}/goworkspace"
+#   fi
 
-  path-add "$(go env GOPATH)/bin"
-fi
+#   path-add "$(go env GOPATH)/bin"
+# fi
 
 go-test() {
   rm -rf /tmp/golang.coverage.txt || true
@@ -69,7 +69,6 @@ install-go-tools() { (
   # https://github.com/golangci/golangci-lint/releases
   #go-install 'github.com/golangci/golangci-lint/cmd/golangci-lint@latest'
   curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b "$(go env GOPATH)/bin"
-  golangci-lint completion bash >"${HOME}/.bashrc.d/golangci-lint-completion.bash"
 
   # https://github.com/securego/gosec/releases
   go-install 'github.com/securego/gosec/v2/cmd/gosec@latest'

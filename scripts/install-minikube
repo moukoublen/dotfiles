@@ -29,8 +29,8 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/minikube-linux-amd64 "${BIN_DIR}"/minikube
 
   # install bash completion
-  if [[ -d "${HOME}"/.bashrc.d/ ]]; then
-    "${BIN_DIR}"/minikube completion bash >"${HOME}"/.bashrc.d/minikube-completion.bash
+  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+    "${BIN_DIR}"/minikube completion bash > "${HOME}/.local/share/bash-completion/completions/minikube"
   fi
 }
 export -f __install_exec

@@ -38,7 +38,7 @@ source-docker-bash-completion() {
 }
 export -f source-docker-bash-completion
 # source-docker-bash-completion
-# docker completion bash > ~/.bashrc.d/docker
+# docker completion bash > "${HOME}/.local/share/bash-completion/completions/docker"
 ################################################################################
 ################################################################################
 

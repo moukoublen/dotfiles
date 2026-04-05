@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# mkdir -p ~/.local/share/bash-completion/completions
+
 ff() {
   if command -v "${1}" &>/dev/null; then
-    echo "${*} > ${HOME}/.bashrc.d/${1}-completion.bash"
-    "${@}" >"${HOME}"/.bashrc.d/"${1}"-completion.bash
+    mkdir -p "${HOME}/.local/share/bash-completion/completions"
+    local dst="${HOME}/.local/share/bash-completion/completions/${1}"
+    echo -e "\e[0;32m${*}\e[0m > \e[0;37m${dst}\e[0m"
+    "${@}" > "${dst}"
   fi
 }
 
@@ -20,9 +24,11 @@ case "$(uname)" in
     ff minikube completion bash
     ff starship completions bash
     ff golangci-lint completion bash
+    ff mise completion bash
     ;;
   "Darwin")
     ff docker completion bash
+    ff mise completion bash
     ;;
   *) ;;
 esac
