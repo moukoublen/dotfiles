@@ -16,9 +16,9 @@ ff devenv completion bash
 
 case "$(uname)" in
   "Linux")
-    ff fzf --bash
-    ff delta --generate-completion bash
-    ff starship completions bash
+    # ff fzf --bash
+    # ff delta --generate-completion bash
+    # ff starship completions bash
 
     # ff helm completion bash
     # ff k9s completion bash
