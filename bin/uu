@@ -63,6 +63,9 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if command -v mise &>/dev/null; then
+  echo -e "\e[0;96m->\e[0m \e[0;90mmise self-update\e[0m"
+  mise self-update
+
   echo -e "\e[0;96m->\e[0m \e[0;90mmise upgrade --bump\e[0m"
   mise upgrade --bump
 fi
