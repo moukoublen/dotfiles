@@ -46,7 +46,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/delta --generate-completion bash > "${HOME}/.local/share/bash-completion/completions/delta"
+    "${BIN_DIR}"/delta --generate-completion bash >"${HOME}/.local/share/bash-completion/completions/delta"
   fi
 }
 export -f __install_exec

@@ -32,7 +32,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/helm completion bash > "${HOME}/.local/share/bash-completion/completions/helm"
+    "${BIN_DIR}"/helm completion bash >"${HOME}/.local/share/bash-completion/completions/helm"
   fi
 }
 export -f __install_exec

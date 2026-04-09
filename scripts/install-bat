@@ -30,7 +30,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    cat "${TMP_DIR}"/autocomplete/bat.bash > "${HOME}/.local/share/bash-completion/completions/bat"
+    cat "${TMP_DIR}"/autocomplete/bat.bash >"${HOME}/.local/share/bash-completion/completions/bat"
   fi
 }
 export -f __install_exec

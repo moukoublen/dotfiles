@@ -9,9 +9,7 @@ eval "$(mise activate bash)"
 # mise use -g usage
 # mise completion bash > ~/.local/share/bash-completion/completions/mise
 
-
 # https://mise.jdx.dev/configuration.html
-
 
 # mise upgrade --bump
 

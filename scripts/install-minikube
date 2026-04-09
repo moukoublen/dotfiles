@@ -30,7 +30,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/minikube completion bash > "${HOME}/.local/share/bash-completion/completions/minikube"
+    "${BIN_DIR}"/minikube completion bash >"${HOME}/.local/share/bash-completion/completions/minikube"
   fi
 }
 export -f __install_exec

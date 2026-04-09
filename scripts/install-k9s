@@ -29,7 +29,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/k9s completion bash > "${HOME}/.local/share/bash-completion/completions/k9s"
+    "${BIN_DIR}"/k9s completion bash >"${HOME}/.local/share/bash-completion/completions/k9s"
   fi
 }
 export -f __install_exec

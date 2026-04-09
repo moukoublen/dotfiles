@@ -1,4 +1,4 @@
-return 0
+[[ ${DOTFILES_PS1} == "true" ]] || return 0
 
 __ps1_color() {
   if [[ $# == 0 ]]; then

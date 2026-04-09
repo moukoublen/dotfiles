@@ -46,7 +46,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/starship completions bash > "${HOME}/.local/share/bash-completion/completions/starship"
+    "${BIN_DIR}"/starship completions bash >"${HOME}/.local/share/bash-completion/completions/starship"
   fi
 }
 export -f __install_exec

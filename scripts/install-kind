@@ -30,7 +30,7 @@ __install_exec() {
 
   # install bash completion
   if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/kind completion bash > "${HOME}/.local/share/bash-completion/completions/kind"
+    "${BIN_DIR}"/kind completion bash >"${HOME}/.local/share/bash-completion/completions/kind"
   fi
 }
 export -f __install_exec
