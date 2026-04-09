@@ -15,3 +15,4 @@ eval "$(mise activate bash)"
 
 # mise upgrade --bump
 
+# mise list --global

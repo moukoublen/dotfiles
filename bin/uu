@@ -35,17 +35,17 @@ fi
 if [[ $(uname) == "Linux" ]]; then
   "${DOTFILES_PATH}"/scripts/install-docker-buildx
   "${DOTFILES_PATH}"/scripts/install-docker-compose
-  "${DOTFILES_PATH}"/scripts/install-starship
-  "${DOTFILES_PATH}"/scripts/install-bat
-  "${DOTFILES_PATH}"/scripts/install-fzf
-  "${DOTFILES_PATH}"/scripts/install-delta
   "${DOTFILES_PATH}"/scripts/install-elastic-package
-  "${DOTFILES_PATH}"/scripts/install-helm
-  "${DOTFILES_PATH}"/scripts/install-k9s
-  "${DOTFILES_PATH}"/scripts/install-kind
-  "${DOTFILES_PATH}"/scripts/install-minikube
-  "${DOTFILES_PATH}"/scripts/install-shellcheck
-  "${DOTFILES_PATH}"/scripts/install-shfmt
+  # "${DOTFILES_PATH}"/scripts/install-starship
+  # "${DOTFILES_PATH}"/scripts/install-bat
+  # "${DOTFILES_PATH}"/scripts/install-fzf
+  # "${DOTFILES_PATH}"/scripts/install-delta
+  # "${DOTFILES_PATH}"/scripts/install-helm
+  # "${DOTFILES_PATH}"/scripts/install-k9s
+  # "${DOTFILES_PATH}"/scripts/install-kind
+  # "${DOTFILES_PATH}"/scripts/install-minikube
+  # "${DOTFILES_PATH}"/scripts/install-shellcheck
+  # "${DOTFILES_PATH}"/scripts/install-shfmt
   # "${DOTFILES_PATH}"/scripts/install-dbeaver
 
   echo -e "\e[1;96m$(what-os)\e[0m with \e[1;36m$(what-pm)\e[0m"
@@ -60,4 +60,9 @@ if [[ $(uname) == "Linux" ]]; then
       echo "this script does not have update command for this release"
       ;;
   esac
+fi
+
+if command -v mise &>/dev/null; then
+  echo -e "\e[0;96m->\e[0m \e[0;90mmise upgrade --bump\e[0m"
+  mise upgrade --bump
 fi

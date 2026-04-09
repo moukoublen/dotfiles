@@ -34,10 +34,6 @@ __install_exec() {
 }
 export -f __install_exec
 
-# if [[ -x /usr/local/bin/k9s ]]; then
-#   source <(k9s completion bash)
-# fi
-
 install-from-github \
   --name "k9s" \
   --repo "derailed/k9s" \

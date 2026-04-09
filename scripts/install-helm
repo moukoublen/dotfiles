@@ -37,10 +37,6 @@ __install_exec() {
 }
 export -f __install_exec
 
-# if [[ -x /usr/local/bin/helm ]]; then
-#   source <(helm completion bash)
-# fi
-
 install-from-github \
   --name "helm" \
   --repo "helm/helm" \

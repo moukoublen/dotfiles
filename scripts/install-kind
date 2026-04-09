@@ -35,10 +35,6 @@ __install_exec() {
 }
 export -f __install_exec
 
-# if [[ -x /usr/local/bin/kind ]]; then
-#   source <(kind completion bash)
-# fi
-
 install-from-github \
   --name "kind" \
   --repo "kubernetes-sigs/kind" \
