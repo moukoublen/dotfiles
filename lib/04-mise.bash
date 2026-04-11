@@ -21,13 +21,13 @@ install-mise-tools() {
     fd@latest \
     shfmt@latest \
     shellcheck@latest \
-    delta@latest \
+    golangci-lint@latest \
     starship@latest \
+    delta@latest \
     helm@latest \
     k9s@latest \
     kind@latest \
     minikube@latest \
-    golangci-lint@latest \
     aws-cli@latest \
     vfox:gcloud@latest
 }
@@ -35,3 +35,5 @@ install-mise-tools() {
 # https://mise.jdx.dev/registry.html
 
 # https://github.com/aws/aws-cli/commits/v2/
+
+# https://mise.jdx.dev/lang/go.html#go
