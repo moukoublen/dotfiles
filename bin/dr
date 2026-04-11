@@ -8,18 +8,48 @@
 #
 # To enable `docker run` run (or put in ~/.bashrc or ~/.profile e.t.c.):
 #
-# source <(dr --completion)
+# source <(dr --bash-completion)
 #
 
 __dr_bash_completion() {
-  [[ "$(type -t _docker_container_run)" != "function" ]] &&
-    [[ -f /usr/share/bash-completion/completions/docker ]] &&
-    source /usr/share/bash-completion/completions/docker
+  # Docker uses cobra's V2 shell completion, exposed via `docker completion bash`.
+  # This generates helper functions (e.g. __start_docker, __docker_get_completion_results)
+  # that drive completion by calling `docker __complete <subcommand> <args...>` at runtime.
+  # We source it lazily — only once per shell session — by checking for __start_docker.
+  [[ "$(type -t __start_docker)" != "function" ]] &&
+    . <(docker completion bash)
 
-  # shellcheck disable=SC2034
-  local cur prev words cword
-  _get_comp_words_by_ref -n : cur prev words cword
-  _docker_container_run
+  # Standard bash-completion setup: populates cur (word under cursor), prev (word before
+  # it), words (full command line as array), cword (index of cur within words), and split
+  # (true when completing after '='). The -n =: flag treats '=' and ':' as non-word-break
+  # characters so flag values like --net=host complete correctly.
+  local cur prev words cword split
+  COMPREPLY=()
+
+  if declare -F _init_completion >/dev/null 2>&1; then
+    _init_completion -n =: || return
+  else
+    # Fallback for systems without the bash-completion package (e.g. macOS with bash 3).
+    __docker_init_completion -n =: || return
+  fi
+
+  # At this point words[0]="dr" and words[1..] are the arguments the user typed.
+  # Docker's completion machinery calls: ${words[0]} __complete ${words[@]:1}
+  # so we rewrite words to look like a `docker run` invocation:
+  #   before: dr        --rm  ubuntu  bash
+  #   after:  docker  run  --rm  ubuntu  bash
+  # cword is shifted by 1 to keep it pointing at the same token the cursor is on.
+  words=("docker" "run" "${words[@]:1}")
+  cword=$(( cword + 1 ))
+
+  # Delegate to docker's V2 completion internals:
+  #   __docker_get_completion_results  — calls `docker __complete run <args>` and
+  #                                      captures the output + directive integer.
+  #   __docker_process_completion_results — interprets the directive (NoSpace, NoFileComp,
+  #                                         FilterDirs, …) and populates COMPREPLY.
+  local out directive
+  __docker_get_completion_results
+  __docker_process_completion_results
 }
 
 READ_ONLY=""
@@ -49,7 +79,7 @@ while (($#)); do
       USR='--user=0:0'
       shift
       ;;
-    --completion)
+    --bash-completion)
       declare -f __dr_bash_completion
       echo ''
       echo 'complete -F __dr_bash_completion dr'

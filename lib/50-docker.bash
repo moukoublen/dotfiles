@@ -1,4 +1,6 @@
-alias docker-clean-volumes='docker volume rm $(docker volume ls -qf dangling=true)'
+docker-clean-dangling-volumes() {
+  docker volume rm $(docker volume ls -qf dangling=true)
+}
 
 docker-stop-all() {
   for i in $(docker ps --format "{{.Names}}"); do
@@ -21,29 +23,6 @@ docker-clean-all() { (
   docker volume prune --force
 ); }
 
-################################################################################
-################# macos docker #################################################
-source-docker-bash-completion() {
-  local etc='/Applications/Docker.app/Contents/Resources/etc'
-  if [[ -f "${etc}/docker.bash-completion" ]]; then
-    # https://www.shellcheck.net/wiki/SC1090
-    # shellcheck source=/dev/null
-    source "${etc}/docker.bash-completion"
-  fi
-  if [[ -f ${etc}/docker-compose.bash-completion ]]; then
-    # https://www.shellcheck.net/wiki/SC1090
-    # shellcheck source=/dev/null
-    source "${etc}/docker-compose.bash-completion"
-  fi
-}
-export -f source-docker-bash-completion
-# source-docker-bash-completion
-# docker completion bash > "${HOME}/.local/share/bash-completion/completions/docker"
-################################################################################
-################################################################################
-
-if command -v dr 1>/dev/null 2>&1; then
-  # https://www.shellcheck.net/wiki/SC1090
-  # shellcheck source=/dev/null
-  source <(dr --completion)
-fi
+################# macos docker
+# /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+# /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion

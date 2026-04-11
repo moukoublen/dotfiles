@@ -18,8 +18,8 @@ sedit() {
   gnome-text-editor admin://"${1}"
 }
 
-alias dnf-display-package-contents='dnf repoquery -l'
-alias dnf-display-local-package-contents='dnf repoquery --installed -l'
+alias dnf-package-contents='dnf repoquery -l'
+alias dnf-installed-package-contents='dnf repoquery --installed -l'
 
 sizes-files() {
   du --human-readable --max-depth=1 --all | sort --human-numeric-sort --reverse
