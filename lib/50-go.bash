@@ -1,19 +1,19 @@
-# if [ -d /usr/local/go ]; then
-#   # No need of GOROOT in case of default path (/usr/local/go)
-#   #export GOROOT=/path/to/special/go
-#   path-add /usr/local/go/bin
-# fi
+if ! command -v go &>/dev/null && [ -d /usr/local/go ]; then
+  # No need of GOROOT in case of default path (/usr/local/go)
+  #export GOROOT=/path/to/special/go
+  path-add /usr/local/go/bin
+fi
 
-# if command -v go 1>/dev/null 2>&1; then
-#   # set gopath away from home
-#   if [[ -d /xyz/go ]]; then
-#     export GOPATH="/xyz/go"
-#   else
-#     export GOPATH="${HOME}/goworkspace"
-#   fi
+if command -v go &>/dev/null; then
+  # set GOPATH away from home
+  if [[ -d /xyz/go ]]; then
+    export GOPATH="/xyz/go"
+  else
+    export GOPATH="${HOME}/goworkspace"
+  fi
 
-#   path-add "$(go env GOPATH)/bin"
-# fi
+  path-add "$(go env GOPATH)/bin"
+fi
 
 go-test() {
   rm -rf /tmp/golang.coverage.txt || true
@@ -91,8 +91,3 @@ install-go-tools() { (
 # Where is the go ENV file?
 # Linux you'll get $HOME/. config/go/env
 # macOS you'll get $HOME/Library/Application Support/go/env
-
-install-hugo() {
-  # https://github.com/gohugoio/hugo?tab=readme-ov-file#build-from-source
-  CGO_ENABLED=1 go install -tags extended -trimpath -ldflags '-s -w' github.com/gohugoio/hugo@latest
-}

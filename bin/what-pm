@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-if command -v dnf >/dev/null 2>&1; then
+if command -v dnf &>/dev/null; then
   echo "dnf"
   exit 0
 fi
 
-if command -v apt >/dev/null 2>&1; then
+if command -v apt &>/dev/null; then
   echo "apt"
   exit 0
 fi
 
-if command -v pkg >/dev/null 2>&1; then
+if command -v pkg &>/dev/null; then
   echo "pkg"
   exit 0
 fi

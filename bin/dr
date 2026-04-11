@@ -16,6 +16,7 @@ __dr_bash_completion() {
   # This generates helper functions (e.g. __start_docker, __docker_get_completion_results)
   # that drive completion by calling `docker __complete <subcommand> <args...>` at runtime.
   # We source it lazily — only once per shell session — by checking for __start_docker.
+  # shellcheck source=/dev/null
   [[ "$(type -t __start_docker)" != "function" ]] &&
     . <(docker completion bash)
 
@@ -23,6 +24,7 @@ __dr_bash_completion() {
   # it), words (full command line as array), cword (index of cur within words), and split
   # (true when completing after '='). The -n =: flag treats '=' and ':' as non-word-break
   # characters so flag values like --net=host complete correctly.
+  # shellcheck disable=SC2034
   local cur prev words cword split
   COMPREPLY=()
 
@@ -40,13 +42,14 @@ __dr_bash_completion() {
   #   after:  docker  run  --rm  ubuntu  bash
   # cword is shifted by 1 to keep it pointing at the same token the cursor is on.
   words=("docker" "run" "${words[@]:1}")
-  cword=$(( cword + 1 ))
+  cword=$((cword + 1))
 
   # Delegate to docker's V2 completion internals:
   #   __docker_get_completion_results  — calls `docker __complete run <args>` and
   #                                      captures the output + directive integer.
   #   __docker_process_completion_results — interprets the directive (NoSpace, NoFileComp,
   #                                         FilterDirs, …) and populates COMPREPLY.
+  # shellcheck disable=SC2034
   local out directive
   __docker_get_completion_results
   __docker_process_completion_results

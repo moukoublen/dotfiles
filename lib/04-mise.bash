@@ -19,6 +19,8 @@ install-mise-tools() {
   mise use --global \
     fzf@latest \
     fd@latest \
+    shfmt@latest \
+    shellcheck@latest \
     delta@latest \
     starship@latest \
     helm@latest \

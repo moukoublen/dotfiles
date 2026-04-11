@@ -15,7 +15,7 @@ __prnt() {
     exit 0
   fi
 
-  if command -v lsb_release >/dev/null 2>&1; then
+  if command -v lsb_release &>/dev/null; then
     lsb_release --all
     exit 0
   fi
