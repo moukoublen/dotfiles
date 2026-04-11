@@ -14,3 +14,22 @@ eval "$(mise activate bash)"
 # mise upgrade --bump
 
 # mise list --global
+
+install-mise-tools() {
+  mise use --global \
+    fzf@latest \
+    fd@latest \
+    delta@latest \
+    starship@latest \
+    helm@latest \
+    k9s@latest \
+    kind@latest \
+    minikube@latest \
+    golangci-lint@latest \
+    aws-cli@latest \
+    vfox:gcloud@latest
+}
+
+# https://mise.jdx.dev/registry.html
+
+# https://github.com/aws/aws-cli/commits/v2/

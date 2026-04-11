@@ -1,7 +1,7 @@
 if command -v zoxide &>/dev/null; then
   # https://www.shellcheck.net/wiki/SC1090
   # shellcheck source=/dev/null
-  source <(zoxide init bash)
+  . <(zoxide init bash)
 fi
 
 # https://github.com/junegunn/fzf
