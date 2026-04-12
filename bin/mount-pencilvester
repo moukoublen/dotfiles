@@ -5,6 +5,8 @@
 #https://www.freedesktop.org/software/systemd/man/systemd.mount.html
 
 sudo mount \
-  --options 'nfsvers=4.2,rw,nosuid,nodev,relatime,nofail,hard' \
+  --options 'nfsvers=4.2,rw,nosuid,nodev,relatime,hard' \
   --source 192.168.178.231:/storage/Tammy \
   --target "/xyz/Tammy"
+
+# if this is ever adapted into a systemd mount or fstab entry, `_netdev` should be included to signal that this is a network device and must wait for the network to be up.
