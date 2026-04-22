@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 __backup_gpg_pub_and_private_by_key_id() {
-  local dst="${1}"
-  local keyid="${2}"
+  local keyid="${1}"
+  local dst="${2}"
 
   if [ -z "${keyid}" ]; then
     echo "no key id given"
@@ -34,5 +34,5 @@ mkdir -p "${DST}"
 # __backup_gpg_pub_and_private_by_key_id 'A0A88AF285F7E69B'
 # List only keys that have a private key available, extract key ID from the 5th colon-separated field.
 for keyid in $(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ {print $5}'); do
-  __backup_gpg_pub_and_private_by_key_id "${DST}" "${keyid}"
+  __backup_gpg_pub_and_private_by_key_id "${keyid}" "${DST}"
 done
