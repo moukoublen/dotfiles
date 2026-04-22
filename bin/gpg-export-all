@@ -32,8 +32,7 @@ DST="${1:-${HOME}/GPG_KEYS_BACKUP}"
 mkdir -p "${DST}"
 
 # __backup_gpg_pub_and_private_by_key_id 'A0A88AF285F7E69B'
-# This command lists all keys in "colon" format, finds lines starting with 'pub:',
-# and extracts the 5th colon-separated field, which is the key ID.
-for keyid in $(gpg --list-keys --with-colons | awk -F: '/^pub:/ {print $5}'); do
+# List only keys that have a private key available, extract key ID from the 5th colon-separated field.
+for keyid in $(gpg --list-secret-keys --with-colons | awk -F: '/^sec:/ {print $5}'); do
   __backup_gpg_pub_and_private_by_key_id "${DST}" "${keyid}"
 done
