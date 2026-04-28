@@ -48,9 +48,9 @@ __install_exec() {
   fi
 
   # install bash autocompletion
-  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/elastic-package completion bash >"${HOME}/.local/share/bash-completion/completions/elastic-package"
-  fi
+  # if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+  #   "${BIN_DIR}"/elastic-package completion bash >"${HOME}/.local/share/bash-completion/completions/elastic-package"
+  # fi
 }
 export -f __install_exec
 
