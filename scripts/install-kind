@@ -29,9 +29,9 @@ __install_exec() {
   sudo chmod +x "${BIN_DIR}"/kind
 
   # install bash completion
-  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/kind completion bash >"${HOME}/.local/share/bash-completion/completions/kind"
-  fi
+  # if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+  #   "${BIN_DIR}"/kind completion bash >"${HOME}/.local/share/bash-completion/completions/kind"
+  # fi
 }
 export -f __install_exec
 

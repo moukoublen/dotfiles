@@ -31,9 +31,9 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/helm "${BIN_DIR}"/helm
 
   # install bash completion
-  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/helm completion bash >"${HOME}/.local/share/bash-completion/completions/helm"
-  fi
+  # if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+  #   "${BIN_DIR}"/helm completion bash >"${HOME}/.local/share/bash-completion/completions/helm"
+  # fi
 }
 export -f __install_exec
 

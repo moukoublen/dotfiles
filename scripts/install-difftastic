@@ -50,11 +50,6 @@ __install_exec() {
   if [[ $(uname) == "Darwin" ]]; then
     sudo xattr -r -d com.apple.quarantine "${BIN_DIR}"/difft
   fi
-
-  # install bash autocompletion
-  # if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-  #
-  # fi
 }
 export -f __install_exec
 

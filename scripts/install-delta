@@ -45,9 +45,9 @@ __install_exec() {
   sudo cp "${TMP_DIR}"/delta "${BIN_DIR}"/delta
 
   # install bash completion
-  if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
-    "${BIN_DIR}"/delta --generate-completion bash >"${HOME}/.local/share/bash-completion/completions/delta"
-  fi
+  # if [[ -d "${HOME}/.local/share/bash-completion/completions" ]]; then
+  #   "${BIN_DIR}"/delta --generate-completion bash >"${HOME}/.local/share/bash-completion/completions/delta"
+  # fi
 }
 export -f __install_exec
 
