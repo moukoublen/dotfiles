@@ -4,11 +4,24 @@
 	name = Kostas Stamatakis
 	email = moukoublen@gmail.com
 	signingkey = A0A88AF285F7E69B
+
+# %<(N) → left-align, pad to N chars
+# %>(N) → right-align
+# %<(N,trunc) → truncate if too long
+# %<(N,ltrunc) → truncate from left
+
 [alias]
 	s = status --short --branch
-	mini = log --no-merges     --pretty=format:\"%C(yellow)%h%C(reset) %C(dim)%as%C(reset) %C(blue)%<(22)%an%C(reset) %C(brightwhite)%s%C(reset) %C(cyan)%C(dim)%d%C(reset)\"
-	hist = log --relative-date --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(22)%an%C(reset) %C(green)%<(15)%cd%C(reset) %s%C(bold red)%d%C(reset)\"
-	f = fetch --all --prune --prune-tags
+	h = log --pretty=format:\"%C(yellow)%h%C(reset) %C(blue)%<(28)%an%C(reset) %C(dim)%as%C(reset) %s %C(bold red)%d%C(reset)\"
+	f = fetch --all --prune
+
+	# Use fzf to switch branch
+	b = "!f() { git checkout ${1:-$(git for-each-ref refs/heads/ --format='%(refname:short)' | fzf)}; }; f"
+
+	# --force-with-lease    Only force-push if the remote branch is exactly what I think it is.
+	# --force-if-includes   Only force-push if my local history already includes the remote commits.
+	fp = push --force-if-includes --force-with-lease
+
 [tag]
 	sort = -version:refname
 [url "git@github.com:"]

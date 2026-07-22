@@ -1,6 +1,4 @@
 # yaml-language-server: $schema=https://starship.rs/config-schema.json
-
-# Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
 # # https://www.nerdfonts.com/cheat-sheet
@@ -116,3 +114,14 @@ style_user = "yellow bold"
 format ="[$user]($style) "
 show_always = false
 disabled = false
+
+[kubernetes]
+disabled = false
+
+[[kubernetes.contexts]]
+context_pattern = "gke_elastic-cloud-dev_europe-west1_kostam-dev-cluster"
+context_alias = "my-gke"
+
+[[kubernetes.contexts]]
+context_pattern = "tsh-qa-(?P<rest>.*)"
+context_alias = "qa($rest)"

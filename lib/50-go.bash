@@ -8,8 +8,6 @@ if command -v go &>/dev/null; then
   # set GOPATH away from home
   if [[ -d /xyz/go ]]; then
     export GOPATH="/xyz/go"
-  else
-    export GOPATH="${HOME}/goworkspace"
   fi
 
   path-add "$(go env GOPATH)/bin"

@@ -1,4 +1,4 @@
-{
+ {
   "diffEditor.ignoreTrimWhitespace": false,
   "files.trimTrailingWhitespace": true,
   "editor.smoothScrolling": true,
@@ -13,7 +13,7 @@
   //"editor.lineHeight": 29,
   "editor.fontFamily": "'Monaspace Argon', monospace", //'Monaspace Argon', 'Monaspace Neon', 'JetBrains Mono', 'IntelOne Mono'
   "editor.inlineSuggest.fontFamily": "'Monaspace Krypton', monospace",
-  "editor.fontSize": 17,
+  "editor.fontSize": 15,
   "editor.fontWeight": 400,
   "editor.fontLigatures": "'calt', 'liga', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08', 'ss09', 'ss10'",
   //"editor.fontVariations": false,
