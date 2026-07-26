@@ -117,6 +117,7 @@ disabled = false
 
 [kubernetes]
 disabled = false
+format = '[k8s\(](bright-black)[$context( \($namespace\))](yellow)[\)](bright-black) '
 
 [[kubernetes.contexts]]
 context_pattern = "gke_elastic-cloud-dev_europe-west1_kostam-dev-cluster"
@@ -125,3 +126,5 @@ context_alias = "my-gke"
 [[kubernetes.contexts]]
 context_pattern = "tsh-qa-(?P<rest>.*)"
 context_alias = "qa($rest)"
+
+# https://starship.rs/config/#style-strings
