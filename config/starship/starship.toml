@@ -11,11 +11,13 @@ add_newline = false
 # https://starship.rs/config/#default-prompt-format
 format = """
 $username\
+$directory\
 $hostname\
 $localip\
 $shlvl\
+$singularity\
 $kubernetes\
-$directory\
+$nats\
 $vcsh\
 $fossil_branch\
 $fossil_metrics\
@@ -25,25 +27,99 @@ $git_state\
 $git_metrics\
 $git_status\
 $hg_branch\
+$hg_state\
+$pijul_channel\
 $docker_context\
+$package\
+$bun\
+$c\
+$cmake\
+$cobol\
+$cpp\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$fortran\
+$gleam\
+$golang\
+$gradle\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$lua\
+$maven\
+$mojo\
+$nim\
+$nodejs\
+$ocaml\
+$odin\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
 $python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$xmake\
+$zig\
+$buf\
+$guix_shell\
 $nix_shell\
+$conda\
+$pixi\
+$meson\
+$spack\
 $memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
 $direnv\
 $env_var\
+$mise\
+$crystal\
 $custom\
 $sudo\
 $cmd_duration\
 $line_break\
 $jobs\
+$battery\
+$time\
 $status\
-$os\
 $container\
+$netns\
+$os\
 $shell\
 $character"""
 
+[gcloud]
+disabled = false
+detect_env_vars = [ "STARSHIP_ENABLE_GCLOUD" ]
+[aws]
+disabled = true
+[azure]
+disabled = true
 
-# Replace the "❯" symbol in the prompt with "➜"
 [character] # The name of the module we are configuring is "character"
 success_symbol="[\ue285](bold green)"
 error_symbol="[\ue285](bold red)"

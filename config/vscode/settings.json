@@ -28,9 +28,7 @@
   "workbench.editor.mouseBackForwardToNavigate": true,
   "workbench.settings.useSplitJSON": true,
   "workbench.settings.editor": "json",
-  "workbench.startupEditor": "newUntitledFile",
   "window.titleBarStyle": "custom",
-  "window.menuBarVisibility": "compact",
   "window.titleSeparator": " • ",
   "window.title": "${rootName}${separator}${rootPath} ${dirty}",
   "window.newWindowProfile": "Default",
@@ -168,23 +166,14 @@
   // </golang>
   // <themes and colors mods>
   //"workbench.iconTheme": "vscode-icons",
-  //"workbench.colorTheme": "GitHub Dark Dimmed",
+  "workbench.colorTheme": "Dark 2026",
   "editor.semanticTokenColorCustomizations": {},
   "editor.tokenColorCustomizations": {},
   "workbench.colorCustomizations": {
-    "[Default Dark Modern]": {
-      //"editor.selectionBackground": "#bb0d8a8c",
-      "tab.activeBorderTop": "#0078d4",
-      "tab.hoverBorder": "#0078d4",
-      "editorGutter.deletedBackground": "#37373d",
-    },
+    "[Dark 2026]":{},
   },
   // </themes and colors mods>
   "cSpell.language": "en,el",
-  "cSpell.enableFiletypes": [
-    "*",
-    "!go.mod"
-  ],
   "docker.extension.enableComposeLanguageServer": false,
   "claudeCode.preferredLocation": "panel",
 }
