@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  diskutil list "${@}"
+  echo -e "for more details run: \e[0;94mdiskutil info -all\e[0m"
+else
+  # lsblk --list-columns
+  sudo lsblk -o 'NAME,MODEL,SERIAL,TYPE,TRAN,SIZE,FSUSE%,FSSIZE,FSTYPE,FSVER,LABEL,MAJ:MIN,UUID,PARTTYPENAME,PTTYPE' "${@}"
+fi
