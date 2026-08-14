@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+CONF_PATH="${HOME}/.config/mise/"
+mkdir -p "${CONF_PATH}"
+
+lnx "${SRC}/config.toml" "${CONF_PATH}/config.toml"

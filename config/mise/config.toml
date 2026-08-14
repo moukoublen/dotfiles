@@ -1,0 +1,26 @@
+[settings]
+minimum_release_age = "0s" 
+
+[tools]
+bat = "latest"
+delta = "latest"
+golangci-lint = "latest"
+helm = "latest"
+k9s = "latest"
+kubectl = "latest"
+kubectx = "latest"
+kubens = "latest"
+minikube = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+usage = "latest"
+kind = "latest"
+fzf = "latest"
+starship = "latest"
+fd = "latest"
+aws-cli = { version = "latest", symlink_bins = "true" }
+"vfox:gcloud" = "latest"
+go = "latest"
+yq = "latest"
+kube-controller-tools = { version = "latest", exe = "controller-gen" }
+kubebuilder = "latest"
