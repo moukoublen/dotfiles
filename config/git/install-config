@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONF_PATH="${HOME}"
+cat <<EOF > ~/.gitconfig
+[user]
+	name = Kostas Stamatakis
+	email = moukoublen@gmail.com
+	signingkey = A0A88AF285F7E69B
 
-lnx "${SRC}/.gitconfig" "${CONF_PATH}/.gitconfig"
+[include]
+	path = ${DOTFILES_PATH}/config/git/main.gitconfig
+EOF

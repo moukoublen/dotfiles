@@ -147,7 +147,7 @@
   "go.testFlags": [
     "-count=1",
     "-parallel=1",
-    //"-v",
+    "-v",
     "-race"
   ],
   // ~~Language Server~~
