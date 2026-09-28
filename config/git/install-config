@@ -4,7 +4,7 @@ cat <<EOF >~/.gitconfig
 [user]
 	name = Kostas Stamatakis
 	email = moukoublen@gmail.com
-	signingkey = A0A88AF285F7E69B
+	signingkey = C970F7797ADA3FABFB9A0786A0A88AF285F7E69B
 
 [include]
 	path = ${DOTFILES_PATH}/config/git/main.gitconfig
