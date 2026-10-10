@@ -37,30 +37,28 @@ export DOTFILES_PATH
 ################################################################################
 ######### Source libs ##########################################################
 for src in "${DOTFILES_PATH}"/lib/*.bash; do
-  if [[ -r ${src} ]]; then
-    # https://www.shellcheck.net/wiki/SC1090
-    # shellcheck source=/dev/null
-    source "${src}"
-  fi
+  [[ -f ${src} && -r ${src} ]] || continue
+
+  # shellcheck source=/dev/null
+  source "${src}"
 done
 unset src
 
 for src in "${DOTFILES_PATH}"/extras-*; do
+  [[ -f ${src} && -r ${src} ]] || continue
+
   # https://www.shellcheck.net/wiki/SC1090
   # shellcheck source=/dev/null
   source "${src}"
 done 2>/dev/null
 unset src
 
-if [[ -d "${HOME}"/.bashrc.d ]]; then
-  for src in "${HOME}"/.bashrc.d/*; do
-    if [[ -f ${src} ]]; then
-      # https://www.shellcheck.net/wiki/SC1090
-      # shellcheck source=/dev/null
-      source "${src}"
-    fi
-  done
-fi
+for src in "${HOME}/.bashrc.d/"*; do
+  [[ -f ${src} && -r ${src} ]] || continue
+
+  # shellcheck source=/dev/null
+  source "${src}"
+done
 unset src
 ################################################################################
 ################################################################################

@@ -15,5 +15,3 @@ S() {
 gg() {
   rg --json --context=2 "${@}" | delta
 }
-
-# -C NUM, --context=NUM    Show NUM lines before and after each match.
