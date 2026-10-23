@@ -13,6 +13,11 @@ format = """
 $username\
 $directory\
 $hostname\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
 $localip\
 $shlvl\
 $singularity\
@@ -21,11 +26,6 @@ $nats\
 $vcsh\
 $fossil_branch\
 $fossil_metrics\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
-$git_status\
 $hg_branch\
 $hg_state\
 $pijul_channel\
@@ -114,11 +114,18 @@ $character"""
 
 [gcloud]
 disabled = false
-detect_env_vars = [ "STARSHIP_ENABLE_GCLOUD" ]
+symbol = "\U000f02ad" # nf-md-google
+format = '[$symbol\(](bright-black)[$account(@$domain)(\($region\))]($style)[\)](bright-black) '
+# detect_env_vars = [ "STARSHIP_ENABLE_GCLOUD" ]
+
 [aws]
 disabled = true
+symbol = "\U000f0e0f" # nf-md-aws
+format = '[$symbol\(](bright-black)[$profile(\($region\))]($style)[\)](bright-black) '
+
 [azure]
 disabled = true
+symbol = "\U000f0805" # nf-md-microsoft_azure
 
 [character] # The name of the module we are configuring is "character"
 success_symbol="[\ue285](bold green)"
@@ -191,16 +198,26 @@ format ="[$user]($style) "
 show_always = false
 disabled = false
 
+[golang]
+disabled = true
+
 [kubernetes]
 disabled = false
-format = '[k8s\(](bright-black)[$context( \($namespace\))](yellow)[\)](bright-black) '
+symbol = "\U000f10fe" # nerd font nf-md-kubernetes
+format = '[$symbol\(](bright-black)[$context( \($namespace\))](yellow)[\)](bright-black) '
 
 [[kubernetes.contexts]]
-context_pattern = "gke_elastic-cloud-dev_europe-west1_kostam-dev-cluster"
+context_pattern = "gke_elastic-cloud-dev_europe-west1_kostas-eck-dev-cluster"
 context_alias = "my-gke"
 
+# [[kubernetes.contexts]]
+# context_pattern = "tsh-(?P<env>[a-zA-Z0-9]+)-(?P<rest>.*)"
+# context_alias = "$env($rest)"
+
 [[kubernetes.contexts]]
-context_pattern = "tsh-qa-(?P<rest>.*)"
-context_alias = "qa($rest)"
+context_pattern = "tsh-(?P<rest>.*)"
+context_alias = "$rest"
 
 # https://starship.rs/config/#style-strings
+
+

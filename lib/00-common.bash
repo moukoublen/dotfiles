@@ -7,6 +7,7 @@ alias path-to-lines='echo $PATH | tr ":" "\n"'
 alias xdg-data-to-lines='echo $XDG_DATA_DIRS | tr ":" "\n"'
 alias infopath-to-lines='echo $INFOPATH | tr ":" "\n"'
 alias ld-to-lines='echo $LD_LIBRARY_PATH | tr ":" "\n"'
+alias json-with-base64-decode="jq '.data |= with_entries(.value |= @base64d)'"
 
 S() {
   find . -name "*${*}*"
