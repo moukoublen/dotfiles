@@ -40,3 +40,8 @@ window-padding-x = 6
 window-padding-y = 6
 
 bold-is-bright = false
+
+working-directory = home
+window-inherit-working-directory = false
+tab-inherit-working-directory = false
+split-inherit-working-directory = false
