@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# dircolors --print-database > ~/.dir_colors
+
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONF_PATH="${HOME}"
 

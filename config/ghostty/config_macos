@@ -3,3 +3,6 @@ macos-titlebar-style = transparent
 
 # Draw fonts with a thicker stroke, if supported. This is only supported currently on macOS.
 font-thicken = true
+
+shell-integration = bash
+shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo

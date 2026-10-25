@@ -2,10 +2,8 @@ if [[ $(uname) != "Darwin" ]]; then
   return 0
 fi
 
-path-add /usr/local/bin/
+#path-add /usr/local/bin/
 #path-add /usr/local/sbin
-
-#export JAVA_HOME='/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 
 # alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
@@ -50,11 +48,6 @@ if [[ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]]; then
   alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 fi
 
-if [[ -d "${HOMEBREW_PREFIX}/opt/tree/bin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/tree/bin"
-  alias tree="\${HOMEBREW_PREFIX}/opt/tree/bin/tree -C"
-fi
-
 # run `locale` to verify if needed
 # export LANG='en_US.UTF-8'
 # export LC_ALL='en_US.UTF-8'
@@ -69,6 +62,7 @@ export LC_TIME="en_US.UTF-8"
 export LC_ALL='en_US.UTF-8'
 
 install-nano-nanorc() {
+  # /opt/homebrew/share/doc/nano/sample.nanorc
   touch ~/.nanorc
   for rcfile in "$(brew --prefix nano)"/share/nano/*.nanorc; do
     echo "include ${rcfile}" >>~/.nanorc

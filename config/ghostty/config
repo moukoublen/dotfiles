@@ -1,5 +1,6 @@
 # https://ghostty.org/docs/config/reference
 # ghostty +show-config --default --docs
+# ghostty +list-keybinds --default
 
 config-file = ?config_macos
 config-file = ?config_linux
@@ -14,7 +15,7 @@ font-family = "Monaspace Krypton NF"
 font-family = "Noto Color Emoji"
 font-size = 16
 font-feature = "+calt, +ss01, +ss02, +ss03, +ss04, +ss05, +ss06, +ss07, +ss08, +ss09, +ss10, +liga"
-font-variation = "wght=250, wdth=100"
+#font-variation = "wght=250, wdth=100"
 
 theme = github_dimmed
 

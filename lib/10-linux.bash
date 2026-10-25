@@ -49,4 +49,3 @@ list-broken-links() {
 export EDITOR=/usr/bin/vim
 
 [[ -e "${HOME}/.dir_colors" ]] && eval "$(dircolors --bourne-shell "${HOME}/.dir_colors")"
-# dircolors --print-database > ~/.dir_colors
