@@ -1,8 +1,10 @@
-window-decoration = true
-macos-titlebar-style = transparent
+window-decoration = auto
+macos-titlebar-style = native
 
 # Draw fonts with a thicker stroke, if supported. This is only supported currently on macOS.
 font-thicken = true
 
 shell-integration = bash
 shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+
+keybind = super+k=reset

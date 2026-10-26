@@ -7,6 +7,8 @@ path-add() {
     return
   fi
 
+  # By default the path is prepended (added first); pass "after" as the
+  # second argument to append it (added last) instead.
   if [[ ${2} == "after" ]]; then
     export PATH="${PATH}:${1}"
   else

@@ -48,6 +48,10 @@ if [[ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]]; then
   alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 fi
 
+path-add-ncurses() {
+  path-add "$(brew --prefix ncurses)/bin"
+}
+
 # run `locale` to verify if needed
 # export LANG='en_US.UTF-8'
 # export LC_ALL='en_US.UTF-8'

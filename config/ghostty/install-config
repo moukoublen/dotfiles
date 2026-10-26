@@ -7,9 +7,9 @@ SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # config path
 CONF_PATH="${HOME}/.config/ghostty"
-if [[ $(uname) == "Darwin" ]]; then
-  CONF_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty"
-fi
+# if [[ $(uname) == "Darwin" ]]; then
+#   CONF_PATH="${HOME}/Library/Application Support/com.mitchellh.ghostty"
+# fi
 mkdir -p "${CONF_PATH}"
 
 # themes path
