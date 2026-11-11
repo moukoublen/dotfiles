@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+__cmd() {
+  echo -e "\e[0;90m⇒ \e[0m \e[0;90m${*}\e[0m"
+  "${@}"
+}
+
+__cmd sudo btrfs filesystem show "${@}"
+__cmd sudo btrfs filesystem df "${@}"
+__cmd sudo btrfs filesystem usage -T "${@}"
+__cmd sudo btrfs device usage "${@}"
