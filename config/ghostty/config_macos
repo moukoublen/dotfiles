@@ -5,6 +5,7 @@ macos-titlebar-style = native
 font-thicken = true
 
 shell-integration = bash
-shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+# shell-integration-features = cursor,sudo,title,ssh-env,ssh-terminfo
+shell-integration-features = sudo,title
 
 keybind = super+k=reset
