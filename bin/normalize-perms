@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+set -x
+
+TARGET="${1:-"$(pwd)"}"
+RESOLVED=$(cd "${TARGET}" && pwd -P) || exit 1
+
+__mine() {
+  local target="${1}"
+
+  case "${target}" in
+    / | /usr | /etc | /bin | /sbin | /var | /opt | /System | /Library)
+      echo "Refusing to chown ${target}" >&2
+      return 1
+      ;;
+    *)
+      ;;
+  esac
+
+  sudo chown -R "$(id -u):$(id -g)" "${target}"
+}
+
+__perms() {
+  local target="${1}"
+
+  # recursively set the permissions of directories to 0755 (but not files).
+  find "${target}" -type d -exec chmod 0755 {} +
+
+  # recursively set the permissions of files to 0644 (but not directories).
+  find "${target}" -type f -exec chmod 0644 {} +
+
+  # # recursively remove the execute permission (x) from files (but not directories).
+  # find "${target}" -type f -exec chmod a-x {} +
+}
+
+__mine "${RESOLVED}"
+__perms "${RESOLVED}"
+
+unset RESOLVED
+unset TARGET
