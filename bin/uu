@@ -80,10 +80,8 @@ update-mise() {
 
 update-customs() {
   __header customs
-  if [[ $(uname) == "Linux" ]]; then
-    __cmd "${DOTFILES_PATH}"/scripts/install-docker-buildx
-    __cmd "${DOTFILES_PATH}"/scripts/install-docker-compose
-  fi
+  __cmd "${DOTFILES_PATH}"/scripts/install-docker-buildx
+  __cmd "${DOTFILES_PATH}"/scripts/install-docker-compose
   __cmd "${DOTFILES_PATH}"/scripts/install-elastic-package
 }
 

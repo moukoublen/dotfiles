@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@primer/primitives": "^11.10.0",
+    "json5": "^2.2.3",
+    "yaml": "^2.9.1"
+  }
+}

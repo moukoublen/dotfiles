@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $(uname) == "Darwin" ]]; then
+  sudo xattr -r -d com.apple.quarantine "${@}"
+fi

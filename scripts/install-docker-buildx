@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 # $HOME/.docker/cli-plugins
 
 # /usr/local/lib/docker/cli-plugins
@@ -10,8 +12,10 @@
 
 # PLUGINS_DIR="${HOME}/.docker/cli-plugins/"
 # mkdir -p "${PLUGINS_DIR}"
-PLUGINS_DIR="/usr/local/lib/docker/cli-plugins"
-sudo mkdir -p "${PLUGINS_DIR}"
+
+# use custom path. Set it in docker config in "cliPluginsExtraDirs":[...]
+PLUGINS_DIR="${HOME}/.local/share/docker-cli-plugins"
+mkdir -p "${PLUGINS_DIR}"
 
 __remote_version() {
   local JS_BODY="${1}"
@@ -50,9 +54,8 @@ export -f __get_dl_url
 __install_exec() {
   local BIN_DIR="${1}"
   local DOWNLOADED_FULL_PATH="${2}"
-  #local TMP_DIR
-  #TMP_DIR="$(dirname "${DOWNLOADED_FULL_PATH}")"
-  sudo install -D --owner=root --group=root --mode=0755 "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}/docker-buildx"
+  install -o "$(id -u)" -g "$(id -g)" -m '0755' "${DOWNLOADED_FULL_PATH}" "${BIN_DIR}/docker-buildx"
+  macos-xattr-quarantine "${BIN_DIR}/docker-buildx"
 }
 export -f __install_exec
 
