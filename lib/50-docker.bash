@@ -24,6 +24,10 @@ docker-clean-all() { (
   docker volume prune --force
 ); }
 
+docker-info-plugins() {
+  docker info --format '{{json .ClientInfo.Plugins}}' | jq -r '.[] | "\(.Name)\t\(.Path)"' | column -t -s $'\t'
+}
+
 ################# macos docker
 # /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
 # /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
