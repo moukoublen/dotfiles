@@ -9,3 +9,5 @@ shell-integration = bash
 shell-integration-features = sudo,title
 
 keybind = super+k=reset
+# keybind = super+d=new_split:right
+# keybind = super+shift+d=new_split:down

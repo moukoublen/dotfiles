@@ -82,6 +82,7 @@ update-customs() {
   __header customs
   __cmd "${DOTFILES_PATH}"/scripts/install-docker-buildx
   __cmd "${DOTFILES_PATH}"/scripts/install-docker-compose
+  __cmd "${DOTFILES_PATH}"/scripts/install-docker-scout
   __cmd "${DOTFILES_PATH}"/scripts/install-elastic-package
 }
 
