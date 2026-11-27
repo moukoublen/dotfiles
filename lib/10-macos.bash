@@ -8,49 +8,30 @@ fi
 # alias code='/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 alias ldd='otool -L'
-alias mac-no-quarantine='xattr -r -d com.apple.quarantine'
 
-if [[ -d "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
-  alias grep='command ggrep --color=auto'
-else
-  alias grep='command grep --color=auto'
-fi
-
-if [[ -d "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
-  alias ll='command gls -la --color=auto'
-  alias ls='command gls --color=auto'
-  alias cat='command gcat'
-  [[ -e "${HOME}/.dir_colors" ]] && eval "$(gdircolors --bourne-shell ~/.dir_colors)"
-else
-  alias ll='command ls -laG'
-  alias ls='command ls -G'
-fi
-
-if [[ -d "${HOMEBREW_PREFIX}/opt/findutils/bin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
-  alias find='command gfind'
-fi
-
-if [[ -d "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
-  alias make='command gmake'
-fi
-
-if [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
-  alias sed='command gsed'
-fi
-
-if [[ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]]; then
-  # path-add "${HOMEBREW_PREFIX}/opt/curl/bin"
-  alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
-fi
-
-path-add-ncurses() {
-  path-add "$(brew --prefix ncurses)/bin"
+mac-gnu() {
+  path-add "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin"
+  path-add "${HOMEBREW_PREFIX}/opt/curl/bin"
 }
+
+# alias ll='command ls -laG'
+# alias ls='command ls -G'
+alias ll='command gls -la --color=auto'
+alias ls='command gls --color=auto'
+alias cat='command gcat'
+[[ -e "${HOME}/.dir_colors" ]] && eval "$(gdircolors --bourne-shell ~/.dir_colors)"
+# alias grep='command grep --color=auto'
+alias grep='command ggrep --color=auto'
+alias find='command gfind'
+alias make='command gmake'
+alias curl="\${HOMEBREW_PREFIX}/opt/curl/bin/curl"
 
 # export LC_ALL='en_US.UTF-8'
 # export LANG='en_US.UTF-8'
@@ -58,17 +39,18 @@ path-add-ncurses() {
 install-nano-nanorc() {
   # /opt/homebrew/share/doc/nano/sample.nanorc
   touch ~/.nanorc
+  echo '' > ~/.nanorc
   for rcfile in "$(brew --prefix nano)"/share/nano/*.nanorc; do
     echo "include ${rcfile}" >>~/.nanorc
   done
 }
 
 sizes-files() {
-  du -h -d 1 | sort --human-numeric-sort --reverse
+  gdu --human-readable --max-depth=1 --all | gsort --human-numeric-sort --reverse
 }
 export -f sizes-files
 sizes-disks() {
-  df -h -Y
+  gdf --human-readable --print-type --exclude-type=tmpfs --exclude-type=squashfs --exclude-type=devtmpfs
 }
 export -f sizes-disks
 
